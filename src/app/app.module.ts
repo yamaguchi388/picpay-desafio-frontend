@@ -10,14 +10,17 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [	
-    AppComponent, HomeComponent,
-   ],
+    AppComponent, 
+    SignInComponent, 
+    HomeComponent, 
+  ],
   imports: [
-    AppRoutingModule,
     BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
