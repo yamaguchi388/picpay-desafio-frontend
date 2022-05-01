@@ -1,0 +1,23 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.page .header {
+    display: flex;
+    flex: 0 1 auto;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 30px;
+
+    background-color: #002D69;
+    color: var(--light);
+}
+
+.page .content {
+    flex: 1 1 auto;
+    background-color: var(--light);
+    padding: 50px;
+}
