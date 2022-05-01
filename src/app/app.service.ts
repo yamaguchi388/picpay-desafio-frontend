@@ -12,9 +12,9 @@ export class AppService {
 
     constructor(private http: HttpClient) { }
 
-    getAccountByEmail(email: string): Promise<any[]> {
+    getAccountByEmailAndPassword(email: string, password: string): Promise<any[]> {
         return new Promise ((resolve, reject) => {
-            this.http.get<any>(this.apiUrl + 'account?email=' + email).subscribe(
+            this.http.get<any>(this.apiUrl + 'account?email=' + email + '&password=' + password).subscribe(
                 success => {
                     resolve(success);
                 },

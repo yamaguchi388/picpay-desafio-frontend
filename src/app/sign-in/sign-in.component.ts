@@ -27,19 +27,12 @@ export class SignInComponent implements OnInit {
   }
 
   signIn() {
-    this.appService.getAccountByEmail(this.email).then(
+    this.appService.getAccountByEmailAndPassword(this.email, this.password).then(
       success => {
         if (!success || success.length === 0) {
-          this.toastr.error('E-mail não cadastrado.');
-          
+          this.toastr.error('E-mail e/ou senha incorretos.');
         } else {
-          const account = success[0];
-          
-          if (account.password != this.password) {
-            this.toastr.error('Senha incorreta.');
-          } else {
-            this.router.navigateByUrl('home');
-          }
+          this.router.navigateByUrl('home');
         }
       },
       error => {
