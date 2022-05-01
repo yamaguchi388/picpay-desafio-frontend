@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
+
+import { Task } from './classes/Task';
 
 @Injectable({
     providedIn: 'root'
@@ -22,6 +23,25 @@ export class AppService {
                     reject(error);
                 }
             )
-          })
+        })
     }
+
+    getTasks(queryParams?: string) {
+        if (!queryParams) {
+            queryParams = '';
+        }
+
+        return new Promise ((resolve, reject) => {
+            this.http.get<Task>(this.apiUrl + 'tasks' + queryParams).subscribe(
+                success => {
+                    resolve(success);
+                },
+                error => {
+                    reject(error);
+                }
+            )
+        })
+    }
+
+
 }
