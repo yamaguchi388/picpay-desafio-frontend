@@ -10,9 +10,23 @@ import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 })
 export class HomeComponent implements OnInit {
 
+  searchBy: string = '';
+  limit: number = 5;
+
+  totalItems = 70;
+  currentPage = 1;
+
+  faSearch = faSearch;
+  faFilter = faFilter;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  searchPayments() {
+    console.log('searchPayments');
+    
   }
 
 }

@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +31,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    PaginationModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

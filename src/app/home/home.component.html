@@ -1,10 +1,63 @@
 <div class="page">
-    <div class="header">
-        <img src="assets/logo-white.png" alt="Logo">
+	<div class="header">
+		<img src="assets/logo-white.png" alt="Logo">
 
-        <img src="assets/profile-photo.png" alt="Foto de perfil">
-    </div>
-    
-    <div class="content">
-    </div>
+		<div class="rounded-circle">
+			<img src="assets/profile-photo.png" alt="Foto de perfil">
+		</div>
+	</div>
+
+	<div class="content">
+		<h2>Meus pagamentos</h2>
+
+		<div class="d-flex justify-content-end">
+			<button class="btn btn-primary">
+				<span class="p-3">ADICIONAR PAGAMENTO</span>
+			</button>
+		</div>
+
+		<div class="row d-flex justify-content-between bg-white p-4 m-0 mt-3">
+			<div class="d-flex col-12 col-lg-6 justify-content-start">
+					<div class="input-icons">
+						<input type="text" class="input-field" placeholder="Pesquisar por usuário" [(ngModel)]="searchBy">
+						<fa-icon [icon]="faSearch" (click)="searchPayments()"></fa-icon>
+						<!-- <div class=""> -->
+							<!-- <button class="btn btn-outline-secondary" (click)="searchPayments()"> -->
+						<!-- </button> -->
+						<!-- </div> -->
+					</div>
+
+				<div class="ml-2">
+					<button class="btn btn-filter">
+						<!-- <fa-icon [icon]="faFilter"></fa-icon> Filtrar -->
+						<img src="assets/filter-icon.png" alt="Ícone filtros"> Filtrar
+					</button>
+				</div>
+			</div>
+
+			<div class="d-flex col-12 col-lg-6 justify-content-end">
+				<div class="d-flex mr-5">
+					<span class="pt-2 mr-2 text-secondary">Exibir</span>
+					<select class="form-control" id="limit" [(ngModel)]="limit">
+						<option *ngFor="let quantity of [1,2,3,4,5,6,7,8,9,10]" [ngValue]="quantity">{{quantity}}</option>
+					</select>
+				</div>
+
+				<div>
+					<pagination 
+						class="my-pagination" 
+						previousText="&lsaquo;" 
+						nextText="&rsaquo;" 
+						[totalItems]="totalItems" 
+						[rotate]="true" 
+						[maxSize]="5" 
+						[itemsPerPage]="limit" 
+						[(ngModel)]="currentPage" 
+						(pageChanged)="searchPayments()"
+						>
+					</pagination>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
