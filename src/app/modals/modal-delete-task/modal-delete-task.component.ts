@@ -25,10 +25,10 @@ export class ModalDeleteTaskComponent implements OnInit {
     this.bsModalRef.hide();
   } 
 
-  save() {
+  delete() {
     this.appService.deleteTask(this.task).then(
       success => {
-        this.toastr.success('Pagamento apagado com sucesso!');
+        this.toastr.success('Pagamento excluído com sucesso!');
         this.bsModalRef.hide();
       },
       error => {
