@@ -83,7 +83,7 @@
 						<td><input type="checkbox" name="is_payed" class="bg-primary" [checked]="task.isPayed" (change)="updatePayed(task)"></td>
 						<td class="text-right">
 							<img src="assets/pencil-light-icon.png" alt="Editar" class="cursor-pointer" (click)="openUpdateTaskModal()">
-							<img src="assets/times-light-icon.png" alt="Apagar" class="cursor-pointer mx-3" (click)="openDeleteTaskModal()">
+							<img src="assets/times-light-icon.png" alt="Apagar" class="cursor-pointer mx-3" (click)="openDeleteTaskModal(task)">
 						</td>
 					</tr>
 				</tbody>

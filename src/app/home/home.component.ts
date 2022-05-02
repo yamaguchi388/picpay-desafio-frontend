@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 
 import { AppService } from '../app.service';
+import { ModalDeleteTaskComponent } from '../modals/modal-delete-task/modal-delete-task.component';
 import { Task } from '../classes/Task';
+import { StringUtil } from '../utils/StringUtil'
+import { DateUtil } from '../utils/DateUtil';
+
 
 @Component({
   selector: 'app-home',
@@ -16,6 +21,8 @@ export class HomeComponent implements OnInit {
   faSearch = faSearch;
   faFilter = faFilter;
 
+  bsModalRef?: BsModalRef | null;
+
   searchBy: string;
   limit: number;
   limitRange: number[] = [];
@@ -26,7 +33,7 @@ export class HomeComponent implements OnInit {
 
   tasks: Task[] = [];
 
-  constructor(private appService: AppService, private toastr: ToastrService) { }
+  constructor(private appService: AppService, private toastr: ToastrService, private modalService: BsModalService) { }
 
   async ngOnInit(): Promise<void> {
     this.searchBy    = '';
@@ -63,8 +70,23 @@ export class HomeComponent implements OnInit {
     console.log('openUpdateTaskModal');
   }
 
-  openDeleteTaskModal() {
+  openDeleteTaskModal(task: Task) {
     console.log('openDeleteTaskModal');
+    // this.modalRef = this.modalService.show(template);
+    const initialState: ModalOptions  = {
+      initialState: {
+        task: task
+      },
+      class: 'modal-sm'
+    };
+    this.bsModalRef = this.modalService.show(ModalDeleteTaskComponent, initialState);
+
+    if (this.bsModalRef.onHide) {
+        this.bsModalRef.onHide.subscribe(event => {
+          // console.log(event);
+          this.searchTasks();
+        })
+    }
   }
 
   updatePayed(task: Task) {
@@ -73,12 +95,11 @@ export class HomeComponent implements OnInit {
   }
 
   formatDate(date: string) {
-    const locale = 'pt-br';
     const options: any = {
       dateStyle: "medium"
     }
 
-    return new Date(date).toLocaleDateString(locale, options)
+    return DateUtil.stringDateToLocaleString(date, options);
   } 
 
   formatHour(date: string) {
@@ -97,7 +118,7 @@ export class HomeComponent implements OnInit {
   }
 
   formatValue(value: number) {
-    return "R$ " + value.toFixed(2).replace('.', ',')
+    return StringUtil.formatValue(value);
   }
 
   private async getTotalTasks() {

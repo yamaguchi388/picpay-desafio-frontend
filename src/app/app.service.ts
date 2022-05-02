@@ -56,4 +56,17 @@ export class AppService {
         })
     }
 
+    deleteTask(task: Task) {
+        return new Promise ((resolve, reject) => {
+            this.http.delete<any>(this.apiUrl + 'tasks/' + task.id).subscribe(
+                success => {
+                    resolve(success);
+                },
+                error => {
+                    reject(error);
+                }
+            )
+        })
+    }
+
 }

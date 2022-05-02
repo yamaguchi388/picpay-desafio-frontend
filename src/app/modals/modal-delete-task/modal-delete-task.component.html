@@ -1,0 +1,14 @@
+<div class="m-4">
+    <p class="title-modal">Excluir pagamento</p>
+    
+    <div class="my-5">
+        <p class="mb-1">Usuário: {{task.name}}</p>
+        <p class="mb-1">Data: {{formatDate(task.date)}}</p>
+        <p class="mb-1">Valor: {{formatValue(task.value)}}</p>
+    </div>
+    
+    <div class="action-buttons mt-5">
+        <button class="btn btn-light mr-2" (click)="cancel()">CANCELAR</button>
+        <button class="btn btn-primary" (click)="save()">SALVAR</button>
+    </div>
+</div>

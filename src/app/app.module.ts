@@ -7,17 +7,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ToastrModule } from 'ngx-toastr';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { ModalDeleteTaskComponent } from './modals/modal-delete-task/modal-delete-task.component';
 
 @NgModule({
   declarations: [	
     AppComponent, 
     SignInComponent, 
     HomeComponent, 
+    ModalDeleteTaskComponent, 
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
