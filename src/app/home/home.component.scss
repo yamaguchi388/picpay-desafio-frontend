@@ -56,12 +56,24 @@
     border-radius: 6px;
 }
 
-.my-pagination::ng-deep .page-link {
+.custom-pagination::ng-deep .page-link {
     border: 0;
     color: var(--secondary);
 }
 
-.my-pagination::ng-deep .page-item.active .page-link {
+.custom-pagination::ng-deep .page-item.active .page-link {
     color: var(--light);
     border-radius: 6px;
+}
+
+.table td, .table th {
+    border: none;
+}
+
+.table th {
+    border-bottom: 1pt solid #CFDCE5;
+}
+
+.stripping {
+    background-color: #F5F8FA;
 }

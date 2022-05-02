@@ -43,5 +43,17 @@ export class AppService {
         })
     }
 
+    updateTask(task: Task) {
+        return new Promise ((resolve, reject) => {
+            this.http.put<any>(this.apiUrl + 'tasks/' + task.id, task).subscribe(
+                success => {
+                    resolve(success);
+                },
+                error => {
+                    reject(error);
+                }
+            )
+        })
+    }
 
 }

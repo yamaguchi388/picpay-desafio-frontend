@@ -28,13 +28,14 @@ export class HomeComponent implements OnInit {
 
   constructor(private appService: AppService, private toastr: ToastrService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.searchBy    = '';
-    this.limit       = this.getDefaultLimit();
+    this.limit       = 5;
     this.limitRange  = Array(20).fill(0).map((_, i) => i+1);
     this.currentPage = 1;
 
-    this.totalTasks = this.getTotalTasks();
+    this.totalTasks = await this.getTotalTasks();
+    
     this.hasFilters = false;
 
     this.searchTasks();
@@ -44,17 +45,8 @@ export class HomeComponent implements OnInit {
     const queryParams = this.filtersToQueryParams();
 
     this.appService.getTasks(queryParams).then(
-      (success: Task[]) => {
-        console.log(success);
+      async (success: Task[]) => {
         this.tasks = [... success];
-
-        if (this.hasFilters) {
-          this.totalTasks = this.tasks.length;
-          this.limit      = this.tasks.length;
-        } else {
-          this.totalTasks = this.getTotalTasks();
-          this.limit      = this.getDefaultLimit()
-        }
       },
       error => {
         this.toastr.error('Atualize a página e tente novamente.', 'Algo de errado aconteceu.');
@@ -63,13 +55,64 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  private getTotalTasks() {
-    // TODO definir isso
-    return 40;
+  openAddNewTaskModal() {
+    console.log('openAddNewTaskModal');
   }
 
-  private getDefaultLimit() {
-    return 5;
+  openUpdateTaskModal() {
+    console.log('openUpdateTaskModal');
+  }
+
+  openDeleteTaskModal() {
+    console.log('openDeleteTaskModal');
+  }
+
+  updatePayed(task: Task) {
+    task.isPayed = !task.isPayed;
+    this.appService.updateTask(task);
+  }
+
+  formatDate(date: string) {
+    const locale = 'pt-br';
+    const options: any = {
+      dateStyle: "medium"
+    }
+
+    return new Date(date).toLocaleDateString(locale, options)
+  } 
+
+  formatHour(date: string) {
+    const locale = 'pt-br';
+    const options: any = {
+      timeZone: 'Etc/Universal', // para manter as 3 horas do utc no New Date
+      hour12: true,
+      hour: '2-digit',
+      minute:'2-digit'
+
+    }
+
+    const [_, time, meridiem] = new Date(date).toLocaleDateString(locale, options).split(' ')
+    
+    return time + ' ' + meridiem;
+  }
+
+  formatValue(value: number) {
+    return "R$ " + value.toFixed(2).replace('.', ',')
+  }
+
+  private async getTotalTasks() {
+    let totalTasks = 500; // número alto para garantir que tem todas
+
+    await this.appService.getTasks().then(
+      (success: Task[]) => {
+        totalTasks = success.length;
+      },
+      error => {
+        this.toastr.error('Atualize a página e tente novamente.', 'Algo de errado aconteceu.');
+        console.log(error);
+      }
+    )
+    return totalTasks;
   }
 
   private filtersToQueryParams() {
