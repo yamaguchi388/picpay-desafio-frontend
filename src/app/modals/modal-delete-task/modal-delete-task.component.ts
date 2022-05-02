@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 
 import { StringUtil } from '../../utils/StringUtil';
 import { DateUtil } from '../../utils/DateUtil';
 import { AppService } from '../../app.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-delete-task',
   templateUrl: './modal-delete-task.component.html',
-  styleUrls: ['./modal-delete-task.component.scss']
+  styleUrls: ['./modal-delete-task.component.scss', '../modals.scss']
 })
 export class ModalDeleteTaskComponent implements OnInit {
 
