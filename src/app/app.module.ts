@@ -7,9 +7,10 @@ import { MyPaymentsComponent } from './../pages/my-payments/my-payments.componen
 import { AppRoutingModule } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { HeaderComponent } from './../components/molecules/header/header.component';
 @NgModule({
   declarations: [	
-    AppComponent, AccountsComponent, MyPaymentsComponent,
+    AppComponent, AccountsComponent, MyPaymentsComponent, HeaderComponent,
    ],
   imports: [
     BrowserModule,

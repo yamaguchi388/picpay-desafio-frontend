@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'header',
+  selector: 'header-molecule',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })

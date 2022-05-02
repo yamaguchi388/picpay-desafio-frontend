@@ -1,0 +1,13 @@
+.header {
+    background-color: #002D69;
+    padding: 30px;
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+
+        .logo {
+            object-fit: contain;
+        }
+    }
+}
