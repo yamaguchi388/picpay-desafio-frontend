@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AccountsComponent } from './../pages/accounts/accounts.component';
+import { LoginComponent } from '../pages/login/login.component';
 import { MyPaymentsComponent } from './../pages/my-payments/my-payments.component';
 import { AppRoutingModule } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,7 +17,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [	
-    AppComponent, AccountsComponent, MyPaymentsComponent, HeaderComponent,
+    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent,
    ],
   imports: [
     BrowserModule,
