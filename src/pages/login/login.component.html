@@ -17,12 +17,20 @@
                 </mat-form-field>
               
                 <mat-form-field class="form-full-width" appearance="fill">
-                    <input type="password" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                    <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
                     placeholder="Enter your password" [(ngModel)]="login.password">
                          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" class="btn-icon">
                       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
+                    <mat-hint>Errors appear instantly!</mat-hint>
+                    <mat-error *ngIf="passwordFormControl.hasError('password') && !passwordFormControl.hasError('required')">
+                        Please enter a valid password
+                    </mat-error>
+                    <mat-error *ngIf="passwordFormControl.hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
                 </mat-form-field>
+               
                 <button type="submit" [disabled]="form.form.invalid">Entrar</button>
               </form>
         </mat-drawer>

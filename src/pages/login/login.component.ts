@@ -20,14 +20,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent implements OnInit {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-
+  passwordFormControl = new FormControl('', [Validators.required, Validators.minLength(2)]);
   matcher = new MyErrorStateMatcher();
 
   hide = true;
 
   login = {
-    email: 'guilhermelimasoares9@gmail.com',
-    password: '12345'
+    email: '',
+    password: ''
   };
 
   constructor(
@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.accountService.getUsers();
   }
 
   async onSubmit() {

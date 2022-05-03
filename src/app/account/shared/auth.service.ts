@@ -1,17 +1,32 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+apiURL = 'http://localhost:3000';
+validUser = {}; 
+userList: Array<object> = [];
 
-  constructor() { }
+  constructor(private http : HttpClient) { }
 
   login(user: any){
-    debugger;
+    const {email, password} = user;
     return new Promise((resolve) => {
-      window.localStorage.setItem('token', 'meu-token');
-      resolve(true);
+      let isValidUser = false;
+      this.http.get(`${ this.apiURL }/account`)
+                 .subscribe((userList) => {
+                  isValidUser = Object.values(userList).find((list) => {
+                      return (email === list.email) && (password === list.password);
+                  })
+  
+                  if(isValidUser){
+                    window.localStorage.setItem('token', 'meu-token');
+                    resolve(true);
+                  }
+                
+                  });
     });
   }
 
@@ -19,5 +34,18 @@ export class AuthService {
     return new Promise((resolve) => {
       resolve(true);
     })
+  }
+
+  getUsers(){
+      // const userDatas = this.http.get(`${ this.apiURL }/account`)
+      //          .subscribe(resultado => {
+      //            console.log(resultado);
+      //            debugger;
+      //            return resultado;
+      //           });
+
+                // console.log(userDatas);
+                // debugger;
+    
   }
 }

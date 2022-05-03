@@ -15,8 +15,9 @@ const routes: Routes = [{
     path: '',
     component: MyPaymentsComponent,
     children: [
-        { path: 'pagamentos', component: MyPaymentsComponent, canActivate: [AuthGuard] },
-    ]
+        { path: 'pagamentos', component: MyPaymentsComponent },
+    ],
+    canActivate: [AuthGuard]
     },
     { 
         path: '', 
