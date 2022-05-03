@@ -1,7 +1,11 @@
 export interface PaymentData {
-    user: string;
-    title: string;
     date: string;
+    id: number;
+    image: string;
+    isPayed: boolean;
+    name: string;
+    title: string;
+    username: string;
     value: number;
-    isPaid: boolean;
+    
   }

@@ -17,6 +17,8 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 
+import {TasksService} from './../services/tasks/tasks.service';
+
 @NgModule({
   declarations: [	
     AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent,
@@ -36,7 +38,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatIconModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [TasksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,8 +3,23 @@
     background-color: #F2F2F2;
     height: 100%;
 
-    table {
+    .table {
         width: 100%;
+        &__cell{
+            &__container {
+              display: flex;
+              flex-direction: column;
+            }
+      
+            &__text--username {
+              font-family: Lato;
+              font-size: 12px;
+              font-weight: 400;
+              line-height: 20px;
+
+            }
+        }
+     
       }
       
       th.mat-sort-header-sorted {
@@ -23,6 +38,7 @@
         padding-top: 65px;
         padding-left: 48px;
         padding-right: 48px;
+        background-color: #F2F2F2;
     }
     
 }
