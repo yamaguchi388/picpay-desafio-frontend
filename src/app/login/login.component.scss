@@ -1,0 +1,49 @@
+.login {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    min-height: 100vh;
+
+    &__section {
+        display: flex;
+        width: 540px;
+        padding: 0  107px;
+
+        justify-content: center;
+        align-items: center;
+    }
+    &__section--gray {
+        background-color: #F2F2F2;
+    }
+
+    &__section--img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+
+        img {
+            max-width: 579px;
+        }
+    }
+
+    article {
+        width: 100%;
+    }
+    
+
+    form {
+        width: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+    }
+
+    @media(max-width: 1024px){
+        &__section {
+            width: 100%;
+        }
+        &__section--img {
+            display: none;
+        }
+    }
+}

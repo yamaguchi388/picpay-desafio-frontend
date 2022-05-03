@@ -9,6 +9,10 @@ export class LoginComponent implements OnInit {
 
   constructor() { }
 
+  value3: string = '';
+  hide = true;
+
+
   ngOnInit(): void {
   }
 
