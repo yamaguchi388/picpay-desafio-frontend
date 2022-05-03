@@ -38,6 +38,14 @@
         flex-flow: column nowrap;
     }
 
+    .loginError {
+        color: red;
+    }
+
+    .msg__error {
+        margin-bottom: 16px;
+    }
+
     @media(max-width: 1024px){
         &__section {
             width: 100%;
