@@ -6,7 +6,10 @@ import { AccountsComponent } from './../pages/accounts/accounts.component';
 import { MyPaymentsComponent } from './../pages/my-payments/my-payments.component';
 import { AppRoutingModule } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HeaderComponent } from './../components/molecules/header/header.component';
 @NgModule({
   declarations: [	
@@ -16,7 +19,10 @@ import { HeaderComponent } from './../components/molecules/header/header.compone
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule,
+    MatTableModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

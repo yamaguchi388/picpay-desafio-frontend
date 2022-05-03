@@ -1,0 +1,28 @@
+.my-payments {
+    display: block;
+    background-color: #F2F2F2;
+    height: 100%;
+
+    table {
+        width: 100%;
+      }
+      
+      th.mat-sort-header-sorted {
+        color: black;
+      }
+
+    &__title {
+        font-family: Montserrat, sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 44px;
+    }
+
+    &__container {
+        padding-top: 65px;
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+    
+}
