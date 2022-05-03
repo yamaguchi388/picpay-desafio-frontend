@@ -69,4 +69,17 @@ export class AppService {
         })
     }
 
+    addTask(task: Task) {
+        return new Promise ((resolve, reject) => {
+            this.http.post<any>(this.apiUrl + 'tasks', task).subscribe(
+                success => {
+                    resolve(success);
+                },
+                error => {
+                    reject(error);
+                }
+            )
+        })
+    }
+
 }
