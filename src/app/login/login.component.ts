@@ -4,7 +4,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
 import { LoginService } from '../shared/services/login/login.service';
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { AuthService } from '../shared/services/auth/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private diologService: DialogService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private authService: AuthService,
   ){}
 
   public ngOnInit(): void {
@@ -66,7 +67,6 @@ export class LoginComponent implements OnInit {
       response => this.onSucess(response),
       error => {
         this.diologService.getErrors(error);
-        this.loginError = true;
       },
     )
   }
@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    localStorage.setItem('user',JSON.stringify(response));
+    this.authService.setuser(response)
   }
 
 }
