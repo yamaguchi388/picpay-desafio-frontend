@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ModalDeleteTaskComponent } from './modals/modal-delete-task/modal-delete-task.component';
+import { ModalAddUpdateTaskComponent } from './modals/modal-add-update-task/modal-add-update-task.component';
 
 @NgModule({
   declarations: [	
@@ -21,6 +22,7 @@ import { ModalDeleteTaskComponent } from './modals/modal-delete-task/modal-delet
     SignInComponent, 
     HomeComponent, 
     ModalDeleteTaskComponent, 
+    ModalAddUpdateTaskComponent, 
   ],
   imports: [
     BrowserModule,

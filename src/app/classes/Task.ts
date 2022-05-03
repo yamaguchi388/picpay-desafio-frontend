@@ -9,6 +9,15 @@ export class Task {
     public image: string;
     public isPayed: boolean;
 
-    constructor () {}
+    
+    constructor (name: string, username: string, title: string, value: number, date: string, image: string, isPayed: boolean) {
+        this.name     = name;
+        this.username = username;
+        this.title    = title;
+        this.value    = value;
+        this.date     = date;
+        this.image    = image;
+        this.isPayed  = isPayed;
+    }
 
 }

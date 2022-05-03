@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
@@ -6,6 +6,7 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 
 import { AppService } from '../app.service';
 import { ModalDeleteTaskComponent } from '../modals/modal-delete-task/modal-delete-task.component';
+import { ModalAddUpdateTaskComponent } from '../modals/modal-add-update-task/modal-add-update-task.component';
 import { Task } from '../classes/Task';
 import { StringUtil } from '../utils/StringUtil'
 import { DateUtil } from '../utils/DateUtil';
@@ -62,23 +63,31 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  openAddNewTaskModal() {
-    console.log('openAddNewTaskModal');
-  }
+  openAddUpdateModal(type: 'add' | 'update', task = {}) {
+    const initialState: ModalOptions  = {
+      initialState: {
+        type: type,
+        task: task
+      },
+    };
 
-  openUpdateTaskModal() {
-    console.log('openUpdateTaskModal');
+    this.bsModalRef = this.modalService.show(ModalAddUpdateTaskComponent, initialState);
+
+    if (this.bsModalRef.onHide) {
+      this.bsModalRef.onHide.subscribe(event => {
+        this.searchTasks();
+      })
+    }
   }
 
   openDeleteTaskModal(task: Task) {
-    console.log('openDeleteTaskModal');
-    // this.modalRef = this.modalService.show(template);
     const initialState: ModalOptions  = {
       initialState: {
         task: task
       },
       class: 'modal-sm'
     };
+
     this.bsModalRef = this.modalService.show(ModalDeleteTaskComponent, initialState);
 
     if (this.bsModalRef.onHide) {
