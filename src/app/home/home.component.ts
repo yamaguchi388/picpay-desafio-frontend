@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faFilter, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 
@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   faSearch = faSearch;
   faFilter = faFilter;
+  faXmark  = faXmark;
 
   bsModalRef?: BsModalRef | null;
 
@@ -54,7 +55,7 @@ export class HomeComponent implements OnInit {
 
   searchTasks() {  
     const queryParams = this.filtersToQueryParams();
-
+    
     this.appService.getTasks(queryParams).then(
       async (success: Task[]) => {
         this.tasks = [... success];
@@ -104,6 +105,16 @@ export class HomeComponent implements OnInit {
   updatePayed(task: Task) {
     task.isPayed = !task.isPayed;
     this.appService.updateTask(task);
+  }
+
+  cleanFiltersAndSearch() {
+    this.hasFilters  = false;
+    this.sortBy      = '';
+    this.searchBy    = '';
+    this.limit       = 5;
+    this.currentPage = 1;
+
+    this.searchTasks();
   }
 
   sortTable(field: string) {
