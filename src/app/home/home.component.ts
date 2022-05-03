@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
   searchBy: string;
   limit: number;
   limitRange: number[] = [];
+  sortBy: string;
+  order: 'asc' | 'desc';
 
   totalTasks: number;
   currentPage: number;
@@ -37,7 +39,7 @@ export class HomeComponent implements OnInit {
   constructor(private appService: AppService, private toastr: ToastrService, private modalService: BsModalService) { }
 
   async ngOnInit(): Promise<void> {
-    this.searchBy    = '';
+    // this.searchBy    = '';
     this.limit       = 5;
     this.limitRange  = Array(20).fill(0).map((_, i) => i+1);
     this.currentPage = 1;
@@ -103,6 +105,22 @@ export class HomeComponent implements OnInit {
     this.appService.updateTask(task);
   }
 
+  sortTable(field: string) {
+    if (field === this.sortBy) {
+      if (this.order === 'asc') {
+        this.order = 'desc';
+      } else {
+        this.order = 'asc';
+      }
+
+    } else {
+      this.order = 'asc';
+    }
+
+    this.sortBy = field;
+    this.searchTasks();
+  }
+
   formatDate(date: string) {
     const options: any = {
       dateStyle: "medium"
@@ -146,15 +164,29 @@ export class HomeComponent implements OnInit {
   }
 
   private filtersToQueryParams() {
-    let queryParams = '?_page=' + this.currentPage + '&_limit=' + this.limit;
     this.hasFilters = false;
+    let queryParams = '';
 
-    if (this.searchBy.length > 0) {
-      queryParams = '?name_like=' + this.searchBy.trim(); // quando busca pelo nome não utiliza paginação
+    if (this.sortBy && this.sortBy.length > 0) {
+      queryParams += '?_sort=' + this.sortBy + '&_order=' + this.order
+    }
+
+    if (this.searchBy && this.searchBy.length > 0) {
+      queryParams += this.getQueryParamSeparator(queryParams);
+      queryParams += 'name_like=' + this.searchBy.trim(); // quando busca pelo nome não utiliza paginação
       this.hasFilters = true;
     }
 
+    if (!this.hasFilters) {
+      queryParams += this.getQueryParamSeparator(queryParams);
+      queryParams += '_page=' + this.currentPage + '&_limit=' + this.limit;
+    }
+
     return queryParams;
+  }
+
+  private getQueryParamSeparator(queryParams: string) {
+    return queryParams.length > 0 ? '&' : '?'
   }
 
 }

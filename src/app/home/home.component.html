@@ -60,11 +60,11 @@
 			<table class="table borderless">
 				<thead>
 					<tr>
-						<th>Usuário <img class="ml-2 cursor-pointer" src="assets/sort-icon.png" alt="Ordenar"></th>
-						<th>Título  <img class="ml-2 cursor-pointer" src="assets/sort-icon.png" alt="Ordenar"></th>
-						<th>Data    <img class="ml-2 cursor-pointer" src="assets/sort-icon.png" alt="Ordenar"></th>
-						<th>Valor   <img class="ml-2 cursor-pointer" src="assets/sort-icon.png" alt="Ordenar"></th>
-						<th>Pago    <img class="ml-2 cursor-pointer" src="assets/sort-icon.png" alt="Ordenar"></th>
+						<th>Usuário <img class="ml-2 cursor-pointer" src="assets/sort-icon.png" alt="Ordenar" (click)="sortTable('name')"></th>
+						<th>Título  <img class="ml-2 cursor-pointer" src="assets/sort-icon.png" alt="Ordenar" (click)="sortTable('title')"></th>
+						<th>Data    <img class="ml-2 cursor-pointer" src="assets/sort-icon.png" alt="Ordenar" (click)="sortTable('date')"></th>
+						<th>Valor   <img class="ml-2 cursor-pointer" src="assets/sort-icon.png" alt="Ordenar" (click)="sortTable('value')"></th>
+						<th>Pago    <img class="ml-2 cursor-pointer" src="assets/sort-icon.png" alt="Ordenar" (click)="sortTable('isPayed')"></th>
 						<th colspan="2"></th>
 					</tr>
 				</thead>
