@@ -11,6 +11,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HeaderComponent } from './../components/molecules/header/header.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [	
     AppComponent, AccountsComponent, MyPaymentsComponent, HeaderComponent,
@@ -22,7 +26,12 @@ import { HeaderComponent } from './../components/molecules/header/header.compone
     MatPaginatorModule,
     MatCardModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSidenavModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

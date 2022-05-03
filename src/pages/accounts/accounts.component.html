@@ -1,1 +1,32 @@
-<p>accounts works!</p>
+<div class="accounts">
+    <mat-drawer-container class="drawer-container">
+        <mat-drawer mode="side" opened class="drawer__sidebar">
+            <form class="form">
+                <img src="./../../../assets/logo-colored.png" alt="" class="form__logo">
+                <span class="form__title">Bem vindo de volta</span>
+                <mat-form-field class="form-full-width" appearance="fill">
+                    <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                    placeholder="Ex. pat@example.com">
+                <mat-hint>Errors appear instantly!</mat-hint>
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+                </mat-form-field>
+              
+                <mat-form-field class="form-full-width" appearance="fill">
+                    <input type="password" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                    placeholder="Enter your password">
+                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" class="btn-icon">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+              </form>
+        </mat-drawer>
+        <mat-drawer-content class="drawer__content">
+            <img src="./../../assets/application.png" alt="" class="logo-content">
+        </mat-drawer-content>
+      </mat-drawer-container>
+</div>

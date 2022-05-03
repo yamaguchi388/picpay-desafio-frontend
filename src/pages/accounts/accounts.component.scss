@@ -1,0 +1,76 @@
+.accounts {
+    display: block;
+    height: 100%;
+
+    .drawer {
+        &-container {
+            display: block;
+            height: 100%;
+
+            .drawer__sidebar {
+                display: flex;
+                // align-items: center;
+                // justify-content: center;
+                background: #F2F2F2;
+                padding-left: 106px;
+                padding-right: 106px;
+                height: 100%;
+
+                .form {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+                    justify-content: center;
+                    row-gap: 16px;
+                    min-width: 150px;
+                    max-width: 326px;
+                    width: 100%;
+                    height: 100%;
+
+                    .btn-icon {
+                        background: transparent;
+                        border: none;
+                    }
+
+                    &__logo {
+                        object-fit: none;
+                    }
+
+                    &__title {
+                        font-family: Montserrat, sans-serif;
+                        font-size: 30px;
+                        font-weight: 600;
+                        line-height: 37px;
+                        letter-spacing: 0em;
+                        text-align: left;
+
+                    }
+    
+                    &__label {
+                        max-width: 326px;
+                    }
+    
+                    &-full-width {
+                        width: 100%;
+                    }
+                  }
+              }
+
+              .drawer__content {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+              }
+
+           
+              
+              .example-full-width {
+                width: 100%;
+              }
+          }
+
+       
+    }
+
+}
+
