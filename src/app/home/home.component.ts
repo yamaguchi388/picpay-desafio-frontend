@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
@@ -36,10 +37,10 @@ export class HomeComponent implements OnInit {
 
   tasks: Task[] = [];
 
-  constructor(private appService: AppService, private toastr: ToastrService, private modalService: BsModalService) { }
+  constructor(private appService: AppService, private toastr: ToastrService, private modalService: BsModalService, private router: Router) { }
 
   async ngOnInit(): Promise<void> {
-    // this.searchBy    = '';
+    this.validUserIsLogedIn();
     this.limit       = 5;
     this.limitRange  = Array(20).fill(0).map((_, i) => i+1);
     this.currentPage = 1;
@@ -187,6 +188,14 @@ export class HomeComponent implements OnInit {
 
   private getQueryParamSeparator(queryParams: string) {
     return queryParams.length > 0 ? '&' : '?'
+  }
+
+  private validUserIsLogedIn() {
+    const email = localStorage.getItem('email');
+    if (!email) {
+      this.toastr.error('Você deve estar logado para acessar essa página!');
+      this.router.navigateByUrl('sign-in');
+    }
   }
 
 }

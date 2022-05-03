@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
@@ -32,6 +31,7 @@ export class SignInComponent implements OnInit {
         if (!success || success.length === 0) {
           this.toastr.error('E-mail e/ou senha incorretos.');
         } else {
+          localStorage.setItem('email', this.email); // ideal seria encriptografar os dados via API (JWT)
           this.router.navigateByUrl('home');
         }
       },
