@@ -8,6 +8,14 @@
 
     <h2 class="sign-in__title">Bem vindo de volta</h2>
 
+    <mat-error
+      id="error-message"
+      class="sign-in__usernotfound-message"
+      *ngIf="isUserNotFoundMessage"
+    >
+      {{ isUserNotFoundMessage }}
+    </mat-error>
+
     <app-sign-in-form (submitEvent)="signIn($event)"></app-sign-in-form>
   </div>
 

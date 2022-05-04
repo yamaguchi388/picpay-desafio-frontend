@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
 import { SignInFormComponent } from "./components/sign-in-form/sign-in-form.component";
 import { MaterialModule } from "src/app/shared/modules/material/material.module";
+import { HttpClientModule } from "@angular/common/http";
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    MaterialModule,
+    MaterialModule
   ],
 })
 export class SignInModule {}
