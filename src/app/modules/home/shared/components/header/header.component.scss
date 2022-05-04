@@ -4,5 +4,14 @@
   &__toolbar {
     background: var(--primary-dark);
     color: var(--text-light);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-img-avatar {
+      width: 45px;
+      cursor: pointer;
+    }
   }
 }

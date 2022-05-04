@@ -1,5 +1,18 @@
 <header id="header" class="header">
   <mat-toolbar class="header__toolbar">
-    <img src="assets/img/svgs/payFriends-white.svg" alt="Imagem escrito PayFriends">
+    <img
+      src="assets/img/svgs/payFriends-white.svg"
+      alt="Imagem escrito PayFriends"
+    />
+
+    <img
+      class="header__toolbar-img-avatar"
+      src="assets/img/svgs/user-default.svg"
+      [matMenuTriggerFor]="menu"
+    />
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Perfil</button>
+      <button mat-menu-item>Sair</button>
+    </mat-menu>
   </mat-toolbar>
 </header>
