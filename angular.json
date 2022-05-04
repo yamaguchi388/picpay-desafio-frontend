@@ -98,7 +98,14 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss",
+              "src/app/styles/scss/_styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/app/styles/scss"]
+            },
             "scripts": []
           }
         },
