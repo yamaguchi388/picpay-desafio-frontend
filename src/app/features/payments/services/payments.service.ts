@@ -23,7 +23,15 @@ export class PaymentsService {
     return this.http.get(baseUrl + paginationRulesUrlPath, {observe: 'response'});
   }
 
-  delete(id: number) {
-    return this.http.delete(baseUrl + '/' + id);
+  create(payment: Payment): Observable<any> {
+    return this.http.post(baseUrl, payment);
+  }
+
+  update(payment: Payment): Observable<any> {
+    return this.http.put(`${baseUrl}/${payment.id}`, payment);
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${baseUrl}/${id}`);
   }
 }
