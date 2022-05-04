@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { PaymentsModule } from './features/payments/payments.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [	
@@ -13,6 +14,7 @@ import { PaymentsModule } from './features/payments/payments.module';
   imports: [
     BrowserModule,
     PaymentsModule,
+    CoreModule,
     HttpClientModule,
     BrowserAnimationsModule
   ],
