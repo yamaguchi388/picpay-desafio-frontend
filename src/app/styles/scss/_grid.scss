@@ -1,0 +1,94 @@
+@import "./breakpoints.scss";
+
+$breakpoints: (
+  xs: $screen-xs-min,
+  sm: $screen-sm-min,
+  md: $screen-md-min,
+  lg: $screen-lg-min,
+  xl: $screen-xl-min,
+);
+
+@mixin create-selectors($breakpoint: null) {
+  $infix: if($breakpoint == null, "", "-#{$breakpoint}");
+
+  .col#{$infix}-1 {
+    width: 8.33%;
+  }
+
+  /* 2/12 */
+  .col#{$infix}-2 {
+    width: 16.66%;
+  }
+
+  /* 3/12 */
+  .col#{$infix}-3 {
+    width: 25%;
+  }
+
+  /* 4/12 */
+  .col#{$infix}-4 {
+    width: 33.33%;
+  }
+
+  /* 5/12 */
+  .col#{$infix}-5 {
+    width: 41.66%;
+  }
+
+  /* 6/12 */
+  .col#{$infix}-6 {
+    width: 50%;
+  }
+
+  /* 7/12 */
+  .col#{$infix}-7 {
+    width: 58.33%;
+  }
+
+  /* 8/12 */
+  .col#{$infix}-8 {
+    width: 66.66%;
+  }
+
+  /* 9/12 */
+  .col#{$infix}-9 {
+    width: 75%;
+  }
+
+  /* 10/12 */
+  .col#{$infix}-10 {
+    width: 83.33%;
+  }
+
+  /* 11/12 */
+  .col#{$infix}-11 {
+    width: 91.66%;
+  }
+
+  /* 12/12 */
+  .col#{$infix}-12 {
+    width: 100%;
+
+    @media (min-width: #{$screen-md-min}) {
+      @content;
+    }
+  }
+}
+
+.container {
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@include create-selectors;
+
+@each $breakpoint, $width in $breakpoints {
+  @media (min-width: $width) {
+    @include create-selectors($breakpoint);
+  }
+}
