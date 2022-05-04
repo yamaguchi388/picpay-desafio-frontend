@@ -10,10 +10,14 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { RippleModule } from 'primeng/ripple';
 import { ToastModule } from 'primeng/toast';
+import { CheckboxModule } from 'primeng/checkbox';
+import { CalendarModule } from 'primeng/calendar';
+import { DialogModule } from 'primeng/dialog';
 
 import { PaymentsService } from './services/payments.service';
 import { PaymentsTableComponent } from './components/payments-table/payments-table.component';
 import { MyPaymentsViewComponent } from './views/my-payments-view/my-payments-view.component';
+
 
 
 
@@ -31,6 +35,9 @@ import { MyPaymentsViewComponent } from './views/my-payments-view/my-payments-vi
     ConfirmDialogModule,
     RippleModule,
     ToastModule,
+    CalendarModule,
+    CheckboxModule,
+    DialogModule
   ],
   exports: [
     PaymentsTableComponent,

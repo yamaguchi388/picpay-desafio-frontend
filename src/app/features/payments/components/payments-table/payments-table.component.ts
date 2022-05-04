@@ -21,6 +21,11 @@ export class PaymentsTableComponent implements OnInit {
   tableRowsPerPage: number;
   nameFilter: string = '';
 
+  payment: Payment;
+  showPaymentRegisterDialog: boolean = false;
+  paymentRegisterDialogPurpose: string = '';
+  paymentFormSubmitted: boolean = false;
+
   constructor(private paymentsService: PaymentsService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
@@ -37,6 +42,11 @@ export class PaymentsTableComponent implements OnInit {
     this.fetchPayments();
   }
 
+  isNewPayment(): boolean {
+    console.log(this.payment.id);
+    return this.payment?.id === null || this.payment?.id === undefined;
+  }
+
   filterPaymentsByName(): void {
     this.currentTablePage = 0;
     
@@ -51,12 +61,70 @@ export class PaymentsTableComponent implements OnInit {
     });
   }
 
-  createPayment(): void {
-
+  showCreatePaymentDialog() {
+    this.payment = {
+      id: null,
+      name: '',
+      username: '',
+      title: '',
+      date: null,
+      value: null,
+      isPayed: false,
+    };
+    this.paymentFormSubmitted = false;
+    this.paymentRegisterDialogPurpose = 'Cadastrar'
+    this.showPaymentRegisterDialog = true;
   }
 
-  updatePayment(payment: Payment): void {
+  showUpdatePaymentDialog(payment: Payment) {
+    this.payment = {...payment};
+    this.paymentFormSubmitted = false;
+    this.paymentRegisterDialogPurpose = 'Editar'
+    this.showPaymentRegisterDialog = true;
+  }
 
+  hidePaymentRegisterDialog(): void {
+    this.showPaymentRegisterDialog = false;
+    this.paymentFormSubmitted = false;
+    this.payment = {
+      id: null,
+      name: '',
+      username: '',
+      title: '',
+      date: null,
+      value: null,
+      isPayed: null,
+    };
+  }
+
+  savePayment(): void {
+    this.paymentFormSubmitted = true;
+
+    if(this.isNewPayment()){
+      console.log('CREATE');
+      this.paymentsService.create(this.payment)
+      .subscribe(
+        response => {
+          this.fetchPayments();
+          this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'O pagamento foi cadastrado', life: 3000});
+        },
+        error => {
+          this.messageService.add({severity:'error', summary: 'Erro', detail: 'Não foi possível cadastrar o pagamento', life: 3000});
+        });
+    } else {
+      console.log('UPDATE');
+      this.paymentsService.update(this.payment)
+      .subscribe(
+        response => {
+          this.fetchPayments();
+          this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'O pagamento foi atualizado', life: 3000});
+        },
+        error => {
+          this.messageService.add({severity:'error', summary: 'Erro', detail: 'Não foi possível atualizar o pagamento', life: 3000});
+        });
+    }
+
+    this.hidePaymentRegisterDialog();
   }
 
   deletePayment(payment: Payment): void {

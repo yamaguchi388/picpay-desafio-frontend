@@ -4,6 +4,9 @@
         [globalFilterFields]="['name','username','title','date','value','status','isPayed']" [rowHover]="true">
         <ng-template pTemplate="header">
             <tr>
+                <button pButton pRipple label="ADICIONAR PAGAMENTO" icon="pi pi-plus" class="p-button-success mr-2" (click)="showCreatePaymentDialog()"></button>
+            </tr>
+            <tr>
                 <span class="p-input-icon-left ml-auto">
                     <i class="pi pi-search"></i>
                     <input type="text" pInputText [(ngModel)]="nameFilter" (keyup)="filterPaymentsByName()"> 
@@ -49,11 +52,50 @@
                     {{payment.isPayed}}
                 </td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="updatePayment(payment)"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="showUpdatePaymentDialog(payment)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePayment(payment)"></button>
                 </td>
             </tr>
         </ng-template>
     </p-table>
+
+    <p-dialog [(visible)]="showPaymentRegisterDialog" [style]="{width: '450px'}" header="{{paymentRegisterDialogPurpose}} pagamento" [modal]="true" styleClass="p-fluid">
+        <ng-template pTemplate="content">
+            <div class="field">
+                <label for="name">Nome</label>
+                <input type="text" pInputText id="name" [(ngModel)]="payment.name" required autofocus />
+                <small class="p-error" *ngIf="paymentFormSubmitted && !payment.name">Nome é obrigatório.</small>
+            </div>
+            <div class="field">
+                <label for="username">Usuário</label>
+                <input type="text" pInputText id="username" [(ngModel)]="payment.username" required autofocus />
+                <small class="p-error" *ngIf="paymentFormSubmitted && !payment.username">Usuário é obrigatório.</small>
+            </div>
+            <div class="field">
+                <label for="value">Valor</label>
+                <p-inputNumber id="value" [(ngModel)]="payment.value" mode="currency" currency="BRL"></p-inputNumber>
+                <small class="p-error" *ngIf="paymentFormSubmitted && !payment.value">Valor é obrigatório.</small>
+            </div>
+            <div class="field">
+                <label for="date">Data</label>
+                <p-calendar id="date" [(ngModel)]="payment.date" locale="pt-BR" [showIcon]="true" inputId="icon"></p-calendar>
+                <small class="p-error" *ngIf="paymentFormSubmitted && !payment.date">Data é obrigatória.</small>
+            </div>
+            <div class="field">
+                <label for="title">Título</label>
+                <input type="text" pInputText id="title" [(ngModel)]="payment.title" autofocus />
+            </div>
+            <div class="field">
+                <label for="isPayed">Pago</label>
+                <p-checkbox id="isPayed" [(ngModel)]="payment.isPayed" [binary]="true"></p-checkbox>
+            </div>
+        </ng-template>
+    
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="CANCELAR" icon="pi pi-times" class="p-button-text" (click)="hidePaymentRegisterDialog()"></button>
+            <button pButton pRipple label="SALVAR" icon="pi pi-check" class="p-button-text" (click)="savePayment()"></button>
+        </ng-template>
+    </p-dialog>
+
     <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 </div>
