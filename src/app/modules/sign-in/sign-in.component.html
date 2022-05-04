@@ -1,22 +1,29 @@
-<div id="sign-in" class="sign-in">
+<section id="sign-in" class="sign-in">
   <div class="sign-in__box-form">
-    <img
-      class="sign-in__img-logo"
-      src="assets/img/png/payFriends.png"
-      alt="Imagem escrito Payfriends"
-    />
+    <ng-container *ngIf="!isLoading; else loadingContainer">
+      <img
+        class="sign-in__img-logo"
+        src="assets/img/png/payFriends.png"
+        alt="Imagem escrito Payfriends"
+      />
 
-    <h2 class="sign-in__title">Bem vindo de volta</h2>
+      <h2 class="sign-in__title">Bem vindo de volta</h2>
 
-    <mat-error
-      id="error-message"
-      class="sign-in__usernotfound-message"
-      *ngIf="isUserNotFoundMessage"
-    >
-      {{ isUserNotFoundMessage }}
-    </mat-error>
+      <mat-error
+        id="error-message"
+        class="sign-in__usernotfound-message"
+        *ngIf="isUserNotFoundMessage"
+      >
+        {{ isUserNotFoundMessage }}
+      </mat-error>
 
-    <app-sign-in-form (submitEvent)="signIn($event)"></app-sign-in-form>
+      <app-sign-in-form (submitEvent)="signIn($event)"></app-sign-in-form>
+    </ng-container>
+
+    <ng-template #loadingContainer>
+      <mat-spinner class="sign-in__loader"></mat-spinner>
+      <span class="sign-in__loader-title">Carregando</span>
+    </ng-template>
   </div>
 
   <div class="sign-in__box-image">
@@ -25,4 +32,4 @@
       alt="Imagem com homem olhando o celular"
     />
   </div>
-</div>
+</section>
