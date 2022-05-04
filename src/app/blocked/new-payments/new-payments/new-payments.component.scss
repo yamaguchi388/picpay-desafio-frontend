@@ -1,0 +1,18 @@
+.form__fields {
+    min-width: 700px;
+    display: flex;
+    justify-content: space-between;
+
+    mat-form-field {
+        min-width: 326px;
+    }
+}
+
+.btn--blue {
+    background-color: #007DFE;
+    color: #FFFFFF;
+}
+
+.btn--gray {
+    background-color: #F5F5F5;
+}

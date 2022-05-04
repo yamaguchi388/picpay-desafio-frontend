@@ -1,3 +1,5 @@
+import { BlockedModule } from './blocked/blocked.module';
+import { LoginModule } from './login/login.module';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -13,7 +15,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LoginModule,
+    BlockedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
