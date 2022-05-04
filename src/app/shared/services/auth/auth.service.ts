@@ -1,10 +1,11 @@
 import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { StorageKeysEnum } from "../../enums";
 import { ICredentials, IHttpParams, IUser } from "../../interfaces";
-import { HttpErrorFactory } from "../../lib/httpErrorFactory/HttpErrorFactory";
 import { HttpService } from "../http/http.service";
+import { StorageService } from "../storage/storage.service";
 
 @Injectable({
   providedIn: "root",
@@ -12,7 +13,10 @@ import { HttpService } from "../http/http.service";
 export class AuthService {
   private readonly endpoint = "account";
 
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly storageService: StorageService
+  ) {}
 
   signIn({ email, password }: ICredentials): Observable<IUser> {
     const params: IHttpParams[] = [
@@ -45,5 +49,9 @@ export class AuthService {
           });
         })
       );
+  }
+
+  logout() {
+    this.storageService.removeItem(StorageKeysEnum.USER);
   }
 }

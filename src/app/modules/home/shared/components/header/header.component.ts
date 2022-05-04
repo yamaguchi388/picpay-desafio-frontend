@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { IUser } from "src/app/shared/interfaces";
+import { AuthService } from "src/app/shared/services/auth/auth.service";
 import { UserService } from "src/app/shared/services/user/user.service";
 
 @Component({
@@ -10,7 +12,11 @@ import { UserService } from "src/app/shared/services/user/user.service";
 export class HeaderComponent implements OnInit {
   user!: IUser;
 
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getLoggedUser();
@@ -18,5 +24,10 @@ export class HeaderComponent implements OnInit {
 
   private getLoggedUser() {
     this.user = this.userService.getLoggedUser();
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["/sign-in"]);
   }
 }

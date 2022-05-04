@@ -68,10 +68,14 @@ $breakpoints: (
   /* 12/12 */
   .col#{$infix}-12 {
     width: 100%;
+  }
+}
 
-    @media (min-width: #{$screen-md-min}) {
-      @content;
-    }
+@include create-selectors;
+
+@each $breakpoint, $width in $breakpoints {
+  @media (min-width: $width) {
+    @include create-selectors($breakpoint);
   }
 }
 
@@ -83,12 +87,4 @@ $breakpoints: (
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-}
-
-@include create-selectors;
-
-@each $breakpoint, $width in $breakpoints {
-  @media (min-width: $width) {
-    @include create-selectors($breakpoint);
-  }
 }
