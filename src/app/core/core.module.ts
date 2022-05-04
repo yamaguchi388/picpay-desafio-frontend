@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './authentication/components/login/login.component';
+import { LoginComponent } from './authentication/views/login/login.component';
 import { ProfileComponent } from './authentication/views/profile/profile.component';
-
-
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -11,7 +10,8 @@ import { ProfileComponent } from './authentication/views/profile/profile.compone
     ProfileComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    BrowserModule
   ]
 })
 export class CoreModule { }
