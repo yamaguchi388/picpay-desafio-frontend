@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TableModule } from 'primeng/table';
 import { PaymentsService } from './services/payments.service';
 import { PaymentsTableComponent } from './components/payments-table/payments-table.component';
 
@@ -10,7 +11,8 @@ import { PaymentsTableComponent } from './components/payments-table/payments-tab
     PaymentsTableComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    TableModule
   ],
   exports: [
     PaymentsTableComponent

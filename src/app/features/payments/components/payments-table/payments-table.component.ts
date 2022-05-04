@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Payment } from '../../models/payment';
+import { PaymentsService } from '../../services/payments.service';
 
 @Component({
   selector: 'app-payments-table',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentsTableComponent implements OnInit {
 
-  constructor() { }
+  payments: Payment[];
+
+  constructor(private paymentsService: PaymentsService) { }
 
   ngOnInit(): void {
+    this.paymentsService.getAll().subscribe(payments => { 
+      this.payments = payments;
+    });
   }
 
 }

@@ -16,7 +16,7 @@ export class PaymentsService {
     return this.http.get<Payment[]>(baseUrl);
   }
 
-  getPaginated(page: number, limit?: number) {
+  getPaginated(page: number, limit?: number): Observable<Payment[]> {
     let paginationRulesUrlPath: string = '';
 
     paginationRulesUrlPath = limit?
