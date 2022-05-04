@@ -1,20 +1,30 @@
-<p-table [value]="payments">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Usuário</th>
-            <th>Título</th>
-            <th>Data</th>
-            <th>Valor</th>
-            <th>Pago</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-payment>
-        <tr>
-            <td>{{payment.name}}<br>{{payment.username}}</td>
-            <td>{{payment.title}}</td>
-            <td>{{payment.date}}</td>
-            <td>{{payment.value}}</td>
-            <td>{{payment.isPayed}}</td>
-        </tr>
-    </ng-template>
-</p-table>
+<div>
+    <p-table [value]="payments" [rows]="tableRowsPerPage" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <span>
+                    <p-paginator [rows]="tableRowsPerPage" [totalRecords]="totalPaymentRecords" [rowsPerPageOptions]="[5,8,10]"
+                        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {{totalPaymentRecords}} payments"
+                        (onPageChange)="handleTablePagination($event)">
+                    </p-paginator>
+                </span>
+            </tr>
+            <tr>
+                <th>Usuário</th>
+                <th>Título</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Pago</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-payment>
+            <tr>
+                <td>{{payment.name}}<br>{{payment.username}}</td>
+                <td>{{payment.title}}</td>
+                <td>{{payment.date}}</td>
+                <td>{{payment.value}}</td>
+                <td>{{payment.isPayed}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
