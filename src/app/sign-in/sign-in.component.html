@@ -12,20 +12,14 @@
 				</div>
 
 				<div class="form-group my-4">
-					<div class="input-group">
+					<div class="input-icons test">
+						<fa-icon [icon]="faEye" (click)="onClickShowPassword()"></fa-icon>
 						<input [type]="showPassword ? 'text' : 'password'" class="form-control floating-input" [(ngModel)]="password" required>
 						<label for="password" class="floating-input-placeholder">Senha</label>
-						<div class="input-group-prepend">
-							<button class="btn btn-outline-secondary" (click)="showPassword = !showPassword">
-								<fa-icon [icon]="faEye"></fa-icon>
-							</button>
-						</div>
 					</div>
 				</div>
 
-				<button class="btn btn-block btn-primary my-4" (click)="signIn()">
-					Entrar
-				</button>
+				<button class="btn btn-block btn-primary my-4" (click)="signIn()">ENTRAR</button>
 			</div>
 		</div>
 

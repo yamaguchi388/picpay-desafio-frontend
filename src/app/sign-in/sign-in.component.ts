@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { AppService } from '../app.service';
 
@@ -13,12 +13,12 @@ import { AppService } from '../app.service';
 })
 export class SignInComponent implements OnInit {
 
-  showPassword: boolean = false;
+  showPassword: boolean;
 
   faEye = faEye;
 
-  email: string = 'usuario@gmail.com'; // TODO mudar para string vazia
-  password: string = 'usuario'; // TODO mudar para string vazia
+  email: string;
+  password: string; 
 
   constructor (private router: Router, private appService: AppService, private toastr: ToastrService) {}
 
@@ -40,6 +40,16 @@ export class SignInComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  onClickShowPassword() {
+    this.showPassword = !this.showPassword;
+
+    if (this.showPassword) {
+      this.faEye = faEyeSlash;
+    } else {
+      this.faEye = faEye;
+    }
   }
 
 }
