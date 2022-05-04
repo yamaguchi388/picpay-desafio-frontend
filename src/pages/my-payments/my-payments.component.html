@@ -47,7 +47,7 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Editar </th>
                   <td mat-cell *matCellDef="let row"> 
                     <button mat-button (click)="openDialog()" class="btn--icon">
-                      <img src="./../../assets/edit.png" alt="" class="icon icon--edit">
+                      <img src="./../../assets/edit.png" alt="" class="icon icon--edit" (click)="setEditItem(row)">
                     </button>
                   </td>
                 </ng-container>

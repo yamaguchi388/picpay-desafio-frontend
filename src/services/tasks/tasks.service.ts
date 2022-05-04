@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
+// import { HttpClient, Response, HttpHeaders, RequestOptions, URLSearchParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+// import 'rxjs/add/operator/map';
 
 export const subject = new Subject<any>();
-
+// export const currentPayment = new Subject<any>();
 export const totalTaskItems = new Subject<number>();
 
 @Injectable({
@@ -15,7 +17,9 @@ currentPage = 1;
 limitItems = 5;
 validUser = {}; 
 taskList: Array<object> = [];
-
+headers = {};
+options = {};
+currentPayment = {};
   constructor(private http : HttpClient) { 
 
   }
@@ -60,5 +64,27 @@ public delete(id: number) {
         this.getTaskApi();
     });
 }
+
+public setCurrentPayment(item){
+    this.currentPayment = item;
+}
+
+private extractData(res: Response) {
+    let body = res.json();
+    return body || {};
+}
+
+public updatePaymentItem(param) {
+    let body: any = this.currentPayment;
+        Object.keys(param).forEach((data) => {
+            body[data] = (body[data] !== param[data]) && !!param[data]? param[data] : body[data];
+        });
+
+    debugger;
+    return this.http
+        .patch(`${ this.apiURL }/tasks/${body.id}`, body)
+        .subscribe((data) => data);
+}
+
 
 }

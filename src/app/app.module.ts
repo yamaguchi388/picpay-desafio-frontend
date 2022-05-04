@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from '../pages/login/login.component';
-import { MyPaymentsComponent } from './../pages/my-payments/my-payments.component';
+import {  MyPaymentsComponent } from './../pages/my-payments/my-payments.component';
 import { AppRoutingModule } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
@@ -17,12 +17,14 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {DialogEdit} from './../components/molecules/dialog/dialog-edit/dialog-edit.component';
 
 import {TasksService} from './../services/tasks/tasks.service';
 
 @NgModule({
   declarations: [	
-    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent
+    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent, DialogEdit
    ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import {TasksService} from './../services/tasks/tasks.service';
     ReactiveFormsModule,
     MatIconModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule
   ],
   providers: [TasksService],
   bootstrap: [AppComponent]
