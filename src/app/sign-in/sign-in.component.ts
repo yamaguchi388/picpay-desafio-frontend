@@ -28,7 +28,7 @@ export class SignInComponent implements OnInit {
   signIn() {
     this.appService.getAccountByEmailAndPassword(this.email, this.password).then(
       success => {
-        if (!success || success.length === 0) {
+        if (!success) {
           this.toastr.error('E-mail e/ou senha incorretos.');
         } else {
           localStorage.setItem('email', this.email); // ideal seria encriptografar os dados via API (JWT)
