@@ -16,9 +16,9 @@ export class PaymentsService {
     return this.http.get<Payment[]>(baseUrl);
   }
 
-  getPaginated(page: number, limit: number): Observable<any> {
+  getPaginated(page: number, limit: number, name?: string): Observable<any> {
     let paginationRulesUrlPath: string = '';
-    paginationRulesUrlPath = '?_page=' + page + '&_limit=' + limit;
+    paginationRulesUrlPath = name? '?name_like=' + name + '&_page=' + page + '&_limit=' + limit : '?_page=' + page + '&_limit=' + limit;
 
     return this.http.get(baseUrl + paginationRulesUrlPath, {observe: 'response'});
   }

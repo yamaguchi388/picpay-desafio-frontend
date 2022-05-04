@@ -1,10 +1,14 @@
 <div>
-    <p-table [value]="payments" [rows]="tableRowsPerPage" responsiveLayout="scroll">
+    <p-table #paymentsTable [value]="payments" [rows]="tableRowsPerPage" responsiveLayout="scroll" dataKey="id"
+        [globalFilterFields]="['name','username','title','date','value','status','isPayed']" [rowHover]="true">
         <ng-template pTemplate="header">
             <tr>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText [(ngModel)]="nameFilter" (keyup)="filterPaymentsByName()"> 
+                </span>
                 <span>
                     <p-paginator [rows]="tableRowsPerPage" [totalRecords]="totalPaymentRecords" [rowsPerPageOptions]="[5,8,10]"
-                        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {{totalPaymentRecords}} payments"
                         (onPageChange)="handleTablePagination($event)">
                     </p-paginator>
                 </span>
@@ -19,11 +23,29 @@
         </ng-template>
         <ng-template pTemplate="body" let-payment>
             <tr>
-                <td>{{payment.name}}<br>{{payment.username}}</td>
-                <td>{{payment.title}}</td>
-                <td>{{payment.date}}</td>
-                <td>{{payment.value}}</td>
-                <td>{{payment.isPayed}}</td>
+                <td>
+                    <span class="p-column-title">Name</span>
+                    {{payment.name}}
+                    <br>
+                    <span class="p-column-title">Username</span>
+                    {{payment.username}}
+                </td>
+                <td>
+                    <span class="p-column-title">Title</span>
+                    {{payment.title}}
+                </td>
+                <td>
+                    <span class="p-column-title">Date</span>
+                    {{payment.date}}
+                </td>
+                <td>
+                    <span class="p-column-title">Value</span>
+                    {{payment.value}}
+                </td>
+                <td>
+                    <span class="p-column-title">isPayed</span>
+                    {{payment.isPayed}}
+                </td>
             </tr>
         </ng-template>
     </p-table>

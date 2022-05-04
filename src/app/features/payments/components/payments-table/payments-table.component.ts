@@ -13,6 +13,7 @@ export class PaymentsTableComponent implements OnInit {
   totalPaymentRecords: number;
   currentTablePage: number;
   tableRowsPerPage: number;
+  nameFilter: string = '';
 
   constructor(private paymentsService: PaymentsService) { }
 
@@ -26,17 +27,22 @@ export class PaymentsTableComponent implements OnInit {
   handleTablePagination(event): void {
     this.currentTablePage = event.page;
     this.tableRowsPerPage = event.rows;
+
+    this.fetchPayments();
+  }
+
+  filterPaymentsByName(): void {
+    this.currentTablePage = 0;
+    
     this.fetchPayments();
   }
 
   fetchPayments(): void {
-    this.paymentsService.getPaginated(this.currentTablePage + 1, this.tableRowsPerPage)
+    this.paymentsService.getPaginated(this.currentTablePage + 1, this.tableRowsPerPage, this.nameFilter)
       .subscribe(response => { 
         this.payments = <Payment[]> response.body;
         this.totalPaymentRecords = <number> response.headers.get('X-Total-Count');
     });
   }
-
-  
 
 }
