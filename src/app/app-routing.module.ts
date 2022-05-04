@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: "sign-in",
     loadChildren: () =>
-      import("./pages/sign-in/sign-in.module").then((m) => m.SignInModule),
+      import("./modules/sign-in/sign-in.module").then((m) => m.SignInModule),
   },
 ];
 

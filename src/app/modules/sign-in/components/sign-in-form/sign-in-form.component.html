@@ -1,0 +1,45 @@
+<form [formGroup]="form" class="sign-in__form">
+  <mat-form-field appearance="outline" class="input--w-full">
+    <mat-label>E-mail</mat-label>
+    <input id="email" type="email" matInput formControlName="email" />
+    <mat-error *ngIf="verifyFormControlIsInvalid('email')">
+      {{ getFormControlError("email") }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input--w-full">
+    <mat-label>Senha</mat-label>
+    <input
+      id="password"
+      [type]="hidePassword ? 'password' : 'text'"
+      matInput
+      formControlName="password"
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hidePassword = !hidePassword"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hidePassword"
+    >
+      <mat-icon>{{
+        hidePassword ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </button>
+    <mat-error *ngIf="verifyFormControlIsInvalid('password')">
+      {{ getFormControlError("password") }}
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    id="sign-in-btn"
+    type="button"
+    class="btn--block"
+    color="primary"
+    [disabled]="formIsInvalid"
+    mat-raised-button
+    (click)="signIn()"
+  >
+    ENTRAR
+  </button>
+</form>
