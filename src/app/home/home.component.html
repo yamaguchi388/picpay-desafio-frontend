@@ -25,14 +25,14 @@
 					</div>
 	
 					<div class="ml-2">
-						<button class="btn btn-filter">
+						<button class="btn btn-filter" (click)="openFiltersModal()">
 							<img src="assets/filter-icon.png" alt="Ícone filtros"> Filtrar
 						</button>
 					</div>
 
 					<div class="ml-2">
-						<button class="btn btn-warning text-white">
-							<fa-icon [icon]="faXmark" (click)="cleanFiltersAndSearch()"></fa-icon>
+						<button class="btn btn-warning text-white" (click)="cleanFiltersAndSearch()">
+							<fa-icon [icon]="faXmark"></fa-icon>
 						</button>
 					</div>
 				</div>

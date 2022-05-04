@@ -1,0 +1,34 @@
+<div class="m-4">
+    <p class="title-modal">Filtros</p>
+
+    <div class="d-flex mb-2">
+        <div class="floating-input-group mr-2">
+            <input type="text" name="name" class="form-control floating-input" [(ngModel)]="title" required>
+            <label for="name" class="floating-input-placeholder">Título</label>
+        </div>
+
+        <div class="floating-input-group">
+            <input type="date" name="data" class="form-control floating-input date-input" [(ngModel)]="date" valid>
+            <label for="title" class="floating-input-placeholder">Data</label>
+        </div>
+    </div>
+
+    <div class="d-flex">
+        <div class="floating-input-group mr-2">
+            <input type="number" step=".01" name="min-value" class="form-control floating-input" [(ngModel)]="minValue" required>
+            <label for="min-value" class="floating-input-placeholder">Valor Mínimo</label>
+        </div>
+
+        <div class="floating-input-group">
+            <input type="number" step=".01" name="max-value" class="form-control floating-input" [(ngModel)]="maxValue" required>
+            <label for="max-value" class="floating-input-placeholder">Valor Máximo</label>
+        </div>
+    </div>
+
+    <input class="mr-2" type="checkbox" name="is-payed" [checked]="this.isPayed" (change)="this.isPayed = !this.filters.isPayed">Pago
+
+    <div class="action-buttons justify-content-end mt-5">
+        <button class="btn btn-light mr-2 w-25" (click)="cancel()">CANCELAR</button>
+        <button class="btn btn-primary w-25" (click)="search()">BUSCAR</button>
+    </div>
+</div>

@@ -6,9 +6,11 @@ import { ToastrService } from 'ngx-toastr';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 
 import { AppService } from '../app.service';
-import { ModalDeleteTaskComponent } from '../modals/modal-delete-task/modal-delete-task.component';
 import { ModalAddUpdateTaskComponent } from '../modals/modal-add-update-task/modal-add-update-task.component';
+import { ModalDeleteTaskComponent } from '../modals/modal-delete-task/modal-delete-task.component';
+import { ModalFiltersComponent } from '../modals/modal-filters/modal-filters.component';
 import { Task } from '../classes/Task';
+import { Filters } from '../classes/Filters';
 import { StringUtil } from '../utils/StringUtil'
 import { DateUtil } from '../utils/DateUtil';
 
@@ -31,6 +33,7 @@ export class HomeComponent implements OnInit {
   limitRange: number[] = [];
   sortBy: string;
   order: 'asc' | 'desc';
+  filters?: Filters;
 
   totalTasks: number;
   currentPage: number;
@@ -49,6 +52,7 @@ export class HomeComponent implements OnInit {
     this.totalTasks = await this.getTotalTasks();
     
     this.hasFilters = false;
+    this.filters    = new Filters();
 
     this.searchTasks();
   }
@@ -95,11 +99,29 @@ export class HomeComponent implements OnInit {
     this.bsModalRef = this.modalService.show(ModalDeleteTaskComponent, initialState);
 
     if (this.bsModalRef.onHide) {
-        this.bsModalRef.onHide.subscribe(event => {
-          // console.log(event);
-          this.searchTasks();
-        })
+      this.bsModalRef.onHide.subscribe(event => {
+        console.log(event);
+        this.searchTasks();
+      })
     }
+  }
+
+  openFiltersModal() {
+    const initialState: ModalOptions  = {
+      initialState: {
+        filters: this.filters
+      },
+    };
+
+    this.bsModalRef = this.modalService.show(ModalFiltersComponent, initialState);
+
+    this.bsModalRef.content.onClose.subscribe(result => {
+      this.filters = result;
+
+      if (this.filters && !Object.values(this.filters).every(el => el === undefined)) { // valida se pelo menos 1 filtro está preenchido
+        this.searchTasks();
+      }
+    })
   }
 
   updatePayed(task: Task) {
@@ -113,6 +135,10 @@ export class HomeComponent implements OnInit {
     this.searchBy    = '';
     this.limit       = 5;
     this.currentPage = 1;
+    this.filters     = new Filters();
+
+    console.log('aqui', this.filters);
+    
 
     this.searchTasks();
   }
@@ -185,11 +211,43 @@ export class HomeComponent implements OnInit {
 
     if (this.searchBy && this.searchBy.length > 0) {
       queryParams += this.getQueryParamSeparator(queryParams);
-      queryParams += 'name_like=' + this.searchBy.trim(); // quando busca pelo nome não utiliza paginação
+      queryParams += 'name_like=' + this.searchBy.trim(); 
       this.hasFilters = true;
     }
 
-    if (!this.hasFilters) {
+    if (this.filters) {
+      if (this.filters.title) {
+        queryParams += this.getQueryParamSeparator(queryParams);
+        queryParams += 'title_like=' + this.filters.title.trim(); 
+        this.hasFilters = true;
+      }
+
+      if (this.filters.date) {
+        queryParams += this.getQueryParamSeparator(queryParams);
+        queryParams += 'date_like=' + this.filters.date.trim(); 
+        this.hasFilters = true;
+      }
+
+      if (this.filters.minValue) {
+        queryParams += this.getQueryParamSeparator(queryParams);
+        queryParams += 'value_gte=' + this.filters.minValue; 
+        this.hasFilters = true;
+      }  
+
+      if (this.filters.maxValue) {
+        queryParams += this.getQueryParamSeparator(queryParams);
+        queryParams += 'value_lte=' + this.filters.maxValue;
+        this.hasFilters = true;
+      }
+
+      if (this.filters.isPayed != undefined) {
+        queryParams += this.getQueryParamSeparator(queryParams);
+        queryParams += 'isPayed=' + this.filters.isPayed; 
+        this.hasFilters = true;
+      }
+    }
+    
+    if (!this.hasFilters) { // quando tem filtros não utiliza paginação
       queryParams += this.getQueryParamSeparator(queryParams);
       queryParams += '_page=' + this.currentPage + '&_limit=' + this.limit;
     }
