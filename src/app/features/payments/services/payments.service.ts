@@ -22,4 +22,8 @@ export class PaymentsService {
 
     return this.http.get(baseUrl + paginationRulesUrlPath, {observe: 'response'});
   }
+
+  delete(id: number) {
+    return this.http.delete(baseUrl + '/' + id);
+  }
 }

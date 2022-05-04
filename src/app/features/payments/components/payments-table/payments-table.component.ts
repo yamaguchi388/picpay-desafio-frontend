@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Payment } from '../../models/payment';
+
 import { PaymentsService } from '../../services/payments.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-payments-table',
   templateUrl: './payments-table.component.html',
-  styleUrls: ['./payments-table.component.scss']
+  styleUrls: ['./payments-table.component.scss'],
+  providers: [
+    MessageService,
+    ConfirmationService
+  ]
 })
 export class PaymentsTableComponent implements OnInit {
 
@@ -15,7 +21,7 @@ export class PaymentsTableComponent implements OnInit {
   tableRowsPerPage: number;
   nameFilter: string = '';
 
-  constructor(private paymentsService: PaymentsService) { }
+  constructor(private paymentsService: PaymentsService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.currentTablePage = 0;
@@ -45,4 +51,32 @@ export class PaymentsTableComponent implements OnInit {
     });
   }
 
+  createPayment(): void {
+
+  }
+
+  updatePayment(payment: Payment): void {
+
+  }
+
+  deletePayment(payment: Payment): void {
+    this.confirmationService.confirm({
+      message: 'Usuário: ' + payment.name + '<br />'
+                + 'Título: ' + payment.title + '<br />'
+                + 'Data: ' + payment.date + '<br />'
+                + 'Valor: ' + payment.value,
+      header: 'Excluir pagamento',
+      accept: () => {
+        this.paymentsService.delete(payment.id)
+        .subscribe(
+          response => {
+            this.fetchPayments();
+            this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'O pagamento foi excluído', life: 3000});
+          },
+          error => {
+            this.messageService.add({severity:'error', summary: 'Erro', detail: 'Não foi possível excluir o pagamento', life: 3000});
+        });
+      }
+    });
+  }
 }

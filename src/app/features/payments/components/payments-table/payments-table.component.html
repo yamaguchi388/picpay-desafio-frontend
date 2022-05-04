@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div>
     <p-table #paymentsTable [value]="payments" [rows]="tableRowsPerPage" responsiveLayout="scroll" dataKey="id"
         [globalFilterFields]="['name','username','title','date','value','status','isPayed']" [rowHover]="true">
@@ -19,6 +20,7 @@
                 <th>Data</th>
                 <th>Valor</th>
                 <th>Pago</th>
+                <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-payment>
@@ -46,7 +48,12 @@
                     <span class="p-column-title">isPayed</span>
                     {{payment.isPayed}}
                 </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="updatePayment(payment)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePayment(payment)"></button>
+                </td>
             </tr>
         </ng-template>
     </p-table>
+    <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
 </div>
