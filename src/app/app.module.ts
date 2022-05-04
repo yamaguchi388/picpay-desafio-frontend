@@ -16,12 +16,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import {TasksService} from './../services/tasks/tasks.service';
 
 @NgModule({
   declarations: [	
-    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent,
+    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent
    ],
   imports: [
     BrowserModule,
@@ -36,7 +37,8 @@ import {TasksService} from './../services/tasks/tasks.service';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [TasksService],
   bootstrap: [AppComponent]

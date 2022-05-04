@@ -1,10 +1,12 @@
 import { subject, totalTaskItems } from './../../services/tasks/tasks.service';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, Inject } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { PaymentData } from 'src/models/PaymentData';
 import { TasksService } from 'src/services/tasks/tasks.service';
+
 @Component({
   selector: 'app-my-payments',
   templateUrl: './my-payments.component.html',
@@ -15,6 +17,7 @@ export class MyPaymentsComponent implements OnInit {
   dataSource: Array<PaymentData> = [];
   length: number = 0;
   displayedColumns: string[] = ['user', 'title', 'date', 'value', 'payed', 'edit', 'remove'];
+  isOpenedModal = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -24,7 +27,8 @@ export class MyPaymentsComponent implements OnInit {
   }
 
   constructor(
-     private tasksService: TasksService
+     private tasksService: TasksService,
+     public dialog: MatDialog
      ) { }
 
   ngOnInit(): void {
@@ -61,4 +65,40 @@ export class MyPaymentsComponent implements OnInit {
     })
   }
 
+  openDialog() {
+    this.dialog.open(DialogEdit, {
+      data: {
+        animal: 'panda',
+      },
+    });
+  }
+
+  openDialogDelete() {
+    this.dialog.open(DialogDelete, {
+      data: {
+        animal: 'panda',
+      },
+    });
 }
+
+}
+
+export interface DialogData {
+  animal: 'panda' | 'unicorn' | 'lion';
+}
+
+@Component({
+  selector: 'dialog-edit',
+  templateUrl: 'dialog-edit.html',
+})
+export class DialogEdit {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+}
+@Component({
+  selector: 'dialog-delete',
+  templateUrl: 'dialog-delete.html',
+})
+export class DialogDelete {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+}
+
