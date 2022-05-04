@@ -18,6 +18,7 @@ export class MyPaymentsComponent implements OnInit {
   length: number = 0;
   displayedColumns: string[] = ['user', 'title', 'date', 'value', 'payed', 'edit', 'remove'];
   isOpenedModal = false;
+  dialogDelete = {};
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -62,7 +63,12 @@ export class MyPaymentsComponent implements OnInit {
     this.tasksService.delete(item.id);
     subject.subscribe((data) => {
       this.dataSource = data;
-    })
+      this.dialog.closeAll();
+    });
+  }
+
+  setDeleteItem(item: any){
+    this.dialogDelete = {details: item, delete: () => this.deleteItem(item), close: () => this.dialog.closeAll()};
   }
 
   openDialog() {
@@ -75,10 +81,9 @@ export class MyPaymentsComponent implements OnInit {
 
   openDialogDelete() {
     this.dialog.open(DialogDelete, {
-      data: {
-        animal: 'panda',
-      },
+      data: this.dialogDelete,
     });
+  
 }
 
 }
@@ -99,6 +104,6 @@ export class DialogEdit {
   templateUrl: 'dialog-delete.html',
 })
 export class DialogDelete {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }
 

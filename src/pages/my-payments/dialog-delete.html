@@ -1,15 +1,18 @@
-<h1 mat-dialog-title>Favorite Animal</h1>
+<h1 mat-dialog-title>Excluir pagamento</h1>
 <div mat-dialog-content>
-  My favorite animal is:
-  <ul>
+  <ul class="dialog__user-details">
     <li>
-      <span *ngIf="data.animal === 'panda'">&#10003;</span> Panda
+      <span>Usuário: {{data.details.name}}</span>
     </li>
     <li>
-      <span *ngIf="data.animal === 'unicorn'">&#10003;</span> Unicorn
+      <span>Data: {{data.details.date}}</span>
     </li>
     <li>
-      <span *ngIf="data.animal === 'lion'">&#10003;</span> Lion
+      <span>Valor: {{data.details.date}}</span>
     </li>
   </ul>
+  <div class="btn-container">
+    <button class="cancel" (click)="data.close()">cancelar</button>
+    <button class="enter" (click)="data.delete(data.details)">Salvar</button>
+  </div>
 </div>

@@ -56,7 +56,7 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Remover </th>
                   <td mat-cell *matCellDef="let row">
                     <button mat-button (click)="openDialogDelete()" class="btn--icon">
-                      <img src="./../../assets/remove.png" alt="" class="icon icon--remove" (click)="deleteItem(row)">
+                      <img src="./../../assets/remove.png" alt="" class="icon icon--remove" (click)="setDeleteItem(row)">
                     </button>
                   </td>
                 </ng-container>
