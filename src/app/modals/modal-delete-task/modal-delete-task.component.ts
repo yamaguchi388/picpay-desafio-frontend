@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { StringUtil } from '../../utils/StringUtil';
 import { DateUtil } from '../../utils/DateUtil';
 import { AppService } from '../../app.service';
+import { Task } from 'src/app/classes/Task';
 
 @Component({
   selector: 'app-modal-delete-task',
@@ -14,7 +15,7 @@ import { AppService } from '../../app.service';
 })
 export class ModalDeleteTaskComponent implements OnInit {
 
-  task: any;
+  task: Task;
 
   constructor(private bsModalRef: BsModalRef, private appService: AppService, private toastr: ToastrService) { }
 

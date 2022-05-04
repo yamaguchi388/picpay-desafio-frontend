@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+
+import { AppService } from '../../app.service';
 import { Task } from 'src/app/classes/Task';
 import { DateUtil } from 'src/app/utils/DateUtil';
 
-import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-modal-add-update-task',
@@ -15,7 +16,7 @@ import { AppService } from '../../app.service';
 export class ModalAddUpdateTaskComponent implements OnInit {
 
   type: 'add' | 'update';
-  task: any;
+  task?: Task;
 
   pageTitle: string;
   name: string;
@@ -99,7 +100,7 @@ export class ModalAddUpdateTaskComponent implements OnInit {
     this.isPayed   = false;
 
     if (this.type === 'update') {
-      this.pageTitle = 'Editar pagamento ' + this.task?.title;
+      this.pageTitle = 'Editar pagamento ' + this.task.title;
       this.name      = this.task.name;
       this.date      = DateUtil.stringDateToDatetimeLocal(this.task.date);
       this.value     = this.task.value;
