@@ -14,7 +14,8 @@ import { ToastrModule, ToastrService } from "ngx-toastr";
 import { of, throwError } from "rxjs";
 import { MaterialModule } from "src/app/shared/modules/material/material.module";
 import { AuthService } from "src/app/shared/services/auth/auth.service";
-import { SignInFormComponent } from "./components/sign-in-form/sign-in-form.component";
+import { UserService } from "src/app/shared/services/user/user.service";
+import { SignInFormComponent } from "./shared/components/sign-in-form/sign-in-form.component";
 import { SignInComponent } from "./sign-in.component";
 
 describe("SignInComponent", () => {
@@ -24,6 +25,7 @@ describe("SignInComponent", () => {
   let toastrService: ToastrService;
   let router: Router;
   let httpClient: HttpClient;
+  let userService: UserService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -36,7 +38,7 @@ describe("SignInComponent", () => {
         MaterialModule,
       ],
       declarations: [SignInComponent, SignInFormComponent],
-      providers: [AuthService, HttpClient],
+      providers: [AuthService, HttpClient, UserService],
     }).compileComponents();
   }));
 
@@ -47,6 +49,7 @@ describe("SignInComponent", () => {
     toastrService = TestBed.inject(ToastrService);
     router = TestBed.inject(Router);
     httpClient = TestBed.inject(HttpClient);
+    userService = TestBed.inject(UserService);
     fixture.detectChanges();
   });
 
@@ -81,6 +84,7 @@ describe("SignInComponent", () => {
 
     spyOn(toastrService, "success");
     spyOn(router, "navigate");
+    spyOn(userService, "setUserOnSession");
 
     const emailInput = fixture.debugElement.query(By.css("#email"));
     emailInput.nativeElement.value = mockUser.email;
@@ -105,6 +109,7 @@ describe("SignInComponent", () => {
     expect(authService.signIn).toHaveBeenCalledTimes(1);
     expect(toastrService.success).toHaveBeenCalledTimes(1);
     expect(router.navigate).toHaveBeenCalledTimes(1);
+    expect(userService.setUserOnSession).toHaveBeenCalledTimes(1);
     expect(router.navigate).toHaveBeenCalledOnceWith(["/"]);
   });
 

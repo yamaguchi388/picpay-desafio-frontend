@@ -83,7 +83,9 @@ $payfriends-theme: mat.define-light-theme(
 @include mat.all-component-themes($payfriends-theme);
 
 $themes: (
+  "primary-dark": #002d69,
   "background": #e5e5e5,
+  "text-light": #ffffff,
   "title": #333333,
   "error": #b00020,
 );
