@@ -55,4 +55,10 @@ setLimitItems(totalItems: number){
   })
 }
 
+public delete(id: number) {
+    this.http.delete(`${ this.apiURL }/tasks/${id}`).subscribe((data) => {
+        this.getTaskApi();
+    });
+}
+
 }

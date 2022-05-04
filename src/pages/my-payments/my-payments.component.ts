@@ -14,7 +14,7 @@ export class MyPaymentsComponent implements OnInit {
   pageSizeOptions: Array<number> = [5, 10, 50, 100];
   dataSource: Array<PaymentData> = [];
   length: number = 0;
-  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'paid'];
+  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'payed', 'edit', 'remove'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -49,6 +49,13 @@ export class MyPaymentsComponent implements OnInit {
       this.tasksService.setCurrentPage(event.pageIndex + 1);
     }
   
+    subject.subscribe((data) => {
+      this.dataSource = data;
+    })
+  }
+
+  deleteItem(item){
+    this.tasksService.delete(item.id);
     subject.subscribe((data) => {
       this.dataSource = data;
     })
