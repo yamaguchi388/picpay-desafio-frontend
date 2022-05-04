@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,8 +9,6 @@ import { userModel } from '../../models/user.model';
 })
 export class LoginService {
 
-  private url = 'http://localhost:4214/account';
-
   constructor(
     private http: HttpClient
   ) { }
@@ -18,6 +17,6 @@ export class LoginService {
     const params = new HttpParams()
     .set('email', email)
     .set('password',password)
-    return this.http.get<userModel>(this.url, { params });
+    return this.http.get<userModel>(environment.accounts_url, { params });
   }
 }
