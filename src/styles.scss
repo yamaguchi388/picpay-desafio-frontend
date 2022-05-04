@@ -1,6 +1,10 @@
 @import  'customize-bootstrap.scss' ; 
 @import  '../node_modules/bootstrap/scss/bootstrap' ;
 
+:root {
+  --dark-blue: #002D69;
+}
+
 * {
   box-sizing: border-box;
 }

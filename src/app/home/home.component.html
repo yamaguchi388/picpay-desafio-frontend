@@ -2,9 +2,32 @@
 	<div class="header">
 		<img src="assets/logo-white.png" alt="Logo">
 
-		<div class="rounded-circle">
-			<img src="assets/profile-photo.png" alt="Foto de perfil">
+		<div class="btn-group" dropdown>
+			<button class="btn-profile-dropdown dropdown-toggle" dropdownToggle>
+				<img src="assets/profile-photo.png" alt="Foto de perfil">
+			</button>
+
+			<ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+				<li role="menuitem"><a class="dropdown-item" href="#" (click)="logout()">Sair</a></li>
+			</ul>
 		</div>
+
+		<!-- <div class="btn-group" dropdown>
+			<button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+					aria-controls="dropdown-basic">
+			  Button dropdown <span class="caret"></span>
+			</button>
+			<ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+				role="menu" aria-labelledby="button-basic">
+			  <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+			  <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+			  <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+			  <li class="divider dropdown-divider"></li>
+			  <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+			  </li>
+			</ul>
+		  </div> -->
+
 	</div>
 
 	<div class="content">

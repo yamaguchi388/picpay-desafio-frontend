@@ -12,7 +12,7 @@
     height: 80px;
     padding: 10px 30px;
 
-    background-color: #002D69;
+    background-color: var(--dark-blue);
     color: var(--light);
 }
 
@@ -76,4 +76,10 @@
 
 .stripping {
     background-color: #F5F8FA;
+}
+
+.btn-profile-dropdown {
+    background-color: var(--dark-blue);
+    color: white;
+    border: 0;
 }

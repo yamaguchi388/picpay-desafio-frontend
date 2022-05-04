@@ -137,9 +137,6 @@ export class HomeComponent implements OnInit {
     this.currentPage = 1;
     this.filters     = new Filters();
 
-    console.log('aqui', this.filters);
-    
-
     this.searchTasks();
   }
 
@@ -265,6 +262,11 @@ export class HomeComponent implements OnInit {
       this.toastr.error('Você deve estar logado para acessar essa página!');
       this.router.navigateByUrl('sign-in');
     }
+  }
+
+  logout() {
+    localStorage.removeItem('email');
+    this.router.navigateByUrl('sign-in');
   }
 
 }
