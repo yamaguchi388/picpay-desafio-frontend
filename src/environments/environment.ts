@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  payments_url: 'http://localhost:3000/tasks',
+  accounts_url: 'http://localhost:3000/account'
 };
 
 /*

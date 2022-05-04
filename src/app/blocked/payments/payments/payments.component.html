@@ -1,48 +1,91 @@
 <main>
 
     <header>
-        <img src="" alt="">
-        <img src="" alt="">
+        <img src="../../../../assets/images/Logo(1).svg" alt="Logo Branca">
+        <img src="../../../../assets/images/perfil.svg" alt="Perfil">
     </header>
 
-    <h1>Meus pagamentos</h1>
-
     <section>
-        <button>Adicionar pagamento</button>
+        <h1>Meus pagamentos</h1>
 
-        <div>
-            <input type="text">
-            <button>Filtrar</button>
-            <label for="">Exibir</label>
-            <select name="" id="">
-                <option value="">5</option>
-                <option value="">5</option>
-                <option value="">5</option>
-            </select>
-
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Usuário</th>
-                        <th>Título</th>
-                        <th>Data</th>
-                        <th>Valor</th>
-                        <th>Pago</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="btn__add">
+            <button mat-raised-button color="primary" (click)="openNewPayment()">Adicionar pagamento</button>
         </div>
+
+        <div class="div__filters">
+
+            <div class="div__filters__input">
+                <div class="div__filters__btn__input">
+                    <input type="text" placeholder="Pesquisar por usuário" (keyup)="getPayments(1)" [(ngModel)]="user">
+                    <button class="btn__input">
+                        <img src="../../../../assets/images/Exclude.svg">
+                    </button>
+                </div>
+                <button class="btn__filter">
+                    <img src="../../../../assets/images/Shape.svg">
+                    Filtrar
+                </button>
+            </div>
+            
+            <div class="div__filters__itens">
+
+                <div class="div__filters__itens">
+                    <label for="limitItens">Exibir</label>
+                    <select id="limitItens" name="limitItens" (change)="getPayments(1)" [(ngModel)]="limitItens">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
+    
+                <div class="div__filters__pagination">
+                    <button class="btn__pagination" (click)="previousPage()" [disabled]="currentPage === 1"> < </button>
+                    <div class="span__pagination">{{ currentPage }}</div>
+                    <button class="btn__pagination" (click)="nextPage()" [disabled]="currentPage === lastPage"> > </button>
+                </div>
+            </div>            
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Usuário</th>
+                    <th>Título</th>
+                    <th>Data</th>
+                    <th>Valor</th>
+                    <th>Pago</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let payment of payments">
+                    <td>
+                        <span>{{ payment.name }}</span>
+                        <span>@{{ payment.username }}</span>                        
+                    </td>
+                    <td>
+                        <span>{{ payment.title }}</span>
+                    </td>
+                    <td>
+                        <span>{{ payment.date }}</span>                        
+                    </td>
+                    <td>
+                        <span>{{ payment.value | currency: 'BRL' }}</span>
+                    </td>
+                    <td>
+                        <input type="checkbox" checked="{{ payment.isPayed }}">
+                    </td>
+                    <td>
+                        <button mat-icon-button>
+                            <img src="../../../../assets/images/edit.svg">
+                        </button>
+                        <button mat-icon-button>
+                            <img src="../../../../assets/images/delete.svg">
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
     </section>
 </main>
