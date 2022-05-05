@@ -5,12 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from "primeng/password";
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 
 
 
 @NgModule({
   declarations: [
     LoginComponent,
+    LogoutButtonComponent,
   ],
   imports: [
     CommonModule,
