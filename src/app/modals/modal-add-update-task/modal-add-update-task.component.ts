@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 
 import { AppService } from '../../app.service';
 import { Task } from 'src/app/classes/Task';
 import { DateUtil } from 'src/app/utils/DateUtil';
+import { ModalUtil } from 'src/app/utils/ModalUtil';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class ModalAddUpdateTaskComponent implements OnInit {
   title: string;
   isPayed: boolean;
 
-  constructor(private bsModalRef: BsModalRef, private appService: AppService, private toastr: ToastrService) { }
+  constructor(private bsModalRef: BsModalRef, private modalService: BsModalService, private appService: AppService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.setDefaultVariables();
@@ -35,7 +36,7 @@ export class ModalAddUpdateTaskComponent implements OnInit {
     this.bsModalRef.hide();
   } 
 
-  save() {
+  async save() {
     if (!this.name || this.name.trim().length === 0) {
       this.toastr.error('O usuário deve ser informado.');
       return
@@ -46,6 +47,13 @@ export class ModalAddUpdateTaskComponent implements OnInit {
     }
     if (!this.date) {
       this.toastr.error('A data deve ser informada.');
+      return
+    }
+
+    const confirmModalMessage = this.type == 'update' ? 'Confirma alteração do pagamento?' : 'Confirma novo pagamento?';
+
+    const confirm = await ModalUtil.openConfirmModal(this.modalService, confirmModalMessage);
+    if (!confirm) {
       return
     }
 
