@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 
 import { StringUtil } from '../../utils/StringUtil';
 import { DateUtil } from '../../utils/DateUtil';
 import { AppService } from '../../app.service';
 import { Task } from 'src/app/classes/Task';
+import { ModalUtil } from 'src/app/utils/ModalUtil';
 
 @Component({
   selector: 'app-modal-delete-task',
@@ -17,7 +18,7 @@ export class ModalDeleteTaskComponent implements OnInit {
 
   task: Task;
 
-  constructor(private bsModalRef: BsModalRef, private appService: AppService, private toastr: ToastrService) { }
+  constructor(private bsModalRef: BsModalRef, private modalService: BsModalService, private appService: AppService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -26,7 +27,12 @@ export class ModalDeleteTaskComponent implements OnInit {
     this.bsModalRef.hide();
   } 
 
-  delete() {
+  async delete() {
+    const confirm = await ModalUtil.openConfirmModal(this.modalService, 'Deseja realmente excluir esse pagamento?');
+    if (!confirm) {
+      return
+    }
+
     this.appService.deleteTask(this.task).then(
       success => {
         this.toastr.success('Pagamento excluído com sucesso!');
