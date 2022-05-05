@@ -1,12 +1,9 @@
 import {
-  AfterViewInit,
   Component,
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
-  SimpleChanges,
   ViewChild,
 } from "@angular/core";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
@@ -21,7 +18,9 @@ import { IPaginator, IPayment } from "../../interfaces";
 })
 export class PaymentsListTableComponent implements OnChanges {
   @Input() payments: IPaginator<IPayment[]>;
+
   @Output() pageChangeEvent = new EventEmitter();
+  @Output() applyFilterEvent = new EventEmitter();
 
   displayedColumns: string[] = [
     "username",
@@ -40,20 +39,21 @@ export class PaymentsListTableComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.dataSource = new MatTableDataSource(this.payments.items);
-
-    if (this.paginator) {
-      this.paginator.firstPage();
-    }
   }
 
   getDateFormatedValue(fullDate: string, isDate: boolean) {
     const [date, hour] = fullDate.split("T");
     return isDate ? date : hour;
   }
+
   pageChange(event: PageEvent) {
     this.payments.page = event.pageIndex;
     this.payments.limit = event.pageSize;
 
     this.pageChangeEvent.emit();
+  }
+
+  applyFilter() {
+    this.applyFilterEvent.emit(this.filterValue);
   }
 }

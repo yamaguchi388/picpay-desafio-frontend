@@ -1,8 +1,12 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { LOCALE_ID, NgModule } from "@angular/core";
+import { CommonModule, registerLocaleData } from "@angular/common";
+import localeBr from "@angular/common/locales/pt";
+
 import { HomeComponent } from "./home.component";
 import { RouterModule, Routes } from "@angular/router";
 import { HeaderModule } from "./shared/components/header/header.module";
+
+registerLocaleData(localeBr, "pt");
 
 const routes: Routes = [
   {
@@ -28,5 +32,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [HomeComponent],
   imports: [CommonModule, RouterModule.forChild(routes), HeaderModule],
+  providers: [{ provide: LOCALE_ID, useValue: "pt" }],
 })
 export class HomeModule {}

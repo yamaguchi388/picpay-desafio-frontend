@@ -9,6 +9,7 @@
         placeholder="Pesquisar por usuário"
         matInput
         [(ngModel)]="filterValue"
+        (ngModelChange)="applyFilter()"
       />
     </mat-form-field>
 
@@ -63,10 +64,10 @@
       </th>
       <td mat-cell *matCellDef="let element">
         <span class="payments-list__table-td-span">{{
-          element.date | date
+          element.date | date: "mediumDate"
         }}</span>
         <span class="payments-list__table-td-span">{{
-          element.date | date: "shortTime"
+          element.date | date: "h:mm a"
         }}</span>
       </td>
     </ng-container>
