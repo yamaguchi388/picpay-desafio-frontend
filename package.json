@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~12.1.4",
     "@angular/platform-browser-dynamic": "~12.1.4",
     "@angular/router": "~12.1.4",
+    "jsonwebtoken": "^8.5.1",
     "primeicons": "^5.0.0",
     "primeng": "^13.3.3",
     "rxjs": "~6.6.7",
