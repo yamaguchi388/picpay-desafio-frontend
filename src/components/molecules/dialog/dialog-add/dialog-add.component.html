@@ -29,8 +29,8 @@
       </tr>
       </table>
       <div class="btn-container">
-          <button class="cancel" (click)="dialog.closeAll()">CANCELAR</button>
-          <button class="enter" type="submit">SALVAR</button>
+          <button-atom name="CANCELAR" (click)="dialog.closeAll()"></button-atom>
+          <button-atom name="SALVAR" className="button--primary" type="submit"></button-atom>
       </div>
       </form>
     </div>

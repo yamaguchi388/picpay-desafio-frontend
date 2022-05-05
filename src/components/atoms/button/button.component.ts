@@ -7,6 +7,8 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
   })
   export class Button implements OnInit {
     @Input() name: string;
+    @Input() imgUrl: string;
+    @Input() className: string;
     ngOnInit(): void {
         
     }

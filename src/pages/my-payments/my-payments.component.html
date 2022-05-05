@@ -3,13 +3,13 @@
     <div class="my-payments__container">
         <h1 class="my-payments__title">Meus pagamentos</h1>
         <div class="my-payments__btn-container">
-          <button-atom name="ADICIONAR PAGAMENTO" (click)="openDialogAdd()"></button-atom>
+          <button-atom className="button--primary" name="ADICIONAR PAGAMENTO" (click)="openDialogAdd()"></button-atom>
         </div>
         <mat-card class="example-card">
             <span class="my-payments__filter">
               <div class="my-payments__filter__container">
                 <input-filter-atom placeholder="Pesquisar por usuário" (inputValuesChildren)="handleInputNameChildren($event)"></input-filter-atom>
-                <button-atom name="Filtrar" (click)="filterPaymentsOnClick()"></button-atom>
+                <button-atom className="button--filter" name="Filtrar" imgUrl="./../../assets/icon/filter-icon.svg" (click)="filterPaymentsOnClick()"></button-atom>
               </div>
                 <mat-paginator [length]="length" [pageSizeOptions]="pageSizeOptions" aria-label="Select page" (page)="handlePageEvent($event)">
                 </mat-paginator>
@@ -72,7 +72,7 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             
                 <tr class="mat-row" *matNoDataRow>
-                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                  <td class="mat-cell" colspan="4">Nenhum registro econtrado para "{{filterParams.value}}"</td>
                 </tr>
               </table>
         </mat-card>
