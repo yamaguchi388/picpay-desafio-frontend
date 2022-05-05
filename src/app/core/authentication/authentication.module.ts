@@ -15,11 +15,14 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
     LogoutButtonComponent,
   ],
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     PasswordModule,
     InputTextModule,
     ButtonModule
+  ],
+  exports: [
+    LogoutButtonComponent,
+    LoginComponent
   ]
 })
 export class AuthenticationModule { }

@@ -17,6 +17,7 @@ import { DialogModule } from 'primeng/dialog';
 import { PaymentsService } from './services/payments.service';
 import { PaymentsTableComponent } from './components/payments-table/payments-table.component';
 import { MyPaymentsViewComponent } from './views/my-payments-view/my-payments-view.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -27,7 +28,6 @@ import { MyPaymentsViewComponent } from './views/my-payments-view/my-payments-vi
     MyPaymentsViewComponent
   ],
   imports: [
-    CommonModule,
     TableModule,
     ButtonModule,
     PaginatorModule,
@@ -37,7 +37,8 @@ import { MyPaymentsViewComponent } from './views/my-payments-view/my-payments-vi
     ToastModule,
     CalendarModule,
     CheckboxModule,
-    DialogModule
+    DialogModule,
+    SharedModule
   ],
   exports: [
     PaymentsTableComponent,

@@ -8,6 +8,7 @@ import { PaymentsModule } from './features/payments/payments.module';
 import { CoreModule } from './core/core.module';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routes';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [	
@@ -15,6 +16,7 @@ import { AppRoutingModule } from './app.routes';
    ],
   imports: [
     BrowserModule,
+    CommonModule,
     PaymentsModule,
     CoreModule,
     HttpClientModule,
