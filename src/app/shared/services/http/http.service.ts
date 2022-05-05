@@ -12,7 +12,7 @@ export class HttpService {
 
   constructor(private readonly httpClient: HttpClient) {}
 
-  get<REQ, RES>(endpoint: string, params: IHttpParams[]): Observable<RES> {
+  get<RES>(endpoint: string, params?: IHttpParams[]): Observable<RES> {
     const url = this.buildUrl(endpoint, params);
     return this.httpClient.get<RES>(url);
   }

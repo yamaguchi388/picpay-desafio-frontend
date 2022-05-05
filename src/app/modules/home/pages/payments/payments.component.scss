@@ -21,4 +21,20 @@
   @include md {
     text-align: left;
   }
+
+  &__box-loading {
+    width: 100%;
+    margin-top: 5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &-title {
+      font-family: "Montserrat", Arial, Helvetica, sans-serif;
+      font-size: 1.5rem;
+      margin-top: 5rem;
+    }
+  }
 }
