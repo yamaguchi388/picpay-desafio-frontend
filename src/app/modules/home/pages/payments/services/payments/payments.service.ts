@@ -11,6 +11,7 @@ export class PaymentsService {
   constructor(private readonly httpService: HttpService) {}
 
   store(payment: IPayment) {
+    payment.isPayed = false;
     return this.httpService.post<IPayment>(this.apiUrl, payment);
   }
 }

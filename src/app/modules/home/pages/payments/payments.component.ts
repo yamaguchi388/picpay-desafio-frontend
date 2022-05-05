@@ -25,7 +25,7 @@ export class PaymentsComponent implements OnInit {
 
   openDialog(data?: any) {
     const dialogRef = this.dialog.open(NewPaymentDialogComponent, {
-      width: "60%",
+      width: "70%",
       maxHeight: "500px",
       height: "auto",
       data,
