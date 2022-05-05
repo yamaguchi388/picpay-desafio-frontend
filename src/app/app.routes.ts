@@ -9,11 +9,11 @@ const routes: Routes = [
         component: MyPaymentsViewComponent
     },
     {
-        path: '/meuspagamentos',
+        path: 'meuspagamentos',
         component: MyPaymentsViewComponent
     },
     {
-        path:'/login',
+        path:'login',
         component: LoginComponent
     }
 ]; 

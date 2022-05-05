@@ -1,27 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { UserAccountInfo } from '../models/user-account-info';
 import { LoginCredentials } from '../models/login-credentials';
+import { SessionManagerService } from './session-manager.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   BASE_API_URL: string = 'http://localhost:3000/account';
-  authStatus: string = '';
 
   //implementar OnInit e verificar o session storage se tem token
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sessionManager: SessionManagerService) { }
 
-  authenticate(credentials: LoginCredentials): string {
+  authenticate(credentials: LoginCredentials): Observable<any> {
     
     // Using GET method due to the fake API.
     // A real application should use a POST method and
     // erform the user validation on the back-end.
-    this.http.get(this.BASE_API_URL)
-      .subscribe(
+    return this.http.get(this.BASE_API_URL)
+      .pipe(map(
         (response: UserAccountInfo[]) => {
           console.log(response);
           const user = response.find((account: UserAccountInfo) => {
@@ -29,21 +30,28 @@ export class AuthService {
           });
           
           if(user){
-            // create token and save on session storage
-            this.authStatus = 'success';
+            const sessionAuthToken = `user-${user.email}-${user.name}-token`;
+
+            this.sessionManager.saveToken(sessionAuthToken);
+            this.sessionManager.saveUser(user);
+
+            return 'success';
           } else {
-            this.authStatus = 'invalid';
+            return 'invalid';
           }
         },
-        error => {
+        (error: any) => {
           console.log(error);
-          this.authStatus = 'error';
+          return 'error';
         }
-      );
-      return this.authStatus;
+      ));
   }
 
   logout(): void {
-    // localStorage.removeItem('access_token');
+    this.sessionManager.clearSessionStorage();
+  }
+
+  isAuthenticated() {
+    return this.sessionManager.getToken() !== null;
   }
 }

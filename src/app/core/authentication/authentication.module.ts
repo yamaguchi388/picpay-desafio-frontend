@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from "primeng/password";
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -13,7 +15,9 @@ import { PasswordModule } from "primeng/password";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    PasswordModule
+    PasswordModule,
+    InputTextModule,
+    ButtonModule
   ]
 })
 export class AuthenticationModule { }

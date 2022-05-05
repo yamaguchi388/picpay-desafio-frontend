@@ -35,26 +35,30 @@ export class LoginComponent implements OnInit {
     };
 
     if(credentials.email && credentials.password){
-      this.authStatus = this.authService.authenticate(credentials);
+      this.authService.authenticate(credentials)
+        .subscribe(status => { 
+          this.authStatus = status;
 
-      switch(this.authStatus){
-        case 'success': {
-          // toast successfull and redirect
-          this.router.navigateByUrl('/');
-          this.cleanFormFields();
-          break;
-        }
-        case 'invalid': {
-          // toast invalid and ser form invalid
-          this.cleanFormFields();
-          break;
-        }
-        case 'error': {
-          // toast error
-          this.cleanFormFields();
-          //clean form
-        }
-      }
+          switch(this.authStatus){
+            case 'success': {
+              // toast successfull and redirect
+              this.router.navigateByUrl('/meuspagamentos');
+              this.cleanFormFields();
+              break;
+            }
+            case 'invalid': {
+              // toast invalid and ser form invalid
+              console.log(this.authStatus);
+              this.cleanFormFields();
+              break;
+            }
+            case 'error': {
+              // toast error
+              console.log(this.authStatus);
+              this.cleanFormFields();
+            }
+          }
+        });
     }
   }
 
