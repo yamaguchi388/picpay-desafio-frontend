@@ -1,6 +1,11 @@
 @import  'customize-bootstrap.scss' ; 
 @import  '../node_modules/bootstrap/scss/bootstrap' ;
 
+@font-face {
+  font-family: "Lato";
+  src: local("Lato"), url(./assets/fonts/Lato/Lato-Regular.ttf) format("truetype");
+}
+
 :root {
   --dark-blue: #002D69;
 }
@@ -16,6 +21,15 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
+}
+
+.title {
+  font-family: 'Montserrat';
+  font-weight: 600;
+}
+
+button {
+  font-family: 'Roboto';
 }
 
 .cursor-pointer {
@@ -34,6 +48,7 @@ body {
   transition: all 300ms;
   opacity: 0.5;
   padding-left: 10px;
+  font-family: 'Roboto';
 }
 
 .floating-input:focus+.floating-input-placeholder,
@@ -67,6 +82,7 @@ body {
   height: 38px;
   padding: 4px 8px;
   text-align: left;
+  font-family: 'Roboto';
 
   border: 1px solid #CFDCE5;
   box-sizing: border-box;
