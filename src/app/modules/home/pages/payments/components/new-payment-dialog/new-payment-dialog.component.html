@@ -1,0 +1,81 @@
+<div class="np-modal">
+  <h1 class="page__title">Adicionar pagamento</h1>
+
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-12 col-md-6 np-modal__row-column">
+        <mat-form-field appearance="outline" class="input--w-full">
+          <mat-label>Nome*</mat-label>
+          <input id="name" matInput formControlName="name" />
+          <mat-error *ngIf="verifyFormControlIsInvalid('name')">
+            {{ getFormControlError("name") }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-md-6 np-modal__row-column">
+        <mat-form-field appearance="outline" class="input--w-full">
+          <mat-label>Usuário*</mat-label>
+          <input id="username" matInput formControlName="username" />
+          <mat-error *ngIf="verifyFormControlIsInvalid('username')">
+            {{ getFormControlError("username") }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-md-6 np-modal__row-column">
+        <mat-form-field appearance="outline" class="input--w-full">
+          <mat-label>Valor*</mat-label>
+          <input
+            id="value"
+            type="number"
+            matInput
+            formControlName="value"
+            min="1"
+          />
+          <mat-error *ngIf="verifyFormControlIsInvalid('value')">
+            {{ getFormControlError("value") }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-md-6 np-modal__row-column">
+        <mat-form-field appearance="outline" class="input--w-full">
+          <mat-label>Data*</mat-label>
+          <input
+            id="date"
+            type="datetime-local"
+            matInput
+            formControlName="date"
+          />
+          <mat-error *ngIf="verifyFormControlIsInvalid('date')">
+            {{ getFormControlError("date") }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-md-6 np-modal__row-column">
+        <mat-form-field appearance="outline" class="input--w-full">
+          <mat-label>Título*</mat-label>
+          <input id="value" matInput formControlName="title" min="1" />
+          <mat-error *ngIf="verifyFormControlIsInvalid('title')">
+            {{ getFormControlError("title") }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="np-modal__box-buttons">
+      <button type="button" mat-raised-button (click)="onCancelClick()">
+        CANCELAR
+      </button>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        (click)="submitNewGroup()"
+      >
+        SALVAR
+      </button>
+    </div>
+  </form>
+</div>
