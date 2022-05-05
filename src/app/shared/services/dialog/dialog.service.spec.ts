@@ -1,16 +1,26 @@
 import { TestBed } from '@angular/core/testing';
-
+import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from './dialog.service';
 
 describe('DialogService', () => {
   let service: DialogService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    const matDialogStub = () => ({
+      open: unavailableComponent => ({
+        afterClosed: () => ({ subscribe: f => f({}) })
+      })
+    });
+    TestBed.configureTestingModule({
+      providers: [
+        DialogService,
+        { provide: MatDialog, useFactory: matDialogStub }
+      ]
+    });
     service = TestBed.inject(DialogService);
   });
 
-  it('should be created', () => {
+  it('can load instance', () => {
     expect(service).toBeTruthy();
   });
 });
