@@ -1,1 +1,21 @@
-<p>login works!</p>
+
+<form [formGroup]="loginForm">
+    <fieldset>
+        <legend>Login</legend>
+        <div class="form-field">
+            <span class="p-float-label">
+                <input name="email" id="email-input" type="text" pInputText> 
+                <label for="float-input">Email</label>
+            </span>
+        </div>
+        <div class="form-field">
+            <span class="p-float-label">
+                <p-password name="password" id="password-input" formControlName="password" [toggleMask]="true"></p-password>
+                <label for="float-input">Password</label>
+            </span>
+        </div>
+    </fieldset>
+    <div class="form-buttons">
+    <button class="button button-primary" (click)="login()">Login</button>
+    </div>
+</form>

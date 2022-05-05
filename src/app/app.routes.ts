@@ -13,7 +13,7 @@ const routes: Routes = [
         component: MyPaymentsViewComponent
     },
     {
-        path:'login',
+        path:'/login',
         component: LoginComponent
     }
 ]; 
