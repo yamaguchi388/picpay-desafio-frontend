@@ -20,6 +20,7 @@ taskList: Array<object> = [];
 headers = {};
 options = {};
 currentPayment = {};
+paymentList = []
   constructor(private http : HttpClient) { 
 
   }
@@ -60,9 +61,9 @@ setLimitItems(totalItems: number){
 }
 
 public delete(id: number) {
-    this.http.delete(`${ this.apiURL }/tasks/${id}`).subscribe((data) => {
-        this.getTaskApi();
-    });
+    return this.http.delete(`${ this.apiURL }/tasks/${id}`)
+        .subscribe((data) => this.getTaskApi());
+
 }
 
 public setCurrentPayment(item){
@@ -76,11 +77,11 @@ private extractData(res: Response) {
 
 public updatePaymentItem(param) {
     let body: any = this.currentPayment;
-        Object.keys(param).forEach((data) => {
-            body[data] = (body[data] !== param[data]) && !!param[data]? param[data] : body[data];
+        Object.keys(param)
+            .forEach((data) => {
+                body[data] = (body[data] !== param[data]) && !!param[data]? param[data] : body[data];
         });
 
-    debugger;
     return this.http
         .patch(`${ this.apiURL }/tasks/${body.id}`, body)
         .subscribe((data) => data);

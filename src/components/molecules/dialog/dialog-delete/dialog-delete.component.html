@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Excluir pagamento</h1>
+<div mat-dialog-content>
+  <ul class="dialog__user-details">
+    <li>
+      <span>Usuário: {{dialogItems.name}}</span>
+    </li>
+    <li>
+      <span>Data: {{dialogItems.date}}</span>
+    </li>
+    <li>
+      <span>Valor: {{dialogItems.value}}</span>
+    </li>
+  </ul>
+  <div class="btn-container">
+    <button class="cancel" (click)="closeDialog()">cancelar</button>
+    <button class="enter" (click)="deleteItem(dialogItems)">Salvar</button>
+  </div>
+</div>

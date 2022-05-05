@@ -19,12 +19,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {DialogEdit} from './../components/molecules/dialog/dialog-edit/dialog-edit.component';
+import {DialogDelete} from './../components/molecules/dialog/dialog-delete/dialog-delete.component';
 
 import {TasksService} from './../services/tasks/tasks.service';
 
 @NgModule({
   declarations: [	
-    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent, DialogEdit
+    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent, DialogEdit, DialogDelete
    ],
   imports: [
     BrowserModule,

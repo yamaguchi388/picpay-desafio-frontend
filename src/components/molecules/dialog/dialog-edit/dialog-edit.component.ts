@@ -35,10 +35,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
     handleInput(event){
         this.dialogItems[event.target.name] = event.target.value;
-        // this.dialog.open(DialogEdit, {
-        //     data: {details: this.dialogItems}
-        // })
-        debugger;
     }
 
     closeDialog(){

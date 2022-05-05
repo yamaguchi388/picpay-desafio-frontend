@@ -8,7 +8,7 @@
                 <mat-paginator [length]="length" [pageSizeOptions]="pageSizeOptions" aria-label="Select page" (page)="handlePageEvent($event)">
                 </mat-paginator>
             </span>
-            <table mat-table [dataSource]="dataSource" matSort class="table">
+            <table mat-table [dataSource]="dataSource" matSort class="table" *ngIf="dataSource">
 
                 <ng-container matColumnDef="user">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuário </th>
