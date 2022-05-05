@@ -12,8 +12,6 @@ import { SessionManagerService } from './session-manager.service';
 export class AuthService {
   BASE_API_URL: string = 'http://localhost:3000/account';
 
-  //implementar OnInit e verificar o session storage se tem token
-
   constructor(private http: HttpClient, private sessionManager: SessionManagerService) { }
 
   authenticate(credentials: LoginCredentials): Observable<any> {
