@@ -3,7 +3,7 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/form
 import {ErrorStateMatcher} from '@angular/material/core';
 import { Router } from '@angular/router';
 
-import {AuthService} from 'src/app/account/shared/auth.service';
+import {AuthService} from 'src/services/account/auth.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
