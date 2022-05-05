@@ -6,7 +6,9 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
     styleUrls: ['./input.component.scss']
   })
   export class InputFilter implements OnInit {
+    @Input() name: string;
     @Input() placeholder: string;
+    @Input() type: string;
     @Output() inputValuesChildren = new EventEmitter();
 
     filterParams = {
