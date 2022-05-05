@@ -6,9 +6,14 @@
           <button-atom name="ADICIONAR PAGAMENTO" (click)="openDialogAdd()"></button-atom>
         </div>
         <mat-card class="example-card">
-            <span class="filter">
+            <span class="my-payments__filter">
+              <div class="my-payments__filter__container">
+                <input-filter-atom placeholder="Pesquisar por usuário" (inputValuesChildren)="handleInputNameChildren($event)"></input-filter-atom>
+                <button-atom name="Filtrar" (click)="filterPaymentsOnClick()"></button-atom>
+              </div>
                 <mat-paginator [length]="length" [pageSizeOptions]="pageSizeOptions" aria-label="Select page" (page)="handlePageEvent($event)">
                 </mat-paginator>
+                
             </span>
             <table mat-table [dataSource]="dataSource" matSort class="table" *ngIf="dataSource">
 

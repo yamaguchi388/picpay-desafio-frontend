@@ -96,4 +96,22 @@ paymentListLength = 0;
             .subscribe((data) => this.getTotalTaskItems());
     }
 
+    filterPayments(params){
+        this.http.get(`${ this.apiURL }/tasks${this.getParamsFilter(params)}&_page=${this.currentPage}&_limit=${!!this.limitItems ? this.limitItems : ''}`)
+        .subscribe((taskListApi) => {
+            subject.next(taskListApi);
+      })
+    }
+
+    getParamsFilter(params){
+        const initialValue = '';
+        const paramsFiltered = params.reduce((previousValue, currentValue) =>{ 
+            const currentValueFormated = `?${currentValue.param}=${currentValue.value}`;
+            const previousValueFormated = `&${previousValue.param}=${previousValue.value}`;
+            return `${currentValueFormated}${!!previousValue ? previousValueFormated : ''}`;
+        }, initialValue)
+
+        return paramsFiltered;
+    }
+
 }

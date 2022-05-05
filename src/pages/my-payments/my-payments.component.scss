@@ -6,7 +6,7 @@
     &__btn-container {
       display: flex;
       justify-content: right;
-      padding: 21px 0px;
+      padding: 0 0 21px 0;
     }
 
     .table {
@@ -49,6 +49,7 @@
         font-weight: 600;
         font-size: 36px;
         line-height: 44px;
+        margin: 0;
     }
 
     &__container {
@@ -56,6 +57,18 @@
         padding-left: 48px;
         padding-right: 48px;
         background-color: #F2F2F2;
+    }
+
+    &__filter {
+      display: flex;
+      justify-content: space-between;
+
+      &__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 10px;
+      }
     }
     
 }

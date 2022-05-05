@@ -24,10 +24,11 @@ import {DialogDelete} from './../components/molecules/dialog/dialog-delete/dialo
 import {TasksService} from './../services/tasks/tasks.service';
 import { Button } from 'src/components/atoms/button/button.component';
 import { DialogAdd } from 'src/components/molecules/dialog/dialog-add/dialog-add.component';
+import { InputFilter } from 'src/components/atoms/input/input-filter/input-filter.component';
 
 @NgModule({
   declarations: [	
-    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent, DialogEdit, DialogDelete, Button, DialogAdd
+    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent, DialogEdit, DialogDelete, Button, DialogAdd, InputFilter
    ],
   imports: [
     BrowserModule,

@@ -22,6 +22,10 @@ export class MyPaymentsComponent implements OnInit {
   displayedColumns: string[] = ['user', 'title', 'date', 'value', 'payed', 'edit', 'remove'];
   dialogDelete = {};
   dialogEdit = {}
+  filterParams = {
+    param: '',
+    value: ''
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -82,6 +86,18 @@ export class MyPaymentsComponent implements OnInit {
   openDialogAdd() {
     this.dialog.open(DialogAdd);
   }
+
+  filterPayments(...params){
+    this.tasksService.filterPayments(params)
+  }
+
+  handleInputNameChildren(event){
+    this.filterParams = event;
+  }
+
+  filterPaymentsOnClick(){
+    this.filterPayments(this.filterParams);
+  };
 
 }
 
