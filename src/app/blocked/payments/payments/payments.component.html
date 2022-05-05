@@ -16,12 +16,12 @@
 
             <div class="div__filters__input">
                 <div class="div__filters__btn__input">
-                    <input type="text" placeholder="Pesquisar por usuário" (keyup)="getPayments(1)" [(ngModel)]="user">
+                    <input type="text" placeholder="Pesquisar por usuário" [(ngModel)]="user">
                     <button class="btn__input">
                         <img src="../../../../assets/images/Exclude.svg">
                     </button>
                 </div>
-                <button class="btn__filter">
+                <button class="btn__filter" (click)="getPayments(1)">
                     <img src="../../../../assets/images/Shape.svg">
                     Filtrar
                 </button>
@@ -60,26 +60,28 @@
             <tbody>
                 <tr  *ngFor="let payment of payments">
                     <td>
-                        <span>{{ payment.name }}</span>
-                        <span>@{{ payment.username }}</span>                        
+                        <span class="title">{{ payment.name }}</span>
+                        <span class="subtitle">@{{ payment.username }}</span>                        
                     </td>
                     <td>
                         <span>{{ payment.title }}</span>
                     </td>
                     <td>
-                        <span>{{ payment.date }}</span>                        
+                        <span class="title">{{ payment.date | date: 'dd MMM yyyy' }}</span>                       
+                        <span class="subtitle">{{ payment.date | date: 'h:mm a' }}</span>                       
                     </td>
                     <td>
                         <span>{{ payment.value | currency: 'BRL' }}</span>
                     </td>
-                    <td>
-                        <input type="checkbox" checked="{{ payment.isPayed }}">
+                    <td id="checkbox">
+                        <span class="pg__mb">Pago?</span>
+                        <input type="checkbox" checked="{{ payment.isPayed?'checked':'' }}">
                     </td>
                     <td>
-                        <button mat-icon-button>
+                        <button mat-icon-button (click)="openEditPayment(payment)">
                             <img src="../../../../assets/images/edit.svg">
                         </button>
-                        <button mat-icon-button>
+                        <button mat-icon-button (click)="openDeletePayment(payment)">
                             <img src="../../../../assets/images/delete.svg">
                         </button>
                     </td>

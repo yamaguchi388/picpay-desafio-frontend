@@ -13,10 +13,7 @@ export class DialogService {
   ) { }
 
   public getErrors(value): void {
-
-    console.log(value);
     const dialogRef = this.dialog.open(UnavailableComponent);
-
     dialogRef.afterClosed().subscribe(
         val => console.log("Dialog output:", val)
     );

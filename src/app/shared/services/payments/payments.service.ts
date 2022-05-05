@@ -1,10 +1,8 @@
+import { PaymentModel } from './../../models/payment.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PaymentModel } from '../../models/payment.model';
 import { environment } from 'src/environments/environment';
-import { LiteralPrimitive } from '@angular/compiler';
-import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +13,9 @@ export class PaymentsService {
     private http: HttpClient
   ) { }
 
-  public getPayments(page: number, limit: string, user?: string): Observable<HttpResponse<Array<PaymentModel>>> {
+  public getPayments(
+    page: number, limit: string, user?: string
+  ): Observable<HttpResponse<Array<PaymentModel>>> {
 
     let params;
 
@@ -37,6 +37,26 @@ export class PaymentsService {
         params,
         observe: "response",
       }
+    );
+  }
+
+  public createPayments(payment: PaymentModel): Observable<PaymentModel> {
+    return this.http.post<PaymentModel>(
+      environment.payments_url,
+      { ...payment }
+    );
+  }
+
+  public deletePayments(id: number): Observable<PaymentModel> {
+    return this.http.delete<PaymentModel>(
+      `${environment.payments_url}/${id}`
+    );
+  }
+
+  public editPayments(payment: PaymentModel): Observable<PaymentModel> {
+    return this.http.put<PaymentModel>(
+      `${environment.payments_url}/${payment.id}`,
+      { ...payment }
     );
   }
 }

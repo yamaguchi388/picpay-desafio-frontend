@@ -1,3 +1,5 @@
+import { DateService } from './../../../shared/services/date/date.service';
+import { DeletePaymentsComponent } from './../../delete-payments/delete-payments/delete-payments.component';
 import { NewPaymentsComponent } from './../../new-payments/new-payments/new-payments.component';
 import { PaymentModel } from './../../../shared/models/payment.model';
 import { DialogService } from './../../../shared/services/dialog/dialog.service';
@@ -5,7 +7,7 @@ import { take, tap } from 'rxjs/operators';
 import { PaymentsService } from './../../../shared/services/payments/payments.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-payments',
@@ -23,15 +25,22 @@ export class PaymentsComponent implements OnInit {
   public user: string;
   public openDialogNewPayment = false;
   public openDialogDeletePayment = false;
+  public date: string;
+  public time: string;
 
   constructor(
     private paymentService: PaymentsService,
+    private dateService: DateService,
     private diologService: DialogService,
     public dialog: MatDialog
   ) { }
 
   public ngOnInit(): void {
     this.getPayments();
+  }
+  
+  public formatDate(date: string){
+    return this.dateService.formatDate(date);
   }
 
   public getPayments(currentPage?: number): void {
@@ -77,16 +86,26 @@ export class PaymentsComponent implements OnInit {
   }
 
   public openNewPayment(): void {
-    this.openDialogNewPayment =  true;
     const dialogRef = this.dialog.open(NewPaymentsComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    })
+    this.afterCloseDiolog(dialogRef); 
   }
 
-  public openDeletePayment(): void {
-    this.openDialogDeletePayment =  true;
+  public openEditPayment(payment: PaymentModel): void {
+    const dialogRef = this.dialog.open(NewPaymentsComponent, {data: payment});
+    this.afterCloseDiolog(dialogRef);
+  }
+
+  public openDeletePayment(payment: PaymentModel): void {
+    const dialogRef = this.dialog.open(DeletePaymentsComponent, {data: payment});
+    this.afterCloseDiolog(dialogRef);
+  }
+
+  public afterCloseDiolog(dialogRef: MatDialogRef<any, any>): void {
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.getPayments();
+      }
+    })
   }
 
 }

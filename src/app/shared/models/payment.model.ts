@@ -1,5 +1,5 @@
 export class PaymentModel {
-    public id: number;
+    public id?: number;
     public name: string;
     public username: string;
     public title: string;

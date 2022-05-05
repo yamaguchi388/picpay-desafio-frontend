@@ -1,1 +1,11 @@
-<p>delete-payments works!</p>
+<main>
+    <h2>Excluir Pagamento</h2>
+    <p>Usuário: {{data.username}}</p>
+    <p>Data: {{ data.date }}</p>
+    <p>Valor: {{ data.value | currency: 'BRL' }}</p>
+</main>
+
+<mat-dialog-actions class="" align="center">
+    <button class="btn--gray" mat-raised-button mat-dialog-close>Cancelar</button>
+    <button class="btn--blue" mat-raised-button (click)="deletePayment()">Salvar</button>
+</mat-dialog-actions>
