@@ -1,3 +1,4 @@
+import { DialogAdd } from './../../components/molecules/dialog/dialog-add/dialog-add.component';
 import { subject, totalTaskItems } from './../../services/tasks/tasks.service';
 import { Component, Input, OnInit, ViewChild, Inject } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
@@ -43,6 +44,7 @@ export class MyPaymentsComponent implements OnInit {
 
     totalTaskItems.subscribe((total) => {
       this.length = total;
+      this.tasksService.paymentListLength = this.length;
     });
 
   }
@@ -69,13 +71,17 @@ export class MyPaymentsComponent implements OnInit {
     this.tasksService.setCurrentPayment(item);
   }
 
-  openDialog() {
+  openDialogEdit() {
     this.dialog.open(DialogEdit);
   }
 
   openDialogDelete() {
     this.dialog.open(DialogDelete);
-}
+  }
+
+  openDialogAdd() {
+    this.dialog.open(DialogAdd);
+  }
 
 }
 

@@ -23,10 +23,11 @@ import {DialogDelete} from './../components/molecules/dialog/dialog-delete/dialo
 
 import {TasksService} from './../services/tasks/tasks.service';
 import { Button } from 'src/components/atoms/button/button.component';
+import { DialogAdd } from 'src/components/molecules/dialog/dialog-add/dialog-add.component';
 
 @NgModule({
   declarations: [	
-    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent, DialogEdit, DialogDelete, Button
+    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent, DialogEdit, DialogDelete, Button, DialogAdd
    ],
   imports: [
     BrowserModule,
