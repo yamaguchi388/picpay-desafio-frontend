@@ -24,7 +24,7 @@ import {DialogDelete} from './../components/molecules/dialog/dialog-delete/dialo
 import {TasksService} from './../services/tasks/tasks.service';
 import { Button } from 'src/components/atoms/button/button.component';
 import { DialogAdd } from 'src/components/molecules/dialog/dialog-add/dialog-add.component';
-import { InputFilter } from 'src/components/atoms/input/input-filter/input-filter.component';
+import { InputFilter } from 'src/components/atoms/input/input.component';
 
 @NgModule({
   declarations: [	

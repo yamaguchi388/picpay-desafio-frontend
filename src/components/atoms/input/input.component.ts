@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-    selector: 'input-filter-atom',
-    templateUrl: 'input-filter.component.html',
-    styleUrls: ['./input-filter.component.scss']
+    selector: 'input-atom',
+    templateUrl: 'input.component.html',
+    styleUrls: ['./input.component.scss']
   })
   export class InputFilter implements OnInit {
     @Input() placeholder: string;
