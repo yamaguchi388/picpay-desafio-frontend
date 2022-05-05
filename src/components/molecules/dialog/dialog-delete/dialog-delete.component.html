@@ -12,7 +12,7 @@
     </li>
   </ul>
   <div class="btn-container">
-    <button-atom name="CANCELAR" (click)="closeDialog()"></button-atom>
-    <button-atom name="SALVAR" className="button--primary" (click)="deleteItem(dialogItems)"></button-atom>
+    <button-atom name="CANCELAR" (click)="closeDialog()" type="button"></button-atom>
+    <button-atom name="SALVAR" className="button--primary" (click)="deleteItem(dialogItems)" type="submit"></button-atom>
   </div>
 </div>

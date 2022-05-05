@@ -9,6 +9,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
     @Input() name: string;
     @Input() imgUrl: string;
     @Input() className: string;
+    @Input() type: string;
     ngOnInit(): void {
         
     }

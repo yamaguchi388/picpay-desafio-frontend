@@ -1,4 +1,4 @@
-<button class="button" [ngClass]="className ? className : 'button--default'">
+<button [type]="type" class="button" [ngClass]="className ? className : 'button--default'">
     <img [src]="imgUrl" alt="" class="button__img" *ngIf="imgUrl" >
     <span>{{name}}</span>
 </button>
