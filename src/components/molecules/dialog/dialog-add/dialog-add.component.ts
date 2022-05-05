@@ -42,7 +42,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     }
 
     onSubmit(items){
-        debugger;
         this.tasksService.addPaymentItem(items);
         this.dialog.closeAll();
     }

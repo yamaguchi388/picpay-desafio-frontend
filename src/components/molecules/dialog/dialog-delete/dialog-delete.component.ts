@@ -1,8 +1,5 @@
-import { subject } from './../../../../services/tasks/tasks.service';
 import { Component, Inject, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {ErrorStateMatcher} from '@angular/material/core';
 import { TasksService } from 'src/services/tasks/tasks.service';
 
 export interface DialogData {
@@ -12,6 +9,7 @@ export interface DialogData {
 @Component({
     selector: 'dialog-delete',
     templateUrl: 'dialog-delete.component.html',
+    styleUrls: ['./dialog-delete.component.scss']
   })
   export class DialogDelete  implements OnInit {
     dialogItems: any;

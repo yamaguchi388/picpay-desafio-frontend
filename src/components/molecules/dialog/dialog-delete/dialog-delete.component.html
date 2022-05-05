@@ -1,18 +1,20 @@
-<h1 mat-dialog-title>Excluir pagamento</h1>
-<div mat-dialog-content>
-  <ul class="dialog__user-details">
-    <li>
-      <span>Usuário: {{dialogItems.name}}</span>
-    </li>
-    <li>
-      <span>Data: {{dialogItems.date}}</span>
-    </li>
-    <li>
-      <span>Valor: {{dialogItems.value}}</span>
-    </li>
-  </ul>
-  <div class="btn-container">
-    <button-atom name="CANCELAR" (click)="closeDialog()" type="button"></button-atom>
-    <button-atom name="SALVAR" className="button--primary" (click)="deleteItem(dialogItems)" type="submit"></button-atom>
+<div class="dialog">
+  <h1 mat-dialog-title class="dialog__title">Excluir pagamento</h1>
+  <div mat-dialog-content>
+    <ul class="dialog__list">
+      <li class="dialog__list__item">
+        <span>Usuário: {{dialogItems.name}}</span>
+      </li>
+      <li class="dialog__list__item">
+        <span>Data: {{dialogItems.date}}</span>
+      </li>
+      <li class="dialog__list__item">
+        <span>Valor: {{dialogItems.value}}</span>
+      </li>
+    </ul>
+    <div class="dialog__btn-container">
+      <button-atom name="CANCELAR" className="button--dialog" (click)="closeDialog()" type="button"></button-atom>
+      <button-atom name="SALVAR" className="button--dialog button--primary" (click)="deleteItem(dialogItems)" type="submit"></button-atom>
+    </div>
   </div>
 </div>
