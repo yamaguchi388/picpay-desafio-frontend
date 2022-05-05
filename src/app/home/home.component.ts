@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   faFilter = faFilter;
   faXmark  = faXmark;
 
-  bsModalRef?: BsModalRef | null;
+  bsModalRef?: BsModalRef;
 
   searchBy: string;
   limit: number;

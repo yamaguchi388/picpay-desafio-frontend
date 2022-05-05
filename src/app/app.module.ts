@@ -17,6 +17,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { ModalDeleteTaskComponent } from './modals/modal-delete-task/modal-delete-task.component';
 import { ModalAddUpdateTaskComponent } from './modals/modal-add-update-task/modal-add-update-task.component';
 import { ModalFiltersComponent } from './modals/modal-filters/modal-filters.component';
+import { ModalConfirmComponent } from './modals/modal-confirm/modal-confirm.component';
 
 @NgModule({
   declarations: [	
@@ -26,6 +27,7 @@ import { ModalFiltersComponent } from './modals/modal-filters/modal-filters.comp
     ModalDeleteTaskComponent, 
     ModalAddUpdateTaskComponent, 
     ModalFiltersComponent, 
+    ModalConfirmComponent, 
   ],
   imports: [
     BrowserModule,
