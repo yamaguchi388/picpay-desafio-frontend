@@ -21,8 +21,8 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuário </th>
                   <td mat-cell *matCellDef="let row" class="table__cell"> 
                     <div class="table__cell__container">
-                      <span>{{row.name}}</span> 
-                      <span class="table__cell__text--username">{{row.username}}</span>
+                      <span class="table__cell__text">{{row.name}}</span> 
+                      <span class="table__cell__text--username">@{{row.username}}</span>
                     </div>
                 
                   </td>
@@ -30,17 +30,29 @@
             
                 <ng-container matColumnDef="title">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
-                  <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+                  <td mat-cell *matCellDef="let row"> 
+                      <div class="table__cell__container">
+                        <span class="table__cell__text">{{row.title}}</span>
+                      </div>
+                     </td>
                 </ng-container>
             
                 <ng-container matColumnDef="date">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
-                  <td mat-cell *matCellDef="let row"> {{row.date}} </td>
+                  <td mat-cell *matCellDef="let row"> 
+                    <div class="table__cell__container">
+                      <span class="table__cell__text">{{row.date}}</span>
+                    </div>
+                  </td>
                 </ng-container>
             
                 <ng-container matColumnDef="value">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor </th>
-                  <td mat-cell *matCellDef="let row"> {{row.value}} </td>
+                  <td mat-cell *matCellDef="let row"> 
+                    <div class="table__cell__container">
+                      <span class="table__cell__text">{{row.value}}</span> 
+                    </div>
+                  </td>
                 </ng-container>
             
                 <ng-container matColumnDef="payed">
