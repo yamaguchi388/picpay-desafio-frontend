@@ -13,7 +13,7 @@ export class AuthService {
     private router: Router
   ) { }
 
-  public setuser(user: userModel){
+  public setUser(user: userModel){
     this.user = user;
     localStorage.setItem('user', JSON.stringify(user));
   }
@@ -30,7 +30,7 @@ export class AuthService {
     return null;
   }
 
-  public estaLogado(): boolean{
+  public isLogged(): boolean{
     return this.getUser()? true: false;
   }
 

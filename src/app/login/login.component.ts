@@ -55,8 +55,8 @@ export class LoginComponent implements OnInit {
 
   public login() {
     this.loginService.getUser(
-      this.form.get('email').value, 
-      this.form.get('password').value
+      this.form.value.email, 
+      this.form.value.password
     )
     .pipe(
       take(1)
@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.authService.setuser(response)
+    this.authService.setUser(response)
   }
 
 }
