@@ -1,21 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './core/authentication/components/login/login.component';
+import { AuthGuard } from './core/authentication/guards/auth.guard';
+import { NotAuthGuard } from './core/authentication/guards/not-auth.guard';
 import { MyPaymentsViewComponent } from './features/payments/views/my-payments-view/my-payments-view.component';
 
 const routes: Routes = [
     {
-        path: '',
-        component: MyPaymentsViewComponent
+        path:'login',
+        component: LoginComponent,
+        canActivate: [NotAuthGuard]
     },
     {
         path: 'meuspagamentos',
-        component: MyPaymentsViewComponent
+        component: MyPaymentsViewComponent,
+        canActivate: [AuthGuard]
     },
     {
-        path:'login',
-        component: LoginComponent
-    }
+        path: '',
+        redirectTo: '/meuspagamentos',
+        pathMatch: 'full'
+    },
 ]; 
 
 @NgModule({

@@ -50,6 +50,8 @@ export class AuthService {
   }
 
   isAuthenticated() {
+    console.log('WTF LOGGED');
+    console.log(this.sessionManager.getToken());
     return this.sessionManager.getToken() !== null;
   }
 }
