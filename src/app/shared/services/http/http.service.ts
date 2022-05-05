@@ -1,6 +1,6 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { observable, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { IHttpParams } from "../../interfaces";
 
@@ -34,6 +34,14 @@ export class HttpService {
     });
 
     return urlParams;
+  }
+
+  getFullResponse<RES>(
+    endpoint: string,
+    params?: IHttpParams[]
+  ): Observable<HttpResponse<RES>> {
+    const url = this.buildUrl(endpoint, params);
+    return this.httpClient.get<RES>(url, { observe: "response" });
   }
 
   post<R>(endpoint: string, payload: R): Observable<R> {

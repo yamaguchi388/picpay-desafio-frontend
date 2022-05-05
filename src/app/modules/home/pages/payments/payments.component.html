@@ -7,7 +7,10 @@
   </div>
 
   <ng-container *ngIf="!isLoading; else loadingContainer">
-    <app-payments-list-table [payments]="payments"></app-payments-list-table>
+    <app-payments-list-table
+      [payments]="payments"
+      (pageChangeEvent)="getAllPayments()"
+    ></app-payments-list-table>
   </ng-container>
 
   <ng-template #loadingContainer>

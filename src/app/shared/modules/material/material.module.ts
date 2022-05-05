@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatTableModule } from "@angular/material/table";
 import { MatCardModule } from "@angular/material/card";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 import {
   MatPaginatorIntl,
@@ -34,6 +35,7 @@ const sharedModules = [
   MatCardModule,
   MatPaginatorModule,
   MatDialogModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({
