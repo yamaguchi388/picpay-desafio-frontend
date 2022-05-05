@@ -22,10 +22,11 @@ import {DialogEdit} from './../components/molecules/dialog/dialog-edit/dialog-ed
 import {DialogDelete} from './../components/molecules/dialog/dialog-delete/dialog-delete.component';
 
 import {TasksService} from './../services/tasks/tasks.service';
+import { Button } from 'src/components/atoms/button/button.component';
 
 @NgModule({
   declarations: [	
-    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent, DialogEdit, DialogDelete
+    AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent, DialogEdit, DialogDelete, Button
    ],
   imports: [
     BrowserModule,

@@ -2,7 +2,9 @@
     <header-molecule></header-molecule>
     <div class="my-payments__container">
         <h1 class="my-payments__title">Meus pagamentos</h1>
-
+        <div class="my-payments__btn-container">
+          <button-atom name="ADICIONAR PAGAMENTO"></button-atom>
+        </div>
         <mat-card class="example-card">
             <span class="filter">
                 <mat-paginator [length]="length" [pageSizeOptions]="pageSizeOptions" aria-label="Select page" (page)="handlePageEvent($event)">
