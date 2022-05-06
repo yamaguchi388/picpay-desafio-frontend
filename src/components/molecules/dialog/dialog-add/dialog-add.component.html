@@ -1,28 +1,28 @@
-<div>
+<div class="dialog">
     <h1 mat-dialog-title>Adicionar pagamento</h1>
     <div mat-dialog-content>
       <form (ngSubmit)="onSubmit(dialogItems)" class="form" #formDialog="ngForm">
-        <table class="example-full-width" cellspacing="0">
+        <table class="dialog__table" cellspacing="0">
           <tr>
             <td>
-              <mat-form-field class="example-full-width" appearance="fill">
+              <mat-form-field class="dialog__form__field" appearance="fill">
                 <input matInput name="name" type="text" placeholder="Usuário*" [(ngModel)]="dialogItems.name" (change)="handleInput($event)">
               </mat-form-field></td>
             <td>
             <td>
-              <mat-form-field class="example-full-width" appearance="fill">
+              <mat-form-field class="dialog__form__field" appearance="fill">
                   <input matInput name="value" type="text" placeholder="Valor*" [(ngModel)]="dialogItems.value" (change)="handleInput($event)">
               </mat-form-field> 
             </td>
         </tr>
         <tr>
           <td>
-            <mat-form-field class="example-full-width" appearance="fill">
+            <mat-form-field class="dialog__form__field" appearance="fill">
               <input matInput name="date" type="text" placeholder="Data*" [(ngModel)]="dialogItems.date" (change)="handleInput($event)">
             </mat-form-field></td>
           <td>
           <td>
-            <mat-form-field class="example-full-width" appearance="fill">
+            <mat-form-field class="dialog__form__field" appearance="fill">
                 <input matInput name="title" type="text" placeholder="Título*" [(ngModel)]="dialogItems.title" (change)="handleInput($event)">
             </mat-form-field>
           </td>
