@@ -33,8 +33,8 @@ export class AuthService {
     return this.httpService.get<IUser[]>(this.endpoint, params).pipe(
       map((res) => {
         if (res.length) {
-          const { email, name, id } = res[0];
-          return { email, name, id };
+          const { email, name, password, id } = res[0];
+          return { email, name, id, password };
         }
 
         const errors = ["Usuário não encontrado."];

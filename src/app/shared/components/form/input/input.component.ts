@@ -11,13 +11,10 @@ import {
 import {
   AbstractControl,
   ControlValueAccessor,
-  FormControl,
-  FormControlDirective,
   FormControlName,
   NgControl,
   NG_VALUE_ACCESSOR,
 } from "@angular/forms";
-import { Subscription } from "rxjs";
 
 const INPUT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -44,7 +41,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   hidePassword = true;
   formControl: NgControl;
 
-  private inputSubscription$: Subscription;
   private innerValue: string;
   private IS_REQUIRED_MESSAGE = "Este campo é obrigatório";
   private IS_INVALID_EMAIL = "Insira um e-mail válido";
