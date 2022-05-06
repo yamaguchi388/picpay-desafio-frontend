@@ -35,17 +35,4 @@ userList: Array<object> = [];
       resolve(true);
     })
   }
-
-  getUsers(){
-      // const userDatas = this.http.get(`${ this.apiURL }/account`)
-      //          .subscribe(resultado => {
-      //            console.log(resultado);
-      //            debugger;
-      //            return resultado;
-      //           });
-
-                // console.log(userDatas);
-                // debugger;
-    
-  }
 }

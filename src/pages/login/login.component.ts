@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { Router } from '@angular/router';
+import { LoginData } from 'src/models/LoginData';
 
 import {AuthService} from 'src/services/account/auth.service';
 
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   hide = true;
 
-  login = {
+  login: LoginData = {
     email: '',
     password: ''
   };
@@ -36,13 +37,12 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.accountService.getUsers();
+
   }
 
   async onSubmit() {
     try {
       const result = await this.accountService.login(this.login);
-      console.log(`Login efetuado: ${result}`);
       this.router.navigate(['']);
     } catch(error){
       console.error(error);

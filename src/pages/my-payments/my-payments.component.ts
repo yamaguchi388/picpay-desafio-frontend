@@ -1,14 +1,18 @@
-import { DialogAdd } from './../../components/molecules/dialog/dialog-add/dialog-add.component';
-import { subject, totalTaskItems } from './../../services/tasks/tasks.service';
-import { Component, Input, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
+
+import { DialogAdd } from './../../components/molecules/dialog/dialog-add/dialog-add.component';
 import { DialogEdit } from './../../components/molecules/dialog/dialog-edit/dialog-edit.component';
 import { DialogDelete } from './../../components/molecules/dialog/dialog-delete/dialog-delete.component';
 
+import { currentPaymentPage, TasksService, totalTaskItems } from './../../services/tasks/tasks.service';
+
 import { PaymentData } from 'src/models/PaymentData';
-import { TasksService } from 'src/services/tasks/tasks.service';
+import { FilterParamData } from 'src/models/FilterParamData';
+import { PageInfoData } from 'src/models/PageInfoData';
 
 @Component({
   selector: 'app-my-payments',
@@ -19,20 +23,14 @@ export class MyPaymentsComponent implements OnInit {
   pageSizeOptions: Array<number> = [5, 10, 50, 100];
   dataSource: Array<PaymentData> = [];
   length: number = 0;
-  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'payed', 'edit', 'remove'];
-  dialogDelete = {};
-  dialogEdit = {}
-  filterParams = {
+  displayedColumns: Array<string> = ['user', 'title', 'date', 'value', 'payed', 'edit', 'remove'];
+  filterParams: FilterParamData = {
     param: '',
     value: ''
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
-  input = {
-    value: 'carro'
-  }
 
   constructor(
      private tasksService: TasksService,
@@ -42,37 +40,37 @@ export class MyPaymentsComponent implements OnInit {
   ngOnInit(): void {
     this.tasksService.getTotalTaskItems();
     this.tasksService.getTaskApi();
-    subject.subscribe((data) => {
-      this.dataSource = data;
+    currentPaymentPage.subscribe((paymentList: Array<PaymentData>) => {
+      this.dataSource = paymentList;
     })
 
-    totalTaskItems.subscribe((total) => {
-      this.length = total;
+    totalTaskItems.subscribe((totalItems: number) => {
+      this.length = totalItems;
       this.tasksService.paymentListLength = this.length;
     });
 
   }
 
-  handlePageEvent(event){
-    if(event.pageSize !== this.tasksService.limitItems){
-      this.tasksService.setLimitItems(event.pageSize);
+  handlePageEvent(pageItems: PageInfoData){
+    if(pageItems.pageSize !== this.tasksService.limitItems){
+      this.tasksService.setLimitItems(pageItems.pageSize);
     }
 
-    if((event.pageIndex + 1) !== this.tasksService.currentPage){
-      this.tasksService.setCurrentPage(event.pageIndex + 1);
+    if((pageItems.pageIndex + 1) !== this.tasksService.currentPage){
+      this.tasksService.setCurrentPage(pageItems.pageIndex + 1);
     }
   
-    subject.subscribe((data) => {
-      this.dataSource = data;
+    currentPaymentPage.subscribe((paymentList: Array<PaymentData>) => {
+      this.dataSource = paymentList;
     })
   }
 
-  setDeleteItem(item: any){
-    this.tasksService.setCurrentPayment(item);
+  setDeleteItem(paymentItem: PaymentData){
+    this.tasksService.setCurrentPayment(paymentItem);
   }
 
-  setEditItem(item: any){
-    this.tasksService.setCurrentPayment(item);
+  setEditItem(paymentItem: PaymentData){
+    this.tasksService.setCurrentPayment(paymentItem);
   }
 
   openDialogEdit() {
@@ -87,12 +85,12 @@ export class MyPaymentsComponent implements OnInit {
     this.dialog.open(DialogAdd);
   }
 
-  filterPayments(...params){
+  filterPayments(...params: Array<FilterParamData>){
     this.tasksService.filterPayments(params)
   }
 
-  handleInputNameChildren(event){
-    this.filterParams = event;
+  handleInputNameChildren(params: FilterParamData){
+    this.filterParams = params;
   }
 
   filterPaymentsOnClick(){
