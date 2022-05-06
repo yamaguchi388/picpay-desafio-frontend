@@ -60,7 +60,9 @@
                 </td>
                 <td>
                     <span class="p-column-title">isPayed</span>
-                    {{ payment.isPayed }}
+                    <p-confirmPopup key="confirm-update-isPayed"></p-confirmPopup>
+                    <input type="checkbox" id="isPayed-checkbox-update" (click)="confirmChangePayedStatus($event, payment)" [(ngModel)]="payment.isPayed" />
+
                 </td>
                 <td></td>
                 <td></td>

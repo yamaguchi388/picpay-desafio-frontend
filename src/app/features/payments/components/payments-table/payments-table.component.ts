@@ -112,6 +112,24 @@ export class PaymentsTableComponent implements OnInit {
     this.cleanPaymentFormFields();
   }
 
+  confirmChangePayedStatus(event: Event, payment: Payment) {
+    event.preventDefault();
+    this.fillPaymentFormFields({...payment, isPayed: !payment.isPayed});
+
+    this.confirmationService.confirm({
+        key: 'confirm-update-isPayed',
+        target: event.target,
+        message: `Deseja mudar o status desse pagamento para "${payment.isPayed ? 'não pago' : 'pago'}"?`,
+        accept: () => {
+            this.savePayment();
+        },
+        reject: () => {
+            this.confirmationService.close();
+            this.cleanPaymentFormFields();
+        }
+    });
+  }
+
   savePayment(): void {
     this.paymentFormSubmitted = true;
 

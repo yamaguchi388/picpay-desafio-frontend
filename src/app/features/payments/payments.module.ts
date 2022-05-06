@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CalendarModule } from 'primeng/calendar';
 import { DialogModule } from 'primeng/dialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 import { PaymentsService } from './services/payments.service';
 import { PaymentsTableComponent } from './components/payments-table/payments-table.component';
@@ -43,6 +44,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     DialogModule,
     SharedModule,
     ChipModule,
+    ConfirmPopupModule,
     ReactiveFormsModule
   ],
   exports: [
