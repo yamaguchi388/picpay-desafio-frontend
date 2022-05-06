@@ -1,12 +1,9 @@
 import { PaymentData } from 'src/models/PaymentData';
 import { HttpClient } from '@angular/common/http';
-// import { HttpClient, Response, HttpHeaders, RequestOptions, URLSearchParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-// import 'rxjs/add/operator/map';
 
-export const subject = new Subject<any>();
-// export const currentPayment = new Subject<any>();
+export const currentPaymentPage = new Subject<any>();
 export const totalTaskItems = new Subject<number>();
 
 @Injectable({
@@ -16,13 +13,9 @@ export class TasksService {
 apiURL = 'http://localhost:3000';
 currentPage = 1;
 limitItems = 5;
-validUser = {}; 
 taskList: Array<object> = [];
-headers = {};
-options = {};
 currentPayment = {};
-paymentList = []
-paymentListLength = 0;
+paymentListLength: number = 0;
   constructor(private http : HttpClient) { 
 
   }
@@ -30,25 +23,23 @@ paymentListLength = 0;
 
   getTaskApi(){
     this.http.get(`${ this.apiURL }/tasks?_page=${this.currentPage}&_limit=${!!this.limitItems ? this.limitItems : ''}`)
-    .subscribe((taskListApi) => {
-        subject.next(taskListApi);
+    .subscribe((taskListApi: Array<PaymentData>) => {
+        currentPaymentPage.next(taskListApi);
   })
 }
 
-
     getTotalTaskItems(){
         return this.http.get(`${ this.apiURL }/tasks`)
-        .subscribe((taskListApi) => {
+        .subscribe((taskListApi: Array<PaymentData>) => {
             totalTaskItems.next(Object.keys(taskListApi).length);
         })
     }
 
-
     setCurrentPage(page: number){
         this.currentPage = page;
         this.http.get(`${ this.apiURL }/tasks?_page=${page}&_limit=${!!this.limitItems ? this.limitItems : ''}`)
-        .subscribe((taskListApi) => {
-            subject.next(taskListApi);
+        .subscribe((taskListApi: Array<PaymentData>) => {
+            currentPaymentPage.next(taskListApi);
         })
     }
 
@@ -57,8 +48,8 @@ paymentListLength = 0;
         this.limitItems = totalItems; 
 
         this.http.get(`${ this.apiURL }/tasks?_page=${this.currentPage}&_limit=${!!totalItems ? totalItems : ''}`)
-        .subscribe((taskListApi) => {
-            subject.next(taskListApi);
+        .subscribe((taskListApi: Array<PaymentData>) => {
+            currentPaymentPage.next(taskListApi);
         })
     }
 
@@ -67,13 +58,8 @@ paymentListLength = 0;
             .subscribe((data) => this.getTaskApi());
     }
 
-    public setCurrentPayment(item){
+    public setCurrentPayment(item: PaymentData){
         this.currentPayment = item;
-    }
-
-    private extractData(res: Response) {
-        let body = res.json();
-        return body || {};
     }
 
     public updatePaymentItem(param) {
@@ -99,7 +85,7 @@ paymentListLength = 0;
     filterPayments(params){
         this.http.get(`${ this.apiURL }/tasks${this.getParamsFilter(params)}&_page=${this.currentPage}&_limit=${!!this.limitItems ? this.limitItems : ''}`)
         .subscribe((taskListApi) => {
-            subject.next(taskListApi);
+            currentPaymentPage.next(taskListApi);
       })
     }
 
