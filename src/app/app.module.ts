@@ -9,15 +9,12 @@ import { CoreModule } from './core/core.module';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routes';
 import { CommonModule } from '@angular/common';
+import { FeaturesModule } from './features/features.module';
 
-// import { registerLocaleData } from '@angular/common';
-// import localePT from '@angular/common/locales/pt';
-
-// registerLocaleData(localePT);
 
 @NgModule({
   declarations: [	
-    AppComponent,
+    AppComponent
    ],
   imports: [
     BrowserModule,
@@ -27,6 +24,7 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    FeaturesModule,
     AppRoutingModule
   ],
   providers: [],

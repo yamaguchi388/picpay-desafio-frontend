@@ -1,0 +1,33 @@
+:host ::ng-deep {
+    font-family: 'Montserrat', sans-serif;
+
+    form {
+        width: 328px;
+        margin-top: 4em;
+
+        .p-float-label {
+            margin-top: 30px;
+        }
+        
+        .p-float-label, .p-inputtext {
+            width: 100%;
+            background-color: #F2F2F2;
+            border-radius: 4px;
+        }
+
+        .p-password {
+            width: 100%;
+        }
+
+        button {
+            margin-top: 30px;
+            width: 100%;
+
+            color: #ffffff;
+            background-color: #007DFE;
+
+            border: none;
+            border-radius: 4px;
+        }
+    }
+}

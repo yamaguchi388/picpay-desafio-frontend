@@ -5,11 +5,12 @@ import { AuthGuard } from './core/authentication/guards/auth.guard';
 import { NotAuthGuard } from './core/authentication/guards/not-auth.guard';
 import { MyPaymentsViewComponent } from './features/payments/views/my-payments-view/my-payments-view.component';
 import { ProfileViewComponent } from './features/profile/profile-view/profile-view.component';
+import { WelcomeLoginViewComponent } from './features/welcome-login-view/welcome-login-view.component';
 
 const routes: Routes = [
     {
         path:'login',
-        component: LoginComponent,
+        component: WelcomeLoginViewComponent,
         canActivate: [NotAuthGuard]
     },
     {

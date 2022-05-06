@@ -1,0 +1,31 @@
+:host ::ng-deep {
+    font-family: 'Montserrat', sans-serif;
+
+    section {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+    }
+    
+    .authentication-banner {
+        min-width: 540px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            font-weight: 500;
+            font-size: 30px;
+        }
+    }
+    
+    .image-banner {
+        min-width: 900px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        background-color: #ffffff;
+    }
+
+}

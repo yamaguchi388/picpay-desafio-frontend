@@ -1,22 +1,14 @@
 
-<form [formGroup]="loginForm">
-    <br>
-    <br>
-    <div class="form-field">
+<div>
+    <form [formGroup]="loginForm">
         <span class="p-float-label">
-            <input name="email" id="email-input" formControlName="email" type="text" pInputText> 
+            <input name="email" id="email-input" formControlName="email" pInputText> 
             <label for="float-input">Email</label>
         </span>
-    </div>
-    <br>
-    <br>
-    <div class="form-field">
         <span class="p-float-label">
-            <p-password name="password" id="password-input" formControlName="password" [toggleMask]="true" [feedback]="false"></p-password>
+            <p-password name="password" id="password-input" formControlName="password" [feedback]="false"></p-password>
             <label for="float-input">Password</label>
         </span>
-    </div>
-    <br>
-    <br>
-    <button pButton type="button" (click)="login()" label="ENTRAR"></button>
-</form>
+        <button pButton type="button" (click)="login()" label="ENTRAR"></button>
+    </form>
+</div>
