@@ -119,10 +119,10 @@
         </ng-template>
         <ng-template pTemplate="footer">
             <button pButton pRipple label="CANCELAR" icon="pi pi-times" class="p-button-text p-button-secondary cancel-button" (click)="hidePaymentRegisterDialog()"></button>
-            <button pButton pRipple label="SALVAR" icon="pi pi-check" class="p-button-text p-button-primary save-button" (click)="savePayment()"></button>
+            <button pButton pRipple label="SALVAR" icon="pi pi-check" class="p-button-text p-button-primary save-button" (click)="savePayment()" [disabled]="!paymentForm.valid"></button>
         </ng-template>  
     </p-dialog>
-    
+
     <p-confirmDialog #deletePaymentDialog [style]="{width: '450px'}">
         <ng-template pTemplate="header">
             <h3>Excluir pagamento</h3>
