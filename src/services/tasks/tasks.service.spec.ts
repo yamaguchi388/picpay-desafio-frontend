@@ -21,9 +21,10 @@ describe('TasksService', () => {
             value: "Pennie Dumphries"
         }
     ];
-    
+
     expect(service.getParamsFilter(mockFilteredParams))
         .toBe(mockFilteredParamResult)
 
-  })
+  });
+
 });
