@@ -38,10 +38,22 @@ export class NewPaymentDialogComponent implements OnInit {
 
     if (this.data) {
       const { name, date, username, title, value } = this.data;
-      this.form.patchValue({ name, date, username, title, value });
+
+      this.form.patchValue({
+        name,
+        date: this.formatDateToDisplayOnInput(date),
+        username,
+        title,
+        value,
+      });
 
       this.title = "Alterar pagamento";
     }
+  }
+
+  private formatDateToDisplayOnInput(date: string) {
+    const [dateAndHour] = date.split("Z");
+    return dateAndHour;
   }
 
   verifyFormControlIsInvalid(key: string) {
