@@ -5,6 +5,8 @@ import localeBr from "@angular/common/locales/pt";
 import { HomeComponent } from "./home.component";
 import { RouterModule, Routes } from "@angular/router";
 import { HeaderModule } from "./shared/components/header/header.module";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpsInterceptor } from "./shared/interceptors/http/http.interceptor";
 
 registerLocaleData(localeBr, "pt");
 
@@ -32,6 +34,13 @@ const routes: Routes = [
 @NgModule({
   declarations: [HomeComponent],
   imports: [CommonModule, RouterModule.forChild(routes), HeaderModule],
-  providers: [{ provide: LOCALE_ID, useValue: "pt" }],
+  providers: [
+    { provide: LOCALE_ID, useValue: "pt" },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpsInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class HomeModule {}

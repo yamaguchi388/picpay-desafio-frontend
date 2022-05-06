@@ -105,6 +105,12 @@
         }
       }
     }
+
+    &-td-not-found-message {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--body-text);
+    }
   }
 
   &__box-loading {

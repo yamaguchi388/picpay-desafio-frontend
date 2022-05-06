@@ -6,16 +6,16 @@
     </button>
   </div>
   <div class="payments__box-pagination">
-    <app-input
-      label="Pesquisar por usuário"
-      type="search"
-      icon="search"
-      class="payments__box-pagination--input"
-      placeholder="Pesquisar por usuário"
-      [(ngModel)]="filterParam.value"
-      (changeEvent)="handleFilter($event)"
-    ></app-input>
-
+    <form [formGroup]="filterForm">
+      <app-input
+        label="Pesquisar por usuário"
+        type="search"
+        icon="search"
+        class="payments__box-pagination--input"
+        placeholder="Pesquisar por usuário"
+        formControlName="value"
+      ></app-input>
+    </form>
     <mat-paginator
       aria-labelledby="Paginação dos pagamentos"
       [pageIndex]="payments.page"
@@ -48,7 +48,11 @@
     </ng-container>
 
     <ng-container matColumnDef="title">
-      <th class=" payments__table-th payments__table-th--bold" mat-header-cell *matHeaderCellDef>
+      <th
+        class="payments__table-th payments__table-th--bold"
+        mat-header-cell
+        *matHeaderCellDef
+      >
         Título
         <app-table-sort
           class="payments__table-th--sort-icon"
@@ -145,5 +149,11 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell payments__table-td-not-found-message" colspan="6">
+        Nenhum dado encontrado para "{{ filterForm.get("value").value }}"
+      </td>
+    </tr>
   </table>
 </div>

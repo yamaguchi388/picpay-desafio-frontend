@@ -1,11 +1,19 @@
-import { AfterViewInit, Component, ViewChild } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort, MatSortable } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 
 import { ToastrService } from "ngx-toastr";
-import { finalize, first } from "rxjs/operators";
+import { Subscription } from "rxjs";
+import { debounceTime, finalize, first } from "rxjs/operators";
 import { DeletePaymentDialogComponent } from "./components/delete-payment-dialog/delete-payment-dialog.component";
 import { NewPaymentDialogComponent } from "./components/new-payment-dialog/new-payment-dialog.component";
 import { IFilterParams, IPaginator, IPayment } from "./interfaces";
@@ -16,14 +24,16 @@ import { PaymentsService } from "./services/payments/payments.service";
   templateUrl: "./payments.component.html",
   styleUrls: ["./payments.component.scss"],
 })
-export class PaymentsComponent implements AfterViewInit {
+export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
+  filterForm: FormGroup;
+  filterFormSubscription$: Subscription;
+
   payments: IPaginator<IPayment[]> = {
     page: 0,
     limit: 5,
     total: 0,
     items: [],
   };
-
   displayedColumns: string[] = [
     "username",
     "title",
@@ -32,16 +42,9 @@ export class PaymentsComponent implements AfterViewInit {
     "isPayed",
     "actions",
   ];
-
   pageSizeOptions: number[] = [5, 10, 25, 50];
 
-  filterParam: IFilterParams = {
-    key: "username",
-    value: "",
-  };
-
   isLoading = false;
-
   dataSource: MatTableDataSource<IPayment> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -50,11 +53,34 @@ export class PaymentsComponent implements AfterViewInit {
   constructor(
     private readonly dialog: MatDialog,
     private readonly toastr: ToastrService,
-    private readonly paymentsService: PaymentsService
+    private readonly paymentsService: PaymentsService,
+    private readonly formBuilder: FormBuilder
   ) {}
+  ngOnInit(): void {
+    this.buildForm();
+  }
+
+  private buildForm() {
+    this.filterForm = this.formBuilder.group({
+      key: ["username"],
+      value: [""],
+    });
+
+    this.filterFormSubscription$ = this.filterForm.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe({
+        next: () => {
+          this.getAllPayments();
+        },
+      });
+  }
 
   ngAfterViewInit(): void {
     this.getAllPayments();
+  }
+
+  ngOnDestroy(): void {
+    this.filterFormSubscription$.unsubscribe();
   }
 
   getAllPayments() {
@@ -62,7 +88,7 @@ export class PaymentsComponent implements AfterViewInit {
     this.isLoading = true;
 
     this.paymentsService
-      .index(page, limit, this.filterParam)
+      .index(page, limit, this.filterForm.getRawValue())
       .pipe(
         first(),
         finalize(() => (this.isLoading = false))
@@ -160,11 +186,6 @@ export class PaymentsComponent implements AfterViewInit {
           this.setDataSource();
         },
       });
-  }
-
-  handleFilter(value: string) {
-    this.filterParam.value = value;
-    this.getAllPayments();
   }
 
   handlePageEvent(pageEvent: PageEvent) {
