@@ -3,6 +3,8 @@ import { Payment } from '../../models/payment';
 
 import { PaymentsService } from '../../services/payments.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-payments-table',
@@ -21,12 +23,17 @@ export class PaymentsTableComponent implements OnInit {
   tableRowsPerPage: number;
   nameFilter: string = '';
 
-  payment: Payment;
+  paymentForm: FormGroup;
   showPaymentRegisterDialog: boolean = false;
   paymentRegisterDialogPurpose: string = '';
   paymentFormSubmitted: boolean = false;
 
-  constructor(private paymentsService: PaymentsService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(private formBuilder:FormBuilder, 
+              private paymentsService: PaymentsService,
+              private messageService: MessageService,
+              private confirmationService: ConfirmationService,
+              private datePipe: DatePipe,
+              private currencyPipe: CurrencyPipe) { }
 
   ngOnInit(): void {
     this.currentTablePage = 0;
@@ -43,8 +50,8 @@ export class PaymentsTableComponent implements OnInit {
   }
 
   isNewPayment(): boolean {
-    console.log(this.payment.id);
-    return this.payment?.id === null || this.payment?.id === undefined;
+    const idValue = this.paymentForm.value.id;
+    return idValue === null || idValue === undefined;
   }
 
   filterPaymentsByName(): void {
@@ -61,23 +68,39 @@ export class PaymentsTableComponent implements OnInit {
     });
   }
 
+  cleanPaymentFormFields(): void {
+    this.paymentForm = this.formBuilder.group({
+      id:[null],
+      name: ['', Validators.required],
+      username: ['', Validators.required],
+      value: [null, Validators.required],
+      date: ['', Validators.required],
+      title: [''],
+      isPayed: [false, Validators.required]
+    });
+  }
+
+  fillPaymentFormFields(payment: Payment): void {
+    this.paymentForm = this.formBuilder.group({
+      id: [payment.id],
+      name: [payment.name, Validators.required],
+      username: [payment.username, Validators.required],
+      value: [payment.value, Validators.required],
+      date: [payment.date, Validators.required],
+      title: payment.title,
+      isPayed: [payment.isPayed, Validators.required]
+    });
+  }
+
   showCreatePaymentDialog() {
-    this.payment = {
-      id: null,
-      name: '',
-      username: '',
-      title: '',
-      date: null,
-      value: null,
-      isPayed: false,
-    };
+    this.cleanPaymentFormFields();
     this.paymentFormSubmitted = false;
     this.paymentRegisterDialogPurpose = 'Cadastrar'
     this.showPaymentRegisterDialog = true;
   }
 
   showUpdatePaymentDialog(payment: Payment) {
-    this.payment = {...payment};
+    this.fillPaymentFormFields(payment);
     this.paymentFormSubmitted = false;
     this.paymentRegisterDialogPurpose = 'Editar'
     this.showPaymentRegisterDialog = true;
@@ -86,23 +109,24 @@ export class PaymentsTableComponent implements OnInit {
   hidePaymentRegisterDialog(): void {
     this.showPaymentRegisterDialog = false;
     this.paymentFormSubmitted = false;
-    this.payment = {
-      id: null,
-      name: '',
-      username: '',
-      title: '',
-      date: null,
-      value: null,
-      isPayed: null,
-    };
+    this.cleanPaymentFormFields();
   }
 
   savePayment(): void {
     this.paymentFormSubmitted = true;
 
+    let inputPayment = {
+      id: this.paymentForm.value.id,
+      name: this.paymentForm.value.name,
+      username: this.paymentForm.value.username,
+      value: this.paymentForm.value.value,
+      date: this.paymentForm.value.date,
+      title: this.paymentForm.value.title,
+      isPayed: this.paymentForm.value.isPayed,
+    };
+
     if(this.isNewPayment()){
-      console.log('CREATE');
-      this.paymentsService.create(this.payment)
+      this.paymentsService.create(inputPayment)
       .subscribe(
         response => {
           this.fetchPayments();
@@ -112,8 +136,7 @@ export class PaymentsTableComponent implements OnInit {
           this.messageService.add({severity:'error', summary: 'Erro', detail: 'Não foi possível cadastrar o pagamento', life: 3000});
         });
     } else {
-      console.log('UPDATE');
-      this.paymentsService.update(this.payment)
+      this.paymentsService.update(inputPayment)
       .subscribe(
         response => {
           this.fetchPayments();
@@ -129,10 +152,10 @@ export class PaymentsTableComponent implements OnInit {
 
   deletePayment(payment: Payment): void {
     this.confirmationService.confirm({
-      message: 'Usuário: ' + payment.name + '<br />'
-                + 'Título: ' + payment.title + '<br />'
-                + 'Data: ' + payment.date + '<br />'
-                + 'Valor: ' + payment.value,
+      message: `Usuário: ${payment.name}<br />
+                Título: ${payment.title}<br />
+                Data: ${this.datePipe.transform(payment.date, 'd MMM y, h:mm a')}<br />
+                Valor: ${this.currencyPipe.transform(payment.value, 'BRL')}`,
       header: 'Excluir pagamento',
       accept: () => {
         this.paymentsService.delete(payment.id)

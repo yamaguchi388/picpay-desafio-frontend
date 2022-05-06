@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -19,6 +19,7 @@ import { PaymentsTableComponent } from './components/payments-table/payments-tab
 import { MyPaymentsViewComponent } from './views/my-payments-view/my-payments-view.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ChipModule } from 'primeng/chip';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -41,7 +42,8 @@ import { ChipModule } from 'primeng/chip';
     CheckboxModule,
     DialogModule,
     SharedModule,
-    ChipModule
+    ChipModule,
+    ReactiveFormsModule
   ],
   exports: [
     PaymentsTableComponent,
@@ -50,7 +52,9 @@ import { ChipModule } from 'primeng/chip';
   providers: [
     PaymentsService,
     ConfirmationService,
-    MessageService
+    MessageService,
+    DatePipe,
+    CurrencyPipe
   ]
 })
 export class PaymentsModule { }

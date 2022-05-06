@@ -8,6 +8,8 @@
         color: #2D3540;
     }
 
+    // Payments Table
+
     #add-payment-section {
         width: 100%;
         padding: 0px 5px;
@@ -61,7 +63,7 @@
         >tr:nth-child(2) {
             >th {
                 height: 54px;
-                
+
                 background-color: #ffffff;
                 border-bottom: 2px solid;
                 border-color: #CFDCE5;
@@ -152,5 +154,49 @@
                 text-align: right;
             }
         }
-    }  
+    }
+
+    // Add or edit payment dialog
+
+    .p-dialog, .p-confirm-dialog {
+        width: 772px;
+        min-height: 300px;
+
+        .p-dialog-content form{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .payment-form-input {
+            width: 220px;
+            padding-top: 3rem;
+        }
+
+        .p-checkbox {
+            margin-right: 10px;
+        }
+
+        .p-dialog-footer {
+            padding-top: 2rem;
+
+            button {
+                height: 36px;
+                width: 150px;
+            }
+
+            .cancel-button {
+                color: #333333;
+                background-color: #F5F5F5;
+            }
+            
+            .save-button {
+                color: #ffffff;
+                background-color: #007DFE;
+
+                margin-left: 20px;
+            }
+        }
+    }
 }

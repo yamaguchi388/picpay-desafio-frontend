@@ -73,43 +73,63 @@
         </ng-template>
     </p-table>
 
-    <p-dialog [(visible)]="showPaymentRegisterDialog" [style]="{width: '450px'}" header="{{paymentRegisterDialogPurpose}} pagamento" [modal]="true" styleClass="p-fluid">
+    <p-dialog [(visible)]="showPaymentRegisterDialog" header="{{paymentRegisterDialogPurpose}} pagamento" [modal]="true" styleClass="p-fluid">
         <ng-template pTemplate="content">
-            <div class="field">
-                <label for="name">Nome</label>
-                <input type="text" pInputText id="name" [(ngModel)]="payment.name" required autofocus />
-                <small class="p-error" *ngIf="paymentFormSubmitted && !payment.name">Nome é obrigatório.</small>
-            </div>
-            <div class="field">
-                <label for="username">Usuário</label>
-                <input type="text" pInputText id="username" [(ngModel)]="payment.username" required autofocus />
-                <small class="p-error" *ngIf="paymentFormSubmitted && !payment.username">Usuário é obrigatório.</small>
-            </div>
-            <div class="field">
-                <label for="value">Valor</label>
-                <p-inputNumber id="value" [(ngModel)]="payment.value" mode="currency" currency="BRL"></p-inputNumber>
-                <small class="p-error" *ngIf="paymentFormSubmitted && !payment.value">Valor é obrigatório.</small>
-            </div>
-            <div class="field">
-                <label for="date">Data</label>
-                <p-calendar id="date" [(ngModel)]="payment.date" locale="pt-BR" [showIcon]="true" inputId="icon"></p-calendar>
-                <small class="p-error" *ngIf="paymentFormSubmitted && !payment.date">Data é obrigatória.</small>
-            </div>
-            <div class="field">
-                <label for="title">Título</label>
-                <input type="text" pInputText id="title" [(ngModel)]="payment.title" autofocus />
-            </div>
-            <div class="field">
-                <label for="isPayed">Pago</label>
-                <p-checkbox id="isPayed" [(ngModel)]="payment.isPayed" [binary]="true"></p-checkbox>
-            </div>
+            <form [formGroup]="paymentForm">
+                <div class="payment-form-input">
+                    <span class="p-float-label">
+                        <input name="name" id="name-input" formControlName="name" type="text" pInputText autofocus> 
+                        <label for="float-input">Nome</label>
+                        <small class="p-error" *ngIf="paymentFormSubmitted && !paymentForm.value.name">Nome é obrigatório.</small>
+                    </span>
+                </div>
+                <div class="payment-form-input">
+                    <span class="p-float-label">
+                        <input name="username" id="username-input" formControlName="username" type="text" pInputText> 
+                        <label for="float-input">Usuário</label>
+                        <small class="p-error" *ngIf="paymentFormSubmitted && !paymentForm.value.username">Usuário é obrigatório.</small>
+                    </span>
+                </div>
+                <div class="payment-form-input">
+                    <span class="p-float-label">
+                        <p-inputNumber name="value" id="value-input" formControlName="value" mode="currency" currency="BRL"></p-inputNumber>
+                        <label for="float-input">Valor</label>
+                        <small class="p-error" *ngIf="paymentFormSubmitted && !paymentForm.value.value">Valor é obrigatório.</small>
+                    </span>
+                </div>
+                <div class="payment-form-input">
+                    <span class="p-float-label">
+                        <p-calendar name="date" id="date-input" formControlName="date" locale="pt-BR" [showIcon]="true" inputId="icon"
+                            [showTime]="true" appendTo="body"></p-calendar>
+                        <label for="float-input">Data</label>
+                        <small class="p-error" *ngIf="paymentFormSubmitted && !paymentForm.value.date">Data é obrigatória.</small>
+                    </span>
+                </div>
+                <div class="payment-form-input">
+                    <span class="p-float-label">
+                        <input name="title" id="title-input" formControlName="title" type="text" pInputText> 
+                        <label for="float-input">Título</label>
+                    </span>
+                </div>
+                <div class="payment-form-input checkbox-input">
+                    <p-checkbox name="isPayed" formControlName="isPayed" [binary]="true" inputId="isPayed-checkbox"></p-checkbox>
+                    <label for="isPayed-checkbox">Pago</label>
+                </div>
+            </form>
         </ng-template>
-    
         <ng-template pTemplate="footer">
-            <button pButton pRipple label="CANCELAR" icon="pi pi-times" class="p-button-text" (click)="hidePaymentRegisterDialog()"></button>
-            <button pButton pRipple label="SALVAR" icon="pi pi-check" class="p-button-text" (click)="savePayment()"></button>
-        </ng-template>
+            <button pButton pRipple label="CANCELAR" icon="pi pi-times" class="p-button-text p-button-secondary cancel-button" (click)="hidePaymentRegisterDialog()"></button>
+            <button pButton pRipple label="SALVAR" icon="pi pi-check" class="p-button-text p-button-primary save-button" (click)="savePayment()"></button>
+        </ng-template>  
     </p-dialog>
-
-    <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    
+    <p-confirmDialog #deletePaymentDialog [style]="{width: '450px'}">
+        <ng-template pTemplate="header">
+            <h3>Excluir pagamento</h3>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <button type="button" pButton icon="pi pi-times" label="CANCELAR" class="p-button-text p-button-secondary cancel-button" (click)="deletePaymentDialog.reject()"></button>
+            <button type="button" pButton icon="pi pi-check" label="EXCLUIR" class="p-button-text p-button-primary save-button" (click)="deletePaymentDialog.accept()"></button>
+        </ng-template>
+    </p-confirmDialog>
 </div>
