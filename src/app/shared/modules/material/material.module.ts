@@ -19,6 +19,7 @@ import {
 } from "@angular/material/paginator";
 import { CustomPaginator } from "../../lib";
 import { MatSortModule } from "@angular/material/sort";
+import { MatRadioModule } from "@angular/material/radio";
 
 const sharedModules = [
   MatInputModule,
@@ -37,7 +38,8 @@ const sharedModules = [
   MatPaginatorModule,
   MatDialogModule,
   MatCheckboxModule,
-  MatSortModule
+  MatSortModule,
+  MatRadioModule,
 ];
 
 @NgModule({

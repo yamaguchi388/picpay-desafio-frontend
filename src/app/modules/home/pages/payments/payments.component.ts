@@ -42,6 +42,26 @@ export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
     "isPayed",
     "actions",
   ];
+
+  filtersOptions: IFilterParams[] = [
+    {
+      key: "Usuário",
+      value: "username",
+    },
+    {
+      key: "Título",
+      value: "title",
+    },
+    {
+      key: "Data",
+      value: "date",
+    },
+    {
+      key: "Valor",
+      value: "value",
+    },
+  ];
+
   pageSizeOptions: number[] = [5, 10, 25, 50];
 
   isLoading = false;
