@@ -7,5 +7,4 @@ export interface PaymentData {
     title: string;
     username: string;
     value: number;
-    
   }

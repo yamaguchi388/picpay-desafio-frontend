@@ -10,22 +10,23 @@ export const totalTaskItems = new Subject<number>();
   providedIn: 'root'
 })
 export class TasksService {
-apiURL = 'http://localhost:3000';
-currentPage = 1;
-limitItems = 5;
+apiURL: string = 'http://localhost:3000';
+currentPage: number = 1;
+limitItems: number = 5;
 taskList: Array<object> = [];
 currentPayment = {};
 paymentListLength: number = 0;
+
   constructor(private http : HttpClient) { 
 
   }
 
-  getTaskApi(){
-    this.http.get(`${ this.apiURL }/tasks?_page=${this.currentPage}&_limit=${!!this.limitItems ? this.limitItems : ''}`)
-    .subscribe((taskListApi: Array<PaymentData>) => {
-        currentPaymentPage.next(taskListApi);
-  })
-}
+    getTaskApi(){
+        return this.http.get(`${ this.apiURL }/tasks?_page=${this.currentPage}&_limit=${!!this.limitItems ? this.limitItems : ''}`)
+        .subscribe((taskListApi: Array<PaymentData>) => {
+            currentPaymentPage.next(taskListApi);
+        })
+    }
 
     getTotalTaskItems(){
         return this.http.get(`${ this.apiURL }/tasks`)
