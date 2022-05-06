@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routes';
 import { CommonModule } from '@angular/common';
 import { FeaturesModule } from './features/features.module';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { FeaturesModule } from './features/features.module';
     BrowserAnimationsModule,
     FormsModule,
     FeaturesModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

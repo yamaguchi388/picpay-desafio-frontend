@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { LoginCredentials } from '../../models/login-credentials';
 import { AuthService } from '../../services/auth.service';
 
@@ -15,7 +16,10 @@ export class LoginComponent implements OnInit {
   isAuthenticated: boolean = false;
   authStatus: string = '';
 
-  constructor(private formBuilder:FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private messageService: MessageService,
+              private formBuilder:FormBuilder,
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.cleanFormFields();
@@ -41,14 +45,14 @@ export class LoginComponent implements OnInit {
 
           switch(this.authStatus){
             case 'success': {
-              // toast successfull and redirect
+              this.messageService.add({severity:'success', summary: 'Sucesso', detail: 'Autenticado com sucesso', life: 3000});
               this.router.navigateByUrl('/meuspagamentos');
               this.cleanFormFields();
               break;
             }
             case 'invalid': {
               // toast invalid and ser form invalid
-              console.log(this.authStatus);
+              this.messageService.add({severity:'error', summary: 'Erro', detail: 'Dados inválidos', life: 3000});
               this.cleanFormFields();
               break;
             }

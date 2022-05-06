@@ -6,6 +6,8 @@ import { PasswordModule } from "primeng/password";
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -18,11 +20,15 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
     ReactiveFormsModule,
     PasswordModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule
   ],
   exports: [
     LogoutButtonComponent,
     LoginComponent
+  ],
+  providers: [
+    MessageService
   ]
 })
 export class AuthenticationModule { }
