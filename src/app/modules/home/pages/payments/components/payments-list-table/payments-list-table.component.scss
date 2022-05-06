@@ -46,13 +46,30 @@
 
     &-td {
       color: var(--body-text);
+      padding: 1rem 0;
+
+      border: 0;
 
       &-span {
         display: block;
-        margin: 0.5rem;
+
+        &:first-child {
+          margin: 0.5rem 0 0 0;
+        }
 
         &:last-child {
           color: var(--secondary-text);
+          margin: 0.5rem 0 0.5rem 0;
+        }
+      }
+    }
+
+    &-td--actions {
+      img {
+        cursor: pointer;
+
+        &:first-child {
+          margin-right: 1rem;
         }
       }
     }

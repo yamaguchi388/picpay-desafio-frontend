@@ -46,7 +46,16 @@ export class HttpService {
 
   post<R>(endpoint: string, payload: R): Observable<R> {
     const url = this.buildUrl(endpoint);
-    console.log(url, endpoint);
     return this.httpClient.post<R>(url, payload);
+  }
+
+  put<R>(endpoint: string, id: number, payload: R): Observable<R> {
+    const url = `${this.buildUrl(endpoint)}/${id}`;
+    return this.httpClient.put<R>(url, payload);
+  }
+
+  delete(endpoint: string, id: number): Observable<void> {
+    const url = `${this.buildUrl(endpoint)}/${id}`;
+    return this.httpClient.delete<void>(url);
   }
 }
