@@ -54,7 +54,10 @@ paymentListLength: number = 0;
 
     public delete(id: number) {
         return this.http.delete(`${ this.apiURL }/tasks/${id}`)
-            .subscribe((data) => this.getTaskApi());
+            .subscribe((data) => {
+                this.getTaskApi();
+                this.getTotalTaskItems();
+            });
     }
 
     public setCurrentPayment(item: PaymentData){
