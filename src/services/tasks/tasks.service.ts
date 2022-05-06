@@ -20,7 +20,6 @@ paymentListLength: number = 0;
 
   }
 
-
   getTaskApi(){
     this.http.get(`${ this.apiURL }/tasks?_page=${this.currentPage}&_limit=${!!this.limitItems ? this.limitItems : ''}`)
     .subscribe((taskListApi: Array<PaymentData>) => {
@@ -63,6 +62,7 @@ paymentListLength: number = 0;
     }
 
     public updatePaymentItem(param) {
+
         let body: any = this.currentPayment;
             Object.keys(param)
                 .forEach((data) => {

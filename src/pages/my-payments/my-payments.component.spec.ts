@@ -1,25 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClient } from '@angular/common/http';
 import { MyPaymentsComponent } from './my-payments.component';
 
-describe('MyPaymentsComponent', () => {
-  let component: MyPaymentsComponent;
-  let fixture: ComponentFixture<MyPaymentsComponent>;
+import {MatDialog} from '@angular/material/dialog';
+import { TasksService } from 'src/services/tasks/tasks.service';
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ MyPaymentsComponent ]
-    })
-    .compileComponents();
-  });
+
+describe('MyPaymentsComponent', () => {
+   let tasksService: TasksService;
+   let http : HttpClient;
+   let dialog: MatDialog
+   let component = new MyPaymentsComponent(tasksService, dialog);
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MyPaymentsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    tasksService = new TasksService(http);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
