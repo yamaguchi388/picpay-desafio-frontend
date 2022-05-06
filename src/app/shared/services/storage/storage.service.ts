@@ -1,26 +1,31 @@
 import { Injectable } from "@angular/core";
 import { StorageKeysEnum } from "../../enums";
 
+import { CryptoService } from "../crypto/crypto.service";
+
 @Injectable({
   providedIn: "root",
 })
 export class StorageService {
-  constructor() {}
+  constructor(private readonly cryptoService: CryptoService) {}
 
   setItem(key: StorageKeysEnum, value: object | string) {
-    if (typeof value === "object") {
-      sessionStorage.setItem(key, JSON.stringify(value));
-      return;
-    }
-
-    sessionStorage.setItem(key, value);
+    const payload = this.cryptoService.encrypt(JSON.stringify(value));
+    localStorage.setItem(key, payload.toString());
   }
 
   getItem(key: StorageKeysEnum) {
-    const value = sessionStorage.getItem(key);
+    const value = localStorage.getItem(key);
 
+    if (value) {
+      const payload = this.cryptoService.decrypt(value);
+      return this.tryParseStorageValue(payload);
+    }
+  }
+
+  private tryParseStorageValue(value: string) {
     try {
-      return JSON.parse(value!);
+      return JSON.parse(value);
     } catch (error) {
       return value ?? "";
     }
