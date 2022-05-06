@@ -1,12 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator, PageEvent } from "@angular/material/paginator";
+import { MatSort, MatSortable } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 
 import { ToastrService } from "ngx-toastr";
 import { finalize, first } from "rxjs/operators";
-import { ITableColumns } from "../../shared/interfaces/tableColumns";
 import { DeletePaymentDialogComponent } from "./components/delete-payment-dialog/delete-payment-dialog.component";
 import { NewPaymentDialogComponent } from "./components/new-payment-dialog/new-payment-dialog.component";
-import { IPaginator, IPayment } from "./interfaces";
+import { IFilterParams, IPaginator, IPayment } from "./interfaces";
 import { PaymentsService } from "./services/payments/payments.service";
 
 @Component({
@@ -14,7 +16,7 @@ import { PaymentsService } from "./services/payments/payments.service";
   templateUrl: "./payments.component.html",
   styleUrls: ["./payments.component.scss"],
 })
-export class PaymentsComponent implements OnInit {
+export class PaymentsComponent implements AfterViewInit {
   payments: IPaginator<IPayment[]> = {
     page: 0,
     limit: 5,
@@ -22,8 +24,28 @@ export class PaymentsComponent implements OnInit {
     items: [],
   };
 
-  displayedColumns: ITableColumns[] = [];
+  displayedColumns: string[] = [
+    "username",
+    "title",
+    "date",
+    "value",
+    "isPayed",
+    "actions",
+  ];
+
+  pageSizeOptions: number[] = [5, 10, 25, 50];
+
+  filterParam: IFilterParams = {
+    key: "username",
+    value: "",
+  };
+
   isLoading = false;
+
+  dataSource: MatTableDataSource<IPayment> = new MatTableDataSource();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private readonly dialog: MatDialog,
@@ -31,26 +53,34 @@ export class PaymentsComponent implements OnInit {
     private readonly paymentsService: PaymentsService
   ) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.getAllPayments();
   }
 
-  getAllPayments(filter?: string) {
+  getAllPayments() {
     const { page, limit } = this.payments;
     this.isLoading = true;
 
     this.paymentsService
-      .index(page, limit, filter)
+      .index(page, limit, this.filterParam)
       .pipe(
         first(),
         finalize(() => (this.isLoading = false))
       )
       .subscribe({
-        next: (res) => (this.payments = res),
+        next: (res) => {
+          this.payments = res;
+          this.setDataSource();
+        },
       });
   }
 
-  openDialog(data?: any) {
+  private setDataSource() {
+    this.dataSource = new MatTableDataSource(this.payments.items);
+    this.dataSource.sort = this.sort;
+  }
+
+  openNewPaymentDialog(data?: any) {
     const dialogRef = this.dialog.open(NewPaymentDialogComponent, {
       width: "70%",
       maxHeight: "500px",
@@ -75,6 +105,9 @@ export class PaymentsComponent implements OnInit {
         next: (res) => {
           this.toastr.success("Pagamento criado com sucesso!");
           this.payments.items = [...this.payments.items, res];
+          this.payments.total = this.payments.total + 1;
+
+          this.setDataSource();
         },
       });
   }
@@ -84,9 +117,14 @@ export class PaymentsComponent implements OnInit {
       .update(payment)
       .pipe(first())
       .subscribe({
-        next: (res) => {
+        next: () => {
           this.toastr.success("Pagamento alterado com sucesso!");
-          this.getAllPayments();
+          this.payments.items = this.payments.items.map((p) => {
+            if (p.id !== payment.id) return p;
+            return payment;
+          });
+
+          this.setDataSource();
         },
       });
   }
@@ -115,8 +153,28 @@ export class PaymentsComponent implements OnInit {
       .subscribe({
         next: () => {
           this.toastr.success("Pagamento excluido com sucesso!");
-          this.getAllPayments();
+          this.payments.items = this.payments.items.filter(
+            (p) => p.id !== payment.id
+          );
+
+          this.setDataSource();
         },
       });
+  }
+
+  handleFilter(value: string) {
+    this.filterParam.value = value;
+    this.getAllPayments();
+  }
+
+  handlePageEvent(pageEvent: PageEvent) {
+    this.payments.limit = pageEvent.pageSize;
+    this.payments.page = pageEvent.pageIndex;
+
+    this.getAllPayments();
+  }
+
+  handleSort(key: string) {
+    this.dataSource.sort.sort({ id: key } as MatSortable);
   }
 }

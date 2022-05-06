@@ -6,8 +6,10 @@ import { HeaderModule } from "../../shared/components/header/header.module";
 import { MaterialModule } from "src/app/shared/modules/material/material.module";
 import { NewPaymentDialogComponent } from "./components/new-payment-dialog/new-payment-dialog.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { PaymentsListTableComponent } from "./components/payments-list-table/payments-list-table.component";
-import { DeletePaymentDialogComponent } from './components/delete-payment-dialog/delete-payment-dialog.component';
+import { DeletePaymentDialogComponent } from "./components/delete-payment-dialog/delete-payment-dialog.component";
+import { InputModule } from "src/app/shared/components/form/input/input.module";
+
+import { TableSortModule } from "../../shared/components/table-sort/table-sort.module";
 
 const routes: Routes = [
   {
@@ -20,7 +22,6 @@ const routes: Routes = [
   declarations: [
     PaymentsComponent,
     NewPaymentDialogComponent,
-    PaymentsListTableComponent,
     DeletePaymentDialogComponent,
   ],
   imports: [
@@ -30,6 +31,8 @@ const routes: Routes = [
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    InputModule,
+    TableSortModule,
   ],
 })
 export class PaymentsModule {}

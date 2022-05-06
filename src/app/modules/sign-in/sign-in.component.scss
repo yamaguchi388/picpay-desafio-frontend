@@ -27,6 +27,12 @@
     }
   }
 
+  &__form {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+  }
+
   &__img-logo {
     width: 9rem;
   }
@@ -35,7 +41,7 @@
     color: var(--title);
     font-family: "Montserrat", Arial, Helvetica, sans-serif;
 
-    margin-top: 0.6;
+    margin-top: 0.6rem;
   }
 
   &__box-image {

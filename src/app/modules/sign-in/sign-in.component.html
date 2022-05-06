@@ -17,7 +17,35 @@
         {{ isUserNotFoundMessage }}
       </mat-error>
 
-      <app-sign-in-form (submitEvent)="signIn($event)"></app-sign-in-form>
+      <form [formGroup]="form" class="sign-in__form">
+        <app-input
+          id="email"
+          type="email"
+          label="E-mail"
+          placeholder="E-mail"
+          formControlName="email"
+        ></app-input>
+
+        <app-input
+          id="password"
+          type="password"
+          label="Senha"
+          placeholder="Senha"
+          formControlName="password"
+        ></app-input>
+
+        <button
+          id="sign-in-btn"
+          type="button"
+          class="btn--block"
+          color="primary"
+          [disabled]="formIsInvalid"
+          mat-raised-button
+          (click)="signIn()"
+        >
+          ENTRAR
+        </button>
+      </form>
     </ng-container>
 
     <ng-template #loadingContainer>

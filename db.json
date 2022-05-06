@@ -1,32 +1,12 @@
 {
   "tasks": [
     {
-      "id": 17,
-      "name": "Rolf Winpenny",
-      "username": "rwinpennyg",
-      "title": "VP Marketing",
-      "value": 397.36,
-      "date": "2022-05-03T21:52",
-      "image": "https://robohash.org/oditquaeratet.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
-      "id": 18,
-      "name": "Maynord Davidde",
-      "username": "mdaviddeh",
-      "title": "Accounting Assistant III",
-      "value": 86.23,
-      "date": "2022-05-04T22:00",
-      "image": "https://robohash.org/ametperferendisoccaecati.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
       "id": 19,
       "name": "Bruce Martyn",
       "username": "bmartyni",
       "title": "Structural Analysis Engineer",
       "value": 201.28,
-      "date": "2021-02-15T18:14:35Z",
+      "date": "2021-02-15T18:14:35",
       "image": "https://robohash.org/dolorautest.png?size=150x150&set=set1",
       "isPayed": true
     },
@@ -1614,9 +1594,27 @@
       "date": "2022-05-06T20:26",
       "username": "edudrozda",
       "title": "teste",
-      "value": 11111,
+      "value": "111",
       "isPayed": true,
       "id": 180
+    },
+    {
+      "name": "qweqwe",
+      "date": "2022-05-07T00:58",
+      "username": "edudrozda",
+      "title": "qweqwe",
+      "value": "200",
+      "isPayed": false,
+      "id": 181
+    },
+    {
+      "name": "Eduardo Drozda",
+      "date": "2022-05-15T08:15",
+      "username": "edudrozda",
+      "title": "Aluguel",
+      "value": "150",
+      "isPayed": false,
+      "id": 182
     }
   ],
   "account": [
