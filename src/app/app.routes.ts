@@ -6,6 +6,7 @@ import { NotAuthGuard } from './core/authentication/guards/not-auth.guard';
 import { MyPaymentsViewComponent } from './features/payments/views/my-payments-view/my-payments-view.component';
 import { ProfileViewComponent } from './features/profile/profile-view/profile-view.component';
 import { WelcomeLoginViewComponent } from './features/welcome-login-view/welcome-login-view.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 const routes: Routes = [
     {
@@ -28,6 +29,11 @@ const routes: Routes = [
         redirectTo: '/meuspagamentos',
         pathMatch: 'full'
     },
+    {
+        path: '**',
+        component: PageNotFoundComponent,
+        pathMatch: 'full'
+    }
 ]; 
 
 @NgModule({
