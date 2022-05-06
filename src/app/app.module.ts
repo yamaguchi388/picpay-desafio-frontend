@@ -22,10 +22,16 @@ import {DialogEdit} from './../components/molecules/dialog/dialog-edit/dialog-ed
 import {DialogDelete} from './../components/molecules/dialog/dialog-delete/dialog-delete.component';
 
 import {TasksService} from './../services/tasks/tasks.service';
+
 import { Button } from 'src/components/atoms/button/button.component';
 import { DialogAdd } from 'src/components/molecules/dialog/dialog-add/dialog-add.component';
 import { InputFilter } from 'src/components/atoms/input/input.component';
 
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
+//add support to pt-BR`
 @NgModule({
   declarations: [	
     AppComponent, LoginComponent, MyPaymentsComponent, HeaderComponent, DialogEdit, DialogDelete, Button, DialogAdd, InputFilter
@@ -47,7 +53,7 @@ import { InputFilter } from 'src/components/atoms/input/input.component';
     MatDialogModule,
     MatFormFieldModule
   ],
-  providers: [TasksService],
+  providers: [TasksService, {provide: LOCALE_ID, useValue: "pt-BR" }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

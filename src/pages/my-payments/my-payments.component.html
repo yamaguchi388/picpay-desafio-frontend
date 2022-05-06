@@ -50,7 +50,7 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor </th>
                   <td mat-cell *matCellDef="let row"> 
                     <div class="table__cell__container">
-                      <span class="table__cell__text">{{row.value}}</span> 
+                      <span class="table__cell__text">{{row.value | currency:'BRL' }}</span> 
                     </div>
                   </td>
                 </ng-container>
