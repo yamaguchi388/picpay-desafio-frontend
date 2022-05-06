@@ -10,6 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routes';
 import { CommonModule } from '@angular/common';
 
+// import { registerLocaleData } from '@angular/common';
+// import localePT from '@angular/common/locales/pt';
+
+// registerLocaleData(localePT);
+
 @NgModule({
   declarations: [	
     AppComponent,

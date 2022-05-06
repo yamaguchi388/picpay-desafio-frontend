@@ -18,6 +18,7 @@ import { PaymentsService } from './services/payments.service';
 import { PaymentsTableComponent } from './components/payments-table/payments-table.component';
 import { MyPaymentsViewComponent } from './views/my-payments-view/my-payments-view.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ChipModule } from 'primeng/chip';
 
 
 
@@ -28,6 +29,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MyPaymentsViewComponent
   ],
   imports: [
+    CommonModule,
     TableModule,
     ButtonModule,
     PaginatorModule,
@@ -38,7 +40,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CalendarModule,
     CheckboxModule,
     DialogModule,
-    SharedModule
+    SharedModule,
+    ChipModule
   ],
   exports: [
     PaymentsTableComponent,

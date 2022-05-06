@@ -1,0 +1,156 @@
+:host ::ng-deep {
+    .p-datatable,
+    .p-button,
+    .p-paginator
+    .p-chip,
+    .p-inputtext {
+        font-family: 'Lato', sans-serif;
+        color: #2D3540;
+    }
+
+    #add-payment-section {
+        width: 100%;
+        padding: 0px 5px;
+        display: flex;
+        align-items: right;
+
+        > button {
+            height: 36px;
+            width: 230px;
+            font-size: 14px;
+            color: #ffffff;
+            
+            border-radius: 4px;
+            border-style: none;
+            margin-bottom: 21px;
+            margin-left: auto;
+
+            background-color: #007DFE;
+        }
+    }
+
+    .p-datatable {
+        box-shadow: 0px 2px 4px 0px #0426520F;
+
+        .p-datatable-wrapper {
+            border-radius: 8px;
+        }
+
+        #payment-table-header-options {
+            display: flex;
+            justify-content: space-between;
+
+            #payment-filter-section {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    .p-datatable-thead {
+        >tr:first-child {
+            >th {
+                height: 64px;
+                padding: 0.4rem 1rem;
+
+                background-color: #ffffff;
+                border: none;
+            }
+        }
+
+        >tr:nth-child(2) {
+            >th {
+                height: 54px;
+                
+                background-color: #ffffff;
+                border-bottom: 2px solid;
+                border-color: #CFDCE5;
+            }
+        }
+
+        #payment-filter-section .p-inputtext {
+            height: 32px;
+            width: 215px;
+            font-size: 14px;
+            color: #69788C;
+            
+            box-sizing: border-box;
+            border: 2px solid #CFDCE5;
+            border-radius: 6px;
+        }
+
+
+        .p-chip {
+            height: 28px;
+            border-radius: 6px;
+            
+            padding: 9px;
+            margin-left: 10px;
+    
+            .p-chip-icon {
+                margin-right: 5px;
+            }
+    
+            .p-chip-text {
+                font-family: 'Lato', sans-serif;
+            }
+        }
+
+        .p-paginator{
+            .p-paginator-page, .p-paginator-next, .p-paginator-last,
+            .p-paginator-first, .p-paginator-prev, .p-paginator-current {
+                height: 32px;
+                width: 32px;
+                min-width: 32px;
+                font-size: 14px;
+                font-weight: bold;
+    
+                border-radius: 6px;
+    
+                &.p-highlight {
+                    background-color: #007DFE;
+                    color: #ffffff;
+                }
+            }
+
+            .p-dropdown {
+                height: 36px;
+                width: 85px;
+                font-size: 16px;
+
+                align-items: center;
+
+                border: 2px solid;
+                border-color: #CFDCE5;
+                border-radius: 6px;
+            }
+        }
+
+    }
+
+    .p-datatable-tbody {
+        >tr {
+            >td {
+                border: none;
+                height: 54px;
+
+                .aditional-col-info {
+                    font-size: 14px;
+                    color: #69788C;
+                }
+
+                .p-button-text {
+                    color: #333333;
+                }
+
+                .p-button-icon {
+                    font-size: 20px;
+                }
+            }
+
+            >td:last-child {
+                text-align: right;
+            }
+        }
+    }  
+}

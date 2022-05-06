@@ -1,21 +1,27 @@
 <p-toast></p-toast>
 <div>
+    <div id="add-payment-section">
+        <button pButton pRipple label="ADICIONAR PAGAMENTO" (click)="showCreatePaymentDialog()"></button>
+    </div>
     <p-table #paymentsTable [value]="payments" [rows]="tableRowsPerPage" responsiveLayout="scroll" dataKey="id"
-        [globalFilterFields]="['name','username','title','date','value','status','isPayed']" [rowHover]="true">
+        [globalFilterFields]="['name','username','title','date','value','status','isPayed']" [rowHover]="true"
+        styleClass="p-datatable-striped" >
         <ng-template pTemplate="header">
             <tr>
-                <button pButton pRipple label="ADICIONAR PAGAMENTO" icon="pi pi-plus" class="p-button-success mr-2" (click)="showCreatePaymentDialog()"></button>
-            </tr>
-            <tr>
-                <span class="p-input-icon-left ml-auto">
-                    <i class="pi pi-search"></i>
-                    <input type="text" pInputText [(ngModel)]="nameFilter" (keyup)="filterPaymentsByName()"> 
-                </span>
-                <span>
-                    <p-paginator [rows]="tableRowsPerPage" [totalRecords]="totalPaymentRecords" [rowsPerPageOptions]="[5,8,10]"
-                        (onPageChange)="handleTablePagination($event)">
-                    </p-paginator>
-                </span>
+                <th colspan="9">
+                    <span id="payment-table-header-options">
+                        <div id="payment-filter-section">
+                            <span class="p-input-icon-right">
+                                <i class="pi pi-search"></i>
+                                <input type="text" id="input-filter-payments" pInputText [(ngModel)]="nameFilter" placeholder="Pesquisar por usuário" (keyup)="filterPaymentsByName()"> 
+                            </span>
+                            <p-chip label="Filtrar" icon="pi pi-sliders-v"></p-chip>
+                        </div>
+                        <p-paginator [rows]="tableRowsPerPage" [totalRecords]="totalPaymentRecords" [rowsPerPageOptions]="[5,8,10]"
+                            templateLeft (onPageChange)="handleTablePagination($event)">
+                        </p-paginator>
+                    </span>
+                </th>
             </tr>
             <tr>
                 <th>Usuário</th>
@@ -23,6 +29,9 @@
                 <th>Data</th>
                 <th>Valor</th>
                 <th>Pago</th>
+                <th></th>
+                <th></th>
+                <th></th>
                 <th></th>
             </tr>
         </ng-template>
@@ -33,7 +42,7 @@
                     {{payment.name}}
                     <br>
                     <span class="p-column-title">Username</span>
-                    {{payment.username}}
+                    <span class="aditional-col-info">@{{payment.username}}</span>
                 </td>
                 <td>
                     <span class="p-column-title">Title</span>
@@ -41,19 +50,24 @@
                 </td>
                 <td>
                     <span class="p-column-title">Date</span>
-                    {{payment.date}}
+                    {{ payment.date | date: 'd MMM y' }} 
+                    <br>
+                    <span class="aditional-col-info">{{ payment.date | date: 'h:mm a' }}</span>
                 </td>
                 <td>
                     <span class="p-column-title">Value</span>
-                    {{payment.value}}
+                    {{ payment.value | currency: 'BRL' }}
                 </td>
                 <td>
                     <span class="p-column-title">isPayed</span>
-                    {{payment.isPayed}}
+                    {{ payment.isPayed }}
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="showUpdatePaymentDialog(payment)"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePayment(payment)"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-text p-button-secondary" (click)="showUpdatePaymentDialog(payment)"></button>
+                    <button pButton pRipple icon="pi pi-times-circle" class="p-button-text p-button-secondary" (click)="deletePayment(payment)"></button>
                 </td>
             </tr>
         </ng-template>

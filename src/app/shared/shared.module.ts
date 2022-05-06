@@ -6,6 +6,8 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { SessionManagerService } from '../core/authentication/services/session-manager.service';
 import { AuthenticationModule } from '../core/authentication/authentication.module';
+import { ImageModule } from 'primeng/image';
+
 
 
 
@@ -17,7 +19,8 @@ import { AuthenticationModule } from '../core/authentication/authentication.modu
     CommonModule,
     AvatarModule,
     AvatarGroupModule,
-    AuthenticationModule
+    AuthenticationModule,
+    ImageModule
   ],
   exports: [
     NavbarComponent,

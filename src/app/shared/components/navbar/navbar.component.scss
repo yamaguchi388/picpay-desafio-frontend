@@ -1,0 +1,29 @@
+.paygo-navbar {
+    width: 100%;
+    display: flex;
+    height: 90px;
+    background-color: #002D69;
+
+    padding: 0px 30px;
+    align-items: center;
+}
+
+.nav-logo {
+    margin-right: auto;
+}
+
+.nav-content {
+    margin-left:auto;
+    display: flex;
+    align-items: center;
+}
+
+p {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+p-avatar {
+    margin: 0px 50px 0px 20px;
+}

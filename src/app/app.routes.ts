@@ -4,6 +4,7 @@ import { LoginComponent } from './core/authentication/components/login/login.com
 import { AuthGuard } from './core/authentication/guards/auth.guard';
 import { NotAuthGuard } from './core/authentication/guards/not-auth.guard';
 import { MyPaymentsViewComponent } from './features/payments/views/my-payments-view/my-payments-view.component';
+import { ProfileViewComponent } from './features/profile/profile-view/profile-view.component';
 
 const routes: Routes = [
     {
@@ -14,6 +15,11 @@ const routes: Routes = [
     {
         path: 'meuspagamentos',
         component: MyPaymentsViewComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'profile',
+        component: ProfileViewComponent,
         canActivate: [AuthGuard]
     },
     {
