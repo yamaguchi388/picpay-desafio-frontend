@@ -6,14 +6,17 @@ import {
 import { TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { environment } from "src/environments/environment";
+import { StorageKeysEnum } from "../../enums";
 import { IUser } from "../../interfaces";
 import { HttpService } from "../http/http.service";
+import { StorageService } from "../storage/storage.service";
 
 import { AuthService } from "./auth.service";
 
 describe("AuthService", () => {
   let service: AuthService;
   let httpMock: HttpTestingController;
+  let storageService: StorageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,6 +25,7 @@ describe("AuthService", () => {
     });
     service = TestBed.inject(AuthService);
     httpMock = TestBed.inject(HttpTestingController);
+    storageService = TestBed.inject(StorageService);
   });
 
   it("should be created", () => {
@@ -77,5 +81,16 @@ describe("AuthService", () => {
     mockReq.flush(mockUsers);
 
     httpMock.verify();
+  });
+
+  it("should remove user value on storage when call logout method", () => {
+    spyOn(storageService, "removeItem");
+
+    service.logout();
+
+    expect(storageService.removeItem).toHaveBeenCalledTimes(1);
+    expect(storageService.removeItem).toHaveBeenCalledWith(
+      StorageKeysEnum.USER
+    );
   });
 });

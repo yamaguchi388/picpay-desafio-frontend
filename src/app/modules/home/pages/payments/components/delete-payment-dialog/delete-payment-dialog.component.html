@@ -8,8 +8,14 @@
   </div>
 
   <div mat-dialog-actions class="dp-modal__box-button-actions">
-    <button mat-button (click)="onNoClick()">CANCELAR</button>
-    <button mat-raised-button cdkFocusInitial (click)="onDelete()" color="primary">
+    <button id="cancel-btn" mat-button (click)="onNoClick()">CANCELAR</button>
+    <button
+      id="confirm-btn"
+      mat-raised-button
+      cdkFocusInitial
+      (click)="onDelete()"
+      color="primary"
+    >
       SALVAR
     </button>
   </div>

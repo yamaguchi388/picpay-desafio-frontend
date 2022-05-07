@@ -4,12 +4,10 @@ import {
   forwardRef,
   Injector,
   Input,
-  OnDestroy,
   OnInit,
   Output,
 } from "@angular/core";
 import {
-  AbstractControl,
   ControlValueAccessor,
   FormControlName,
   NgControl,
@@ -41,7 +39,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   hidePassword = true;
   formControl: NgControl;
 
-  private innerValue: string;
   private IS_REQUIRED_MESSAGE = "Este campo é obrigatório";
   private IS_INVALID_EMAIL = "Insira um e-mail válido";
 
@@ -55,23 +52,10 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  get value() {
-    return this.innerValue;
-  }
-
-  set value(v: string) {
-    if (v !== this.innerValue) {
-      this.innerValue = v;
-      this.onChangeCb(v);
-    }
-  }
-
   onChangeCb: (_: any) => void = () => {};
   onTouchedCb: (_: any) => void = () => {};
 
-  writeValue(v: any): void {
-    this.value = v;
-  }
+  writeValue(obj: any): void {}
 
   registerOnChange(fn: any): void {
     this.onChangeCb = fn;
@@ -83,10 +67,6 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
-  }
-
-  onChange(value: string) {
-    this.changeEvent.emit(value);
   }
 
   getFormControlError(): string | void {

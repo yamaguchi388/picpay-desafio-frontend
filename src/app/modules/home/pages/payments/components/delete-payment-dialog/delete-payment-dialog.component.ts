@@ -10,7 +10,7 @@ import { IPayment } from '../../interfaces';
 export class DeletePaymentDialogComponent {
 
   constructor(
-    private dialogRef: MatDialogRef<DeletePaymentDialogComponent>,
+    public dialogRef: MatDialogRef<DeletePaymentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IPayment
   ) {}
 

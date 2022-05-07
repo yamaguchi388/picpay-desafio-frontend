@@ -32,6 +32,6 @@ export class StorageService {
   }
 
   removeItem(key: StorageKeysEnum) {
-    sessionStorage.removeItem(key);
+    localStorage.removeItem(key);
   }
 }

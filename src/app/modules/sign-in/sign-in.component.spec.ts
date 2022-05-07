@@ -12,10 +12,10 @@ import { Router } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 import { ToastrModule, ToastrService } from "ngx-toastr";
 import { of, throwError } from "rxjs";
+import { InputModule } from "src/app/shared/components/form/input/input.module";
 import { MaterialModule } from "src/app/shared/modules/material/material.module";
 import { AuthService } from "src/app/shared/services/auth/auth.service";
 import { UserService } from "src/app/shared/services/user/user.service";
-import { SignInFormComponent } from "./shared/components/sign-in-form/sign-in-form.component";
 import { SignInComponent } from "./sign-in.component";
 
 describe("SignInComponent", () => {
@@ -36,8 +36,9 @@ describe("SignInComponent", () => {
         ReactiveFormsModule,
         NoopAnimationsModule,
         MaterialModule,
+        InputModule,
       ],
-      declarations: [SignInComponent, SignInFormComponent],
+      declarations: [SignInComponent],
       providers: [AuthService, HttpClient, UserService],
     }).compileComponents();
   }));
@@ -61,17 +62,21 @@ describe("SignInComponent", () => {
     const signBtn = fixture.debugElement.query(By.css("#sign-in-btn"));
     expect(signBtn.nativeElement.disabled).toBeTrue();
 
-    const emailInput = fixture.debugElement.query(By.css("#email"));
-    emailInput.nativeElement.value = "dummy@email.com";
-    emailInput.nativeElement.dispatchEvent(new Event("input"));
+    const appInputEmail = fixture.debugElement.query(By.css("#email"));
+    const inputEmail = appInputEmail.query(By.css("#email"));
 
-    const passwordInput = fixture.debugElement.query(By.css("#password"));
-    passwordInput.nativeElement.value = "secretPass";
-    passwordInput.nativeElement.dispatchEvent(new Event("input"));
+    inputEmail.nativeElement.value = "email@email.com";
+    inputEmail.nativeElement.dispatchEvent(new Event("input"));
+
+    const appInputPassword = fixture.debugElement.query(By.css("#password"));
+    const inputPassword = appInputPassword.query(By.css("#password"));
+
+    inputPassword.nativeElement.value = "secret";
+    inputPassword.nativeElement.dispatchEvent(new Event("input"));
 
     fixture.detectChanges();
 
-    expect(signBtn.nativeElement.disabled).toBeFalse();
+    expect(signBtn.nativeElement.disabled).toBeFalsy();
   });
 
   it("should call sign in method when user click on entrar button", () => {
@@ -86,13 +91,14 @@ describe("SignInComponent", () => {
     spyOn(router, "navigate");
     spyOn(userService, "setUserOnSession");
 
-    const emailInput = fixture.debugElement.query(By.css("#email"));
+    const appInputEmail = fixture.debugElement.query(By.css("#email"));
+    const emailInput = appInputEmail.query(By.css("#email"));
     emailInput.nativeElement.value = mockUser.email;
     emailInput.nativeElement.dispatchEvent(new Event("input"));
 
+    const appInputPassword = fixture.debugElement.query(By.css("#password"));
+    const passwordInput = appInputPassword.query(By.css("#password"));
     const dummyPass = "secretPass";
-    const passwordInput = fixture.debugElement.query(By.css("#password"));
-
     passwordInput.nativeElement.value = dummyPass;
     passwordInput.nativeElement.dispatchEvent(new Event("input"));
 
@@ -129,12 +135,14 @@ describe("SignInComponent", () => {
     spyOn(toastrService, "error");
 
     const dummyEmail = "dummy@email.com";
-    const emailInput = fixture.debugElement.query(By.css("#email"));
+    const appInputEmail = fixture.debugElement.query(By.css("#email"));
+    const emailInput = appInputEmail.query(By.css("#email"));
     emailInput.nativeElement.value = dummyEmail;
     emailInput.nativeElement.dispatchEvent(new Event("input"));
 
+    const appInputPassword = fixture.debugElement.query(By.css("#password"));
+    const passwordInput = appInputPassword.query(By.css("#password"));
     const dummyPass = "secretPass";
-    const passwordInput = fixture.debugElement.query(By.css("#password"));
     passwordInput.nativeElement.value = dummyPass;
     passwordInput.nativeElement.dispatchEvent(new Event("input"));
 

@@ -30,7 +30,7 @@ export class PaymentsService {
       },
     ];
 
-    if (filter.value) {
+    if (filter?.value) {
       const { key, value } = filter;
       params.push({
         key,

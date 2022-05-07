@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { FormError } from "src/app/shared/lib/formError/FormError";
+
 import { IPayment } from "../../interfaces";
 
 @Component({
@@ -15,7 +15,7 @@ export class NewPaymentDialogComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<NewPaymentDialogComponent>,
+    public dialogRef: MatDialogRef<NewPaymentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private data: IPayment
   ) {}
 
@@ -52,16 +52,10 @@ export class NewPaymentDialogComponent implements OnInit {
   }
 
   private formatDateToDisplayOnInput(date: string) {
-    const [dateAndHour] = date.split("Z");
+    if (!date) return;
+    
+    const [dateAndHour] = date?.split("Z");
     return dateAndHour;
-  }
-
-  verifyFormControlIsInvalid(key: string) {
-    return FormError.verifyFormControlIsInvalid(this.form, key);
-  }
-
-  getFormControlError(key: string): string | void {
-    return FormError.getFormControlError(this.form, key);
   }
 
   onCancelClick(): void {

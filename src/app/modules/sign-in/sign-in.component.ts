@@ -8,7 +8,6 @@ import { first } from "rxjs/operators";
 import { UserService } from "src/app/shared/services/user/user.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { FormError } from "src/app/shared/lib";
 
 @Component({
   selector: "app-sign-in",
@@ -43,14 +42,6 @@ export class SignInComponent {
       email: ["", [Validators.email, Validators.required]],
       password: ["", Validators.required],
     });
-  }
-
-  verifyFormControlIsInvalid(key: string) {
-    return FormError.verifyFormControlIsInvalid(this.form, key);
-  }
-
-  getFormControlError(key: string): string | void {
-    return FormError.getFormControlError(this.form, key);
   }
 
   signIn() {

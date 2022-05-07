@@ -6,11 +6,14 @@
     />
 
     <img
+      id="user-menu"
+      role="button"
+      aria-label="Botão para abrir o menu do usuário"
       class="header__toolbar-img-avatar"
       src="assets/img/svgs/user-default.svg"
       [matMenuTriggerFor]="menu"
     />
-    <mat-menu #menu="matMenu">
+    <mat-menu id="userMenu" #menu="matMenu">
       <button mat-menu-item (click)="goToProfile()">Perfil</button>
       <button mat-menu-item (click)="logout()">Sair</button>
     </mat-menu>
