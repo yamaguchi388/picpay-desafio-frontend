@@ -76,6 +76,7 @@ export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
     private readonly paymentsService: PaymentsService,
     private readonly formBuilder: FormBuilder
   ) {}
+
   ngOnInit(): void {
     this.buildForm();
   }
@@ -105,6 +106,7 @@ export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   getAllPayments() {
     const { page, limit } = this.payments;
+
     this.isLoading = true;
 
     this.paymentsService

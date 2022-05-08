@@ -1,13 +1,19 @@
 <div id="payments" class="payments">
   <span class="page__title page__span">Meus pagamentos</span>
   <div class="payments__new-payment-button-container">
-    <button mat-raised-button color="primary" (click)="openNewPaymentDialog()">
+    <button
+      id="add-new-payment-button"
+      mat-raised-button
+      color="primary"
+      (click)="openNewPaymentDialog()"
+    >
       ADICIONAR PAGAMENTO
     </button>
   </div>
   <div class="payments__filter-pagination-container">
     <form [formGroup]="filterForm">
       <app-input
+        id="filter-input"
         label="Pesquisar por usuário"
         type="search"
         icon="search"

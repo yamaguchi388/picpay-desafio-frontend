@@ -72,18 +72,16 @@ describe("HttpsInterceptor", () => {
 
     const requestMock = new HttpRequest("GET", "http://localhost:3000/account");
 
-    interceptor.intercept(requestMock, next).subscribe({
-      next: () => {
-        expect(userService.getLoggedUser).toHaveBeenCalledTimes(1);
-        expect(next.handle).toHaveBeenCalledTimes(1);
-        expect(next.handle).toHaveBeenCalledWith(requestMock);
+    interceptor.intercept(requestMock, next).subscribe();
 
-        expect(authService.signIn).not.toHaveBeenCalled();
-        expect(toastr.info).not.toHaveBeenCalled();
-        expect(authService.logout).not.toHaveBeenCalled();
-        expect(router.navigate).not.toHaveBeenCalled();
-      },
-    });
+    expect(userService.getLoggedUser).toHaveBeenCalledTimes(1);
+    expect(next.handle).toHaveBeenCalledTimes(1);
+    expect(next.handle).toHaveBeenCalledWith(requestMock);
+
+    expect(authService.signIn).not.toHaveBeenCalled();
+    expect(toastr.info).not.toHaveBeenCalled();
+    expect(authService.logout).not.toHaveBeenCalled();
+    expect(router.navigate).not.toHaveBeenCalled();
   });
 
   it("should call authService to check if the user is authenticated correctly and call next handle method", () => {
@@ -112,18 +110,16 @@ describe("HttpsInterceptor", () => {
       "http://localhost:3000/payments"
     );
 
-    interceptor.intercept(requestMock, next).subscribe({
-      next: () => {
-        expect(userService.getLoggedUser).toHaveBeenCalledTimes(1);
-        expect(next.handle).toHaveBeenCalledTimes(1);
-        expect(next.handle).toHaveBeenCalledWith(requestMock);
-        expect(authService.signIn).toHaveBeenCalled();
+    interceptor.intercept(requestMock, next).subscribe();
+    
+    expect(userService.getLoggedUser).toHaveBeenCalledTimes(1);
+    expect(next.handle).toHaveBeenCalledTimes(1);
+    expect(next.handle).toHaveBeenCalledWith(requestMock);
+    expect(authService.signIn).toHaveBeenCalled();
 
-        expect(toastr.info).not.toHaveBeenCalled();
-        expect(authService.logout).not.toHaveBeenCalled();
-        expect(router.navigate).not.toHaveBeenCalled();
-      },
-    });
+    expect(toastr.info).not.toHaveBeenCalled();
+    expect(authService.logout).not.toHaveBeenCalled();
+    expect(router.navigate).not.toHaveBeenCalled();
   });
 
   it("should call authService to check if the user is authenticated correctly and throw error with user not found", () => {
