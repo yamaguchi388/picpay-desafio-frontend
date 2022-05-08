@@ -13,6 +13,7 @@ import {
   NgControl,
   NG_VALUE_ACCESSOR,
 } from "@angular/forms";
+import { ValidatorsErrors } from "src/app/shared/enums/ValidatorsErrors.enum";
 
 const INPUT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -39,12 +40,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   hidePassword = true;
   formControl: NgControl;
 
-  private readonly ERROR_EMAIL_EMAIL = "email";
-  private readonly ERROR_REQUIRED = "required";
-  private readonly ERROR_NOT_SAME = "notSame";
-
   private IS_REQUIRED_MESSAGE = "Este campo é obrigatório";
   private IS_INVALID_EMAIL = "Insira um e-mail válido";
+  private IS_PASSWORD_NOT_SAME = "As senhas devem ser iguais";
 
   constructor(private injector: Injector) {}
 
@@ -75,20 +73,28 @@ export class InputComponent implements OnInit, ControlValueAccessor {
 
   getFormControlError(): string | void {
     const isRequiredError = this.formControl?.hasError(
-      this.ERROR_REQUIRED
+      ValidatorsErrors.ERROR_REQUIRED
     );
 
     if (isRequiredError) {
       return this.IS_REQUIRED_MESSAGE;
     }
 
-    const isInvalidEmail = this.formControl?.hasError(this.ERROR_EMAIL_EMAIL);
+    const isInvalidEmail = this.formControl?.hasError(
+      ValidatorsErrors.ERROR_EMAIL_EMAIL
+    );
 
     if (isInvalidEmail) {
       return this.IS_INVALID_EMAIL;
     }
 
-    const isNotSamePassword = this.formControl?.hasError(this.ERROR_NOT_SAME);
+    const isNotSamePassword = this.formControl?.hasError(
+      ValidatorsErrors.ERROR_NOT_SAME
+    );
+
+    if (isNotSamePassword) {
+      return this.IS_PASSWORD_NOT_SAME;
+    }
 
     return;
   }

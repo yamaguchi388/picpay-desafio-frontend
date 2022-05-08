@@ -1,0 +1,20 @@
+import { AbstractControl, FormGroup } from "@angular/forms";
+
+export class PasswordCompare {
+  static comparePasswords(formGroup: FormGroup): any | null {
+    const passwordControl = formGroup.get('password');
+    const confirmPasswordControl = formGroup.get('confirmPassword');
+
+    const password = passwordControl?.value;
+    const confirmPassword = confirmPasswordControl?.value;
+
+    let mathError = null;
+
+    if (password !== confirmPassword) {
+      mathError = { notSame: true };
+    }
+
+    passwordControl.setErrors(mathError);
+    confirmPasswordControl.setErrors(mathError);
+  }
+}

@@ -5,6 +5,7 @@ import { first } from "rxjs/operators";
 import { IUser } from "src/app/shared/interfaces";
 import { AuthService } from "src/app/shared/services/auth/auth.service";
 import { UserService } from "src/app/shared/services/user/user.service";
+import { PasswordCompare } from "src/app/shared/validators";
 
 @Component({
   selector: "app-profile",
@@ -35,13 +36,16 @@ export class ProfileComponent implements OnInit {
   private buildForm() {
     const { id, name, email, password } = this.user;
 
-    this.form = this.formBuilder.group({
-      id: [id, Validators.required],
-      name: [name, Validators.required],
-      email: [email, [Validators.required, Validators.email]],
-      password: [password, Validators.required],
-      confirmPassword: [password, Validators.required],
-    });
+    this.form = this.formBuilder.group(
+      {
+        id: [id, Validators.required],
+        name: [name, Validators.required],
+        email: [email, [Validators.required, Validators.email]],
+        password: [password, Validators.required],
+        confirmPassword: [password, Validators.required],
+      },
+      { validators: PasswordCompare.comparePasswords }
+    );
   }
 
   getLoggedUser() {

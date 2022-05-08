@@ -1,5 +1,5 @@
-<section id="sign-in" class="sign-in">
-  <div class="sign-in__box-form">
+<main id="sign-in" class="sign-in">
+  <section class="sign-in__box-form">
     <ng-container *ngIf="!isLoading; else loadingContainer">
       <img
         class="sign-in__img-logo"
@@ -52,7 +52,7 @@
       <mat-spinner class="sign-in__loader"></mat-spinner>
       <span class="sign-in__loader-title">Carregando</span>
     </ng-template>
-  </div>
+  </section>
 
   <div class="sign-in__box-image">
     <img
@@ -60,4 +60,4 @@
       alt="Imagem com homem olhando o celular"
     />
   </div>
-</section>
+</main>
