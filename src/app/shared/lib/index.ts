@@ -1,1 +1,1 @@
-export * from "./customPaginator/CustomPaginator";
+export * from './customPaginator/CustomPaginator';

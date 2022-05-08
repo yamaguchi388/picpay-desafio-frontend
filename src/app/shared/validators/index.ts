@@ -1,1 +1,1 @@
-export * from "./PasswordCompare";
+export * from './PasswordCompare';

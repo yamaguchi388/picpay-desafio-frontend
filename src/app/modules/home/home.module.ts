@@ -1,35 +1,35 @@
-import { LOCALE_ID, NgModule } from "@angular/core";
-import { CommonModule, registerLocaleData } from "@angular/common";
-import localeBr from "@angular/common/locales/pt";
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localeBr from '@angular/common/locales/pt';
 
-import { HomeComponent } from "./home.component";
-import { RouterModule, Routes } from "@angular/router";
-import { HeaderModule } from "../../shared/components/header/header.module";
+import { HomeComponent } from './home.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HeaderModule } from '../../shared/components/header/header.module';
 
-registerLocaleData(localeBr, "pt");
+registerLocaleData(localeBr, 'pt');
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: HomeComponent,
     children: [
       {
-        path: "",
-        redirectTo: "payments",
+        path: '',
+        redirectTo: 'payments',
       },
       {
-        path: "payments",
+        path: 'payments',
         loadChildren: () =>
-          import("./pages/payments/payments.module").then(
+          import('./pages/payments/payments.module').then(
             (m) => m.PaymentsModule
           ),
       },
       {
-        path: "profile",
+        path: 'profile',
         loadChildren: () =>
-          import("./pages/profile/profile.module").then((m) => m.ProfileModule),
+          import('./pages/profile/profile.module').then((m) => m.ProfileModule),
       },
-      { path: "**", redirectTo: "" },
+      { path: '**', redirectTo: '' },
     ],
   },
 ];
@@ -37,6 +37,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [HomeComponent],
   imports: [CommonModule, RouterModule.forChild(routes), HeaderModule],
-  providers: [{ provide: LOCALE_ID, useValue: "pt" }],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
 })
 export class HomeModule {}

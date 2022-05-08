@@ -1,10 +1,10 @@
-import { TestBed } from "@angular/core/testing";
-import { StorageKeysEnum } from "../../enums";
-import { CryptoService } from "../crypto/crypto.service";
+import { TestBed } from '@angular/core/testing';
+import { StorageKeysEnum } from '../../enums';
+import { CryptoService } from '../crypto/crypto.service';
 
-import { StorageService } from "./storage.service";
+import { StorageService } from './storage.service';
 
-describe("StorageService", () => {
+describe('StorageService', () => {
   let service: StorageService;
   let cryptoService: CryptoService;
 
@@ -16,17 +16,17 @@ describe("StorageService", () => {
     cryptoService = TestBed.inject(CryptoService);
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it("should store value on localStorage with string value", () => {
+  it('should store value on localStorage with string value', () => {
     const key = StorageKeysEnum.USER;
-    const value = "mockValue";
+    const value = 'mockValue';
     const cryptoValue = cryptoService.encrypt(value);
 
-    spyOn(window.localStorage, "setItem");
-    spyOn(cryptoService, "encrypt").and.returnValue(cryptoValue);
+    spyOn(window.localStorage, 'setItem');
+    spyOn(cryptoService, 'encrypt').and.returnValue(cryptoValue);
 
     service.setItem(key, value);
 
@@ -34,12 +34,12 @@ describe("StorageService", () => {
     expect(window.localStorage.setItem).toHaveBeenCalledTimes(1);
   });
 
-  it("should get item string by key", () => {
+  it('should get item string by key', () => {
     const key = StorageKeysEnum.USER;
-    const value = "mockValue";
+    const value = 'mockValue';
 
     const crytoValue = cryptoService.encrypt(value);
-    spyOn(window.localStorage, "getItem").and.returnValue(crytoValue);
+    spyOn(window.localStorage, 'getItem').and.returnValue(crytoValue);
 
     const result = service.getItem(key);
 
@@ -49,10 +49,10 @@ describe("StorageService", () => {
     expect(result).toEqual(value);
   });
 
-  it("should remove item by key", () => {
+  it('should remove item by key', () => {
     const key = StorageKeysEnum.USER;
 
-    spyOn(window.localStorage, "removeItem");
+    spyOn(window.localStorage, 'removeItem');
 
     service.removeItem(key);
 

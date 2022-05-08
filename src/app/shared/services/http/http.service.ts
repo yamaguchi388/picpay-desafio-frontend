@@ -1,11 +1,11 @@
-import { HttpClient, HttpResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { observable, Observable } from "rxjs";
-import { environment } from "src/environments/environment";
-import { IHttpParams } from "../../interfaces";
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { observable, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { IHttpParams } from '../../interfaces';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class HttpService {
   private readonly apiUrl = environment.apiUrl;
@@ -41,7 +41,7 @@ export class HttpService {
     params?: IHttpParams[]
   ): Observable<HttpResponse<RES>> {
     const url = this.buildUrl(endpoint, params);
-    return this.httpClient.get<RES>(url, { observe: "response" });
+    return this.httpClient.get<RES>(url, { observe: 'response' });
   }
 
   post<R>(endpoint: string, payload: R): Observable<R> {

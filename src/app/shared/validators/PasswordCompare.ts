@@ -1,11 +1,11 @@
-import { FormGroup } from "@angular/forms";
+import { FormGroup } from '@angular/forms';
 
 export class PasswordCompare {
   static comparePasswords(formGroup: FormGroup) {
-    const passwordControl = formGroup.get("password");
-    const confirmPasswordControl = formGroup.get("confirmPassword");
+    const passwordControl = formGroup.get('password');
+    const confirmPasswordControl = formGroup.get('confirmPassword');
 
-    if (!passwordControl || !confirmPasswordControl) return;
+    if (!passwordControl || !confirmPasswordControl) { return; }
 
     const password = passwordControl?.value;
     const confirmPassword = confirmPasswordControl?.value;
@@ -18,7 +18,7 @@ export class PasswordCompare {
 
     passwordControl.setErrors(mathError);
     confirmPasswordControl.setErrors(mathError);
-    
+
     return null;
   }
 }

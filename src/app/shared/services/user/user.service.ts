@@ -1,17 +1,17 @@
-import { HttpErrorResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
-import { StorageKeysEnum } from "../../enums";
-import { IUser } from "../../interfaces";
-import { HttpService } from "../http/http.service";
-import { StorageService } from "../storage/storage.service";
+import { HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { StorageKeysEnum } from '../../enums';
+import { IUser } from '../../interfaces';
+import { HttpService } from '../http/http.service';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class UserService {
-  private readonly endpoint = "account";
+  private readonly endpoint = 'account';
 
   constructor(
     private readonly storageService: StorageService,
@@ -30,7 +30,7 @@ export class UserService {
     return this.httpService.put<IUser>(this.endpoint, user.id, user).pipe(
       catchError(() => {
         throw new HttpErrorResponse({
-          error: ["Usuário não encontrado"],
+          error: ['Usuário não encontrado'],
         });
       })
     );

@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { By } from "@angular/platform-browser";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
-import { TableSortComponent } from "./table-sort.component";
+import { TableSortComponent } from './table-sort.component';
 
-describe("TableSortComponent", () => {
+describe('TableSortComponent', () => {
   let component: TableSortComponent;
   let fixture: ComponentFixture<TableSortComponent>;
 
@@ -19,14 +19,14 @@ describe("TableSortComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it("should emit sort event when user click", () => {
-    const sortBtn = fixture.debugElement.query(By.css("#sort-img"));
+  it('should emit sort event when user click', () => {
+    const sortBtn = fixture.debugElement.query(By.css('#sort-img'));
 
-    spyOn(component.sortEvent, "emit");
+    spyOn(component.sortEvent, 'emit');
 
     sortBtn.nativeElement.click();
 

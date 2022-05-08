@@ -1,3 +1,3 @@
-import { IUser } from "./user";
+import { IUser } from './user';
 
-export interface ICredentials extends Pick<IUser, "email" | "password"> {}
+export interface ICredentials extends Pick<IUser, 'email' | 'password'> {}

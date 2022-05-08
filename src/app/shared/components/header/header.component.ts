@@ -1,13 +1,13 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { IUser } from "src/app/shared/interfaces";
-import { AuthService } from "src/app/shared/services/auth/auth.service";
-import { UserService } from "src/app/shared/services/user/user.service";
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IUser } from 'src/app/shared/interfaces';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { UserService } from 'src/app/shared/services/user/user.service';
 
 @Component({
-  selector: "app-header",
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   user!: IUser;
@@ -27,15 +27,15 @@ export class HeaderComponent implements OnInit {
   }
 
   goToProfile() {
-    this.router.navigate(["/profile"]);
+    this.router.navigate(['/profile']);
   }
 
   logout() {
     this.authService.logout();
-    this.router.navigate(["/sign-in"]);
+    this.router.navigate(['/sign-in']);
   }
 
   goToHomePage() {
-    this.router.navigate(["/"]);
+    this.router.navigate(['/']);
   }
 }

@@ -1,7 +1,7 @@
-import { CustomPaginator } from "./CustomPaginator";
+import { CustomPaginator } from './CustomPaginator';
 
-describe("CustomPaginator", () => {
-  it("should calculate and return paginator length string", () => {
+describe('CustomPaginator', () => {
+  it('should calculate and return paginator length string', () => {
     const page = 1;
     const pageSize = 10;
     const length = 100;

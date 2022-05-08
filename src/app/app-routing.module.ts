@@ -1,17 +1,17 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { IsLoggedGuard } from "./shared/guards/isLogged/is-logged.guard";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { IsLoggedGuard } from './shared/guards/isLogged/is-logged.guard';
 
 const routes: Routes = [
   {
-    path: "sign-in",
+    path: 'sign-in',
     loadChildren: () =>
-      import("./modules/sign-in/sign-in.module").then((m) => m.SignInModule),
+      import('./modules/sign-in/sign-in.module').then((m) => m.SignInModule),
   },
   {
-    path: "",
+    path: '',
     loadChildren: () =>
-      import("./modules/home/home.module").then((m) => m.HomeModule),
+      import('./modules/home/home.module').then((m) => m.HomeModule),
     canLoad: [IsLoggedGuard],
   },
 ];

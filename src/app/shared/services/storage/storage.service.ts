@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { StorageKeysEnum } from "../../enums";
+import { Injectable } from '@angular/core';
+import { StorageKeysEnum } from '../../enums';
 
-import { CryptoService } from "../crypto/crypto.service";
+import { CryptoService } from '../crypto/crypto.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class StorageService {
   constructor(private readonly cryptoService: CryptoService) {}
@@ -27,7 +27,7 @@ export class StorageService {
     try {
       return JSON.parse(value);
     } catch (error) {
-      return value ?? "";
+      return value ?? '';
     }
   }
 

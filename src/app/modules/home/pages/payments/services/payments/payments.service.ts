@@ -1,16 +1,16 @@
-import { HttpResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { IHttpParams } from "src/app/shared/interfaces";
-import { HttpService } from "src/app/shared/services/http/http.service";
-import { IFilterParams, IPaginator, IPayment } from "../../interfaces";
+import { HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { IHttpParams } from 'src/app/shared/interfaces';
+import { HttpService } from 'src/app/shared/services/http/http.service';
+import { IFilterParams, IPaginator, IPayment } from '../../interfaces';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class PaymentsService {
-  private readonly apiUrl = "tasks";
+  private readonly apiUrl = 'tasks';
 
   constructor(private readonly httpService: HttpService) {}
 
@@ -21,11 +21,11 @@ export class PaymentsService {
   ): Observable<IPaginator<IPayment[]>> {
     const params: IHttpParams[] = [
       {
-        key: "_page",
+        key: '_page',
         value: String(page),
       },
       {
-        key: "_limit",
+        key: '_limit',
         value: String(limit),
       },
     ];
@@ -45,8 +45,8 @@ export class PaymentsService {
           return {
             page,
             limit,
-            items: <any>body,
-            total: Number(headers.get("X-Total-Count")),
+            items: body as any,
+            total: Number(headers.get('X-Total-Count')),
           };
         })
       );

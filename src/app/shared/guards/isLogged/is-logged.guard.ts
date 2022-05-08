@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { CanLoad, Route, Router, UrlSegment, UrlTree } from "@angular/router";
-import { Observable } from "rxjs";
-import { AuthService } from "../../services/auth/auth.service";
-import { UserService } from "../../services/user/user.service";
+import { Injectable } from '@angular/core';
+import { CanLoad, Route, Router, UrlSegment, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from '../../services/auth/auth.service';
+import { UserService } from '../../services/user/user.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class IsLoggedGuard implements CanLoad {
   constructor(
@@ -26,6 +26,6 @@ export class IsLoggedGuard implements CanLoad {
     }
 
     this.authService.logout();
-    this.router.navigate(["/sign-in"]);
+    this.router.navigate(['/sign-in']);
   }
 }

@@ -1,19 +1,19 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
-} from "@angular/forms";
-import { MaterialModule } from "src/app/shared/modules/material/material.module";
+} from '@angular/forms';
+import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 
-import { Component, OnInit } from "@angular/core";
-import { InputModule } from "./input.module";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { By } from "@angular/platform-browser";
+import { Component, OnInit } from '@angular/core';
+import { InputModule } from './input.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { By } from '@angular/platform-browser';
 
 @Component({
-  selector: "app-mock-test-componenr",
+  selector: 'app-mock-test-componenr',
   template: `
     <form [formGroup]="form">
       <app-input
@@ -53,14 +53,14 @@ export class MockTestComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      name: ["", Validators.required],
-      password: ["", Validators.required],
-      email: ["", [Validators.required, Validators.email]],
+      name: ['', Validators.required],
+      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
     });
   }
 }
 
-describe("InputComponent", () => {
+describe('InputComponent', () => {
   let component: MockTestComponent;
   let fixture: ComponentFixture<MockTestComponent>;
 
@@ -82,71 +82,71 @@ describe("InputComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it("should update form value when user insert value", () => {
-    const nameAppInput = fixture.debugElement.query(By.css("#name"));
-    const nameInput = nameAppInput.query(By.css("#name"));
+  it('should update form value when user insert value', () => {
+    const nameAppInput = fixture.debugElement.query(By.css('#name'));
+    const nameInput = nameAppInput.query(By.css('#name'));
 
-    nameInput.nativeElement.value = "Dummy name";
-    nameInput.nativeElement.dispatchEvent(new Event("input"));
+    nameInput.nativeElement.value = 'Dummy name';
+    nameInput.nativeElement.dispatchEvent(new Event('input'));
 
-    const passwordAppInput = fixture.debugElement.query(By.css("#password"));
-    const passwordInput = passwordAppInput.query(By.css("#password"));
+    const passwordAppInput = fixture.debugElement.query(By.css('#password'));
+    const passwordInput = passwordAppInput.query(By.css('#password'));
 
-    passwordInput.nativeElement.value = "Dummy pass";
-    passwordInput.nativeElement.dispatchEvent(new Event("input"));
+    passwordInput.nativeElement.value = 'Dummy pass';
+    passwordInput.nativeElement.dispatchEvent(new Event('input'));
 
     fixture.detectChanges();
 
-    expect(component.form.get("name").value).toEqual("Dummy name");
-    expect(component.form.get("password").value).toEqual("Dummy pass");
+    expect(component.form.get('name').value).toEqual('Dummy name');
+    expect(component.form.get('password').value).toEqual('Dummy pass');
   });
 
-  it("should show email errors when user try insert wrong email on field", () => {
-    const emailAppInput = fixture.debugElement.query(By.css("#email"));
-    const emailInput = emailAppInput.query(By.css("#email"));
+  it('should show email errors when user try insert wrong email on field', () => {
+    const emailAppInput = fixture.debugElement.query(By.css('#email'));
+    const emailInput = emailAppInput.query(By.css('#email'));
 
-    emailInput.nativeElement.value = "invalid_email";
-    emailInput.nativeElement.dispatchEvent(new Event("input"));
+    emailInput.nativeElement.value = 'invalid_email';
+    emailInput.nativeElement.dispatchEvent(new Event('input'));
 
     fixture.detectChanges();
 
-    expect(component.form.get("email").invalid).toBeTruthy();
-    expect(component.form.get("email").errors).toEqual({ email: true });
+    expect(component.form.get('email').invalid).toBeTruthy();
+    expect(component.form.get('email').errors).toEqual({ email: true });
   });
 
-  it("should set disable on field when form control is disabled", () => {
-    component.form.get("name").disable();
+  it('should set disable on field when form control is disabled', () => {
+    component.form.get('name').disable();
 
     fixture.detectChanges();
 
-    const nameAppInput = fixture.debugElement.query(By.css("#name"));
-    const nameInput = nameAppInput.query(By.css("#name"));
+    const nameAppInput = fixture.debugElement.query(By.css('#name'));
+    const nameInput = nameAppInput.query(By.css('#name'));
 
     expect(nameInput.nativeElement.disabled).toBeTruthy();
   });
 
-  it("should set disable on field when form control is disabled", () => {
-    component.form.get("name").disable();
+  it('should set disable on field when form control is disabled', () => {
+    component.form.get('name').disable();
 
     fixture.detectChanges();
 
-    const nameAppInput = fixture.debugElement.query(By.css("#name"));
-    const nameInput = nameAppInput.query(By.css("#name"));
+    const nameAppInput = fixture.debugElement.query(By.css('#name'));
+    const nameInput = nameAppInput.query(By.css('#name'));
 
     expect(nameInput.nativeElement.disabled).toBeTruthy();
   });
 
-  it("should emit on change event when value on input has changed", () => {
-    component.form.get("name").disable();
+  it('should emit on change event when value on input has changed', () => {
+    component.form.get('name').disable();
 
     fixture.detectChanges();
 
-    const nameAppInput = fixture.debugElement.query(By.css("#name"));
-    const nameInput = nameAppInput.query(By.css("#name"));
+    const nameAppInput = fixture.debugElement.query(By.css('#name'));
+    const nameInput = nameAppInput.query(By.css('#name'));
 
     expect(nameInput.nativeElement.disabled).toBeTruthy();
   });

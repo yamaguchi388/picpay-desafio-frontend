@@ -1,3 +1,3 @@
 export enum StorageKeysEnum {
-  USER = "@PAYFRIENDS_user",
+  USER = '@PAYFRIENDS_user',
 }

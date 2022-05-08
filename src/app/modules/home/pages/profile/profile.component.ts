@@ -1,16 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ToastrService } from "ngx-toastr";
-import { first } from "rxjs/operators";
-import { IUser } from "src/app/shared/interfaces";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { first } from 'rxjs/operators';
+import { IUser } from 'src/app/shared/interfaces';
 
-import { UserService } from "src/app/shared/services/user/user.service";
-import { PasswordCompare } from "src/app/shared/validators";
+import { UserService } from 'src/app/shared/services/user/user.service';
+import { PasswordCompare } from 'src/app/shared/validators';
 
 @Component({
-  selector: "app-profile",
-  templateUrl: "./profile.component.html",
-  styleUrls: ["./profile.component.scss"],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
   private user: IUser;
@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          this.toastrService.success("Usuário alterado com sucesso.");
+          this.toastrService.success('Usuário alterado com sucesso.');
         },
       });
   }

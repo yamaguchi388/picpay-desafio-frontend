@@ -6,14 +6,14 @@ import {
   Input,
   OnInit,
   Output,
-} from "@angular/core";
+} from '@angular/core';
 import {
   ControlValueAccessor,
   FormControlName,
   NgControl,
   NG_VALUE_ACCESSOR,
-} from "@angular/forms";
-import { ValidatorsErrors } from "src/app/shared/enums/ValidatorsErrors.enum";
+} from '@angular/forms';
+import { ValidatorsErrors } from 'src/app/shared/enums/ValidatorsErrors.enum';
 
 const INPUT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -22,15 +22,15 @@ const INPUT_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: "app-input",
-  templateUrl: "./input.component.html",
-  styleUrls: ["./input.component.scss"],
+  selector: 'app-input',
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.scss'],
   providers: [INPUT_VALUE_ACCESSOR],
 })
 export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() id: string;
   @Input() label: string;
-  @Input() placeholder = "";
+  @Input() placeholder = '';
   @Input() type: string;
   @Input() disabled = false;
   @Input() icon: string;
@@ -40,9 +40,9 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   hidePassword = true;
   formControl: NgControl;
 
-  private IS_REQUIRED_MESSAGE = "Este campo é obrigatório";
-  private IS_INVALID_EMAIL = "Insira um e-mail válido";
-  private IS_PASSWORD_NOT_SAME = "As senhas devem ser iguais";
+  private IS_REQUIRED_MESSAGE = 'Este campo é obrigatório';
+  private IS_INVALID_EMAIL = 'Insira um e-mail válido';
+  private IS_PASSWORD_NOT_SAME = 'As senhas devem ser iguais';
 
   constructor(private injector: Injector) {}
 

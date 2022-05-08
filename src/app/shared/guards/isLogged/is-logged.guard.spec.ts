@@ -1,14 +1,14 @@
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { TestBed } from "@angular/core/testing";
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 
-import { IsLoggedGuard } from "./is-logged.guard";
-import { ToastrModule } from "ngx-toastr";
-import { RouterTestingModule } from "@angular/router/testing";
-import { UserService } from "../../services/user/user.service";
-import { AuthService } from "../../services/auth/auth.service";
-import { Router } from "@angular/router";
+import { IsLoggedGuard } from './is-logged.guard';
+import { ToastrModule } from 'ngx-toastr';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UserService } from '../../services/user/user.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
-describe("IsLoggedGuard", () => {
+describe('IsLoggedGuard', () => {
   let guard: IsLoggedGuard;
   let userService: UserService;
   let authService: AuthService;
@@ -29,20 +29,20 @@ describe("IsLoggedGuard", () => {
     router = TestBed.inject(Router);
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(guard).toBeTruthy();
   });
 
-  it("should permit load when user is Logged", () => {
-    spyOn(userService, "getLoggedUser").and.returnValue({
+  it('should permit load when user is Logged', () => {
+    spyOn(userService, 'getLoggedUser').and.returnValue({
       id: 0,
-      name: "usuario",
-      email: "email@email.com",
-      password: "mockuserpass",
+      name: 'usuario',
+      email: 'email@email.com',
+      password: 'mockuserpass',
     });
 
-    spyOn(authService, "logout");
-    spyOn(router, "navigate");
+    spyOn(authService, 'logout');
+    spyOn(router, 'navigate');
 
     const result = guard.canLoad();
 
@@ -52,11 +52,11 @@ describe("IsLoggedGuard", () => {
     expect(router.navigate).not.toHaveBeenCalled();
   });
 
-  it("should redirect user to sign-in when is not logged ", () => {
-    spyOn(userService, "getLoggedUser").and.returnValue(null);
+  it('should redirect user to sign-in when is not logged ', () => {
+    spyOn(userService, 'getLoggedUser').and.returnValue(null);
 
-    spyOn(authService, "logout");
-    spyOn(router, "navigate");
+    spyOn(authService, 'logout');
+    spyOn(router, 'navigate');
 
     const result = guard.canLoad();
 
@@ -64,6 +64,6 @@ describe("IsLoggedGuard", () => {
     expect(userService.getLoggedUser).toHaveBeenCalledTimes(1);
 
     expect(authService.logout).toHaveBeenCalledTimes(1);
-    expect(router.navigate).toHaveBeenCalledWith(["/sign-in"]);
+    expect(router.navigate).toHaveBeenCalledWith(['/sign-in']);
   });
 });

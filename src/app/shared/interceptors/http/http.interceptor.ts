@@ -3,19 +3,19 @@ import {
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
-} from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Router, Routes } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
-import { Observable } from "rxjs";
-import { catchError, first, mergeMap } from "rxjs/operators";
-import { AuthService } from "src/app/shared/services/auth/auth.service";
-import { UserService } from "src/app/shared/services/user/user.service";
-import { environment } from "src/environments/environment";
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router, Routes } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { catchError, first, mergeMap } from 'rxjs/operators';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { UserService } from 'src/app/shared/services/user/user.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class HttpsInterceptor implements HttpInterceptor {
-  private readonly LOGIN_ENDPOINT = "account";
+  private readonly LOGIN_ENDPOINT = 'account';
 
   constructor(
     private readonly authService: AuthService,
@@ -41,9 +41,9 @@ export class HttpsInterceptor implements HttpInterceptor {
         return next.handle(req);
       }),
       catchError((res) => {
-        this.toastr.info("Você precisa realizar o login novamente.");
+        this.toastr.info('Você precisa realizar o login novamente.');
         this.authService.logout();
-        this.router.navigate(["/sign-in"]);
+        this.router.navigate(['/sign-in']);
         throw res;
       })
     );

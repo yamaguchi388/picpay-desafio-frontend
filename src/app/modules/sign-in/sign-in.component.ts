@@ -1,23 +1,23 @@
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { ToastrService } from "ngx-toastr";
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
-import { ICredentials } from "src/app/shared/interfaces";
-import { AuthService } from "src/app/shared/services/auth/auth.service";
-import { first } from "rxjs/operators";
-import { UserService } from "src/app/shared/services/user/user.service";
-import { HttpErrorResponse } from "@angular/common/http";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ICredentials } from 'src/app/shared/interfaces';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { first } from 'rxjs/operators';
+import { UserService } from 'src/app/shared/services/user/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: "app-sign-in",
-  templateUrl: "./sign-in.component.html",
-  styleUrls: ["./sign-in.component.scss"],
+  selector: 'app-sign-in',
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
   form: FormGroup;
-  
-  isUserNotFoundMessage = "";
+
+  isUserNotFoundMessage = '';
   isLoading = false;
   hidePassword = true;
 
@@ -39,8 +39,8 @@ export class SignInComponent {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      email: ["", [Validators.email, Validators.required]],
-      password: ["", Validators.required],
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', Validators.required],
     });
   }
 
@@ -55,8 +55,8 @@ export class SignInComponent {
       .subscribe({
         next: (res) => {
           this.userService.setUserOnSession(res);
-          this.toastr.success("Login realizado com sucesso");
-          this.router.navigate(["/"]);
+          this.toastr.success('Login realizado com sucesso');
+          this.router.navigate(['/']);
         },
         error: ({ error: { errors } }: HttpErrorResponse) => {
           this.isLoading = false;

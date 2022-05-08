@@ -4,25 +4,25 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
-} from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { MatDialog } from "@angular/material/dialog";
-import { MatPaginator, PageEvent } from "@angular/material/paginator";
-import { MatSort, MatSortable } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+} from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort, MatSortable } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
-import { ToastrService } from "ngx-toastr";
-import { Subscription } from "rxjs";
-import { debounceTime, finalize, first } from "rxjs/operators";
-import { DeletePaymentDialogComponent } from "./components/delete-payment-dialog/delete-payment-dialog.component";
-import { NewPaymentDialogComponent } from "./components/new-payment-dialog/new-payment-dialog.component";
-import { IFilterParams, IPaginator, IPayment } from "./interfaces";
-import { PaymentsService } from "./services/payments/payments.service";
+import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { debounceTime, finalize, first } from 'rxjs/operators';
+import { DeletePaymentDialogComponent } from './components/delete-payment-dialog/delete-payment-dialog.component';
+import { NewPaymentDialogComponent } from './components/new-payment-dialog/new-payment-dialog.component';
+import { IFilterParams, IPaginator, IPayment } from './interfaces';
+import { PaymentsService } from './services/payments/payments.service';
 
 @Component({
-  selector: "app-payments",
-  templateUrl: "./payments.component.html",
-  styleUrls: ["./payments.component.scss"],
+  selector: 'app-payments',
+  templateUrl: './payments.component.html',
+  styleUrls: ['./payments.component.scss'],
 })
 export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
   filterForm: FormGroup;
@@ -35,30 +35,30 @@ export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
     items: [],
   };
   displayedColumns: string[] = [
-    "username",
-    "title",
-    "date",
-    "value",
-    "isPayed",
-    "actions",
+    'username',
+    'title',
+    'date',
+    'value',
+    'isPayed',
+    'actions',
   ];
 
   filtersOptions: IFilterParams[] = [
     {
-      key: "Usuário",
-      value: "username",
+      key: 'Usuário',
+      value: 'username',
     },
     {
-      key: "Título",
-      value: "title",
+      key: 'Título',
+      value: 'title',
     },
     {
-      key: "Data",
-      value: "date",
+      key: 'Data',
+      value: 'date',
     },
     {
-      key: "Valor",
-      value: "value",
+      key: 'Valor',
+      value: 'value',
     },
   ];
 
@@ -83,8 +83,8 @@ export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private buildForm() {
     this.filterForm = this.formBuilder.group({
-      key: ["username"],
-      value: [""],
+      key: ['username'],
+      value: [''],
     });
 
     this.filterFormSubscription$ = this.filterForm.valueChanges
@@ -130,9 +130,9 @@ export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   openNewPaymentDialog(data?: IPayment) {
     const dialogRef = this.dialog.open(NewPaymentDialogComponent, {
-      width: "70%",
-      maxHeight: "500px",
-      height: "auto",
+      width: '70%',
+      maxHeight: '500px',
+      height: 'auto',
       data,
     });
 
@@ -140,8 +140,8 @@ export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
       .afterClosed()
       .pipe(first())
       .subscribe((result) => {
-        if (result && !result.id) return this.store(result);
-        if (result && result.id) return this.update(result);
+        if (result && !result.id) { return this.store(result); }
+        if (result && result.id) { return this.update(result); }
       });
   }
 
@@ -151,7 +151,7 @@ export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
       .pipe(first())
       .subscribe({
         next: (res) => {
-          this.toastr.success("Pagamento criado com sucesso!");
+          this.toastr.success('Pagamento criado com sucesso!');
           this.payments.items = [...this.payments.items, res];
           this.payments.total = this.payments.total + 1;
 
@@ -166,9 +166,9 @@ export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          this.toastr.success("Pagamento alterado com sucesso!");
+          this.toastr.success('Pagamento alterado com sucesso!');
           this.payments.items = this.payments.items.map((p) => {
-            if (p.id !== payment.id) return p;
+            if (p.id !== payment.id) { return p; }
             return payment;
           });
 
@@ -179,8 +179,8 @@ export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   openDeleteDialog(data: IPayment) {
     const dialogRef = this.dialog.open(DeletePaymentDialogComponent, {
-      width: "405px",
-      maxHeight: "325pxpx",
+      width: '405px',
+      maxHeight: '325pxpx',
       data,
     });
 
@@ -200,7 +200,7 @@ export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          this.toastr.success("Pagamento excluido com sucesso!");
+          this.toastr.success('Pagamento excluido com sucesso!');
           this.payments.items = this.payments.items.filter(
             (p) => p.id !== payment.id
           );

@@ -1,17 +1,17 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { IPayment } from "../../interfaces";
+import { IPayment } from '../../interfaces';
 
 @Component({
-  selector: "app-new-payment-dialog",
-  templateUrl: "./new-payment-dialog.component.html",
-  styleUrls: ["./new-payment-dialog.component.scss"],
+  selector: 'app-new-payment-dialog',
+  templateUrl: './new-payment-dialog.component.html',
+  styleUrls: ['./new-payment-dialog.component.scss'],
 })
 export class NewPaymentDialogComponent implements OnInit {
   form: FormGroup;
-  title = "Adicionar pagamento";
+  title = 'Adicionar pagamento';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,11 +29,11 @@ export class NewPaymentDialogComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      name: ["", Validators.required],
-      date: ["", Validators.required],
-      username: ["", Validators.required],
-      title: ["", Validators.required],
-      value: ["", [Validators.required, Validators.min(1)]],
+      name: ['', Validators.required],
+      date: ['', Validators.required],
+      username: ['', Validators.required],
+      title: ['', Validators.required],
+      value: ['', [Validators.required, Validators.min(1)]],
     });
 
     if (this.data) {
@@ -47,14 +47,14 @@ export class NewPaymentDialogComponent implements OnInit {
         value,
       });
 
-      this.title = "Alterar pagamento";
+      this.title = 'Alterar pagamento';
     }
   }
 
   private formatDateToDisplayOnInput(date: string) {
-    if (!date) return;
-    
-    const [dateAndHour] = date?.split("Z");
+    if (!date) { return; }
+
+    const [dateAndHour] = date?.split('Z');
     return dateAndHour;
   }
 
@@ -63,7 +63,7 @@ export class NewPaymentDialogComponent implements OnInit {
   }
 
   submitNewGroup() {
-    if (this.formIsInvalid) return;
+    if (this.formIsInvalid) { return; }
 
     const payload = {
       ...this.data,

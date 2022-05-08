@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { TableSortComponent } from "./table-sort.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TableSortComponent } from './table-sort.component';
 
 @NgModule({
   declarations: [TableSortComponent],
