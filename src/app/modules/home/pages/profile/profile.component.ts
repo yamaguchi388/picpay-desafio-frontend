@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { first } from "rxjs/operators";
 import { IUser } from "src/app/shared/interfaces";
-import { AuthService } from "src/app/shared/services/auth/auth.service";
+
 import { UserService } from "src/app/shared/services/user/user.service";
 import { PasswordCompare } from "src/app/shared/validators";
 
@@ -20,8 +20,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly userService: UserService,
-    private readonly toastrService: ToastrService,
-    private readonly authService: AuthService
+    private readonly toastrService: ToastrService
   ) {}
 
   get formIsInvalid() {

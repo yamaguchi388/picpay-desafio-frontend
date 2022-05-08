@@ -33,18 +33,18 @@ describe("AuthService", () => {
   });
 
   it("should return user object when call method sign in in authService", () => {
-    const credentials = {
+    const mockUser = {
       id: 0,
       name: "Dummy User",
       email: "dummy@email.com",
       password: "dummy",
     };
-    const mockUsers: IUser[] = [credentials];
+    const mockUsers: IUser[] = [mockUser];
 
-    service.signIn(credentials).subscribe((result) => {
-      expect(result.email).toEqual(credentials.email);
-      expect(result.name).toEqual(credentials.name);
-      expect(result.id).toEqual(credentials.id);
+    service.signIn(mockUser).subscribe((result) => {
+      expect(result.email).toEqual(mockUser.email);
+      expect(result.name).toEqual(mockUser.name);
+      expect(result.id).toEqual(mockUser.id);
     });
 
     const mockReq = httpMock.expectOne(

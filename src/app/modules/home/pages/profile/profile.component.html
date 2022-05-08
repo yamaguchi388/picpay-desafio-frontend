@@ -41,8 +41,9 @@
     </div>
 
     <div class="profile__buttons-actions-container">
-      <button mat-raised-button (click)="resetForm()">RESETAR</button>
+      <button id="reset-button" mat-raised-button (click)="resetForm()">RESETAR</button>
       <button
+        id="submit-button"
         color="primary"
         mat-raised-button
         [disabled]="formIsInvalid"

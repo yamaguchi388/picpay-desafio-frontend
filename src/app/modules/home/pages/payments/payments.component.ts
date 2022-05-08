@@ -128,7 +128,7 @@ export class PaymentsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  openNewPaymentDialog(data?: any) {
+  openNewPaymentDialog(data?: IPayment) {
     const dialogRef = this.dialog.open(NewPaymentDialogComponent, {
       width: "70%",
       maxHeight: "500px",
