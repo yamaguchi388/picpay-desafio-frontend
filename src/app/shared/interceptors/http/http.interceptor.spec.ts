@@ -22,6 +22,7 @@ describe('HttpsInterceptor', () => {
   let toastr: ToastrService;
   let router: Router;
 
+  let requestMock: HttpRequest<any>;
   let next: any;
 
   beforeEach(() => {
@@ -69,7 +70,7 @@ describe('HttpsInterceptor', () => {
       })
     );
 
-    const requestMock = new HttpRequest('GET', 'http://localhost:3000/account');
+    requestMock = new HttpRequest('GET', 'http://localhost:3000/account');
 
     interceptor.intercept(requestMock, next).subscribe();
 
@@ -104,7 +105,7 @@ describe('HttpsInterceptor', () => {
       })
     );
 
-    const requestMock = new HttpRequest(
+    requestMock = new HttpRequest(
       'GET',
       'http://localhost:3000/payments'
     );
@@ -150,7 +151,7 @@ describe('HttpsInterceptor', () => {
 
     spyOn(next, 'handle');
 
-    const requestMock = new HttpRequest(
+    requestMock = new HttpRequest(
       'GET',
       'http://localhost:3000/payments'
     );
