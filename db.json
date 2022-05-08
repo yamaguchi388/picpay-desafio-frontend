@@ -1,16 +1,6 @@
 {
   "tasks": [
     {
-      "id": 19,
-      "name": "Bruce Martyn",
-      "username": "bmartyni",
-      "title": "Structural Analysis Engineer",
-      "value": 201.28,
-      "date": "2021-02-15T18:14:35",
-      "image": "https://robohash.org/dolorautest.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
       "id": 21,
       "name": "Verla Feedham",
       "username": "vfeedhamk",

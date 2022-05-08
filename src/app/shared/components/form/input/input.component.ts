@@ -39,6 +39,10 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   hidePassword = true;
   formControl: NgControl;
 
+  private readonly ERROR_EMAIL_EMAIL = "email";
+  private readonly ERROR_REQUIRED = "required";
+  private readonly ERROR_NOT_SAME = "notSame";
+
   private IS_REQUIRED_MESSAGE = "Este campo é obrigatório";
   private IS_INVALID_EMAIL = "Insira um e-mail válido";
 
@@ -70,17 +74,21 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   }
 
   getFormControlError(): string | void {
-    const isRequiredError = this.formControl?.hasError("required");
+    const isRequiredError = this.formControl?.hasError(
+      this.ERROR_REQUIRED
+    );
 
     if (isRequiredError) {
       return this.IS_REQUIRED_MESSAGE;
     }
 
-    const isInvalidEmail = this.formControl?.hasError("email");
+    const isInvalidEmail = this.formControl?.hasError(this.ERROR_EMAIL_EMAIL);
 
     if (isInvalidEmail) {
       return this.IS_INVALID_EMAIL;
     }
+
+    const isNotSamePassword = this.formControl?.hasError(this.ERROR_NOT_SAME);
 
     return;
   }
