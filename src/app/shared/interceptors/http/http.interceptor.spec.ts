@@ -22,7 +22,6 @@ describe('HttpsInterceptor', () => {
   let toastr: ToastrService;
   let router: Router;
 
-  let requestMock: HttpRequest<any>;
   let next: any;
 
   beforeEach(() => {

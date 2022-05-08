@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,7 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
 })
-export class SignInComponent {
+export class SignInComponent implements OnInit {
   form: FormGroup;
 
   isUserNotFoundMessage = '';

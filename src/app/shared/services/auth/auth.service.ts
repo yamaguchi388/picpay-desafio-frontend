@@ -1,17 +1,17 @@
-import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { StorageKeysEnum } from '../../enums';
-import { ICredentials, IHttpParams, IUser } from '../../interfaces';
-import { HttpService } from '../http/http.service';
-import { StorageService } from '../storage/storage.service';
+import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { StorageKeysEnum } from "../../enums";
+import { ICredentials, IHttpParams, IUser } from "../../interfaces";
+import { HttpService } from "../http/http.service";
+import { StorageService } from "../storage/storage.service";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class AuthService {
-  private readonly endpoint = 'account';
+  private readonly endpoint = "account";
 
   constructor(
     private readonly httpService: HttpService,
@@ -21,11 +21,11 @@ export class AuthService {
   signIn({ email, password }: ICredentials): Observable<IUser> {
     const params: IHttpParams[] = [
       {
-        key: 'email',
+        key: "email",
         value: email,
       },
       {
-        key: 'password',
+        key: "password",
         value: password,
       },
     ];
@@ -33,11 +33,11 @@ export class AuthService {
     return this.httpService.get<IUser[]>(this.endpoint, params).pipe(
       map((res) => {
         if (res.length) {
-          const { email, name, password, id } = res[0];
-          return { email, name, id, password };
+          const [user] = res;
+          return user;
         }
 
-        const errors = ['Usuário não encontrado.'];
+        const errors = ["Usuário não encontrado."];
 
         throw new HttpErrorResponse({
           error: {
