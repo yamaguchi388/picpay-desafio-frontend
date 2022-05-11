@@ -1,0 +1,35 @@
+<div class="dashboard">
+  <header class="header {{ isSideMenuOpen ? '' : 'header-hide' }}">
+    <div class="header-brand">
+      <div class="header-logo">
+        <img src="assets/img/svg/pay-friends.svg" alt="Logo do PayFriends" [routerLink]="'/core'" />
+      </div>
+    </div>
+
+    <div class="header-profile">
+      <div class="header-logo">
+        <img src="assets/img/svg/perfil.svg" alt="Logo de perfil" [routerLink]="'/core'" />
+      </div>
+      <div class="profile-data">
+        <strong>{{usuarioName}}</strong>
+        <strong>{{perfil}}</strong>
+      </div>
+    </div>
+  </header>
+  <div class="side-nav {{ isSideMenuOpen ? '' : 'side-nav-hide' }}">
+    <nav class="nav">
+      <div class="nav-list">
+        <a *ngFor="let navItem of navItems" (click)="toggleNavigate(navItem)"
+          class="nav-link {{ navItem.active ? 'active' : '' }}">
+          <span class="nav-name">{{ navItem.title }}</span>
+        </a>
+      </div>
+      <div class="nav-list">       
+        <span class="nav-link" (click)="onClickLogout()">
+          <img src="assets/img/svg/logout.svg" alt="Ícone da Página de Logout" />
+          <span class="nav-name">Logout</span>
+        </span>
+      </div>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="row justify-content-md-center">
+  <div class="container">
+    <div class="col-12 col-md-6 bdr">
+      <div class="login-page__form">      
+        <form [formGroup]="userLoginForm">          
+          <div class="form-group">
+            <h3 class="title" style="color: blue;">PayFriends </h3>
+            <h3 class="title">Bem vindo de volta </h3>
+            <div class="input-area">
+              <label for="email">E-mail:</label>
+              <input id="email" type="email" formControlName="email" maxlength="50" />
+              <span
+                class="error"
+                *ngIf="
+                  userLoginForm.get('email')?.errors?.required &&
+                  userLoginForm.get('email')?.touched
+                "
+              >
+                Campo obrigatório
+              </span>
+              <span
+                class="error"
+                *ngIf="
+                  userLoginForm.get('email')?.errors?.email &&
+                  userLoginForm.get('email')?.touched
+                "
+              >
+                Email em formato inválido
+              </span>
+              <span
+                class="error"
+                  *ngIf="
+                  userLoginForm.get('email')?.errors?.lowercase &&
+                  userLoginForm.get('email')?.touched
+                "
+              >
+                Email não pode ter caracteres maiúsculos
+              </span>
+            </div>
+            <div class="input-area">
+              <label for="password">Password:</label>
+              <input
+                id="password"
+                type="password"
+                formControlName="password"
+                maxlength="50"
+              />
+              <span
+                class="error"
+                *ngIf="
+                  userLoginForm.get('password')?.errors?.required &&
+                  userLoginForm.get('password')?.touched
+                "
+              >
+                Campo obrigatório
+              </span>
+              <span
+                class="error"
+                *ngIf="
+                  userLoginForm.get('password')?.errors?.minlength &&
+                  userLoginForm.get('password')?.touched
+                "
+              >
+                Campo devem conter ao menos 7 caracteres
+              </span>
+
+            </div>
+
+            <button type="submit" [disabled]="userLoginForm.invalid" (click)="onSubmit()">
+              Entrar
+            </button>
+          </div>
+        </form>    
+      </div>
+    </div>
+    <div class="col-12 col-md-6 login-page__image-column">
+      <div class="login-page__image">
+        <img src="assets/img/login.jpg" alt="Login PicPay Pagamentos">
+      </div>
+    </div>
+  </div>
+</div>
