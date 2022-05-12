@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 login-form">
+            <div>
+                <img src="../../../assets/Logo.png" />
+            </div>
+            <div class="bem-vindo-volta">
+                Bem vindo de volta
+            </div>
+            <form [formGroup]="formLogin" novalidate>
+                <mat-form-field appearance="outline" class="form-field-full">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="Ex. perukas@example.com">
+                    <mat-error *ngIf="formLogin.get('email').hasError('email') && formLogin.get('email').touched">
+                        Por favor informe um email válido
+                    </mat-error>
+                    <mat-error *ngIf="formLogin.get('email').hasError('required') && formLogin.get('email').touched">
+                        Email é <strong>obrigatório</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-field-full">
+                    <mat-label>Senha</mat-label>
+                    <input type="password" matInput formControlName="password">
+                    <mat-error *ngIf="formLogin.get('password').invalid && formLogin.get('password').touched">Senha é
+                        <strong>obrigatória</strong>
+                    </mat-error>
+                </mat-form-field>
+            </form>
+            <button class="btn-entrar" (click)="logar()">Entrar</button>
+        </div>
+        <div class="col-md-9 img-login-form">
+            <img src="../../../assets/img-tela-login.svg" alt="Kiwi standing on oval">
+        </div>
+    </div>
+</div>
