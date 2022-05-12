@@ -1,0 +1,34 @@
+<div class="login-wrapper w-full h-full flex items-center">
+  <aside class="login-aside w-1/2 h-full flex flex-col items-center justify-center">
+    <img src="assets/images/logo.svg" width="150" class="mb-4" />
+
+    <h2 class="font-bold">Bem vindo de volta</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="flex flex-col w-1/2 mb-2">
+      <mat-form-field appearance="outline" class="mb-2">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" email />
+        <mat-error *ngIf="loginForm.controls.email?.hasError && loginForm.controls.email?.hasError('required')"
+          >Por favor digite um email</mat-error
+        >
+        <mat-error *ngIf="loginForm.controls.email?.hasError && loginForm.controls.email?.hasError('email')"
+          >Email inválido</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="mb-2">
+        <mat-label>Senha</mat-label>
+        <mat-icon matSuffix (click)="showPassword = !showPassword">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        <input matInput formControlName="password" [type]="showPassword ? 'text' : 'password'" />
+        <mat-error *ngIf="loginForm.controls.password?.hasError && loginForm.controls.password?.hasError('required')"
+          >Por favor, digite uma senha</mat-error
+        >
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" [disabled]="loginForm.invalid">ENTRAR</button>
+    </form>
+  </aside>
+  <aside class="image-aside w-1/2 px-16">
+    <img src="assets/images/login.svg" />
+  </aside>
+</div>
