@@ -12,6 +12,6 @@ const declarations = [LoginComponent];
 @NgModule({
   exports: declarations,
   declarations,
-  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatButtonModule , MatIconModule],
+  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatIconModule],
 })
 export class LoginModule {}

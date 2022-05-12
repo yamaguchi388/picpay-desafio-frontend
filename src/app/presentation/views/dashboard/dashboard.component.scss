@@ -1,0 +1,17 @@
+@import '_variables';
+
+.dashboard-wrapper {
+  background: $background-gray;
+}
+
+.secondary-text {
+  color: $secondary-text;
+}
+
+:host {
+  ::ng-deep {
+    tr.mat-row {
+      height: 64px;
+    }
+  }
+}
