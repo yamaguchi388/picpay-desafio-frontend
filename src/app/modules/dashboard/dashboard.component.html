@@ -18,7 +18,7 @@
   </header>
   <div class="side-nav {{ isSideMenuOpen ? '' : 'side-nav-hide' }}">
     <nav class="nav">
-      <div class="nav-list">
+      <div class="nav-list" style="margin-top: 70px;">
         <a *ngFor="let navItem of navItems" (click)="toggleNavigate(navItem)"
           class="nav-link {{ navItem.active ? 'active' : '' }}">
           <span class="nav-name">{{ navItem.title }}</span>
@@ -32,4 +32,7 @@
       </div>
     </nav>
   </div>
-</div>
+
+  <div class="content {{ isSideMenuOpen ? '' : 'content-hide' }}">
+    <router-outlet></router-outlet>
+  </div>

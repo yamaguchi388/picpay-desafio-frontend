@@ -5,6 +5,7 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const COMPONENTS = [
   LoginComponent,
@@ -13,6 +14,6 @@ const COMPONENTS = [
 
 @NgModule({
   declarations: [...COMPONENTS],
-  imports: [CommonModule, LoginRoutingModule, ReactiveFormsModule, RouterModule ],
+  imports: [CommonModule, LoginRoutingModule, ReactiveFormsModule, RouterModule, SharedModule],
 })
 export class LoginModule {}

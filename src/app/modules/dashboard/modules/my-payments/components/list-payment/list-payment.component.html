@@ -1,0 +1,119 @@
+<div class="container" style="padding: 30px;">
+  <div class="row box-content">
+    <div class="col-12" style="display:flex;">
+      <h3 class="box-content-title">Meus Pagamentos</h3>
+    </div>
+  </div>
+
+  <div class="box-form">
+      <div>
+        <form>
+          <div class="row" style="justify-content: space-between; display: flex;">
+            <div>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Usuário</mat-label>
+                <input type="text" matInput [formControl]="form.controls.name"/>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Título</mat-label>
+                <input type="text" matInput [formControl]="form.controls.title" />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Período</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input matStartDate placeholder="Início" [formControl]="form.controls.startDate" />
+                  <input matEndDate placeholder="Fim" [formControl]="form.controls.endDate" />
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+            </div>
+            <div>
+              <picpay-button
+                [tipo]="'button'"
+                [fixHeight]="'52px'"
+                [class]="'btn btn-outline-picpay w-100 mt-1'"
+                [label]="'Pesquisar'"
+                (click)="filterPayments()"
+              ></picpay-button>
+            </div>
+            <div>
+              <picpay-button
+                [tipo]="'button'"
+                [fixHeight]="'52px'"
+                [class]="'btn btn-outline-picpay w-100 mt-1'"
+                [label]="'Limpar'"
+                (click)="cleanSearch()"
+              ></picpay-button>
+            </div>
+          </div>
+        </form>
+      </div>
+    <div>
+      <div class="row"  style="justify-content: space-between; display: flex; justify-content: flex-end; column-gap: 10px;">
+        <div class="col-12">
+          <picpay-button
+            [tipo]="'button'"
+            [fixHeight]="'52px'"
+            [class]="'btn btn-primary w-100 mt-1'"
+            [label]="'Adicionar Pagamento'"
+            (click)="addPayment()"
+          ></picpay-button>
+        </div>
+      </div>  
+    </div>
+    <div class="col-12" style="margin-top: 20px;">
+      <div>
+        <table class="table table-borderless table-payment">
+          <thead>
+            <tr>
+              <th style="max-width: 250px !important; width: 250px; padding-bottom: 15px;" scope="col">
+                Usuário
+                <img src="assets/img/svg/ordenar-tabela.svg" alt="Ícone de Ordenar Tabela" class="ms-1" />
+              </th>
+              <th style="max-width: 200px !important;width: 200px; padding-bottom: 15px;" scope="col">
+                Título
+                <img src="assets/img/svg/ordenar-tabela.svg" alt="Ícone de Ordenar Tabela" class="ms-1" />
+              </th>
+              <th style="max-width: 200px !important;width: 200px; padding-bottom: 15px;" scope="col">
+                Data
+                <img src="assets/img/svg/ordenar-tabela.svg" alt="Ícone de Ordenar Tabela" class="ms-1" />
+              </th>
+              <th style="max-width: 200px !important;width: 200px; padding-bottom: 15px;" scope="col">
+                Valor
+                <img src="assets/img/svg/ordenar-tabela.svg" alt="Ícone de Ordenar Tabela" class="ms-1" />
+              </th>
+              <th style="max-width: 50px !important;width: 50px; padding-bottom: 15px;" scope="col">
+                Pago
+                <img src="assets/img/svg/ordenar-tabela.svg" alt="Ícone de Ordenar Tabela" class="ms-1" />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="align-middle" *ngFor="let payment of payments">
+              <td>{{ payment.name}}
+                <br style="font-size: 12px">
+                @{{ payment.username }}
+              </td>
+              <td>{{ payment.title}}</td>
+              <td>{{ payment.date | date:'dd/MM/yyyy HH:mm'}}</td>
+              <td>{{ payment.value}}</td>
+              <td>
+                <mat-checkbox [checked]="payment.isPayed" [disabled]="true" color="primary"></mat-checkbox>
+              </td>
+            </tr>            
+          </tbody>
+        </table>
+      </div>
+      <mat-paginator #paginatorPayment [length]="paymentLength" [pageSize]="paymentPageSize"
+            [pageSizeOptions]="paymentPageSizeOptions" (page)="changePaymentPage($event)"
+            aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+  

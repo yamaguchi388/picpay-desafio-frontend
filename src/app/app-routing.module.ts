@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './modules/login/login.component';
+import { SharedModule } from './shared/shared.module';
 
 
 const routes: Routes = [
@@ -23,7 +24,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), SharedModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

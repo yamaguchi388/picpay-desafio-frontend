@@ -1,0 +1,12 @@
+<button 
+  type={{tipo}} 
+  class={{class}} 
+  (click)="onClick($event)" 
+  [disabled]="(disabled || loading) || false" 
+  [style.width]="fixWidth || ''"
+  [style.height]="fixHeight || ''"
+>
+  {{ label }}
+  <img *ngIf="icon" src={{icon}} />
+  <span class="spinner-border spinner-border-sm ml-2" role="status" *ngIf="(loading || false) || false"></span>
+</button>

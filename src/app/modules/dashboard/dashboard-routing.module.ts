@@ -13,7 +13,7 @@ const routes: Routes = [
       },
       {
         path: 'account',
-        loadChildren: () => import('./modules/my-payments/payment.module').then(m => m.PaymentModule)
+        loadChildren: () => import('./modules/my-account/account.module').then(m => m.AccountModule)
       },
     ],
   },

@@ -11,11 +11,7 @@ const routes: Routes = [
       {
         path: '',
         component: ListPaymentsComponent,
-      },
-      // {
-      //   path: 'detalhes',
-      //   component: PaymentDetailsComponent,
-      // },
+      }
     ],
   },
 ];
