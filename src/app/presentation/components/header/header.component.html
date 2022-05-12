@@ -1,0 +1,12 @@
+<header class="header-wrapper flex items-center justify-between p-4">
+  <img src="assets/images/logo-white.svg" />
+
+  <div class="user-picture" class="h-full p-2">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="w-16">
+      <img src="assets/images/user-placeholder.png" class="w-auto h-full" />
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </div>
+</header>
