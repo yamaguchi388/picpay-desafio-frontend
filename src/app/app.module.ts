@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
+import { MatMenuModule } from '@angular/material/menu'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatToolbarModule } from '@angular/material/toolbar'
@@ -14,10 +15,11 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { CockpitComponent } from './components/cockpit/cockpit.component'
 import { HomeComponent } from './components/home/home.component'
-import { LoginComponent } from './components/login/login.component'
+import { LoginComponent } from './components/login/login.component';
+import { MyPaymentsComponent } from './my-payments/my-payments.component'
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, CockpitComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent, CockpitComponent, MyPaymentsComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -28,6 +30,7 @@ import { LoginComponent } from './components/login/login.component'
     MatCardModule,
     MatIconModule,
     MatInputModule,
+    MatMenuModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
