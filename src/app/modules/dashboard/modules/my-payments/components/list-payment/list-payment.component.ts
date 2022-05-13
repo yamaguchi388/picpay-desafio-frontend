@@ -240,14 +240,12 @@ export class ListPaymentsComponent implements OnInit {
     dialogPass.afterClosed().subscribe((payment) => {
       if (payment) {
         this.paymentService.detelePayment(data)
-        .subscribe( _ => {      
-            this.payments = this.payments.filter((pay) => pay.id !== payment.id);
-            this.dataSource = new MatTableDataSource(this.payments);
-            this.dataSource.sort = this.sort;
-            this.sweetAlertService.show({
-              icon: 'success',
-              text: `Pagamento excluido com sucesso.`
-            });
+        .subscribe( _ => {
+          this.sweetAlertService.show({
+            icon: 'success',
+            text: `Pagamento excluido com sucesso.`
+          });
+          this.filterPayments();   
           },
           (error) => {
             console.log(error);
