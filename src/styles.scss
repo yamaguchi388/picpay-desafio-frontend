@@ -23,3 +23,35 @@ body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
 }
+
+.table-horizontal-mobile {
+  @media only screen and (max-width: 640px) {
+    & th {
+      display: none;
+    }
+
+    & tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: 0.625em;
+      height: auto !important;
+    }
+
+    & td {
+      padding: 0.5rem !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: none !important;
+
+      &:before {
+        content: attr(data-label);
+        min-width: fit-content;
+      }
+
+      & > * {
+        margin: auto;
+      }
+    }
+  }
+}

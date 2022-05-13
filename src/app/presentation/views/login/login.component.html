@@ -1,10 +1,10 @@
-<div class="login-wrapper w-full h-full flex items-center">
-  <aside class="login-aside w-1/2 h-full flex flex-col items-center justify-center">
+<div class="login-wrapper w-full h-full flex flex-col sm:flex-row items-center">
+  <aside class="login-aside w-full sm:w-1/2 h-full flex flex-col items-center justify-center">
     <img src="assets/images/logo.svg" width="150" class="mb-4" />
 
     <h2 class="font-bold">Bem vindo de volta</h2>
 
-    <form [formGroup]="loginForm" (ngSubmit)="login()" class="flex flex-col w-1/2 mb-2">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="flex flex-col w-3/4 sm:w-1/2 mb-2">
       <mat-form-field appearance="outline" class="mb-2">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" type="email" email />
@@ -28,7 +28,7 @@
       <button mat-flat-button color="primary" [disabled]="loginForm.invalid">ENTRAR</button>
     </form>
   </aside>
-  <aside class="image-aside w-1/2 px-16">
+  <aside class="image-aside hidden sm:flex w-full sm:w-1/2 px-16">
     <img src="assets/images/login.svg" />
   </aside>
 </div>

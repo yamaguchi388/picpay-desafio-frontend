@@ -2,24 +2,24 @@
   <h1>Editar pagamento</h1>
 
   <form [formGroup]="editPaymentForm" (ngSubmit)="editPayment()" class="flex items-center justify-between flex-wrap">
-    <mat-form-field appearance="outline" class="form-input mb-2">
+    <mat-form-field appearance="outline" class="w-full form-input mb-2">
       <mat-label>Nome</mat-label>
       <input matInput required formControlName="name" />
       <mat-error>Este campo é obrigatório</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="form-input mb-2">
+    <mat-form-field appearance="outline" class="w-full form-input mb-2">
       <mat-label>Usuário</mat-label>
       <input matInput formControlName="username" />
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="form-input mb-2">
+    <mat-form-field appearance="outline" class="w-full form-input mb-2">
       <mat-label>Valor</mat-label>
       <input matInput required formControlName="value" prefix="R$ " mask="separator.0" thousandSeparator="," />
       <mat-error>Este campo é obrigatório</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="form-input mb-2">
+    <mat-form-field appearance="outline" class="w-full form-input mb-2">
       <mat-label>Data</mat-label>
       <input matInput readonly required [matDatepicker]="datepicker" formControlName="date" />
       <mat-error>Este campo é obrigatório</mat-error>
@@ -28,10 +28,16 @@
       <mat-datepicker #datepicker> </mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="form-input mb-2">
+    <mat-form-field appearance="outline" class="w-full form-input mb-2">
       <mat-label>Título</mat-label>
       <input matInput formControlName="title" />
     </mat-form-field>
+    
+    <div class="flex items-center w-full">
+      <span class="mr-4">Pago</span>
+      <mat-checkbox formControlName="isPayed" [checked]="editPaymentForm.get('isPayed')"></mat-checkbox>
+    </div>
+
 
     <div class="actions w-full flex justify-end">
       <button mat-flat-button color="secondary" type="button" (click)="close()">Cancelar</button>

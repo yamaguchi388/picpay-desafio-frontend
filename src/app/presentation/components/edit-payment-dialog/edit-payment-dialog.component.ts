@@ -34,6 +34,7 @@ export class EditPaymentDialogComponent implements OnInit, OnDestroy {
       date: [this.payment.date, Validators.required],
       value: [this.payment.value, Validators.required],
       title: [this.payment.title],
+      isPayed: [this.payment.isPayed],
     });
   }
 
