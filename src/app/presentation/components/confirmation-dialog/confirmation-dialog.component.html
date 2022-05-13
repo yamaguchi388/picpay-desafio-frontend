@@ -1,0 +1,11 @@
+<main class="confirmation-dialog-wrapper flex items-center h-full">
+  <div class="flex flex-col justify-between h-full w-full">
+    <h1>{{ title }}</h1>
+    <p>{{ message }}</p>
+
+    <div class="actions flex items-center justify-between">
+      <button mat-flat-button color="secondary" (click)="cancel()">Não</button>
+      <button mat-flat-button color="primary" (click)="confirm()">Sim</button>
+    </div>
+  </div>
+</main>
