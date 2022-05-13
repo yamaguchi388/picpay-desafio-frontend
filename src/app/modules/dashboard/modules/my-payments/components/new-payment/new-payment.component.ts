@@ -1,63 +1,68 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IPayment } from 'src/app/shared/interfaces/payment';
-import { PaymentService } from 'src/app/shared/services/payment.service';
-import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'new-payment',
+  selector: 'app-new-payment',
   templateUrl: './new-payment.component.html',
   styleUrls: ['./new-payment.component.scss'],
 })
-export class NewPaymentComponent implements OnInit {
 
-  public form: FormGroup;
-  payments: IPayment[];
-  pago: boolean = false;
-  paymentLength: number = 100;
-  paymentPageSize: number = 10;
-  paymentPageSizeOptions: number[] = [5, 10, 25, 100];
-  paymentPageEvent: number = 0;
-  loading: boolean = false;
+export class NewPaymentComponent implements OnInit {
+  form: FormGroup;
+  title = 'Adicionar pagamento';
 
   constructor(
-    public formBuilder: FormBuilder,
-    private paymentService: PaymentService,
-    private sweetAlertService: SweetAlertService,
-    public dialog: MatDialog,
+    private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<NewPaymentComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: IPayment
   ) {}
+
+  get formIsInvalid() {
+    return this.form.invalid;
+  }
 
   ngOnInit(): void {
     this.createForm();
   }
 
   createForm() {
-    let today = new Date()
-    today.setHours(0,0,0,0);
     this.form = this.formBuilder.group({
-      name: new FormControl('', []),
-      title: new FormControl('', []),
-      startDate: new FormControl(today, []),
-      endDate: new FormControl(today, []),
+      name: ['', Validators.required],
+      username: ['', Validators.required],
+      value: ['', [Validators.required, Validators.min(1)]],
+      date: ['', Validators.required],
+      title: ['', Validators.required],
     })
+
+    if (this.data) {
+      this.title = 'Alterar pagamento';
+      const { name, username, value, date, title} = this.data;
+
+      this.form.patchValue({
+        name,
+        date: this.formatDate(date),
+        username,
+        title,
+        value,
+      });
+
+    }
   }
 
-  cleanSearch() {
-    this.form.reset()
+  public formatDate(date: string) {
+    if (!date) { return; }
+    return date?.split('Z');;
   }
 
-  onOrderBy(orderBy: string){
-    console.log('Ordenar', orderBy)
-  }
-
-  addPayment() {
-    
-  }
-
-  close(): void {
+  cancelAddPayment(): void {
     this.dialogRef.close();
   }
 
+  addPayment() {
+    if (this.formIsInvalid) { return; }
+    const data = { ...this.data, ...this.form.getRawValue() };
+    this.dialogRef.close(data);
+  }
 }

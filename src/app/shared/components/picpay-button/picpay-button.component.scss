@@ -3,7 +3,7 @@
 }
 
 .btn {
-  height: 50px;
+  height: 60px;
   border-radius: 5px;
   font-weight: bold;
   font-size: 20px;
@@ -42,20 +42,20 @@
 }
 
 .btn-outline-danger {
-  border-color: var(--vermelho-btn) !important;
-  color: var(--vermelho-btn) !important;
+  border-color:red !important;
+  color: red !important;
 
   &:hover {
-    background-color: var(--vermelho-btn) !important;
-    color: var(--branco) !important;
+    background-color: red !important;
+    color:white !important;
   }
 }
 
 
 .btn-success {
-  border-color: var(--verde) !important;
-  background-color: var(--verde) !important;
-  color: var(--branco) !important;
+  border-color: green !important;
+  background-color: green !important;
+  color: white !important;
 
   &:disabled {
     opacity: 0.5;
@@ -63,19 +63,19 @@
 }
 
 .btn-muted {
-  border-color: var(--cinza-claro) !important;
-  background-color: var(--cinza-claro) !important;
+  border-color: aeb0b8 !important;
+  background-color: aeb0b8 !important;
   color: #aeb0b8 !important;
 }
 
 .btn-outline-picpay {
   border-color: #002D69 !important;
   color: #002D69 !important;
-  background-color: var(--branco) !important;
+  background-color: white !important;
 
   &:hover {
     background-color: #002D69 !important;
-    color: var(--branco) !important;
+    color: white !important;
   }
 
   &:disabled {

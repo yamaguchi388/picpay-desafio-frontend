@@ -19,7 +19,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { PicpayButtonModule } from './button-component/picpay-button.module';
+import { PicpayButtonModule } from './components/picpay-button/picpay-button.module';
 
 const SHARED_MODULES = [
   MatTooltipModule,

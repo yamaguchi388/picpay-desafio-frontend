@@ -1,0 +1,22 @@
+<div class="modal-delete">
+  <span class="title">Excluir Pagamento</span>
+
+  <div class="box-detail">
+    <p>Usuário: {{ data.name }}</p>
+    <p>Data: {{ data.date | date: "shortDate" }}</p>
+    <p>Valor: {{ data.value | currency: "BRL" }}</p>
+  </div>
+
+  <div mat-dialog-actions class="btn-action">
+    <button id="cancel-btn" mat-button (click)="onNoClick()">CANCELAR</button>
+    <button
+      id="confirm-btn"
+      mat-raised-button
+      cdkFocusInitial
+      (click)="onDelete()"
+      color="primary"
+    >
+      SALVAR
+    </button>
+  </div>
+</div>

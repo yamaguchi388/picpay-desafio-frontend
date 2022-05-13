@@ -1,0 +1,31 @@
+.modal-delete {
+  width: 100%;
+
+  .title {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .box-detail {
+    width: 164px;
+    height: 200px;
+    margin: 40px 0px -60px 28px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 00.15px;
+  }
+
+  .btn-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      width: 150px;
+    }
+  }
+}

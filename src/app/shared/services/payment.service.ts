@@ -23,6 +23,19 @@ export class PaymentService {
       .get<IPayment>(`${this.urlAccount}?_page=${query.page}&_limit=${query.limit}${filterName}${filterTitle}`)
   }
 
+  savePayment(payment: IPayment) {
+    payment.isPayed = false;
+    return this.http.post<IPayment>(this.urlAccount, payment);
+  }
+  
+  updatePayment(payment: IPayment) {
+    return this.http.put<IPayment>(`${this.urlAccount}/${payment.id}`, payment);
+  }
+
+  detelePayment(payment: IPayment) {
+    return this.http.delete<IPayment>(`${this.urlAccount}/${payment.id}`);
+  }
+
   logout() {
     this.subjUser$.next(null);
   }

@@ -1,0 +1,20 @@
+.modal-edit {
+  width: 100%;
+
+  .title {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .btn-action {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    button {
+      width: 150px;
+    }
+  }
+}

@@ -1,21 +1,77 @@
-<div class="container" style="padding: 30px;">
-  <div class="row" style="display: flex;">
-    <div class="title">
-      <h3>{{ 'Adicionar pagamento' }}</h3>
+<div class="modal-new-payment">
+  <span class="title">{{ title }}</span>
+
+  <form class="form-column">
+    <div class="row">
+      <div class="col-12 col-md-6 column">
+        <input
+          id="name"
+          style="height: 52px; border-radius: 5px; width: 260px"
+          label="Nome*"
+          placeholder="Nome*"
+          [formControl]="form.controls.name"
+        >
+      </div>
+      <div class="col-12 col-md-6 column">
+        <input
+          id="username"
+          style="height: 52px; border-radius: 5px; width: 260px"
+          label="Usuário*"
+          placeholder="Usuário*"
+          [formControl]="form.controls.username"
+        >
+      </div>
+      <div class="col-12 col-md-6 column">
+        <input
+          id="date"
+          style="height: 52px; border-radius: 5px; width: 260px"
+          label="Data*"
+          type="datetime-local"
+          placeholder="Data*"
+          [formControl]="form.controls.date"
+        >
+      </div>
     </div>
-    <img src="assets/img/svg/fechar.svg" alt="Ícone de Fechar" (click)="close()" />
+    <div class="row">
+      <div class="col-12 col-md-6 column">
+        <input
+          id="value"
+          label="Valor*"
+          style="height: 52px; border-radius: 5px; width: 260px"
+          placeholder="Valor*"
+          [formControl]="form.controls.value"
+        >
+      </div>
+      <div class="col-12 col-md-6 column">
+        <input
+          id="title"
+          style="height: 52px; border-radius: 5px; width: 260px"
+          label="Título*"
+          placeholder="Título*"
+          [formControl]="form.controls.title"
+        >
+      </div>
+    </div>
+  </form>
 
+  <div class="btn-action">
+    <button
+      id="cancel-btn"
+      type="button"
+      mat-raised-button
+      (click)="cancelAddPayment()"
+    >
+      CANCELAR
+    </button>
+    <button
+      id="submit-btn"
+      [disabled]="formIsInvalid"
+      type="submit"
+      mat-raised-button
+      color="primary"
+      (click)="addPayment()"
+    >
+      SALVAR
+    </button>
   </div>
-
-  <div class="w-100 d-flex flex-column">
-    <!-- <form>
-        <div class="row">
-            <mat-form-field appearance="outline" class="col-4">
-                <mat-label>Valor (R$)</mat-label>
-                <input type="text" currencyMask matInput [formControl]="form.controls.price" />
-                <mat-icon *ngIf='form.controls.price.valid' matSuffix>done</mat-icon>
-            </mat-form-field>
-        </div>
-    </form> -->
 </div>
-  

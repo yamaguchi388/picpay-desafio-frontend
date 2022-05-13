@@ -1,0 +1,19 @@
+<div class="modal-edit">
+  <span class="title">ALterar Pagamento</span>
+  
+  <span class="title">
+    Deseja realmente alterar o status de pagamento de {{ data.name }} para Nao pago?</span>
+
+  <div mat-dialog-actions class="btn-action">
+    <button id="cancel-btn" mat-button (click)="cancel()">CANCELAR</button>
+    <button
+      id="confirm-btn"
+      mat-raised-button
+      cdkFocusInitial
+      (click)="updatePayment()"
+      color="primary"
+    >
+      SIM
+    </button>
+  </div>
+</div>

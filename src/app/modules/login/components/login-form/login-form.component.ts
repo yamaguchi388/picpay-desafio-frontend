@@ -53,10 +53,10 @@ export class LoginFormComponent implements OnInit {
           console.log(user);
           const usuario = user[0]
           this.router.navigate(['core']);
-          this.sweetAlertService.show({
-            icon: 'success',
-            text: `Bem vindo novamente ${usuario?.name}!`
-          });   
+          // this.sweetAlertService.show({
+          //   icon: 'success',
+          //   text: `Bem vindo novamente ${usuario?.name}!`
+          // });   
         },
         (err) => {
           console.log(err);

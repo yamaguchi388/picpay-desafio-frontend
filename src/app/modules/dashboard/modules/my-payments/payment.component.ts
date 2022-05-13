@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-payment',
@@ -7,11 +7,15 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 })
 
 export class PaymentComponent implements OnInit {
+  public isSideMenuOpen: boolean = true;
 
   constructor() {}
 
   ngOnInit(): void {
-    console.log("aquiiiiii")
+  }
+
+  public toggleSideMenu() {
+    this.isSideMenuOpen = !this.isSideMenuOpen;
   }
 }
 
