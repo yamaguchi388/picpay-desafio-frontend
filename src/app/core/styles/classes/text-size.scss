@@ -1,0 +1,24 @@
+@import "../tokens/font-size.scss";
+
+.text-sm {
+  font-size: $font-size-sm;
+}
+
+.text-base {
+  font-size: $font-size-base;
+}
+
+.text-lg {
+  font-size: $font-size-lg;
+}
+.text-xl {
+  font-size: $font-size-xl;
+}
+
+.text-2xl {
+  font-size: $font-size-2xl;
+}
+
+.text-3xl {
+  font-size: $font-size-3xl;
+}
