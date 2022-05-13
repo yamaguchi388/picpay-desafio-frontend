@@ -4,52 +4,59 @@
   <form class="form-column">
     <div class="row">
       <div class="col-12 col-md-6 column">
-        <input
-          id="name"
-          style="height: 52px; border-radius: 5px; width: 260px"
-          label="Nome*"
-          placeholder="Nome*"
-          [formControl]="form.controls.name"
-        >
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Nome*</mat-label>
+          <input 
+            type="text" 
+            placeholder="Nome*" 
+            [formControl]="form.controls.name" 
+            matInput/>
+        </mat-form-field>
       </div>
       <div class="col-12 col-md-6 column">
-        <input
-          id="username"
-          style="height: 52px; border-radius: 5px; width: 260px"
-          label="Usuário*"
-          placeholder="Usuário*"
-          [formControl]="form.controls.username"
-        >
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Usuário*</mat-label>
+          <input 
+            type="text" 
+            placeholder="Usuário*" 
+            [formControl]="form.controls.username" 
+            matInput/>
+        </mat-form-field>
       </div>
       <div class="col-12 col-md-6 column">
-        <input
-          id="date"
-          style="height: 52px; border-radius: 5px; width: 260px"
-          label="Data*"
-          type="datetime-local"
-          placeholder="Data*"
-          [formControl]="form.controls.date"
-        >
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Data*</mat-label>
+          <input 
+            type="text" 
+            placeholder="Data*"
+            type="datetime-local"
+            name="bdaytime"
+            [formControl]="form.controls.date" 
+            matInput/>
+        </mat-form-field>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-md-6 column">
-        <input
-          id="value"
-          label="Valor*"
-          style="height: 52px; border-radius: 5px; width: 260px"
-          placeholder="Valor*"
-          [formControl]="form.controls.value"
-        >
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Valor*</mat-label>
+          <input 
+            type="text" 
+            placeholder="Valor*" 
+            currencyMask
+            [formControl]="form.controls.value" 
+            matInput/>
+        </mat-form-field>
       </div>
       <div class="col-12 col-md-6 column">
-        <input
-          id="title"
-          style="height: 52px; border-radius: 5px; width: 260px"
-          label="Título*"
-          placeholder="Título*"
-          [formControl]="form.controls.title"
-        >
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Título*</mat-label>
+          <input 
+            type="text" 
+            placeholder="Título*" 
+            [formControl]="form.controls.title" 
+            matInput/>
+        </mat-form-field>
       </div>
     </div>
   </form>

@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~12.1.4",
     "@angular/router": "~12.1.4",
     "moment": "^2.29.3",
+    "ng2-currency-mask": "^13.0.3",
     "rxjs": "~6.6.7",
     "sweetalert2": "^11.4.13",
     "tslib": "^2.0.0",

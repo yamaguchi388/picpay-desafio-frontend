@@ -20,6 +20,18 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { PicpayButtonModule } from './components/picpay-button/picpay-button.module';
+import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
+
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: 'left',
+  allowNegative: true,
+  decimal: ',',
+  precision: 2,
+  prefix: 'R$ ',
+  suffix: '',
+  thousands: '.',
+};
 
 const SHARED_MODULES = [
   MatTooltipModule,
@@ -42,12 +54,21 @@ const SHARED_MODULES = [
   MatRadioModule,
   MatExpansionModule,
   MatCardModule,
-  PicpayButtonModule
+  PicpayButtonModule,
+  CurrencyMaskModule
 ];
 
 @NgModule({
     imports: [...SHARED_MODULES],
     exports: [...SHARED_MODULES],
-    providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }]
+    providers: [
+      { provide: MAT_DATE_LOCALE,
+         useValue: 'pt-BR'
+      },
+      {
+        provide: CURRENCY_MASK_CONFIG,
+        useValue: CustomCurrencyMaskConfig,
+      }
+    ]
 })
 export class SharedModule {}

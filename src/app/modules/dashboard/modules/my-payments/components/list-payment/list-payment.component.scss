@@ -84,9 +84,10 @@
       }
     }
 
-    .td-actions {
+    .actions {
       display: flex;
       justify-content: flex-end;
+      margin-top: 20px;
 
       img {
         cursor: pointer;
