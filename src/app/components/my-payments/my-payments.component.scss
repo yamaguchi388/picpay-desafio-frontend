@@ -1,0 +1,22 @@
+.mat-elevation-z8 {
+    border-radius: 20px;
+    margin: 0 5%;
+}
+
+table.mat-table {
+    table-layout: fixed;
+    width: 100%;
+    display: table;
+}
+
+table tr:nth-child(odd) {
+    background: #fff;
+}
+
+table tr:nth-child(even) {
+    background: #F5F8FA;
+}
+
+.filter-input {
+    margin: 2% 0 0 2%;
+}
