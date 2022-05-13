@@ -3,6 +3,6 @@ export interface QueryPayments {
     title?: string;
     startDate?: string;
     endDate?: string;
-    page: number;
-    limit: number;
+    page?: number;
+    limit?: number;
 }

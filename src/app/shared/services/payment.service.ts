@@ -16,11 +16,15 @@ export class PaymentService {
 
   constructor(private http: HttpClient) { }
 
-  getPayments(query: QueryPayments): Observable<IPayment | any> {
+  getFiltredPayments(query: QueryPayments): Observable<IPayment | any> {
     const filterName = query.name ? `&name=${query.name}` : ''
     const filterTitle = query.title ? `&title=${query.title}` : ''
     return this.http
       .get<IPayment>(`${this.urlAccount}?_page=${query.page}&_limit=${query.limit}${filterName}${filterTitle}`)
+  }
+
+  getAllPayments(): Observable<IPayment | any> {
+    return this.http.get<IPayment>(`${this.urlAccount}`)
   }
 
   savePayment(payment: IPayment) {

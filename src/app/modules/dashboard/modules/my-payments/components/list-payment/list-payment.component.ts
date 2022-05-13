@@ -57,7 +57,8 @@ export class ListPaymentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-    this.filterPayments();
+    this.initGetAllPayments();
+    this.filterPayments()
   }
 
   createForm() {
@@ -73,6 +74,27 @@ export class ListPaymentsComponent implements OnInit {
     this.form.reset()
   }
 
+  initGetAllPayments() {
+    this.paymentService.getAllPayments().subscribe((next) => {
+      this.payments = next;
+      this.paymentLength = this.payments.length;
+      if (this.payments.length === 0) {
+        this.sweetAlertService.show({
+          icon: 'success',
+          text: `Nenhum pagamento foi encontrado.`
+        }); 
+      }    
+    },
+    (error) => {
+      console.log(error);
+      this.sweetAlertService.show({
+        icon: 'error',
+        text: `Tente novamente mais tarde.`
+      });           
+    }
+  )
+  }
+
   filterPayments() {
     const startDate = this.form.controls.startDate.value || '';
     let endDate = this.form.controls.endDate.value ? moment(this.form.controls.endDate.value).add(1, 'day').toString() : '';
@@ -85,7 +107,7 @@ export class ListPaymentsComponent implements OnInit {
       limit: this.paymentPageSize
     } as QueryPayments;
 
-    this.paymentService.getPayments(query)
+    this.paymentService.getFiltredPayments(query)
       .subscribe((next) => {
           this.payments = next;
           if (this.payments.length > 0) {
