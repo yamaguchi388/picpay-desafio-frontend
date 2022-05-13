@@ -25,7 +25,7 @@ export class AuthService {
     return JSON.parse(decryptedUser);
   }
 
-  login({ email, password }): Observable<User[]> {
+  login({ email, password }: { email: string; password: string }): Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.API_URL}/account?email=${email}&password=${password}`).pipe(
       switchMap((value) => {
         if (!value.length) {

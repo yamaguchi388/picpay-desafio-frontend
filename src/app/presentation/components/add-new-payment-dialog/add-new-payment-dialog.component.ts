@@ -49,22 +49,19 @@ export class AddNewPaymentDialogComponent implements OnInit, OnDestroy {
   }
 
   close(dialogData?: { success?: boolean }) {
-    console.log(dialogData)
     this.matDialogRef.close(dialogData);
   }
 
   onSubmit() {
-    // console.log(this.addNewPaymentForm.value)
     this.paymentsService
       .newPayment(this.addNewPaymentForm.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        (success) => {
-          console.log(success);
+        () => {
           this.close({ success: true });
         },
         (err: HttpErrorResponse) => {
-          console.log(err);
+          console.error(err);
         },
       );
   }
