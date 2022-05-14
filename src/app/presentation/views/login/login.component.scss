@@ -1,9 +1,23 @@
+@import '_variables';
+
 .login-wrapper {
   h2 {
     font-family: 'Montserrat', sans-serif !important;
   }
 
   .login-aside {
-    background-color: #f2f2f2;
+    background-color: $background-gray;
+  }
+}
+
+:host {
+  ::ng-deep {
+    mat-spinner {
+      margin: 0 auto;
+    }
+    .mat-progress-spinner circle,
+    .mat-spinner circle {
+      stroke: #fff;
+    }
   }
 }

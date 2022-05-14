@@ -25,7 +25,12 @@
         >
       </mat-form-field>
 
-      <button mat-flat-button color="primary" [disabled]="loginForm.invalid">ENTRAR</button>
+      <button mat-flat-button color="primary" [disabled]="loginForm.invalid || loading" class="h-12">
+        <ng-container *ngIf="loading; else notLoading"><mat-spinner [diameter]="24" color="#fff"></mat-spinner></ng-container>
+        <ng-template #notLoading>
+          <span> ENTRAR</span>
+        </ng-template>
+      </button>
     </form>
   </aside>
   <aside class="image-aside hidden sm:flex w-full sm:w-1/2 px-16">

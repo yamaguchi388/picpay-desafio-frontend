@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   destroy$ = new Subject<boolean>();
   showPassword = false;
+  loading = false;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -37,9 +38,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loading = true;
     this.authService
       .login(this.loginForm.value)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => (this.loading = false)),
+      )
       .subscribe(
         ([user]) => {
           this.authService.setUser(user);
