@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,7 +11,7 @@ import { HeaderModule } from './shared/header/header.module';
 
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
    ],
   imports: [
@@ -19,9 +20,10 @@ import { HeaderModule } from './shared/header/header.module';
     AppRoutingModule,
     HeaderModule,
     LoginModule,
-    PaymentsModule
+    PaymentsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ HttpClient ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
