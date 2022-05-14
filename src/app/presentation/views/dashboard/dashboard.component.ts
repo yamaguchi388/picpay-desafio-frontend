@@ -89,8 +89,14 @@ export class DashboardComponent implements OnInit {
   }
 
   confirmDeletePayment(paymentId: number): void {
+    const payment = this.payments.find((payment) => payment.id === paymentId);
     this.confirmationService
-      .openConfirmationDialog({ title: 'Tem certeza?', message: 'Gostaria de apagar esse pagamento?' })
+      .openConfirmationDialog({
+        title: 'Tem certeza?',
+        message: `Gostaria de apagar o pagamento de ${payment.name} no valor de R$${payment.value.toLocaleString('pt-BR', {
+          currency: 'BRL',
+        })}?`,
+      })
       .subscribe((dialogAnswer: ModalAnswer) => {
         if (dialogAnswer?.answer) {
           this.deletePayment(paymentId);
