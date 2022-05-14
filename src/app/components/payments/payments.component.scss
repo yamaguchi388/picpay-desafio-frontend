@@ -39,3 +39,12 @@ button {
   background-color: #007dfe;
   color: #fff;
 }
+
+.table {
+  width: 90vw;
+  margin: auto;
+}
+
+table, mat-paginator {
+  width: 100%;
+}

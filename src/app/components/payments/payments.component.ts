@@ -1,4 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
+
+import { PaymentService } from "src/app/services/paymentService/payment.service";
 
 @Component({
   selector: "picpay-payments",
@@ -6,12 +11,35 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./payments.component.scss"],
 })
 export class PaymentsComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   public title: string = "Meus Pagamentos";
+  public checked = false;
+  public dataSource = new MatTableDataSource();
+  displayedColumns: string[] = ["name", "title", "date", "value", "isPayed"];
 
-  constructor() {}
+  constructor(private readonly paymentService: PaymentService) {}
 
-  ngOnInit(): void {}
-
-  public addPayment(): void {
+  ngOnInit(): void {
+    this.getPayments();
   }
+
+  public getPayments(): void {
+    this.paymentService.getPayments().subscribe((tasks) => {
+      this.dataSource.data = Object.values(tasks);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  public clicked(): void {
+    
+  }
+
+  public addPayment(): void {}
+
+  public editPayment(): void {}
+
+  public deletePayment(): void {}
 }
