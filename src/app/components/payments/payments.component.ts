@@ -1,3 +1,4 @@
+import { Task } from 'src/app/models/task.model';
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
@@ -16,7 +17,7 @@ export class PaymentsComponent implements OnInit {
 
   public title: string = "Meus Pagamentos";
   public checked = false;
-  public dataSource = new MatTableDataSource();
+  public dataSource = new MatTableDataSource<Task>();
   displayedColumns: string[] = ["name", "title", "date", "value", "isPayed"];
 
   constructor(private readonly paymentService: PaymentService) {}

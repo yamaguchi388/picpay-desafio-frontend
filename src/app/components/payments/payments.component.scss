@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@100;600;700&display=swap');
 
 .body {
   background-color: #f5f5f5;
@@ -14,7 +15,7 @@
 }
 
 .title > p {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
   font-weight: 600;
   margin: 2rem 0 0 0;
@@ -66,6 +67,11 @@ mat-paginator {
 
 table {
   width: 100%;
+  font-family: 'Lato', sans-serif;
+}
+
+.mat-row {
+  height: 10vh;
 }
 
 .mat-row:nth-child(even){
@@ -74,5 +80,10 @@ table {
       
 .mat-row:nth-child(odd){
   background-color: #fff;
+}
+
+td :nth-child(2) {
+    font-size: 0.75rem;
+    color: #69788C;
 }
 
