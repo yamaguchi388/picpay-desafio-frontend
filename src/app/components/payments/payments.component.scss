@@ -40,11 +40,30 @@ button {
   color: #fff;
 }
 
+.table-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90vw;
+  background-color: #fff;
+  padding: 1rem 0 0 0;
+}
+
+mat-form-field {
+  width: 20%;
+  padding: 0 0 0 1vw;
+}
+
+mat-paginator {
+  width: 80%;
+}
+
 .table {
   width: 90vw;
   margin: auto;
 }
 
-table, mat-paginator {
+table {
   width: 100%;
 }
+

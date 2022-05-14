@@ -37,6 +37,11 @@ export class PaymentsComponent implements OnInit {
     
   }
 
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   public addPayment(): void {}
 
   public editPayment(): void {}

@@ -9,6 +9,8 @@ import { MatSortModule } from '@angular/material/sort';
 
 import { HeaderModule } from "./../../shared/header/header.module";
 import { PaymentsComponent } from "./payments.component";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [PaymentsComponent],
@@ -19,7 +21,9 @@ import { PaymentsComponent } from "./payments.component";
     MatIconModule,
     MatCheckboxModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [PaymentsComponent],
 })
