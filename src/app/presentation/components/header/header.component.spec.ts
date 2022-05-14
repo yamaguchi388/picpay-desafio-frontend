@@ -1,16 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
+  let authService = {
+    logout: jasmine.createSpy('logout'),
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
-    })
-    .compileComponents();
+      declarations: [HeaderComponent],
+      imports: [MatMenuModule, MatButtonModule],
+      providers: [
+        {
+          provide: AuthService,
+          useValue: authService,
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +33,11 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should logout', () => {
+    component.logout();
+
+    expect(authService.logout).toHaveBeenCalled();
   });
 });

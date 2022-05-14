@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
@@ -30,7 +29,7 @@ export class AddNewPaymentDialogComponent implements OnInit, OnDestroy {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly paymentsService: PaymentsService,
-    private readonly matDialogRef: MatDialogRef<AddNewPaymentDialogComponent>,
+    public readonly matDialogRef: MatDialogRef<AddNewPaymentDialogComponent>,
   ) {}
 
   ngOnDestroy() {
@@ -56,13 +55,8 @@ export class AddNewPaymentDialogComponent implements OnInit, OnDestroy {
     this.paymentsService
       .newPayment(this.addNewPaymentForm.value)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        () => {
-          this.close({ success: true });
-        },
-        (err: HttpErrorResponse) => {
-          console.error(err);
-        },
-      );
+      .subscribe(() => {
+        this.close({ success: true });
+      });
   }
 }

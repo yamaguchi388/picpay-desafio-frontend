@@ -88,7 +88,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  confirmDeletePayment(paymentId: string): void {
+  confirmDeletePayment(paymentId: number): void {
     this.confirmationService
       .openConfirmationDialog({ title: 'Tem certeza?', message: 'Gostaria de apagar esse pagamento?' })
       .subscribe((dialogAnswer: ModalAnswer) => {
@@ -98,9 +98,9 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  deletePayment(paymentId: string): void {
+  deletePayment(paymentId: number): void {
     this.paymentsService
-      .deletePayment(paymentId)
+      .deletePayment(+paymentId)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
         this.snackbar.open('Usuário deletado com sucesso!', 'Ok', {
@@ -110,13 +110,13 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  private setDataSource(data: Payment[]) {
+  setDataSource(data: Payment[]) {
     this.dataSource.data = data;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
-  private getData(): void {
+  getData(): void {
     this.paymentsService
       .getPayments()
       .pipe(take(1))

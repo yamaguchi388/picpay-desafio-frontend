@@ -19,7 +19,7 @@ export class EditPaymentDialogComponent implements OnInit, OnDestroy {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly paymentsService: PaymentsService,
-    private readonly matDialogRef: MatDialogRef<EditPaymentDialogComponent>,
+    public readonly matDialogRef: MatDialogRef<EditPaymentDialogComponent>,
   ) {}
 
   ngOnDestroy() {

@@ -29,11 +29,11 @@ export class AuthService {
     return this.httpClient.get<User[]>(`${this.API_URL}/account?email=${email}&password=${password}`).pipe(
       switchMap((value) => {
         if (!value.length) {
-          return throwError(() => new Error('No user found'));
+          return throwError('No users found');
         }
         return of(value);
       }),
-      catchError((err) => throwError(() => new Error(err))),
+      catchError((err) => throwError(err)),
     );
   }
 
