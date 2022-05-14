@@ -1,0 +1,14 @@
+<button
+  class="pp-button"
+  [ngClass]="{
+    primary: variant === 'primary',
+    secondary: variant === 'secondary',
+    'border-radius-sm': radiusSize === 'sm',
+    'border-radius-md': radiusSize === 'md',
+    xs: size === 'xs',
+    sm: size === 'sm', 
+    md: size === 'md'
+  }"
+>
+  <ng-content></ng-content>
+</button>

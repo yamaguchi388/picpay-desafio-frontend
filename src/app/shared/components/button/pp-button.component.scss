@@ -1,0 +1,40 @@
+@import "../../../core/styles/classes/bg-colors.scss";
+@import "../../../core/styles/classes/text-colors.scss";
+@import "../../../core/styles/classes/text-size.scss";
+@import "../../../core/styles/classes/spacings.scss";
+
+.pp-button {
+  border: none;
+  cursor: pointer;
+
+
+  &:active {
+    opacity: 0.9;
+  }
+
+  &.primary {
+    @extend .bg-color-300;
+    @extend .text-color-0;
+  }
+
+  &.secondary {
+    @extend .bg-color-500;
+    @extend .text-color-800;
+  }
+
+  &.xs {
+    @extend .text-xs;
+    @extend .pd\:x-4;
+    @extend .pd\:y-3;
+  }
+
+  &.sm {
+    @extend .text-xs;
+    @extend .pd-4;
+  }
+
+  &.md {
+    @extend .text-sm;
+    @extend .pd-6;
+  }
+}
