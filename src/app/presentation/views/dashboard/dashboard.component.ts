@@ -7,10 +7,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject } from 'rxjs';
 import { debounceTime, take, takeUntil } from 'rxjs/operators';
-import { ConfirmationService } from 'src/app/core/services/confirmation/confirmation.service';
-import { PaymentsService } from 'src/app/core/services/payments/payments.service';
-import { Payment } from 'src/app/data/models/payments.model';
-import { ModalAnswer } from 'src/app/data/models/shared.model';
+import { Payment } from 'src/app/models/payments.model';
+import { ModalAnswer } from 'src/app/models/shared.model';
+import { ConfirmationService } from 'src/app/services/confirmation/confirmation.service';
+import { PaymentsService } from 'src/app/services/payments/payments.service';
 
 import { AddNewPaymentDialogComponent } from '../../components/add-new-payment-dialog/add-new-payment-dialog.component';
 import { EditPaymentDialogComponent } from '../../components/edit-payment-dialog/edit-payment-dialog.component';

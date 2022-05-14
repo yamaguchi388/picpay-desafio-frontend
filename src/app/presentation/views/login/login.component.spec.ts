@@ -8,7 +8,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { LoginComponent } from './login.component';

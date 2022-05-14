@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskModule } from 'ngx-mask';
 import { of } from 'rxjs';
-import { PaymentsService } from 'src/app/core/services/payments/payments.service';
+import { PaymentsService } from 'src/app/services/payments/payments.service';
 
 import { EditPaymentDialogComponent } from './edit-payment-dialog.component';
 

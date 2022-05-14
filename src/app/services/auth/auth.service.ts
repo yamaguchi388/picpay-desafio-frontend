@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
-import { User } from 'src/app/data/models/user.model';
+import { User } from 'src/app/models/user.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

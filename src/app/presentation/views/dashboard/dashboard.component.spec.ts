@@ -15,8 +15,8 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { ConfirmationService } from 'src/app/core/services/confirmation/confirmation.service';
-import { PaymentsService } from 'src/app/core/services/payments/payments.service';
+import { ConfirmationService } from 'src/app/services/confirmation/confirmation.service';
+import { PaymentsService } from 'src/app/services/payments/payments.service';
 
 import { AddNewPaymentDialogComponent } from '../../components/add-new-payment-dialog/add-new-payment-dialog.component';
 import { AddNewPaymentDialogModule } from '../../components/add-new-payment-dialog/add-new-payment-dialog.module';

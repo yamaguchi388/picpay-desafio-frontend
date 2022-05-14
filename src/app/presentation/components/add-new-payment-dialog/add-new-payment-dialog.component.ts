@@ -4,7 +4,7 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { PaymentsService } from 'src/app/core/services/payments/payments.service';
+import { PaymentsService } from 'src/app/services/payments/payments.service';
 
 export const DATE_FORMATS = {
   display: {

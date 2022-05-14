@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { PaymentsService } from 'src/app/core/services/payments/payments.service';
-import { Payment } from 'src/app/data/models/payments.model';
+import { Payment } from 'src/app/models/payments.model';
+import { PaymentsService } from 'src/app/services/payments/payments.service';
 
 @Component({
   selector: 'app-edit-payment-dialog',
