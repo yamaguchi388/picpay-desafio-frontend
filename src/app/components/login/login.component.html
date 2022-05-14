@@ -1,0 +1,39 @@
+<div class="login-wrapper">
+  <div class="login">
+    <div class="logo">
+      <img src="./../../../assets/images/Logo.png" alt="" />
+    </div>
+    <div class="login-header">
+      <h1>Bem vindo de volta</h1>
+    </div>
+    <div class="login-body">
+      <div class="form">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Insira seu melhor email"
+              formControlName="email"
+            />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              placeholder="Insira sua senha"
+              formControlName="password"
+            />
+          </mat-form-field>
+          <button mat-flat-button>ENTRAR</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="background-image">
+    <img
+      src="./../../../assets/images/man-doing-online-payment 1.svg"
+      alt="A man doing online payments"
+    />
+  </div>
+</div>
