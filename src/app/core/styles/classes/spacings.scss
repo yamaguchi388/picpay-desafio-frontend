@@ -1,69 +1,93 @@
-@import '../tokens/spacing.scss';
+@import "../tokens/spacing.scss";
+@import "../tokens/breakpoints.scss";
 
-$spacings: $spacing-1, $spacing-2, $spacing-3, $spacing-4, $spacing-5,
+$spacings: $spacing-0, $spacing-1, $spacing-2, $spacing-3, $spacing-4, $spacing-5,
   $spacing-6, $spacing-7, $spacing-8, $spacing-9, $spacing-10, $spacing-11,
   $spacing-12, $spacing-13, $spacing-14, $spacing-15, $spacing-16, $spacing-17;
 
-@for $i from 1 through length($spacings) {
-  $spacing: nth($spacings, $i);
+@mixin buildClass($breakpoint-name) {
+  @for $i from 1 through length($spacings) {
+    $spacing: nth($spacings, $i);
 
-  .pd-#{$i} {
-    padding: $spacing;
-  }
+    .#{$breakpoint-name}pd-#{$i - 1} {
+      padding: $spacing;
+    }
 
-  .pd\:t-#{$i} {
-    padding-top: $spacing;
-  }
+    .#{$breakpoint-name}pd\:t-#{$i - 1} {
+      padding-top: $spacing;
+    }
 
-  .pd\:r-#{$i} {
-    padding-right: $spacing;
-  }
+    .#{$breakpoint-name}pd\:r-#{$i - 1} {
+      padding-right: $spacing;
+    }
 
-  .pd\:b-#{$i} {
-    padding-bottom: $spacing;
-  }
+    .#{$breakpoint-name}pd\:b-#{$i - 1} {
+      padding-bottom: $spacing;
+    }
 
-  .pd\:l-#{$i} {
-    padding-left: $spacing;
-  }
+    .#{$breakpoint-name}pd\:l-#{$i - 1} {
+      padding-left: $spacing;
+    }
 
-  .pd\:x-#{$i} {
-    padding-left: $spacing;
-    padding-right: $spacing;
-  }
+    .#{$breakpoint-name}pd\:x-#{$i - 1} {
+      padding-left: $spacing;
+      padding-right: $spacing;
+    }
 
-  .pd\:y-#{$i} {
-    padding-top: $spacing;
-    padding-bottom: $spacing;
-  }
+    .#{$breakpoint-name}pd\:y-#{$i - 1} {
+      padding-top: $spacing;
+      padding-bottom: $spacing;
+    }
 
-  .mg-#{$i} {
-    margin: $spacing;
-  }
+    .#{$breakpoint-name}mg-#{$i - 1} {
+      margin: $spacing;
+    }
 
-  .mg\:t-#{$i} {
-    margin-top: $spacing;
-  }
+    .#{$breakpoint-name}mg\:t-#{$i - 1} {
+      margin-top: $spacing;
+    }
 
-  .mg\:r-#{$i} {
-    margin-right: $spacing;
-  }
+    .#{$breakpoint-name}mg\:r-#{$i - 1} {
+      margin-right: $spacing;
+    }
 
-  .mg\:b-#{$i} {
-    margin-bottom: $spacing;
-  }
+    .#{$breakpoint-name}mg\:b-#{$i - 1} {
+      margin-bottom: $spacing;
+    }
 
-  .mg\:l-#{$i} {
-    margin-left: $spacing;
-  }
+    .#{$breakpoint-name}mg\:l-#{$i - 1} {
+      margin-left: $spacing;
+    }
 
-  .mg\:x-#{$i} {
-    margin-left: $spacing;
-    margin-right: $spacing;
-  }
+    .#{$breakpoint-name}mg\:x-#{$i - 1} {
+      margin-left: $spacing;
+      margin-right: $spacing;
+    }
 
-  .mg\:y-#{$i} {
-    margin-top: $spacing;
-    margin-bottom: $spacing;
+    .#{$breakpoint-name}mg\:y-#{$i - 1} {
+      margin-top: $spacing;
+      margin-bottom: $spacing;
+    }
   }
+}
+
+@include buildClass("");
+
+@media (min-width: $breakpoint-xxs) {
+  @include buildClass("xxs\\:");
+}
+@media (min-width: $breakpoint-xs) {
+  @include buildClass("xs\\:");
+}
+@media (min-width: $breakpoint-sm) {
+  @include buildClass("sm\\:");
+}
+@media (min-width: $breakpoint-md) {
+  @include buildClass("md\\:");
+}
+@media (min-width: $breakpoint-lg) {
+  @include buildClass("lg\\:");
+}
+@media (min-width: $breakpoint-xl) {
+  @include buildClass("xl\\:");
 }

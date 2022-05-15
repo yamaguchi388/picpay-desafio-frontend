@@ -1,11 +1,42 @@
+@import "../tokens/breakpoints.scss";
+
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   row-gap: 0;
 }
 
-@for $i from 1 through 12 {
-  .col-span-#{$i} {
-    grid-column: span $i;
+@mixin makeCols($breakpoint-name) {
+  @for $i from 1 through 12 {
+    @if $breakpoint-name != "" {
+      .#{$breakpoint-name}\:col-span-#{$i} {
+        grid-column: span $i;
+      }
+    } @else {
+      .col-span-#{$i} {
+        grid-column: span $i;
+      }
+    }
   }
 }
+
+@media (min-width: $breakpoint-xxs) {
+  @include makeCols("xxs")
+}
+@media (min-width: $breakpoint-xs) {
+  @include makeCols("xs")
+}
+@media (min-width: $breakpoint-sm) {
+  @include makeCols("sm")
+}
+@media (min-width: $breakpoint-md) {
+  @include makeCols("md")
+}
+@media (min-width: $breakpoint-lg) {
+  @include makeCols("lg")
+}
+@media (min-width: $breakpoint-xl) {
+  @include makeCols("xl")
+}
+
+@include makeCols("");
