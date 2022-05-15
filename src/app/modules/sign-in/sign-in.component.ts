@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { ICredentials } from "src/app/shared/interfaces";
 import { AuthService } from "src/app/shared/services/auth/auth.service";
+import { first } from "rxjs/operators";
 
 @Component({
   selector: "app-sign-in",
@@ -19,6 +20,16 @@ export class SignInComponent {
   ) {}
 
   signIn(credentials: ICredentials) {
-    console.log(credentials);
+    this.authService
+      .signIn(credentials)
+      .pipe(first())
+      .subscribe({
+        next: (res) => console.log(res),
+        error: ({ errors }) => {
+          if (errors.length) {
+            this.isUserNotFoundMessage = errors[0];
+          }
+        },
+      });
   }
 }
