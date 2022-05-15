@@ -6,5 +6,5 @@ export interface IPayment {
   value: number;
   date: string;
   image: string;
-  isPayed: true;
+  isPayed: boolean;
 }

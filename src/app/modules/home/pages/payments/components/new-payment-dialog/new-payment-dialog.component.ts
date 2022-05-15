@@ -60,6 +60,6 @@ export class NewPaymentDialogComponent implements OnInit {
     };
 
     this.addNewData.emit(payload);
-    this.form.reset();
+    this.dialogRef.close();
   }
 }
