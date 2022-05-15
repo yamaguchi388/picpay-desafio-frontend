@@ -28,6 +28,12 @@
     align-items: center;
     background: var(--background-white);
     margin-top: 2rem;
+    padding-top: 1rem;
+
+    @media (max-width: $screen-lg-min) {
+      flex-wrap: wrap;
+      width: 100%;
+    }
 
     &--input {
       width: 20rem;
@@ -43,21 +49,24 @@
       margin-left: 1rem;
     }
 
-    ::ng-deep .mat-select-arrow {
-      color: var(--backgroud);
-    }
-
     ::ng-deep .mat-option-text {
       text-align: right;
     }
+  }
 
-    ::ng-deep .mat-button-wrapper {
-      color: var(--backgroud);
+  .search-table-outter{
+    @media (max-width: $screen-lg-min) {
+    overflow-x: scroll;
     }
   }
 
   &__table {
     width: 100%;
+
+    @media (max-width: $screen-lg-min) {
+    
+      th, td { min-width: 100px; }
+    }
 
     &-th {
       position: relative;
@@ -104,6 +113,7 @@
 
         &:first-child {
           margin-right: 1rem;
+          margin: 1.5rem;
         }
       }
     }
@@ -129,5 +139,13 @@
       font-size: 1.5rem;
       margin-top: 5rem;
     }
+  }
+
+  &__search{
+    margin-left: 1rem;
+  }
+
+  .mat-row:nth-child(even){
+    background: var(--gray-table);
   }
 }

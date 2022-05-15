@@ -63,7 +63,7 @@ $breakpoints: (
 @include create-selectors;
 
 @each $breakpoint, $width in $breakpoints {
-  @media (min-width: $width) {
+  @media (min-width: $screen-md-min) {
     @include create-selectors($breakpoint);
   }
 }
