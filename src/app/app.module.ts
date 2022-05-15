@@ -1,5 +1,5 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, LOCALE_ID, DEFAULT_CURRENCY_CODE } from "@angular/core";
+import { BrowserModule, Title } from "@angular/platform-browser";
+import { NgModule, LOCALE_ID } from "@angular/core";
 import { registerLocaleData } from "@angular/common";
 import localePT from "@angular/common/locales/pt";
 import { AppComponent } from "./app.component";
@@ -10,9 +10,7 @@ registerLocaleData(localePT);
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [
-    { provide: LOCALE_ID, useValue: "pt-br" },
-  ],
+  providers: [Title, { provide: LOCALE_ID, useValue: "pt-br" }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
