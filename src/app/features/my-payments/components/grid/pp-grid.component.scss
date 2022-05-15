@@ -15,17 +15,20 @@
     }
 
     th {
+      width: 16.66666666666667%;
       text-align: left;
       @extend .pd\:x-5;
       @extend .pd\:y-6;
     }
     tbody {
       tr {
+
         &:nth-child(even) {
           @extend .bg-color-200;
         }
 
         td {
+          width: 16.66666666666667%;
           @extend .pd\:t-6;
           @extend .pd\:x-5;
           @extend .pd\:b-8;
