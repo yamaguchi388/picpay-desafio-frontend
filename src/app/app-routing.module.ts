@@ -10,9 +10,7 @@ const routes: Routes = [
   {
     path: "",
     loadChildren: () =>
-      import("./modules/payments/payments.module").then(
-        (m) => m.PaymentsModule
-      ),
+      import("./modules/home/home.module").then((m) => m.HomeModule),
   },
 ];
 
