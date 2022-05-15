@@ -4,6 +4,7 @@ import { ICredentials } from "src/app/shared/interfaces";
 import { AuthService } from "src/app/shared/services/auth/auth.service";
 import { first } from "rxjs/operators";
 import { UserService } from "src/app/shared/services/user/user.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-sign-in",
@@ -17,7 +18,8 @@ export class SignInComponent {
   constructor(
     private readonly router: Router,
     private readonly authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService
   ) {}
 
   signIn(credentials: ICredentials) {
@@ -29,11 +31,12 @@ export class SignInComponent {
       .subscribe({
         next: (res) => {
           this.userService.setUserOnSession(res);
+          this.toastr.success("Login realizado com sucesso");
           this.router.navigate(["/"]);
         },
         error: ({ errors }) => {
           if (errors.length) {
-            this.isUserNotFoundMessage = errors[0];
+            this.toastr.error(errors[0]);
           }
           this.isLoading = false;
         },
