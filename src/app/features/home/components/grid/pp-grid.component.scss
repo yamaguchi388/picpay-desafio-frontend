@@ -1,0 +1,46 @@
+@import "../../../../core/styles/classes/bg-colors.scss";
+@import "../../../../core/styles/classes/spacings.scss";
+
+.pp-grid-container {
+  box-shadow: 0px 2px 4px rgba(4, 38, 82, 0.06);
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-end-end-radius: 8px;
+    border-end-start-radius: 8px;
+    overflow: hidden;
+
+    thead {
+      border-bottom: 2px solid #cfdce5;
+    }
+
+    th {
+      text-align: left;
+      @extend .pd\:x-5;
+      @extend .pd\:y-6;
+    }
+    tbody {
+      tr {
+        &:nth-child(even) {
+          @extend .bg-color-200;
+        }
+
+        td {
+          @extend .pd\:t-6;
+          @extend .pd\:x-5;
+          @extend .pd\:b-8;
+        }
+      }
+    }
+  }
+
+  .is-payed,
+  .is-payed-box {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    background-color: #0075ff;
+    pointer-events: none;
+    border-radius: 2px;
+  }
+}
