@@ -5,6 +5,7 @@ import { SearchOptions } from "@/app/core/models/search-options.model";
 import { PpModalComponent } from "@/app/shared/components/modal/pp-modal.component";
 import { Payment } from "./models/payment.model";
 import { PaymentService } from "./services/payment.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: "my-payments",
@@ -33,9 +34,13 @@ export class MyPaymentsComponent implements OnInit {
     title: new FormControl(""),
   });
 
-  constructor(private paymentService: PaymentService) {}
+  constructor(
+    private paymentService: PaymentService,
+    private titleService: Title
+  ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle("PayFriends - Meus pagamentos");
     this.getMyPayments();
   }
 
@@ -102,9 +107,9 @@ export class MyPaymentsComponent implements OnInit {
       name,
       date,
       title,
-      value
-    }
-    
+      value,
+    };
+
     if (this.selectedPayment.id) {
       this.editPayment(this.selectedPayment);
     } else {
