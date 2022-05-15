@@ -25,7 +25,7 @@ export class HttpService {
     return this.httpClient.patch<T>(`${this.baseUrl}/${action}`, body);
   }
 
-  public delete<T>(action: string, body: any) {
+  public delete<T>(action: string) {
     return this.httpClient.delete<T>(`${this.baseUrl}/${action}`);
   }
 }
