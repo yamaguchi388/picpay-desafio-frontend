@@ -7,6 +7,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 })
 export class PpModalComponent implements OnInit {
   @Input() title: string;
+  @Input() width = "auto";
   @ViewChild("modal") modalDiv: ElementRef<HTMLDivElement>;
   isOpen = false;
 
@@ -20,7 +21,9 @@ export class PpModalComponent implements OnInit {
 
   onClickOverlay(event: PointerEvent) {
     const path = event.composedPath();
-    if(!path.some(el => (el as HTMLElement) === this.modalDiv.nativeElement)){
+    if (
+      !path.some((el) => (el as HTMLElement) === this.modalDiv.nativeElement)
+    ) {
       this.toggle();
     }
   }

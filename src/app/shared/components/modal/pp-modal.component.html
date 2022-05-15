@@ -1,5 +1,9 @@
-<div class="overlay" [ngClass]="{ 'd-none': !isOpen, 'd-block': isOpen }" (click)="onClickOverlay($event)">
-  <div #modal class="modal bg-color-0 pd-10">
+<div
+  class="overlay"
+  [ngClass]="{ 'd-none': !isOpen, 'd-block': isOpen }"
+  (click)="onClickOverlay($event)"
+>
+  <div #modal class="modal bg-color-0 pd:x-8 pd:y-8" [style]="{width}">
     <h2 class="text-lg">{{ title }}</h2>
     <ng-content></ng-content>
   </div>
