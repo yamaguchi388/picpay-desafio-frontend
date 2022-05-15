@@ -9,7 +9,11 @@ import { StorageService } from "../storage/storage.service";
 export class UserService {
   constructor(private readonly storageService: StorageService) {}
 
-  setUserOnSession(user: IUser) {
+  setUserOnSession(user: IUser): void {
     this.storageService.setItem(StorageKeysEnum.USER, user);
+  }
+
+  getLoggedUser(): IUser {
+    return this.storageService.getItem(StorageKeysEnum.USER);
   }
 }

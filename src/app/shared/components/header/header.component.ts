@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
+import { IUser } from "src/app/shared/interfaces";
+import { UserService } from "src/app/shared/services/user/user.service";
 
 @Component({
   selector: "app-header",
@@ -6,7 +8,15 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  user!: IUser;
 
-  ngOnInit(): void {}
+  constructor(private readonly userService: UserService) {}
+
+  ngOnInit(): void {
+    this.getLoggedUser();
+  }
+
+  private getLoggedUser() {
+    this.user = this.userService.getLoggedUser();
+  }
 }
