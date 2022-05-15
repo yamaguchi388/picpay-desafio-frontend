@@ -2,6 +2,7 @@
 @use "./app/core/styles/classes/classes.scss";
 @use "./app/core/styles/components/input.scss";
 @use "./app/core/styles/components/reset-button.scss";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
 
 *,
 *::after,
@@ -11,7 +12,7 @@
 
 html,
 body {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   @extend .bg-color-50;
