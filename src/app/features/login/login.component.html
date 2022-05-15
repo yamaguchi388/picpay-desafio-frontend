@@ -1,1 +1,68 @@
-<p>login works!</p>
+<main class="login flex flex-col grid">
+  <section
+    class="xxs:col-span-12 md:col-span-6 lg:col-span-4 flex flex-col xxs:mg:x-4 sm:mg:x-15 xl:mg:x-17 justify-center"
+  >
+    <div class="text-xl">
+      <span class="font-bold text-color-400">Pay</span>
+      <span class="font-thin text-color-300">Friends</span>
+    </div>
+    <h1 class="text-2xl mg:t-7">Bem vindo de volta</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mg:t-9">
+      <div>
+        <div class="pp-input-container md">
+          <input
+            id="email"
+            type="text"
+            class="pp-input border-radius-sm"
+            required
+            formControlName="email"
+          />
+          <label for="email" class="pp-label">Email</label>
+        </div>
+        <pp-error-message
+          *ngIf="emailInvalid"
+          [errors]="emailErrors"
+        ></pp-error-message>
+      </div>
+      <div>
+        <div class="pp-input-container md mg:t-9">
+          <input
+            id="password"
+            type="password"
+            class="pp-input border-radius-sm"
+            required
+            formControlName="password"
+          />
+          <label for="password" class="pp-label">Senha</label>
+        </div>
+        <pp-error-message
+          *ngIf="passwordInvalid"
+          [errors]="passwordErrors"
+        ></pp-error-message>
+      </div>
+
+      <div class="mg:t-10">
+        <pp-button
+          type="submit"
+          [full-width]="true"
+          [disabled]="loginForm.invalid"
+          >entrar</pp-button
+        >
+      </div>
+      <div class="text-center">
+        <pp-error-message
+          *ngIf="loginFailed"
+          [errors]="['Email ou senha inválidos.']"
+        ></pp-error-message>
+      </div>
+    </form>
+  </section>
+  <section
+    class="banner-image flex items-center justify-center bg-color-0 md:col-span-6 lg:col-span-8"
+  >
+    <img
+      src="../../../assets/images/login.svg"
+      alt="homem acessando sua conta no picpay"
+    />
+  </section>
+</main>

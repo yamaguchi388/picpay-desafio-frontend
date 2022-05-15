@@ -1,0 +1,28 @@
+@use "../../core/styles/classes/bg-colors.scss";
+
+.login {
+  min-height: 100vh;
+}
+
+.pp-label {
+  @extend .bg-color-50;
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .banner-image {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .banner-image {
+    width: 100%;
+    order: -1;
+    grid-column: span 12;
+    background-color: transparent;
+
+    img {
+      width: 300px;
+    }
+  }
+}
