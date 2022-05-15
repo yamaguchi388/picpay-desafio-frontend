@@ -1,6 +1,11 @@
+@use "./app/core/styles/reset.scss";
 @use "./app/core/styles/classes/classes.scss";
+@use "./app/core/styles/components/input.scss";
+@use "./app/core/styles/components/reset-button.scss";
 
-* {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -9,4 +14,5 @@ body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
+  @extend .bg-color-50;
 }

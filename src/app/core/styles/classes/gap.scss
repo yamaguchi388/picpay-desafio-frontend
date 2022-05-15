@@ -1,0 +1,21 @@
+@import "../tokens/spacing.scss";
+
+$spacings: $spacing-1, $spacing-2, $spacing-3, $spacing-4, $spacing-5,
+  $spacing-6, $spacing-7, $spacing-8, $spacing-9, $spacing-10, $spacing-11,
+  $spacing-12, $spacing-13, $spacing-14, $spacing-15, $spacing-16, $spacing-17;
+
+@for $i from 1 through length($spacings) {
+  $spacing: nth($spacings, $i);
+
+  .gap-#{$i} {
+    gap: $spacing;
+  }
+
+  .gap-y-#{$i} {
+    row-gap: $spacing;
+  }
+
+  .gap-x-#{$i} {
+    column-gap: $spacing;
+  }
+}

@@ -1,0 +1,66 @@
+@import "../tokens/colors.scss";
+@import "../tokens/spacing.scss";
+@import "../classes/text-size.scss";
+@import "../classes/spacings.scss";
+
+.pp-input-container {
+  position: relative;
+
+  &.sm {
+    .pp-label {
+      @extend .text-sm;
+    }
+    .pp-input {
+      @extend .pd-4;
+    }
+  }
+
+  &.md {
+    .pp-label {
+      @extend .text-base;
+    }
+    .pp-input {
+      @extend .pd-6;
+    }
+  }
+
+  .pp-label {
+    top: 50%;
+    left: 10px;
+    position: absolute;
+    background-color: $color-0;
+    padding: 0px 8px;
+    transition: 0.2s;
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .pp-input {
+    width: 100%;
+    border: 1px solid rgba($color: $color-1000, $alpha: 0.12);
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &:not(:valid) {
+      &::-webkit-datetime-edit {
+        color: transparent;
+      }
+    }
+
+    &:focus,
+    &:valid,
+    &[data-valid=true] {
+      &::-webkit-datetime-edit {
+        color: $color-1000;
+      }
+
+      & ~ label {
+        top: -8px;
+        font-size: 12px;
+        transform: inherit;
+      }
+    }
+  }
+}
