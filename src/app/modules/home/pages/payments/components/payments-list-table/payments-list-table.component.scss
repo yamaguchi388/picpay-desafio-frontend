@@ -1,6 +1,6 @@
 .payments-list {
   width: 100%;
-
+  background: var(--background-white);
   margin-top: 1.5rem;
 
   &__box-pagination {
@@ -10,6 +10,28 @@
 
     &--input {
       width: 15rem;
+    }
+
+    ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+      background-color: transparent;
+    }
+
+    ::ng-deep .mat-select-value {
+      color: var(--body-text);
+      font-size: 1rem;
+      margin-left: 1rem;
+    }
+
+    ::ng-deep .mat-select-arrow {
+      color: var(--backgroud);
+    }
+
+    ::ng-deep .mat-option-text {
+      text-align: right;
+    }
+
+    ::ng-deep .mat-button-wrapper {
+      color: var(--backgroud);
     }
   }
 

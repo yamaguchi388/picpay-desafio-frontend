@@ -14,7 +14,11 @@ export class PaymentsService {
 
   constructor(private readonly httpService: HttpService) {}
 
-  index(page = 1, limit = 10): Observable<IPaginator<IPayment[]>> {
+  index(
+    page = 1,
+    limit = 10,
+    filter?: string
+  ): Observable<IPaginator<IPayment[]>> {
     const params: IHttpParams[] = [
       {
         key: "_page",
@@ -25,6 +29,13 @@ export class PaymentsService {
         value: String(limit),
       },
     ];
+
+    if (filter) {
+      params.push({
+        key: "username_like",
+        value: filter,
+      });
+    }
 
     return this.httpService
       .getFullResponse<HttpResponse<IPayment[]>>(this.apiUrl, params)

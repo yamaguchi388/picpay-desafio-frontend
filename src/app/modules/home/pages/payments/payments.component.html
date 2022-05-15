@@ -6,17 +6,9 @@
     </button>
   </div>
 
-  <ng-container *ngIf="!isLoading; else loadingContainer">
-    <app-payments-list-table
-      [payments]="payments"
-      (pageChangeEvent)="getAllPayments()"
-    ></app-payments-list-table>
-  </ng-container>
-
-  <ng-template #loadingContainer>
-    <div class="payments__box-loading">
-      <mat-spinner class="payments__box-loading-spinner"></mat-spinner>
-      <span class="payments__box-loading-title">Carregando pagamentos</span>
-    </div>
-  </ng-template>
+  <app-payments-list-table
+    [payments]="payments"
+    (pageChangeEvent)="getAllPayments()"
+    (applyFilterEvent)="getAllPayments($event)"
+  ></app-payments-list-table>
 </main>

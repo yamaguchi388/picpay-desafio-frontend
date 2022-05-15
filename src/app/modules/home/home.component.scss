@@ -1,4 +1,6 @@
 .home__main {
-    margin-top: 65px;
+    padding-top: 65px !important;
     padding: 0 48px;
+    background: #f2f2f2;
+    height: calc(100% - 65px);
   }

@@ -15,10 +15,10 @@ import { PaymentsService } from "./services/payments/payments.service";
 })
 export class PaymentsComponent implements OnInit {
   payments: IPaginator<IPayment[]> = {
-    page: 1,
-    limit: 10,
-    items: [],
+    page: 0,
+    limit: 5,
     total: 0,
+    items: [],
   };
 
   displayedColumns: ITableColumns[] = [];
@@ -34,12 +34,12 @@ export class PaymentsComponent implements OnInit {
     this.getAllPayments();
   }
 
-  getAllPayments() {
+  getAllPayments(filter?: string) {
     const { page, limit } = this.payments;
     this.isLoading = true;
 
     this.paymentsService
-      .index(page, limit)
+      .index(page, limit, filter)
       .pipe(
         first(),
         finalize(() => (this.isLoading = false))
