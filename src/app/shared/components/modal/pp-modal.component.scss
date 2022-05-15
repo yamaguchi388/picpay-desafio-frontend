@@ -12,6 +12,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  background-color: rgba($color: #000000, $alpha: 0.3);
 
   .modal {
     position: absolute;
@@ -20,7 +21,6 @@
     transform: translate(-50%, -50%);
     max-width: calc(100% - 1.5rem);
     max-height: calc(100% - 1.5rem);
-    border: 1px solid #ccc;
     animation-name: slideIn;
     animation-duration: 0.4s;
 
