@@ -10,7 +10,7 @@ const label = "Picpay";
 })
 export class WrapperComponent {}
 
-fdescribe("PpButtonComponent", () => {
+describe("PpButtonComponent", () => {
   let component: PpButtonComponent;
   let fixture: ComponentFixture<PpButtonComponent>;
 
