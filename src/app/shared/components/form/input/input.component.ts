@@ -1,29 +1,37 @@
 import {
-  AfterViewInit,
   Component,
   EventEmitter,
+  forwardRef,
+  Injector,
   Input,
   OnDestroy,
-  Optional,
+  OnInit,
   Output,
-  Self,
 } from "@angular/core";
 import {
+  AbstractControl,
   ControlValueAccessor,
   FormControl,
-  FormGroupDirective,
+  FormControlDirective,
+  FormControlName,
   NgControl,
-  NgForm,
+  NG_VALUE_ACCESSOR,
 } from "@angular/forms";
-import { ErrorStateMatcher } from "@angular/material/core";
 import { Subscription } from "rxjs";
+
+const INPUT_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => InputComponent),
+  multi: true,
+};
 
 @Component({
   selector: "app-input",
   templateUrl: "./input.component.html",
   styleUrls: ["./input.component.scss"],
+  providers: [INPUT_VALUE_ACCESSOR],
 })
-export class InputComponent implements OnDestroy, ControlValueAccessor {
+export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() id: string;
   @Input() label: string;
   @Input() placeholder = "";
@@ -34,24 +42,21 @@ export class InputComponent implements OnDestroy, ControlValueAccessor {
   @Output() changeEvent = new EventEmitter();
 
   hidePassword = true;
+  formControl: NgControl;
 
   private inputSubscription$: Subscription;
   private innerValue: string;
   private IS_REQUIRED_MESSAGE = "Este campo é obrigatório";
   private IS_INVALID_EMAIL = "Insira um e-mail válido";
 
-  constructor(@Optional() @Self() public ngControl: NgControl) {
-    this.ngControl.valueAccessor = this;
+  constructor(private injector: Injector) {}
 
-    if (this.ngControl) {
-      this.inputSubscription$ = this.ngControl.valueChanges.subscribe({
-        next: (res) => this.onChange(res),
-      });
+  ngOnInit(): void {
+    const ngControl = this.injector.get(NgControl);
+
+    if (ngControl instanceof FormControlName) {
+      this.formControl = ngControl;
     }
-  }
-
-  ngOnDestroy(): void {
-    this.inputSubscription$.unsubscribe();
   }
 
   get value() {
@@ -84,22 +89,18 @@ export class InputComponent implements OnDestroy, ControlValueAccessor {
     this.disabled = isDisabled;
   }
 
-  onChange(value: "text" | "number") {
+  onChange(value: string) {
     this.changeEvent.emit(value);
   }
 
-  clearValue() {
-    this.value = "";
-  }
-
   getFormControlError(): string | void {
-    const isRequiredError = this.ngControl?.hasError("required");
+    const isRequiredError = this.formControl?.hasError("required");
 
     if (isRequiredError) {
       return this.IS_REQUIRED_MESSAGE;
     }
 
-    const isInvalidEmail = this.ngControl?.hasError("email");
+    const isInvalidEmail = this.formControl?.hasError("email");
 
     if (isInvalidEmail) {
       return this.IS_INVALID_EMAIL;

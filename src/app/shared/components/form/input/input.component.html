@@ -5,7 +5,7 @@
       [id]="id"
       [type]="hidePassword ? 'password' : 'text'"
       [placeholder]="placeholder"
-      [formControl]="ngControl.control"
+      [formControl]="formControl?.control"
       matInput
     />
     <button
@@ -30,7 +30,7 @@
       [id]="id"
       [type]="type"
       [placeholder]="placeholder"
-      [formControl]="ngControl?.control"
+      [formControl]="formControl?.control"
       matInput
     />
     <mat-icon matSuffix *ngIf="icon">{{ icon }}</mat-icon>

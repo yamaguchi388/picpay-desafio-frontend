@@ -6,16 +6,16 @@
     </button>
   </div>
   <div class="payments__box-pagination">
-    <app-input
-      label="Pesquisar por usuário"
-      type="search"
-      icon="search"
-      class="payments__box-pagination--input"
-      placeholder="Pesquisar por usuário"
-      [(ngModel)]="filterParam.value"
-      (changeEvent)="handleFilter($event)"
-    ></app-input>
-
+    <form [formGroup]="filterForm">
+      <app-input
+        label="Pesquisar por usuário"
+        type="search"
+        icon="search"
+        class="payments__box-pagination--input"
+        placeholder="Pesquisar por usuário"
+        formControlName="value"
+      ></app-input>
+    </form>
     <mat-paginator
       aria-labelledby="Paginação dos pagamentos"
       [pageIndex]="payments.page"
@@ -132,14 +132,14 @@
         *matCellDef="let element"
       >
         <img
-          src="assets/img/svgs/edit-icon.svg"
+          src="assets/img/svg/edit-icon.svg"
           (click)="openNewPaymentDialog(element)"
           role="button"
           aria-pressed="false"
         />
 
         <img
-          src="assets/img/svgs/delete-icon.svg"
+          src="assets/img/svg/delete-icon.svg"
           (click)="openDeleteDialog(element)"
           role="button"
           aria-pressed="false"
@@ -149,5 +149,11 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell payments__table-td-not-found-message" colspan="6">
+        Nenhum dado encontrado para "{{ filterForm.get("value").value }}"
+      </td>
+    </tr>
   </table>
 </div>

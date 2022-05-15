@@ -26,6 +26,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: var(--background-white);
+    margin-top: 2rem;
 
     &--input {
       width: 20rem;
@@ -104,6 +106,12 @@
           margin-right: 1rem;
         }
       }
+    }
+
+    &-td-not-found-message {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--body-text);
     }
   }
 
