@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 
 import { ToastrService } from "ngx-toastr";
-import { first } from "rxjs/operators";
+import { finalize, first } from "rxjs/operators";
+import { ITableColumns } from "../../shared/interfaces/tableColumns";
 import { NewPaymentDialogComponent } from "./components/new-payment-dialog/new-payment-dialog.component";
 import { IPayment } from "./interfaces";
 import { PaymentsService } from "./services/payments/payments.service";
@@ -15,13 +16,32 @@ import { PaymentsService } from "./services/payments/payments.service";
 export class PaymentsComponent implements OnInit {
   payments: IPayment[] = [];
 
+  displayedColumns: ITableColumns[] = [];
+
+  isLoading = false;
+
   constructor(
     private readonly dialog: MatDialog,
     private readonly toastr: ToastrService,
     private readonly paymentsService: PaymentsService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllPayments();
+  }
+
+  private getAllPayments() {
+    this.isLoading = true;
+    this.paymentsService
+      .index()
+      .pipe(
+        first(),
+        finalize(() => (this.isLoading = false))
+      )
+      .subscribe({
+        next: (res) => (this.payments = res),
+      });
+  }
 
   openDialog(data?: any) {
     const dialogRef = this.dialog.open(NewPaymentDialogComponent, {

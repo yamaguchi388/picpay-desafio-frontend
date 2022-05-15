@@ -30,25 +30,23 @@ export class AuthService {
       },
     ];
 
-    return this.httpService
-      .get<ICredentials, IUser[]>(this.endpoint, params)
-      .pipe(
-        map((res) => {
-          if (res.length) {
-            const { email, name, id } = res[0];
-            return { email, name, id };
-          }
+    return this.httpService.get<IUser[]>(this.endpoint, params).pipe(
+      map((res) => {
+        if (res.length) {
+          const { email, name, id } = res[0];
+          return { email, name, id };
+        }
 
-          const errors = ["Usuário não encontrado."];
+        const errors = ["Usuário não encontrado."];
 
-          throw new HttpErrorResponse({
-            error: {
-              status: HttpStatusCode.Unauthorized,
-              errors,
-            },
-          });
-        })
-      );
+        throw new HttpErrorResponse({
+          error: {
+            status: HttpStatusCode.Unauthorized,
+            errors,
+          },
+        });
+      })
+    );
   }
 
   logout() {
