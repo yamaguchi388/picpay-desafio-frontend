@@ -14,7 +14,9 @@ const routes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("../../features/my-payments/my-payments.module").then((m) => m.MyPaymentsModule),
+          import("../../features/my-payments/my-payments.module").then(
+            (m) => m.MyPaymentsModule
+          ),
       },
     ],
   },
