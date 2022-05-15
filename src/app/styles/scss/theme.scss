@@ -81,3 +81,15 @@ $payfriends-theme: mat.define-light-theme(
 );
 
 @include mat.all-component-themes($payfriends-theme);
+
+$themes: (
+  "background": #F2F2F2,
+  "background-white": #fff,
+  "title": #333333,
+);
+
+:root {
+  @each $key, $color in $themes {
+    --#{"" + $key}: #{$color};
+  }
+}

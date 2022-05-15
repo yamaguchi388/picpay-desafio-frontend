@@ -1,0 +1,65 @@
+<div id="sign-in" class="sign-in">
+    <div class="sign-in__box-form">
+      <img
+        class="sign-in__img-logo"
+        src="assets/img/png/payFriends.png"
+        alt="Imagem escrito Payfriends"
+      />
+  
+      <h1 class="sign-in__title">Bem vindo de volta</h1>
+  
+      <form class="sign-in__form">
+        <form [formGroup]="form">
+          <mat-form-field appearance="outline" class="input--w-full">
+            <mat-label>E-mail</mat-label>
+            <input id="email" type="email" matInput formControlName="email" />
+            <mat-error *ngIf="verifyFormControlIsInvalid('email')">
+              {{ getFormControlError("email") }}
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="input--w-full">
+            <mat-label>Senha</mat-label>
+            <input
+              id="password"
+              [type]="hidePassword ? 'password' : 'text'"
+              matInput
+              formControlName="password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hidePassword = !hidePassword"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidePassword"
+            >
+              <mat-icon>{{
+                hidePassword ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
+            <mat-error *ngIf="verifyFormControlIsInvalid('password')">
+              {{ getFormControlError("password") }}
+            </mat-error>
+          </mat-form-field>
+  
+          <button
+            id="sign-in-btn"
+            class="btn--block"
+            [disabled]="formIsInvalid"
+            color="primary"
+            type="button"
+            mat-raised-button
+          >
+            ENTRAR
+          </button>
+        </form>
+      </form>
+    </div>
+  
+    <div class="sign-in__box-image">
+      <img
+        src="assets/img/png/man-doing-online-payment.png"
+        alt="Imagem com homem fazendo pagamento online"
+      />
+    </div>
+  </div>
