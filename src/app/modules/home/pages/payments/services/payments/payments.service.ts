@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { IHttpParams } from "src/app/shared/interfaces";
 import { HttpService } from "src/app/shared/services/http/http.service";
-import { IPaginator, IPayment } from "../../interfaces";
+import { IFilterParams, IPaginator, IPayment } from "../../interfaces";
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +17,7 @@ export class PaymentsService {
   index(
     page = 1,
     limit = 10,
-    filter?: string
+    filter?: IFilterParams
   ): Observable<IPaginator<IPayment[]>> {
     const params: IHttpParams[] = [
       {
@@ -30,10 +30,11 @@ export class PaymentsService {
       },
     ];
 
-    if (filter) {
+    if (filter.value) {
+      const { key, value } = filter;
       params.push({
-        key: "username_like",
-        value: filter,
+        key,
+        value,
       });
     }
 

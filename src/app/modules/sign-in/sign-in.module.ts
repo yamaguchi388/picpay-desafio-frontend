@@ -4,7 +4,7 @@ import { SignInComponent } from "./sign-in.component";
 import { RouterModule, Routes } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MaterialModule } from "src/app/shared/modules/material/material.module";
-import { SignInFormModule } from "src/app/shared/components/sign-in-form/sign-in-form.module";
+import { InputModule } from "src/app/shared/components/form/input/input.module";
 
 const routes: Routes = [
   {
@@ -18,8 +18,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SignInFormModule,
     MaterialModule,
+    ReactiveFormsModule,
+    InputModule,
   ],
 })
 export class SignInModule {}

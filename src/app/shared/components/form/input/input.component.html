@@ -1,0 +1,41 @@
+<ng-container *ngIf="type === 'password'; else inputContainer">
+  <mat-form-field appearance="outline">
+    <mat-label>{{ label }}</mat-label>
+    <input
+      [id]="id"
+      [type]="hidePassword ? 'password' : 'text'"
+      [placeholder]="placeholder"
+      [formControl]="ngControl.control"
+      matInput
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hidePassword = !hidePassword"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hidePassword"
+    >
+      <mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+
+    <mat-error>
+      {{ getFormControlError() }}
+    </mat-error>
+  </mat-form-field>
+</ng-container>
+<ng-template #inputContainer>
+  <mat-form-field appearance="outline">
+    <mat-label>{{ label }}</mat-label>
+    <input
+      [id]="id"
+      [type]="type"
+      [placeholder]="placeholder"
+      [formControl]="ngControl?.control"
+      matInput
+    />
+    <mat-icon matSuffix *ngIf="icon">{{ icon }}</mat-icon>
+    <mat-error>
+      {{ getFormControlError() }}
+    </mat-error>
+  </mat-form-field>
+</ng-template>

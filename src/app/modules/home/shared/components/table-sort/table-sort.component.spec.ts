@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PaymentsListTableComponent } from "./payments-list-table.component";
+import { TableSortComponent } from "./table-sort.component";
 
-describe("PaymentsListTableComponent", () => {
-  let component: PaymentsListTableComponent;
-  let fixture: ComponentFixture<PaymentsListTableComponent>;
+describe("TableSortComponent", () => {
+  let component: TableSortComponent;
+  let fixture: ComponentFixture<TableSortComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PaymentsListTableComponent],
+      declarations: [TableSortComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PaymentsListTableComponent);
+    fixture = TestBed.createComponent(TableSortComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

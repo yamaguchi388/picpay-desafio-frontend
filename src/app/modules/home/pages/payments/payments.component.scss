@@ -5,6 +5,10 @@
 
   text-align: center;
 
+  @include md {
+    text-align: left;
+  }
+
   &__box-button {
     width: 100%;
     display: flex;
@@ -18,8 +22,89 @@
     }
   }
 
-  @include md {
-    text-align: left;
+  &__box-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--input {
+      width: 20rem;
+    }
+
+    ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+      background-color: transparent;
+    }
+
+    ::ng-deep .mat-select-value {
+      color: var(--body-text);
+      font-size: 1rem;
+      margin-left: 1rem;
+    }
+
+    ::ng-deep .mat-select-arrow {
+      color: var(--backgroud);
+    }
+
+    ::ng-deep .mat-option-text {
+      text-align: right;
+    }
+
+    ::ng-deep .mat-button-wrapper {
+      color: var(--backgroud);
+    }
+  }
+
+  &__table {
+    width: 100%;
+
+    &-th {
+      position: relative;
+
+      &--sort-icon {
+        top: 35%;
+        position: absolute;
+        margin-left: 0.5rem;
+      }
+
+      &--bold {
+        font-weight: 500;
+        font-size: 1rem;
+        color: var(--body-text);
+      }
+    }
+
+    &-td {
+      color: var(--body-text);
+      padding: 1rem 0;
+
+      border: 0;
+
+      &-span {
+        display: block;
+
+        &:first-child {
+          margin: 0.5rem 0 0 0;
+        }
+
+        &:last-child {
+          color: var(--secondary-text);
+          margin: 0.5rem 0 0.5rem 0;
+        }
+      }
+    }
+
+    &-td--actions {
+      display: flex;
+      justify-content: flex-end;
+
+      img {
+        cursor: pointer;
+
+        &:first-child {
+          margin-right: 1rem;
+        }
+      }
+    }
   }
 
   &__box-loading {

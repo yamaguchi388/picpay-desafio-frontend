@@ -7,6 +7,8 @@ import { AuthService } from "src/app/shared/services/auth/auth.service";
 import { first } from "rxjs/operators";
 import { UserService } from "src/app/shared/services/user/user.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormError } from "src/app/shared/lib";
 
 @Component({
   selector: "app-sign-in",
@@ -14,18 +16,47 @@ import { HttpErrorResponse } from "@angular/common/http";
   styleUrls: ["./sign-in.component.scss"],
 })
 export class SignInComponent {
+  form: FormGroup;
+
   isUserNotFoundMessage = "";
   isLoading = false;
+  hidePassword = true;
 
   constructor(
     private readonly router: Router,
     private readonly authService: AuthService,
-    private userService: UserService,
-    private toastr: ToastrService
+    private readonly userService: UserService,
+    private readonly toastr: ToastrService,
+    private readonly formBuilder: FormBuilder
   ) {}
 
-  signIn(credentials: ICredentials) {
+  get formIsInvalid() {
+    return this.form.invalid;
+  }
+
+  ngOnInit(): void {
+    this.buildForm();
+  }
+
+  private buildForm() {
+    this.form = this.formBuilder.group({
+      email: ["", [Validators.email, Validators.required]],
+      password: ["", Validators.required],
+    });
+  }
+
+  verifyFormControlIsInvalid(key: string) {
+    return FormError.verifyFormControlIsInvalid(this.form, key);
+  }
+
+  getFormControlError(key: string): string | void {
+    return FormError.getFormControlError(this.form, key);
+  }
+
+  signIn() {
     this.isLoading = true;
+
+    const credentials: ICredentials = this.form.getRawValue();
 
     this.authService
       .signIn(credentials)
