@@ -1,0 +1,93 @@
+<h1 mat-dialog-title>{{ data.action }} Pagamento</h1>
+<form [formGroup]="paymentForm">
+    <div mat-dialog-content>
+        <div class="row">
+            <div class="col-4">
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Nome*" formControlName="name">
+                    <mat-icon matSuffix>person_outline</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="col-4">
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Usuário*"
+                        formControlName="user">
+                    <mat-icon matSuffix>person_outline</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="col-4">
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Valor*" formControlName="value"
+                        formatCoin>
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    (click)="picker.open()">
+                    <input matInput [matDatepicker]="picker" placeholder="Data*"
+                        formControlName="date">
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-icon matSuffix>date_range</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="col-4">
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Título"
+                        formControlName="title">
+                    <mat-icon matSuffix>title</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="col-4 mt-2">
+                <mat-checkbox color="primary" formControlName="paid">Pago</mat-checkbox>
+            </div>
+        </div>
+        <div class="row" *ngIf="data.action === 'Adicionar'">
+            <mat-radio-group aria-label="Select an option" formControlName="image">
+                <mat-radio-button value="">
+                    <img class="perfil-image" src="../../../assets/no-image.gif"
+                        alt="Opção de imagem de perfil">
+                </mat-radio-button>
+                <mat-radio-button
+                    value="https://robohash.org/estveniamet.png?size=150x150&set=set1">
+                    <img class="perfil-image"
+                        src="https://robohash.org/estveniamet.png?size=150x150&set=set1"
+                        alt="Opção de imagem de perfil">
+                </mat-radio-button>
+                <mat-radio-button
+                    value="https://robohash.org/cupiditatehicquaerat.png?size=150x150&set=set1">
+                    <img class="perfil-image"
+                        src="https://robohash.org/cupiditatehicquaerat.png?size=150x150&set=set1"
+                        alt="Opção de imagem de perfil">
+                </mat-radio-button>
+                <mat-radio-button value="https://robohash.org/expeditanostrumdolorem.png?size=150x150&set=set1">
+                    <img class="perfil-image"
+                        src="https://robohash.org/expeditanostrumdolorem.png?size=150x150&set=set1"
+                        alt="Opção de imagem de perfil">
+                </mat-radio-button>
+                <mat-radio-button value="https://robohash.org/totamsuscipitin.png?size=150x150&set=set1">
+                    <img class="perfil-image"
+                        src="https://robohash.org/totamsuscipitin.png?size=150x150&set=set1"
+                        alt="Opção de imagem de perfil">
+                </mat-radio-button>
+                <mat-radio-button value="https://robohash.org/estodioquam.png?size=150x150&set=set1">
+                    <img class="perfil-image"
+                        src="https://robohash.org/estodioquam.png?size=150x150&set=set1"
+                        alt="Opção de imagem de perfil">
+                </mat-radio-button>
+                <mat-radio-button value="https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1">
+                    <img class="perfil-image"
+                        src="https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1"
+                        alt="Opção de imagem de perfil">
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+    <p class="d-flex justify-content-center msg-delete">{{ msgDelete }}</p>
+    <div mat-dialog-actions class="d-flex justify-content-end">
+        <button mat-raised-button (click)="closedDialog()">CANCELAR</button>
+        <button mat-raised-button color="primary" (click)="savePayment()">CONFIRMAR</button>
+    </div>
+</form>

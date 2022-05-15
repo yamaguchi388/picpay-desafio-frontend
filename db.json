@@ -1,34 +1,14 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "name": "Pennie Dumphries",
-      "username": "pdumphries0",
-      "title": "Dental Hygienist",
-      "value": 19.96,
-      "date": "2020-07-21T05:53:20Z",
-      "image": "https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
-      "id": 2,
-      "name": "Foster Orthmann",
-      "username": "forthmann1",
-      "title": "Professor",
-      "value": 207.36,
-      "date": "2021-01-28T14:01:29Z",
-      "image": "https://robohash.org/quasetqui.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
       "id": 3,
       "name": "Crissie Summerill",
-      "username": "csummerill2",
       "title": "VP Product Management",
-      "value": 464.54,
+      "value": "500",
       "date": "2020-02-09T18:20:32Z",
       "image": "https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1",
-      "isPayed": false
+      "isPayed": true,
+      "username": "crissum"
     },
     {
       "id": 4,
@@ -38,7 +18,7 @@
       "value": 183.58,
       "date": "2021-07-10T20:39:48Z",
       "image": "https://robohash.org/estveniamet.png?size=150x150&set=set1",
-      "isPayed": false
+      "isPayed": true
     },
     {
       "id": 5,
@@ -51,16 +31,6 @@
       "isPayed": true
     },
     {
-      "id": 6,
-      "name": "Hurleigh Malitrott",
-      "username": "hmalitrott5",
-      "title": "Developer IV",
-      "value": 43.62,
-      "date": "2020-09-19T00:11:00Z",
-      "image": "https://robohash.org/impeditconsequuntureveniet.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
       "id": 7,
       "name": "Lonna Bonney",
       "username": "lbonney6",
@@ -69,16 +39,6 @@
       "date": "2020-10-02T23:04:57Z",
       "image": "https://robohash.org/estquisquamquaerat.png?size=150x150&set=set1",
       "isPayed": false
-    },
-    {
-      "id": 8,
-      "name": "Gregorio Deex",
-      "username": "gdeex7",
-      "title": "Marketing Assistant",
-      "value": 354.56,
-      "date": "2020-09-12T05:18:50Z",
-      "image": "https://robohash.org/asinthic.png?size=150x150&set=set1",
-      "isPayed": true
     },
     {
       "id": 9,
@@ -1699,6 +1659,70 @@
       "date": "2021-05-05T10:22:13Z",
       "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
       "isPayed": true
+    },
+    {
+      "name": "Andreia",
+      "username": "deia",
+      "value": "500",
+      "date": "2022-05-15T20:28:47.602Z",
+      "title": "teste",
+      "id": 171
+    },
+    {
+      "name": "Andreia 2",
+      "username": "deia2",
+      "value": "600",
+      "date": "2022-05-15T20:47:28.633Z",
+      "title": "teste",
+      "id": 172
+    },
+    {
+      "name": "Andreia 3",
+      "username": "deia3",
+      "value": "70",
+      "date": "2022-05-15T20:48:59.817Z",
+      "title": "teste",
+      "image": null,
+      "id": 173
+    },
+    {
+      "name": "Andreia 4",
+      "username": "deia4",
+      "value": "10",
+      "date": "2022-05-15T20:51:13.206Z",
+      "title": "testeee",
+      "image": "https://robohash.org/expeditanostrumdolorem.png?size=150x150&set=set1",
+      "id": 174
+    },
+    {
+      "name": "Andreia 5",
+      "username": "deia5",
+      "value": "90",
+      "date": "2022-05-15T20:52:20.324Z",
+      "title": "fsferdfsgfgsf",
+      "image": "https://robohash.org/estveniamet.png?size=150x150&set=set1",
+      "isPayed": null,
+      "id": 175
+    },
+    {
+      "name": "Andreia 6",
+      "username": "deia6",
+      "value": "55",
+      "date": "2022-05-15T20:52:57.403Z",
+      "title": "erwewrewwewerw",
+      "image": "",
+      "isPayed": null,
+      "id": 176
+    },
+    {
+      "name": "Andreia 7",
+      "username": "deia7",
+      "value": "10",
+      "date": "2022-05-15T20:53:28.389Z",
+      "title": "uhuahsduhasd",
+      "image": "https://robohash.org/totamsuscipitin.png?size=150x150&set=set1",
+      "isPayed": true,
+      "id": 177
     }
   ],
   "account": [
@@ -1737,6 +1761,11 @@
       "email": "usuario@gmail.com",
       "password": "usuario",
       "id": 6
+    },
+    {
+      "email": "usuario@gmail.com",
+      "password": "usuario",
+      "id": 7
     }
   ]
 }

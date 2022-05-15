@@ -1,3 +1,12 @@
+.page-title {
+    margin-left: 5%;
+}
+
+.btn-add-payment {
+    margin-right: 5%;
+    margin-bottom: 2%;
+}
+
 .mat-elevation-z8 {
     border-radius: 20px;
     margin: 0 5%;
@@ -19,4 +28,22 @@ table tr:nth-child(even) {
 
 .filter-input {
     margin: 2% 0 0 2%;
+}
+
+.perfil-image {
+    width: 40px;
+    height: 40px;
+}
+
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+    width: 7rem;
+}
+
+.btn-filter {
+    height: fit-content;
+    width: fit-content;
+    font-size: 18px;
+    margin-top: 1.8rem!important;
+    margin-left: 0.8rem;
+    background-color: #E6ECF0;
 }

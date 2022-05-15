@@ -26,16 +26,16 @@ export class PaymentService {
     return this.httpClient.get(environment.payments, { params });
   }
 
-  insertPayment() {
-
+  insertPayment(request) {
+    return this.httpClient.post<PaymentModel>(environment.insert_payments, request);
   }
 
-  updatePayment() {
-
+  updatePayment(id: number, request: PaymentModel): Observable<any> {
+    return this.httpClient.put<PaymentModel>(environment.update_payments(id), request);
   }
 
-  deletePayment() {
-
+  deletePayment(id) {
+    return this.httpClient.delete<PaymentModel>(environment.delete_payments(id));
   }
 
 }

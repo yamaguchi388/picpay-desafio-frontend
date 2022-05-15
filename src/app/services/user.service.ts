@@ -18,7 +18,6 @@ export class UserService {
   logar(user: UserModel): Observable<any> {
     return this.httpClient.post<any>(environment.logged_users, user).pipe(
       tap((resposta) => {
-        debugger
         if (!resposta) return
         localStorage.setItem(
           'token',

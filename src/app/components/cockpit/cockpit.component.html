@@ -8,7 +8,7 @@
         <mat-menu #menu="matMenu">
             <button mat-menu-item routerLink="/"><mat-icon>home</mat-icon>Home</button>
             <button mat-menu-item routerLink="/my-payments"><mat-icon>payment</mat-icon>Meus Pagamentos</button>
-            <button mat-menu-item routerLink="/my-payments"><mat-icon>dashboard</mat-icon>Dashboard</button>
+            <button mat-menu-item routerLink="/" disabled><mat-icon>dashboard</mat-icon>Dashboard</button>
         </mat-menu>
         <span class="ml-2"><img src="../../../assets/Logo.png" /></span>
         <span class="example-spacer"></span>
@@ -19,6 +19,5 @@
 </p>
 
 <mat-card-content>
-    <h1 class="mt-4 page-title">Meus pagamentos</h1>
     <router-outlet></router-outlet>
 </mat-card-content>

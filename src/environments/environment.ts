@@ -6,8 +6,11 @@ const baseUrl = 'http://localhost:3000';
 
 export const environment = {
   production: false,
+  logged_users: baseUrl + '/account',
   payments: baseUrl + '/tasks',
-  logged_users: baseUrl + '/account'
+  insert_payments: baseUrl + '/tasks',
+  update_payments: (id) => baseUrl + '/tasks/' + id,
+  delete_payments: (id) => baseUrl + '/tasks/' + id,
 };
 
 /*

@@ -13,8 +13,12 @@ const routes: Routes = [
     path: '',
     component: CockpitComponent, canActivate: [LoggedInGuard],
     children: [
-      { path: '', component: HomeComponent },
-      { path: 'my-payments', component: MyPaymentsComponent }
+      {
+        path: '', component: HomeComponent
+      },
+      {
+        path: 'my-payments', component: MyPaymentsComponent
+      }
     ],
   },
 ];
