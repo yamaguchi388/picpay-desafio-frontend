@@ -21,6 +21,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.page__title {
+  color: var(--title);
+  font-size: 2rem;
+}
+
 #toast-container {
   top: 12px;
   left:50%;

@@ -1,0 +1,24 @@
+@import "mixins";
+
+.payments {
+  width: 100%;
+
+  text-align: center;
+
+  &__box-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 1.5rem;
+
+    @include md {
+      justify-content: flex-end;
+    }
+  }
+
+  @include md {
+    text-align: left;
+  }
+}

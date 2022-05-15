@@ -32,7 +32,7 @@ $breakpoints: (
   }
 
   .col#{$infix}-6 {
-    width: 50%;
+    width: 48%;
   }
 
   .col#{$infix}-7 {
@@ -76,4 +76,5 @@ $breakpoints: (
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
