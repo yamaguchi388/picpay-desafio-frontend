@@ -1,0 +1,105 @@
+<div class="pp-grid-container bg-color-0 border-radius-lg">
+  <div class="pd:x-5 pd:t-7 flex justify-between">
+    <div class="flex items-center gap-4">
+      <div class="pp-input-container sm">
+        <input [(ngModel)]="value" class="pp-input border-radius-sm" required />
+        <label class="pp-label">Pesquisar por usuário</label>
+      </div>
+      <pp-button
+        variant="secondary"
+        size="sm"
+        radius-size="md"
+        (click)="onSearch()"
+      >
+        <div class="flex items-center gap-4">
+          <pp-icon-filter></pp-icon-filter>
+          <span>Filtrar</span>
+        </div>
+      </pp-button>
+    </div>
+    <div class="flex items-center gap-4 text-color-700">
+      <label for="page-size">Exibir</label>
+      <select id="page-size" class="pd-5 border-radius-md" (change)="onPageSizeChange($event.target.value)">
+        <option [value]="5">5</option>
+        <option [value]="10">10</option>
+        <option [value]="20">20</option>
+      </select>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <div class="flex items-center gap-4">
+            <span>Usuário</span>
+            <pp-sort (sort)="onSort($event, 'username')"></pp-sort>
+          </div>
+        </th>
+        <th>
+          <div class="flex items-center gap-4">
+            <span>Título</span>
+            <pp-sort (sort)="onSort($event, 'title')"></pp-sort>
+          </div>
+        </th>
+        <th>
+          <div class="flex items-center gap-4">
+            <span>Data</span>
+            <pp-sort (sort)="onSort($event, 'date')"></pp-sort>
+          </div>
+        </th>
+        <th>
+          <div class="flex items-center gap-4">
+            <span>Valor</span>
+            <pp-sort (sort)="onSort($event, 'value')"></pp-sort>
+          </div>
+        </th>
+        <th>
+          <div class="flex items-center gap-4">
+            <span>Pago</span>
+            <pp-sort (sort)="onSort($event, 'isPayed')"></pp-sort>
+          </div>
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data | async">
+        <td class="flex flex-col">
+          <span class="pd:b-3">{{ item.name }}</span>
+          <span class="text-xs text-color-700">@{{ item.username }}</span>
+        </td>
+        <td>
+          {{ item.title }}
+        </td>
+        <td class="flex flex-col">
+          <span class="pd:b-3">{{ item.date | date: "d MMM y" }}</span>
+          <span class="text-xs text-color-700">{{
+            item.date | date: "HH:mm a"
+          }}</span>
+        </td>
+        <td>{{ item.value | currency: "BRL" }}</td>
+        <td>
+          <input
+            *ngIf="item.isPayed; else elseBlock"
+            class="is-payed"
+            type="checkbox"
+            [checked]="item.isPayed"
+          />
+          <ng-template #elseBlock>
+            <div class="is-payed-box"></div>
+          </ng-template>
+        </td>
+        <td>
+          <div class="flex justify-end items-center">
+            <button type="button" class="reset-button" (click)="onEdit(item)">
+              <pp-icon-pen></pp-icon-pen>
+            </button>
+            <button type="button" class="reset-button" (click)="onDelete(item)">
+              <pp-icon-times-circle></pp-icon-times-circle>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
