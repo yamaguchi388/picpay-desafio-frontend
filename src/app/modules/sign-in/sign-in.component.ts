@@ -1,10 +1,12 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+
 import { ICredentials } from "src/app/shared/interfaces";
 import { AuthService } from "src/app/shared/services/auth/auth.service";
 import { first } from "rxjs/operators";
 import { UserService } from "src/app/shared/services/user/user.service";
-import { ToastrService } from "ngx-toastr";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "app-sign-in",
@@ -34,11 +36,9 @@ export class SignInComponent {
           this.toastr.success("Login realizado com sucesso");
           this.router.navigate(["/"]);
         },
-        error: ({ errors }) => {
-          if (errors.length) {
-            this.toastr.error(errors[0]);
-          }
+        error: ({ error: { errors } }: HttpErrorResponse) => {
           this.isLoading = false;
+          this.toastr.error(errors[0]);
         },
       });
   }

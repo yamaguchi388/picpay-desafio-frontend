@@ -1,3 +1,4 @@
+import { HttpErrorResponse, HttpStatusCode } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
@@ -34,14 +35,14 @@ export class AuthService {
             return { email, name, id };
           }
 
-          throw new Error("Usuário não encontrado.");
-        }),
-        catchError(() => {
-          const errors = HttpErrorFactory.build401HttpError([
-            "Usuário não encontrado.",
-          ]);
+          const errors = ["Usuário não encontrado."];
 
-          return throwError(errors);
+          throw new HttpErrorResponse({
+            error: {
+              status: HttpStatusCode.Unauthorized,
+              errors,
+            },
+          });
         })
       );
   }
