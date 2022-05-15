@@ -5,7 +5,7 @@ import { ToastrService } from "ngx-toastr";
 import { finalize, first } from "rxjs/operators";
 import { ITableColumns } from "../../shared/interfaces/tableColumns";
 import { NewPaymentDialogComponent } from "./components/new-payment-dialog/new-payment-dialog.component";
-import { IPayment } from "./interfaces";
+import { IPaginator, IPayment } from "./interfaces";
 import { PaymentsService } from "./services/payments/payments.service";
 
 @Component({
@@ -14,10 +14,14 @@ import { PaymentsService } from "./services/payments/payments.service";
   styleUrls: ["./payments.component.scss"],
 })
 export class PaymentsComponent implements OnInit {
-  payments: IPayment[] = [];
+  payments: IPaginator<IPayment[]> = {
+    page: 1,
+    limit: 10,
+    items: [],
+    total: 0,
+  };
 
   displayedColumns: ITableColumns[] = [];
-
   isLoading = false;
 
   constructor(
@@ -30,10 +34,12 @@ export class PaymentsComponent implements OnInit {
     this.getAllPayments();
   }
 
-  private getAllPayments() {
+  getAllPayments() {
+    const { page, limit } = this.payments;
     this.isLoading = true;
+
     this.paymentsService
-      .index()
+      .index(page, limit)
       .pipe(
         first(),
         finalize(() => (this.isLoading = false))
@@ -58,12 +64,15 @@ export class PaymentsComponent implements OnInit {
   }
 
   store(payment: IPayment) {
-    this.paymentsService.store(payment).subscribe({
-      next: (res) => {
-        this.toastr.success("Pagamento criado com sucesso!");
-        this.payments = [...this.payments, res];
-      },
-    });
+    this.paymentsService
+      .store(payment)
+      .pipe(first())
+      .subscribe({
+        next: (res) => {
+          this.toastr.success("Pagamento criado com sucesso!");
+          this.getAllPayments();
+        },
+      });
   }
 
   update(payment: IPayment) {}
