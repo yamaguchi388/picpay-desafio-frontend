@@ -21,6 +21,9 @@ export class PaymentsListTableComponent implements OnChanges {
 
   @Output() pageChangeEvent = new EventEmitter();
   @Output() applyFilterEvent = new EventEmitter();
+  @Output() editEvent = new EventEmitter();
+  @Output() deleteEvent = new EventEmitter();
+  @Output() payedEvent = new EventEmitter();
 
   displayedColumns: string[] = [
     "username",
@@ -28,6 +31,7 @@ export class PaymentsListTableComponent implements OnChanges {
     "date",
     "value",
     "isPayed",
+    "actions",
   ];
 
   filterValue: string = "";
@@ -39,6 +43,7 @@ export class PaymentsListTableComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.dataSource = new MatTableDataSource(this.payments.items);
+    this.dataSource.sort = this.sort;
   }
 
   getDateFormatedValue(fullDate: string, isDate: boolean) {
@@ -55,5 +60,17 @@ export class PaymentsListTableComponent implements OnChanges {
 
   applyFilter() {
     this.applyFilterEvent.emit(this.filterValue);
+  }
+
+  onEditEvent(value: IPayment) {
+    this.editEvent.emit(value);
+  }
+
+  onDeleteEvent(value: IPayment) {
+    this.deleteEvent.emit(value);
+  }
+
+  onPayedEvent(value: IPayment) {
+    this.payedEvent.emit(value);
   }
 }

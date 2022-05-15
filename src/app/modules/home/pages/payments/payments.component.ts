@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { ToastrService } from "ngx-toastr";
 import { finalize, first } from "rxjs/operators";
 import { ITableColumns } from "../../shared/interfaces/tableColumns";
+import { DeletePaymentDialogComponent } from "./components/delete-payment-dialog/delete-payment-dialog.component";
 import { NewPaymentDialogComponent } from "./components/new-payment-dialog/new-payment-dialog.component";
 import { IPaginator, IPayment } from "./interfaces";
 import { PaymentsService } from "./services/payments/payments.service";
@@ -57,10 +58,13 @@ export class PaymentsComponent implements OnInit {
       data,
     });
 
-    dialogRef.componentInstance.addNewData.pipe(first()).subscribe((result) => {
-      if (result && !result.id) return this.store(result);
-      if (result && result.id) return this.update(result);
-    });
+    dialogRef
+      .afterClosed()
+      .pipe(first())
+      .subscribe((result) => {
+        if (result && !result.id) return this.store(result);
+        if (result && result.id) return this.update(result);
+      });
   }
 
   store(payment: IPayment) {
@@ -70,10 +74,53 @@ export class PaymentsComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.toastr.success("Pagamento criado com sucesso!");
-          this.getAllPayments();
+          this.payments.items = [...this.payments.items, res];
         },
       });
   }
 
-  update(payment: IPayment) {}
+  update(payment: IPayment) {
+    this.paymentsService
+      .update(payment)
+      .pipe(first())
+      .subscribe({
+        next: (res) => {
+          this.toastr.success("Pagamento alterado com sucesso!");
+
+          this.payments.items = this.payments.items.filter((payment) => {
+            if (payment.id !== res.id) return payment;
+            return res;
+          });
+        },
+      });
+  }
+
+  openDeleteDialog(data: IPayment) {
+    const dialogRef = this.dialog.open(DeletePaymentDialogComponent, {
+      width: "405px",
+      maxHeight: "325pxpx",
+      data,
+    });
+
+    dialogRef
+      .afterClosed()
+      .pipe(first())
+      .subscribe((result) => {
+        if (result) {
+          this.delete(data);
+        }
+      });
+  }
+
+  delete(payment: IPayment) {
+    this.paymentsService
+      .delete(payment)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.toastr.success("Pagamento excluido com sucesso!");
+          this.getAllPayments();
+        },
+      });
+  }
 }

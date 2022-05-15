@@ -18,6 +18,7 @@ import {
   MatPaginatorModule,
 } from "@angular/material/paginator";
 import { CustomPaginator } from "../../lib";
+import { MatSortModule } from "@angular/material/sort";
 
 const sharedModules = [
   MatInputModule,
@@ -36,6 +37,7 @@ const sharedModules = [
   MatPaginatorModule,
   MatDialogModule,
   MatCheckboxModule,
+  MatSortModule,
 ];
 
 @NgModule({

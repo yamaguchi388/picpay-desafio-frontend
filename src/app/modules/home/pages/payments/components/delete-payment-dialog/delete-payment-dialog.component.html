@@ -1,0 +1,21 @@
+<div class="dp-modal">
+  <span class="modal__title page__span">Excluir Pagamento</span>
+
+  <div class="dp-modal__box-info">
+    <p>Usuário: {{ data.name }}</p>
+    <p>Data: {{ data.date | date: "shortDate" }}</p>
+    <p>Valor: {{ data.value | currency: "BRL" }}</p>
+  </div>
+
+  <div mat-dialog-actions class="dp-modal__box-button-actions">
+    <button mat-button (click)="onNoClick()">CANCELAR</button>
+    <button
+      mat-raised-button
+      cdkFocusInitial
+      (click)="onDelete()"
+      color="primary"
+    >
+      SALVAR
+    </button>
+  </div>
+</div>

@@ -10,5 +10,8 @@
     [payments]="payments"
     (pageChangeEvent)="getAllPayments()"
     (applyFilterEvent)="getAllPayments($event)"
+    (editEvent)="openDialog($event)"
+    (payedEvent)="update($event)"
+    (deleteEvent)="openDeleteDialog($event)"
   ></app-payments-list-table>
 </main>

@@ -1,6 +1,9 @@
 .home__main {
-    padding-top: 65px !important;
-    padding: 0 48px;
-    background: #f2f2f2;
-    height: calc(100% - 65px);
-  }
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+    padding: 0 3rem;
+}
+
+::ng-deep body{
+  background: #f2f2f2;
+}

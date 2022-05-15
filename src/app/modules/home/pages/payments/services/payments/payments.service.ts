@@ -55,4 +55,12 @@ export class PaymentsService {
     payment.isPayed = false;
     return this.httpService.post<IPayment>(this.apiUrl, payment);
   }
+
+  update(payment: IPayment) {
+    return this.httpService.put<IPayment>(this.apiUrl, payment.id, payment);
+  }
+
+  delete(payment: IPayment) {
+    return this.httpService.delete(this.apiUrl, payment.id);
+  }
 }

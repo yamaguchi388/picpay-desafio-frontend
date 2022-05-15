@@ -11,9 +11,7 @@ import { IPayment } from "../../interfaces";
 })
 export class NewPaymentDialogComponent implements OnInit {
   form: FormGroup;
-
-  @Output()
-  addNewData = new EventEmitter<IPayment>();
+  title = "Adicionar pagamento";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,6 +35,13 @@ export class NewPaymentDialogComponent implements OnInit {
       title: ["", Validators.required],
       value: ["", [Validators.required, Validators.min(1)]],
     });
+
+    if (this.data) {
+      const { name, date, username, title, value } = this.data;
+      this.form.patchValue({ name, date, username, title, value });
+
+      this.title = "Alterar pagamento";
+    }
   }
 
   verifyFormControlIsInvalid(key: string) {
@@ -59,7 +64,6 @@ export class NewPaymentDialogComponent implements OnInit {
       ...this.form.getRawValue(),
     };
 
-    this.addNewData.emit(payload);
-    this.dialogRef.close();
+    this.dialogRef.close(payload);
   }
 }
