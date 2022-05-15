@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { CanActivatePortal } from "./guards/can-activate-portal";
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
   },
   {
     path: "portal",
+    canActivate: [CanActivatePortal],
     loadChildren: () =>
       import("./core/layout/layout.module").then((m) => m.LayoutModule),
   },
@@ -26,5 +28,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [CanActivatePortal],
 })
 export class AppRoutingModule {}
