@@ -1,0 +1,97 @@
+<h1 class="pd:x-9 mg:t-9 text-3xl text-color-900">Meus pagamentos</h1>
+
+<section class="pd:x-9">
+  <div class="flex justify-end mg:b-7">
+    <pp-button (click)="newPayment()">Adicionar pagamento</pp-button>
+  </div>
+  <pp-grid
+    [data]="payments"
+    (edit)="openModalEdit($event)"
+    (delete)="openModalDelete($event)"
+    (sort)="onSort($event)"
+    (search)="onSearch($event)"
+    (pageSize)="onPageSizeChange($event)"
+  ></pp-grid>
+</section>
+
+<pp-modal #modalPayment [title]="modalTitle">
+  <form
+    id="formID"
+    [formGroup]="paymentForm"
+    (ngSubmit)="onSubmit()"
+    class="pd:t-7"
+  >
+    <div class="grid gap-6 mg:b-6">
+      <div class="pp-input-container md col-span-6">
+        <input
+          id="name"
+          type="text"
+          class="pp-input border-radius-sm"
+          formControlName="name"
+          required
+        />
+        <label for="name" class="pp-label">Usuário*</label>
+      </div>
+      <div class="pp-input-container md col-span-6">
+        <input
+          id="value"
+          class="pp-input border-radius-sm"
+          formControlName="value"
+          required
+        />
+        <label for="value" class="pp-label">Valor*</label>
+      </div>
+    </div>
+    <div class="grid gap-6 mg:b-6">
+      <div class="pp-input-container md col-span-6">
+        <input
+          id="date"
+          type="datetime-local"
+          attr.data-valid="{{ paymentForm.get('date').valid }}"
+          required
+          formControlName="date"
+          class="pp-input border-radius-sm"
+        />
+        <label for="date" class="pp-label">Data*</label>
+      </div>
+      <div class="pp-input-container md col-span-6">
+        <input
+          id="title"
+          class="pp-input border-radius-sm"
+          required
+          formControlName="title"
+        />
+        <label for="title" class="pp-label">Título</label>
+      </div>
+    </div>
+    <div class="flex gap-6 justify-end">
+      <pp-button variant="secondary" (click)="modalPayment.toggle()"
+        >cancelar</pp-button
+      >
+      <pp-button type="submit">salvar</pp-button>
+    </div>
+  </form>
+</pp-modal>
+
+<pp-modal #modalDeletePayment title="Excluir pagamento" width="360px">
+  <div class="flex flex-col pd:t-9">
+    <div>
+      <span>Usuário: </span>
+      <span>{{ selectedPayment.name }}</span>
+    </div>
+    <div class="mg:y-6">
+      <span>Data: </span>
+      <span>{{ selectedPayment.date | date: "dd/MM/yyyy" }}</span>
+    </div>
+    <div class="mg:b-6">
+      <span>Valor: </span>
+      <span>{{ selectedPayment.value | currency: "BRL" }}</span>
+    </div>
+  </div>
+  <div class="flex justify-between mg:t-6">
+    <pp-button variant="secondary" (click)="modalDeletePayment.toggle()"
+      >Cancelar</pp-button
+    >
+    <pp-button (click)="onDelete()">Salvar</pp-button>
+  </div>
+</pp-modal>
