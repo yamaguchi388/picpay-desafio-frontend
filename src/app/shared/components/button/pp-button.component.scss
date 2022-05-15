@@ -12,6 +12,11 @@
     opacity: 0.9;
   }
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
   &.primary {
     @extend .bg-color-300;
     @extend .text-color-0;

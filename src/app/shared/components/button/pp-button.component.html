@@ -6,10 +6,12 @@
     'border-radius-sm': radiusSize === 'sm',
     'border-radius-md': radiusSize === 'md',
     xs: size === 'xs',
-    sm: size === 'sm', 
-    md: size === 'md'
+    sm: size === 'sm',
+    md: size === 'md',
+    'w-100': fullWidth
   }"
   [type]="type"
+  [disabled]="disabled"
 >
   <ng-content></ng-content>
 </button>

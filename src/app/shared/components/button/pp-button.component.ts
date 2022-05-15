@@ -14,8 +14,9 @@ export class PpButtonComponent {
   @Input() variant: Variant = "primary";
   @Input() size: ButtonSize = "md";
   @Input("radius-size") radiusSize: VariantRadius = "sm";
-  @Input() type:ButtonType = "button"; 
+  @Input() type: ButtonType = "button";
+  @Input("full-width") fullWidth = false;
+  @Input() disabled: boolean;
 
   constructor() {}
-
 }
