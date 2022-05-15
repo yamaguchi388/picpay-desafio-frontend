@@ -86,11 +86,7 @@ export class PaymentsComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.toastr.success("Pagamento alterado com sucesso!");
-
-          this.payments.items = this.payments.items.filter((payment) => {
-            if (payment.id !== res.id) return payment;
-            return res;
-          });
+          this.getAllPayments();
         },
       });
   }
