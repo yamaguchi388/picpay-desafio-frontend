@@ -5,7 +5,7 @@ import { PpModalComponent } from "./pp-modal.component";
 
 
 
-fdescribe("PpModalComponent", () => {
+describe("PpModalComponent", () => {
   let component: PpModalComponent;
   let fixture: ComponentFixture<PpModalComponent>;
 
