@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="title">
+    <p>{{ pageTitle }}</p>
+  </div>
+  <div class="form-wrapper">
+    <form class="payment-form" [formGroup]="paymentForm">
+      <mat-form-field class="example-full-width">
+        <mat-label>Usuário</mat-label>
+        <input
+          matInput
+          placeholder="Insira seu melhor email"
+          formControlName="name"
+        />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Valor</mat-label>
+        <input
+          matInput
+          placeholder="Insira sua senha"
+          formControlName="value"
+        />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Data</mat-label>
+        <input matInput placeholder="Insira sua senha" formControlName="date" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Título</mat-label>
+        <input
+          matInput
+          placeholder="Insira sua senha"
+          formControlName="title"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="footer">
+    <button mat-flat-button>CANCELAR</button>
+    <button class="primary-button" mat-flat-button>SALVAR</button>
+  </div>
+</div>
