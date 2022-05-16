@@ -3,12 +3,17 @@
     <span class="font-bold">Pay</span>
     <span class="font-thin">Friends</span>
   </div>
-  <button class="reset-button">
+  <button class="reset-button user-options" (click)="onClick($event)">
     <img
       width="45px"
       height="45px"
       src="../../../../../assets/images/user.png"
       alt="imagem do usuário"
     />
+    <div #dropdownMenu class="dropdown-content" [ngClass]="isOpenMenu ? 'visible' : 'hidden'">
+      <ul>
+        <li class="menu-item" tabindex="0" (click)="logout()">Sair</li>
+      </ul>
+    </div>
   </button>
 </nav>

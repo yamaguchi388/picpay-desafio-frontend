@@ -1,0 +1,32 @@
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.user-options {
+  position: relative;
+  display: inline-block;
+
+  .dropdown-content {
+    right: 0;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    background: #ffffff;
+    box-shadow: 0px 2px 4px rgba(4, 38, 82, 0.06);
+    border-radius: 8px;
+    
+    z-index: 1;
+
+    &:hover {
+      background-color: #e6ecf0;
+    }
+
+    .menu-item {
+      padding: 12px 16px;
+    }
+  }
+}
