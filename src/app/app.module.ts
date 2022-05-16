@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing-module';
 import { LoginModule } from './components/login/login.module';
-import { PaymentsModule } from './components/payments/payments.module';
+import { FetchPaymentsModule } from './components/payments/payments.module';
 import { HeaderModule } from './shared/header/header.module';
 
 
@@ -20,7 +20,7 @@ import { HeaderModule } from './shared/header/header.module';
     AppRoutingModule,
     HeaderModule,
     LoginModule,
-    PaymentsModule,
+    FetchPaymentsModule,
     HttpClientModule
   ],
   providers: [ HttpClient ],
