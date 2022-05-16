@@ -95,4 +95,26 @@ describe("PpButtonComponent", () => {
       label
     );
   });
+
+  it("should apply button type submit", () => {
+    component.type = "submit";
+    fixture.detectChanges();
+    const buttonEl$ = fixture.debugElement.query(By.css("button"));
+    expect((buttonEl$.nativeElement as HTMLButtonElement).type).toBe("submit")
+  });
+
+  it("should apply disabled", () => {
+    component.disabled = true;
+    fixture.detectChanges();
+    const buttonEl$ = fixture.debugElement.query(By.css("button"));
+    expect((buttonEl$.nativeElement as HTMLButtonElement).disabled).toBeTrue()
+  });
+
+  it("should apply full-width style", () => {
+    component.fullWidth = true;
+    fixture.detectChanges();
+    const buttonEl$ = fixture.debugElement.query(By.css("button"));
+    expect((buttonEl$.nativeElement as HTMLButtonElement).classList).toContain("w-100")
+  })
+
 });
