@@ -16,4 +16,17 @@ export class PaymentService {
   public getPayments(): Observable<Task> {
     return this.httpClient.get<Task>(`${this.url}`);
   }
+
+  public getPaymentById(id: number): Observable<Task> {
+    return this.httpClient.get<Task>(`${this.url}/${id}`);
+  }
+
+  public updatePayment(id: number, task: Task): Observable<Task> {
+    return this.httpClient.put<Task>(`${this.url}/${id}`, task);
+  }
+
+  public deletePayment(id: number): Observable<Task> {
+    return this.httpClient.delete<Task>(`${this.url}/${id}`);
+  }
+
 }

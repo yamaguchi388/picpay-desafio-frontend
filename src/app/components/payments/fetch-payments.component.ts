@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -17,6 +17,8 @@ export class FetchPaymentsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  public pageTitle = '';
+  public actionTitle = 'edit';
   public title = 'Meus Pagamentos';
   public checked = false;
   public dataSource = new MatTableDataSource<Task>();
@@ -31,7 +33,7 @@ export class FetchPaymentsComponent implements OnInit {
 
   constructor(
     private readonly paymentService: PaymentService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -53,13 +55,18 @@ export class FetchPaymentsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public addPayment(): void {
+  public addPayment(action): void {
+    this.setDialogTitle(action);
     const dialogRef = this.dialog.open(AddInsertPaymentsComponent, {
       width: '90vw',
       height: '70vh',
       maxWidth: '100vw',
       maxHeight: '100vh',
+      data: {
+        pageTitle: this.pageTitle,
+      }
     });
+
 
     dialogRef.afterClosed().subscribe(() => {
       console.log('The dialog was closed');
@@ -72,6 +79,26 @@ export class FetchPaymentsComponent implements OnInit {
       width: '50vw',
       height: '50vh',
       data: {
+        id,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getPayments();
+    });
+  }
+
+  public setDialogTitle(action): void {
+    action === this.actionTitle ? this.pageTitle = 'Editar Pagamento' : this.pageTitle = 'Adicionar Pagamento';
+  }
+
+  public editPayment(action: string, id: number): void {
+    this.setDialogTitle(action);
+    const dialogRef = this.dialog.open(AddInsertPaymentsComponent, {
+      width: '50vw',
+      height: '50vh',
+      data: {
+        pageTitle: this.pageTitle,
         id,
       },
     });

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="title">
-    <p>{{ pageTitle }}</p>
+    <p>{{ data.pageTitle }}</p>
   </div>
   <div class="form-wrapper">
     <form class="payment-form" [formGroup]="paymentForm">
@@ -8,21 +8,22 @@
         <mat-label>Usuário</mat-label>
         <input
           matInput
-          placeholder="Insira seu melhor email"
+          placeholder=""
           formControlName="name"
         />
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Valor</mat-label>
         <input
+        [value]="paymentForm.get('value').value | currency: 'BRL'"
           matInput
-          placeholder="Insira sua senha"
+          placeholder=""
           formControlName="value"
         />
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Data</mat-label>
-        <input matInput placeholder="Insira sua senha" formControlName="date" />
+        <input [value]="paymentForm.get('date').value | date" matInput placeholder="" formControlName="date"  />
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>Título</mat-label>
@@ -35,7 +36,7 @@
     </form>
   </div>
   <div class="footer">
-    <button mat-flat-button>CANCELAR</button>
-    <button class="primary-button" mat-flat-button>SALVAR</button>
+    <button mat-flat-button mat-dialog-close>CANCELAR</button>
+    <button class="primary-button" mat-flat-button mat-dialog-close (click)="updateData(paymentToUpdate.id)">SALVAR</button>
   </div>
 </div>
