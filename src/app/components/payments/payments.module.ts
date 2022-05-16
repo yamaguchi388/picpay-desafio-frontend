@@ -8,12 +8,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 import { HeaderModule } from "./../../shared/header/header.module";
-import { PaymentsComponent } from "./payments.component";
+import { FetchPaymentsComponent } from "./fetch-payments.component";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AddInsertPaymentsComponent } from './add-insert-payments/add-insert-payments.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [PaymentsComponent],
+  declarations: [FetchPaymentsComponent, AddInsertPaymentsComponent],
   imports: [CommonModule,
     HeaderModule,
     MatButtonModule,
@@ -23,8 +26,11 @@ import { MatInputModule } from '@angular/material/input';
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
-    MatInputModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatDialogModule
   ],
-  exports: [PaymentsComponent],
+  exports: [FetchPaymentsComponent],
 })
-export class PaymentsModule {}
+export class FetchPaymentsModule {}
