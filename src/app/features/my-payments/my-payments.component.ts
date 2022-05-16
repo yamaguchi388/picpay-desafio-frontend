@@ -1,22 +1,24 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Observable } from "rxjs";
+import { Observable, of, Subscription } from "rxjs";
 import { SearchOptions } from "@/app/core/models/search-options.model";
 import { PpModalComponent } from "@/app/shared/components/modal/pp-modal.component";
 import { Payment } from "./models/payment.model";
 import { PaymentService } from "./services/payment.service";
 import { Title } from "@angular/platform-browser";
+import { PaymentResponse } from "./models/payment-response.model";
 
 @Component({
   selector: "my-payments",
   templateUrl: "./my-payments.component.html",
   styleUrls: ["./my-payments.component.scss"],
 })
-export class MyPaymentsComponent implements OnInit {
+export class MyPaymentsComponent implements OnInit, OnDestroy {
   searchOptions = new SearchOptions("name");
-  payments: Observable<Payment[]>;
+  payments: PaymentResponse;
   selectedPayment: Payment = new Payment();
   modalTitle: string;
+  paymentsSubscription: Subscription;
 
   @ViewChild("modalPayment") modalPayment: PpModalComponent;
   @ViewChild("modalDeletePayment") modalDeletePayment: PpModalComponent;
@@ -38,21 +40,31 @@ export class MyPaymentsComponent implements OnInit {
     private paymentService: PaymentService,
     private titleService: Title
   ) {}
+  
 
   ngOnInit(): void {
     this.titleService.setTitle("PayFriends - Meus pagamentos");
     this.getMyPayments();
   }
 
+  ngOnDestroy(): void {
+    this.paymentsSubscription.unsubscribe();
+  }
+
   newPayment() {
     this.modalTitle = "Adicionar pagamento";
     this.selectedPayment = new Payment();
+    this.paymentForm.reset();
     this.updatePaymentForm(this.selectedPayment);
     this.modalPayment.toggle();
   }
 
   getMyPayments() {
-    this.payments = this.paymentService.getPayments(this.searchOptions);
+    this.paymentsSubscription = this.paymentService
+      .getPayments(this.searchOptions)
+      .subscribe((response) => {
+        this.payments = response;
+      });
   }
 
   onSort({ prop, sort }) {
@@ -68,6 +80,12 @@ export class MyPaymentsComponent implements OnInit {
 
   onPageSizeChange(limit: number) {
     this.searchOptions.limit = limit;
+    this.searchOptions.page = 1;
+    this.getMyPayments();
+  }
+
+  onPagechanged(page: number) {
+    this.searchOptions.page = page;
     this.getMyPayments();
   }
 

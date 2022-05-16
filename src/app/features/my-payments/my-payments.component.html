@@ -6,11 +6,14 @@
   </div>
   <pp-grid
     [data]="payments"
+    [pageSize]="searchOptions.limit"
+    [pageIndex]="searchOptions.page"
     (edit)="openModalEdit($event)"
     (delete)="openModalDelete($event)"
     (sort)="onSort($event)"
     (search)="onSearch($event)"
     (pageSize)="onPageSizeChange($event)"
+    (page-index)="onPagechanged($event)"
   ></pp-grid>
 </section>
 
@@ -29,6 +32,7 @@
           class="pp-input border-radius-sm"
           formControlName="name"
           required
+          [attr.data-invalid]="paymentForm.get('name').dirty &&  paymentForm.get('name').invalid"
         />
         <label for="name" class="pp-label">Usuário*</label>
       </div>
@@ -38,6 +42,7 @@
           class="pp-input border-radius-sm"
           formControlName="value"
           required
+          [attr.data-invalid]="paymentForm.get('value').dirty &&  paymentForm.get('value').invalid"
         />
         <label for="value" class="pp-label">Valor*</label>
       </div>
@@ -47,7 +52,8 @@
         <input
           id="date"
           type="datetime-local"
-          attr.data-valid="{{ paymentForm.get('date').valid }}"
+          [attr.data-invalid]="paymentForm.get('date').dirty &&  paymentForm.get('date').invalid"
+          [attr.data-valid]="paymentForm.get('date').valid"
           required
           formControlName="date"
           class="pp-input border-radius-sm"
@@ -60,6 +66,7 @@
           class="pp-input border-radius-sm"
           required
           formControlName="title"
+          [attr.data-invalid]="paymentForm.get('title').dirty &&  paymentForm.get('title').invalid"
         />
         <label for="title" class="pp-label">Título</label>
       </div>
@@ -68,7 +75,7 @@
       <pp-button variant="secondary" (click)="modalPayment.toggle()"
         >cancelar</pp-button
       >
-      <pp-button type="submit">salvar</pp-button>
+      <pp-button [disabled]="paymentForm" type="submit">salvar</pp-button>
     </div>
   </form>
 </pp-modal>
