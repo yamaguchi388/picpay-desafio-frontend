@@ -1,0 +1,21 @@
+<ul class="pagination flex gap-3 items-center text-base">
+  <li>
+    <button
+      class="reset-button pagination-controls"
+      (click)="onClickPage(previousPage)"
+      [disabled]="pageIndex === 1"
+    >
+      <pp-icon-chevron direction="left"></pp-icon-chevron>
+    </button>
+  </li>
+  <li>Página {{ pageIndexLocal }} de {{ totalPagesLocal }}</li>
+  <li>
+    <button
+      class="reset-button pagination-controls"
+      [disabled]="pageIndex === totalPages"
+      (click)="onClickPage(nextPage)"
+    >
+      <pp-icon-chevron direction="right"></pp-icon-chevron>
+    </button>
+  </li>
+</ul>

@@ -8,6 +8,7 @@ import { PpIconTimesCircleComponent } from "@/app/shared/components/icons/times-
 import { PpButtonModule } from "@/app/shared/components/button/pp-button.module";
 import { PpIconFilterComponent } from "@/app/shared/components/icons/filter/pp-icon-filter.component";
 import { FormsModule } from "@angular/forms";
+import { PpPaginationComponent } from "./components/pagination/pp-pagination.component";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule } from "@angular/forms";
     PpIconChevronComponent,
     PpIconPenComponent,
     PpIconTimesCircleComponent,
-    PpIconFilterComponent
+    PpIconFilterComponent,
+    PpPaginationComponent
   ],
   imports: [CommonModule, PpButtonModule, FormsModule],
   exports: [PpGridComponent],
