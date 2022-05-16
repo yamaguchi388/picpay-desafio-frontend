@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Observable, of, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
+import { ToastrService } from 'ngx-toastr';
 import { SearchOptions } from "@/app/core/models/search-options.model";
 import { PpModalComponent } from "@/app/shared/components/modal/pp-modal.component";
 import { Payment } from "./models/payment.model";
@@ -38,7 +39,8 @@ export class MyPaymentsComponent implements OnInit, OnDestroy {
 
   constructor(
     private paymentService: PaymentService,
-    private titleService: Title
+    private titleService: Title,
+    private toastr: ToastrService
   ) {}
   
 
@@ -106,6 +108,7 @@ export class MyPaymentsComponent implements OnInit, OnDestroy {
       this.selectedPayment = new Payment();
       this.modalDeletePayment.toggle();
       this.getMyPayments();
+      this.toastr.success("Pagamento excluido com sucesso")
     });
   }
 
@@ -139,6 +142,7 @@ export class MyPaymentsComponent implements OnInit, OnDestroy {
     this.paymentService.createPayment(payment).subscribe(() => {
       this.getMyPayments();
       this.modalPayment.toggle();
+      this.toastr.success("Pagamento criado com sucesso");
     });
   }
 
@@ -146,6 +150,7 @@ export class MyPaymentsComponent implements OnInit, OnDestroy {
     this.paymentService.editPayment(payment).subscribe(() => {
       this.getMyPayments();
       this.modalPayment.toggle();
+      this.toastr.success("Pagamento editado com sucesso");
     });
   }
 }

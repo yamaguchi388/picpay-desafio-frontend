@@ -41,7 +41,9 @@
           id="value"
           class="pp-input border-radius-sm"
           formControlName="value"
+          type="number"
           required
+          [attr.data-valid]="paymentForm.get('value').valid"
           [attr.data-invalid]="paymentForm.get('value').dirty &&  paymentForm.get('value').invalid"
         />
         <label for="value" class="pp-label">Valor*</label>
@@ -64,9 +66,7 @@
         <input
           id="title"
           class="pp-input border-radius-sm"
-          required
           formControlName="title"
-          [attr.data-invalid]="paymentForm.get('title').dirty &&  paymentForm.get('title').invalid"
         />
         <label for="title" class="pp-label">Título</label>
       </div>
@@ -75,7 +75,7 @@
       <pp-button variant="secondary" (click)="modalPayment.toggle()"
         >cancelar</pp-button
       >
-      <pp-button [disabled]="paymentForm" type="submit">salvar</pp-button>
+      <pp-button [disabled]="paymentForm.invalid" type="submit">salvar</pp-button>
     </div>
   </form>
 </pp-modal>
