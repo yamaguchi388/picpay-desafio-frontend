@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
       this.route.navigate(["/portal/meus-pagamentos"]);
     } else {
       this.loginFailed = true;
-      console.log(this.loginForm);
     }
   }
 

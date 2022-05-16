@@ -50,9 +50,16 @@
       }
     }
 
+    &[data-invalid=true] {
+      border-color: $color-error;
+      & ~ label {
+        color: $color-error;
+      }
+    }
+
     &:focus,
     &:valid,
-    &[data-valid=true] {
+    &[data-valid="true"] {
       &::-webkit-datetime-edit {
         color: $color-1000;
       }
