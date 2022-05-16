@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "./components/login/login.component";
-import { PaymentsComponent } from "./components/payments/payments.component";
+import { FetchPaymentsComponent } from "./components/payments/fetch-payments.component";
 
 const routes: Routes = [
   {
@@ -10,9 +10,9 @@ const routes: Routes = [
   },
   {
     path: 'payments',
-    component: PaymentsComponent
+    component: FetchPaymentsComponent
   }
-]
+];
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
