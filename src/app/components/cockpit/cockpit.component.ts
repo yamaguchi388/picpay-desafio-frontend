@@ -12,8 +12,8 @@ export class CockpitComponent {
 
   constructor(private userService: UserService) { }
 
-  deslogar(){
-    this.userService.deslogar();
+  logout(){
+    this.userService.logout();
   }
 
 }

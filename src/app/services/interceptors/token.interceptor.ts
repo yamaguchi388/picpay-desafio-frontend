@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpErrorResponse
 } from '@angular/common/http';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { UserService } from '../user.service';
 import { environment } from 'src/environments/environment';
 
@@ -31,7 +31,7 @@ export class TokenInterceptor implements HttpInterceptor {
         .pipe(
           catchError(error => {
             if (error instanceof HttpErrorResponse && error.status === 401)
-              this.userService.deslogar(false);
+              this.userService.logout();
             else
               return throwError(error.message);
           }));

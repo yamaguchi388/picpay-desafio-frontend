@@ -56,7 +56,7 @@ import { FormPaymentComponent } from './components/form-payment/form-payment.com
     MatTableModule,
     MatToolbarModule,
     MatPaginatorModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     SharedModule
   ],
   providers: [],

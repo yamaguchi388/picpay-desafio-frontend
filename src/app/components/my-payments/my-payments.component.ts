@@ -18,9 +18,9 @@ import { FormPaymentComponent } from '../form-payment/form-payment.component';
 })
 export class MyPaymentsComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ["image", "username", "title", "value", "date", "isPayed", 'action'];
+  displayedColumns: string[] = ['image', 'username', 'title', 'value', 'date', 'isPayed', 'action'];
 
-  filterPaymentsOptions: string[] = ["Nome", "Usuário", "Título", "Data", "Pago"];
+  filterPaymentsOptions: string[] = ['Nome', 'Usuário', 'Título', 'Data', 'Pago'];
   filterData: string = '';
   selectedFilter: string = this.filterPaymentsOptions[0];
 
@@ -42,7 +42,7 @@ export class MyPaymentsComponent implements AfterViewInit, OnInit {
   constructor(
     private paymentService: PaymentService,
     public dialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -73,7 +73,7 @@ export class MyPaymentsComponent implements AfterViewInit, OnInit {
       .pipe(first())
       .subscribe((paymentsData) => {
         this.payments = paymentsData;
-        this.dataSource = new MatTableDataSource<PaymentModel>(paymentsData)
+        this.dataSource = new MatTableDataSource<PaymentModel>(paymentsData);
       });
   }
 
@@ -124,7 +124,7 @@ export class MyPaymentsComponent implements AfterViewInit, OnInit {
       .updatePayment(this.dataSource.data[index].id, element)
       .pipe()
       .subscribe(() => {
-        this.openSnackBar('Pagamento atualizado com sucesso!', 'OK')
+        this.openSnackBar('Pagamento atualizado com sucesso!', 'OK');
       });
   }
 
@@ -140,14 +140,14 @@ export class MyPaymentsComponent implements AfterViewInit, OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+    this.snackBar.open(message, action);
   }
 
   filterPaymentsData() {
     if (this.filterData) {
       this.dataSource.filter = this.filterData;
     } else {
-      this._snackBar.open('Você precisa informar o dado que deseja filtrar!', 'OK');
+      this.snackBar.open('Você precisa informar o dado que deseja filtrar!', 'OK');
     }
   }
 

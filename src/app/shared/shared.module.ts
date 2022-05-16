@@ -6,16 +6,16 @@ import { FormatCoinPipe } from './pipes/format-coin.pipe';
 
 @NgModule({
   declarations: [
-    LoadingComponent, 
-    FormatDatePipe, 
+    LoadingComponent,
+    FormatDatePipe,
     FormatCoinPipe
   ],
   imports: [
     MatProgressSpinnerModule
   ],
   exports: [
-    LoadingComponent, 
-    FormatDatePipe, 
+    LoadingComponent,
+    FormatDatePipe,
     FormatCoinPipe
   ]
 })

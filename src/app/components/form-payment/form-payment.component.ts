@@ -26,7 +26,7 @@ export class FormPaymentComponent implements OnInit {
     public dialogRef: MatDialogRef<FormPaymentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private paymentService: PaymentService,
-    private _snackBar: MatSnackBar
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class FormPaymentComponent implements OnInit {
         this.paymentForm.disable();
         break;
       default:
-        this._snackBar.open('Opção inválida!', 'OK');
+        this.snackBar.open('Opção inválida!', 'OK');
         break;
     }
   }
@@ -85,12 +85,12 @@ export class FormPaymentComponent implements OnInit {
           this.deletePayment();
           break;
         default:
-          this._snackBar.open('Opção inválida!', 'OK');
+          this.snackBar.open('Opção inválida!', 'OK');
           break;
       }
       this.closedDialog();
     } else {
-      this._snackBar.open('Preencha os campos obrigatórios antes de prosseguir, por favor!', 'OK');
+      this.snackBar.open('Preencha os campos obrigatórios antes de prosseguir, por favor!', 'OK');
     }
   }
 
@@ -100,7 +100,7 @@ export class FormPaymentComponent implements OnInit {
     this.paymentService
       .insertPayment(this.data.payment)
       .pipe()
-      .subscribe(() => this._snackBar.open('Pagamento inserido com sucesso!', 'OK'));
+      .subscribe(() => this.snackBar.open('Pagamento inserido com sucesso!', 'OK'));
   }
 
   setPaymentValue() {
@@ -118,14 +118,14 @@ export class FormPaymentComponent implements OnInit {
     this.paymentService
       .updatePayment(this.data.payment.id, this.data.payment)
       .pipe()
-      .subscribe(() => this._snackBar.open('Pagamento atualizado com sucesso!', 'OK'));
+      .subscribe(() => this.snackBar.open('Pagamento atualizado com sucesso!', 'OK'));
   }
 
   deletePayment() {
     this.paymentService
       .deletePayment(this.data.payment.id)
       .pipe()
-      .subscribe(() => this._snackBar.open('Pagamento deletado com sucesso!', 'OK'));
+      .subscribe(() => this.snackBar.open('Pagamento deletado com sucesso!', 'OK'));
   }
 
   closedDialog() {

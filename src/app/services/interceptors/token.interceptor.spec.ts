@@ -1,11 +1,14 @@
 import { TestBed } from '@angular/core/testing';
+import { UserService } from '../user.service';
 
 import { TokenInterceptor } from './token.interceptor';
 
 describe('TokenInterceptor', () => {
+  const userServiceStub = {};
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      TokenInterceptor
+      TokenInterceptor,
+      { provide: UserService, useValue: userServiceStub }
       ]
   }));
 

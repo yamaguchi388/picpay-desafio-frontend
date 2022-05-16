@@ -18,6 +18,5 @@ export class LoggedOutGuard implements CanActivate {
         return false;
       }
       return true;
-  }
-  
+  }  
 }
