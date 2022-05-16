@@ -1,31 +1,38 @@
-import { AddInsertPaymentsComponent } from './add-insert-payments/add-insert-payments.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Task } from 'src/app/models/task.model';
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
-import {MatDialog} from '@angular/material/dialog';
-
-import { PaymentService } from "src/app/services/paymentService/payment.service";
+import { PaymentService } from 'src/app/services/paymentService/payment.service';
+import { AddInsertPaymentsComponent } from './add-insert-payments/add-insert-payments.component';
+import { DeletePaymentsComponent } from './delete-payments/delete-payments.component';
 
 @Component({
-  selector: "picpay-payments",
-  templateUrl: "./fetch-payments.component.html",
-  styleUrls: ["./fetch-payments.component.scss"],
+  selector: 'picpay-payments',
+  templateUrl: './fetch-payments.component.html',
+  styleUrls: ['./fetch-payments.component.scss'],
 })
 export class FetchPaymentsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  public title: string = "Meus Pagamentos";
+  public title = 'Meus Pagamentos';
   public checked = false;
   public dataSource = new MatTableDataSource<Task>();
-  displayedColumns: string[] = ["name", "title", "date", "value", "isPayed", "actions"];
+  public displayedColumns: string[] = [
+    'name',
+    'title',
+    'date',
+    'value',
+    'isPayed',
+    'actions',
+  ];
 
   constructor(
     private readonly paymentService: PaymentService,
     public dialog: MatDialog
-    ) {}
+  ) {}
 
   ngOnInit(): void {
     this.getPayments();
@@ -39,9 +46,7 @@ export class FetchPaymentsComponent implements OnInit {
     });
   }
 
-  public clicked(): void {
-
-  }
+  public clicked(): void {}
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -56,10 +61,23 @@ export class FetchPaymentsComponent implements OnInit {
       maxHeight: '100vh',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('The dialog was closed');
+      this.getPayments();
     });
   }
 
-  public deletePayment(): void {}
+  public deletePayment(id: number): void {
+    const dialogRef = this.dialog.open(DeletePaymentsComponent, {
+      width: '50vw',
+      height: '50vh',
+      data: {
+        id,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getPayments();
+    });
+  }
 }

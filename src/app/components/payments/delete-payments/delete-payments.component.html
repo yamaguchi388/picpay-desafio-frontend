@@ -1,0 +1,16 @@
+<div class="title">
+  <p>{{ title }}</p>
+</div>
+
+<span>
+  <p>Nome: {{ paymentToDelete.name }}</p>
+  <p>Data: {{ paymentToDelete.date | date: "mediumDate" }}</p>
+  <p>Valor: {{ paymentToDelete.value | currency: "BRL"}}</p>
+</span>
+
+<div class="footer">
+  <button mat-flat-button mat-dialog-close>CANCELAR</button>
+  <button class="primary-button" mat-dialog-close mat-flat-button (click)="deletePayment(paymentToDelete.id)">SALVAR</button>
+</div>
+
+
