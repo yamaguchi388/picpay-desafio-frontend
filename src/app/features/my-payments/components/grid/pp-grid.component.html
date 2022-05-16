@@ -17,17 +17,24 @@
         </div>
       </pp-button>
     </div>
-    <div class="flex items-center gap-4 text-color-700">
-      <label for="page-size">Exibir</label>
-      <select
-        id="page-size"
-        class="pd-5 border-radius-md"
-        (change)="onPageSizeChange($event.target.value)"
-      >
-        <option [value]="5">5</option>
-        <option [value]="10">10</option>
-        <option [value]="20">20</option>
-      </select>
+    <div class="flex items-center gap-6">
+      <div class="flex items-center gap-4 text-color-700">
+        <label for="page-size">Exibir</label>
+        <select
+          id="page-size"
+          class="pd-5 border-radius-md"
+          (change)="onPageSizeChange($event.target.value)"
+        >
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="20">20</option>
+        </select>
+      </div>
+      <pp-pagination
+        [pageIndex]="pageIndex"
+        [totalPages]="data?.totalPages"
+        (pagechanged)="onPageChanged($event)"
+      ></pp-pagination>
     </div>
   </div>
   <table>
@@ -67,43 +74,49 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of data | async">
-        <td class="">
-          <span class="pd:b-3 d-block">{{ item.name }}</span>
-          <span class="text-xs text-color-700">@{{ item.username }}</span>
-        </td>
-        <td>
-          {{ item.title }}
-        </td>
-        <td class="">
-          <span class="pd:b-3 d-block">{{ item.date | date: "d MMM y":"+0200" }}</span>
-          <span class="text-xs text-color-700 w-100">{{
-            item.date | date: "hh:mm"
-          }}</span>
-        </td>
-        <td>{{ item.value | currency: "BRL" }}</td>
-        <td>
-          <input
-            *ngIf="item.isPayed; else elseBlock"
-            class="is-payed"
-            type="checkbox"
-            [checked]="item.isPayed"
-          />
-          <ng-template #elseBlock>
-            <div class="is-payed-box"></div>
-          </ng-template>
-        </td>
-        <td>
-          <div class="flex justify-end items-center">
-            <button type="button" class="reset-button" (click)="onEdit(item)">
-              <pp-icon-pen></pp-icon-pen>
-            </button>
-            <button type="button" class="reset-button" (click)="onDelete(item)">
-              <pp-icon-times-circle></pp-icon-times-circle>
-            </button>
-          </div>
-        </td>
-      </tr>
+        <tr *ngFor="let item of data?.payments">
+          <td class="">
+            <span class="pd:b-3 d-block">{{ item.name }}</span>
+            <span class="text-xs text-color-700">@{{ item.username }}</span>
+          </td>
+          <td>
+            {{ item.title }}
+          </td>
+          <td class="">
+            <span class="pd:b-3 d-block">{{
+              item.date | date: "d MMM y":"+0200"
+            }}</span>
+            <span class="text-xs text-color-700 w-100">{{
+              item.date | date: "hh:mm"
+            }}</span>
+          </td>
+          <td>{{ item.value | currency: "BRL" }}</td>
+          <td>
+            <input
+              *ngIf="item.isPayed; else elseBlock"
+              class="is-payed"
+              type="checkbox"
+              [checked]="item.isPayed"
+            />
+            <ng-template #elseBlock>
+              <div class="is-payed-box"></div>
+            </ng-template>
+          </td>
+          <td>
+            <div class="flex justify-end items-center">
+              <button type="button" class="reset-button" (click)="onEdit(item)">
+                <pp-icon-pen></pp-icon-pen>
+              </button>
+              <button
+                type="button"
+                class="reset-button"
+                (click)="onDelete(item)"
+              >
+                <pp-icon-times-circle></pp-icon-times-circle>
+              </button>
+            </div>
+          </td>
+        </tr>
     </tbody>
   </table>
 </div>
