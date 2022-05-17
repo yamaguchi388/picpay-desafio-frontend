@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -67,7 +67,6 @@ export class FetchPaymentsComponent implements OnInit {
       }
     });
 
-
     dialogRef.afterClosed().subscribe(() => {
       console.log('The dialog was closed');
       this.getPayments();
@@ -82,7 +81,6 @@ export class FetchPaymentsComponent implements OnInit {
         id,
       },
     });
-
     dialogRef.afterClosed().subscribe(() => {
       this.getPayments();
     });
@@ -102,9 +100,9 @@ export class FetchPaymentsComponent implements OnInit {
         id,
       },
     });
-
     dialogRef.afterClosed().subscribe(() => {
       this.getPayments();
     });
   }
+
 }
