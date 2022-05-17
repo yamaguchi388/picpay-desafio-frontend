@@ -6,7 +6,7 @@
     <form class="payment-form" [formGroup]="paymentForm">
       <mat-form-field>
         <mat-label>Nome</mat-label>
-        <input matInput placeholder="" formControlName="name" />
+        <input matInput placeholder="" formControlName="name" required />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Valor</mat-label>
@@ -16,6 +16,7 @@
           type="number"
           placeholder=""
           formControlName="value"
+          required
         />
       </mat-form-field>
       <mat-form-field>
@@ -27,6 +28,7 @@
           matInput
           placeholder=""
           formControlName="date"
+          required
         />
         <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -34,11 +36,11 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Título</mat-label>
-        <input matInput placeholder="" formControlName="title" />
+        <input matInput placeholder="" formControlName="title" required />
       </mat-form-field>
       <mat-form-field *ngIf="showUserName">
         <mat-label>Usuário</mat-label>
-        <input matInput placeholder="" formControlName="username" />
+        <input matInput placeholder="" formControlName="username" required />
       </mat-form-field>
     </form>
   </div>
