@@ -48,6 +48,7 @@
       class="primary-button"
       mat-flat-button
       mat-dialog-close
+      [disabled]="paymentForm.invalid"
       *ngIf="showUserName"
       (click)="addPayment()"
     >
@@ -57,6 +58,7 @@
       class="primary-button"
       mat-flat-button
       mat-dialog-close
+      [disabled]="paymentForm.invalid"
       *ngIf="!showUserName"
       (click)="updateData(paymentToUpdate.id)"
     >
