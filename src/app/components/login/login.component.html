@@ -8,24 +8,40 @@
     </div>
     <div class="login-body">
       <div class="form">
-        <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
           <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
             <input
               matInput
+              type="email"
               placeholder="Insira seu melhor email"
               formControlName="email"
+              pattern=".+@gmail.com"
+              required
             />
+            <!-- <small
+            *ngIf="loginForm.get('email').errors?.required">Campo obrigatório
+          </small> -->
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>Password</mat-label>
             <input
               matInput
+              type="password"
               placeholder="Insira sua senha"
               formControlName="password"
+              required
             />
+            <!-- <small
+            *ngIf="loginForm.get('password').errors?.required">Campo obrigatório
+          </small> -->
           </mat-form-field>
-          <button mat-flat-button (click)="onSubmit()">ENTRAR</button>
+          <button
+            mat-flat-button
+            [disabled]="loginForm.invalid"
+          >
+            ENTRAR
+          </button>
         </form>
       </div>
     </div>
