@@ -14,6 +14,7 @@ import { HeaderModule } from './../../shared/header/header.module';
 import { AddInsertPaymentsComponent } from './add-insert-payments/add-insert-payments.component';
 import { DeletePaymentsComponent } from './delete-payments/delete-payments.component';
 import { FetchPaymentsComponent } from './fetch-payments.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [FetchPaymentsComponent, AddInsertPaymentsComponent, DeletePaymentsComponent],
@@ -30,6 +31,7 @@ import { FetchPaymentsComponent } from './fetch-payments.component';
     ReactiveFormsModule,
     MatInputModule,
     MatDialogModule,
+    MatSnackBarModule
   ],
   exports: [FetchPaymentsComponent],
 })
