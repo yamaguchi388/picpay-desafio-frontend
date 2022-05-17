@@ -33,7 +33,7 @@ export class FetchPaymentsComponent implements OnInit {
 
   constructor(
     private readonly paymentService: PaymentService,
-    public dialog: MatDialog,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -48,14 +48,12 @@ export class FetchPaymentsComponent implements OnInit {
     });
   }
 
-  public clicked(): void {}
-
-  applyFilter(event: Event): void {
+  public applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public addPayment(action): void {
+  public addPaymentDialog(action): void {
     this.setDialogTitle(action);
     const dialogRef = this.dialog.open(AddInsertPaymentsComponent, {
       width: '90vw',
@@ -64,11 +62,9 @@ export class FetchPaymentsComponent implements OnInit {
       maxHeight: '100vh',
       data: {
         pageTitle: this.pageTitle,
-      }
+      },
     });
-
     dialogRef.afterClosed().subscribe(() => {
-      console.log('The dialog was closed');
       this.getPayments();
     });
   }
@@ -86,10 +82,6 @@ export class FetchPaymentsComponent implements OnInit {
     });
   }
 
-  public setDialogTitle(action): void {
-    action === this.actionTitle ? this.pageTitle = 'Editar Pagamento' : this.pageTitle = 'Adicionar Pagamento';
-  }
-
   public editPayment(action: string, id: number): void {
     this.setDialogTitle(action);
     const dialogRef = this.dialog.open(AddInsertPaymentsComponent, {
@@ -102,6 +94,18 @@ export class FetchPaymentsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(() => {
       this.getPayments();
+    });
+  }
+
+  public setDialogTitle(action): void {
+    action === this.actionTitle
+      ? (this.pageTitle = 'Editar Pagamento')
+      : (this.pageTitle = 'Adicionar Pagamento');
+  }
+
+  public convertCurrencyType(): void {
+    this.dataSource.data.forEach((task) => {
+      task.value = +task.value.toFixed(2).replace('.', ',');
     });
   }
 

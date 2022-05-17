@@ -5,7 +5,7 @@
       <p>{{ title }}</p>
     </div>
     <div class="add-payment-button">
-      <button mat-flat-button (click)="addPayment('add')">
+      <button mat-flat-button (click)="addPaymentDialog('add')">
         ADICIONAR PAGAMENTO
       </button>
     </div>
@@ -62,7 +62,7 @@
       <ng-container matColumnDef="value">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.value | currency: "BRL" }}
+          {{ element.value | currency }}
         </td>
       </ng-container>
 
