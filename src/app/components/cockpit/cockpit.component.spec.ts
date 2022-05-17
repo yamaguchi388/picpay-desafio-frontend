@@ -5,7 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { CockpitComponent } from './cockpit.component';
 
 describe('CockpitComponent', () => {
-  let component: CockpitComponent;
+  let componentCockpit: CockpitComponent;
   let fixture: ComponentFixture<CockpitComponent>;
   const userServiceStub = {
     logout: () => {},
@@ -24,17 +24,17 @@ describe('CockpitComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CockpitComponent);
-    component = fixture.componentInstance;
+    componentCockpit = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(componentCockpit).toBeTruthy();
   });
 
   it('should call logout method', () => {
     spyOn(userServiceStub, 'logout').and.callThrough();
-    component.logout();
+    componentCockpit.logout();
     expect(userServiceStub.logout).toHaveBeenCalled();
   });
 });

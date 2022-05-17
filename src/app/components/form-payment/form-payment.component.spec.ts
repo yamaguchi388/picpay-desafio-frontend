@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { of } from 'rxjs';
 import { ActionEnum } from 'src/app/enums/action.enum';
 import { PaymentModel } from 'src/app/models/payment.model';
 import { PaymentService } from 'src/app/services/payment.service';
-
 import { FormPaymentComponent } from './form-payment.component';
 
+
 describe('FormPaymentComponent', () => {
-  let component: FormPaymentComponent;
+  let componentFormPayment: FormPaymentComponent;
   let fixture: ComponentFixture<FormPaymentComponent>;
   const paymentServiceStub = {
     insertPayment: () => of({}),
@@ -43,24 +43,24 @@ describe('FormPaymentComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FormPaymentComponent);
-    component = fixture.componentInstance;
+    componentFormPayment = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(componentFormPayment).toBeTruthy();
   });
 
   describe('should call ngOnInit method', () => {
     it('with action is INSERT', () => {
-      component.data.action = ActionEnum.INSERT;
-      spyOn(component, 'initDataPayment').and.callThrough();
-      component.ngOnInit();
-      expect(component.data.action).toBe(ActionEnum.INSERT);
-      expect(component.initDataPayment).toHaveBeenCalled();
+      componentFormPayment.data.action = ActionEnum.INSERT;
+      spyOn(componentFormPayment, 'initDataPayment').and.callThrough();
+      componentFormPayment.ngOnInit();
+      expect(componentFormPayment.data.action).toBe(ActionEnum.INSERT);
+      expect(componentFormPayment.initDataPayment).toHaveBeenCalled();
     });
     it('with action is UPDATE', () => {
-      component.paymentForm = new FormGroup({
+      componentFormPayment.paymentForm = new FormGroup({
         name: new FormControl(''),
         user: new FormControl(''),
         value: new FormControl(''), 
@@ -69,41 +69,41 @@ describe('FormPaymentComponent', () => {
         image: new FormControl(''),
         paid: new FormControl(''),
       });
-      component.data.action = ActionEnum.UPDATE;
-      spyOn(component, 'loadDataPayment').and.callThrough();
-      component.ngOnInit();
-      expect(component.data.action).toBe(ActionEnum.UPDATE);
-      expect(component.loadDataPayment).toHaveBeenCalled();
+      componentFormPayment.data.action = ActionEnum.UPDATE;
+      spyOn(componentFormPayment, 'loadDataPayment').and.callThrough();
+      componentFormPayment.ngOnInit();
+      expect(componentFormPayment.data.action).toBe(ActionEnum.UPDATE);
+      expect(componentFormPayment.loadDataPayment).toHaveBeenCalled();
     });
     it('with action is DELETE', () => {
-      component.paymentForm = new FormGroup({
-        name: new FormControl(''),
-        user: new FormControl(''),
-        value: new FormControl(''), 
-        date: new FormControl(''), 
-        title: new FormControl(''),
+      componentFormPayment.paymentForm = new FormGroup({
+        name: new FormControl('Andreia'),
+        user: new FormControl('deia'),
+        value: new FormControl('100'), 
+        date: new FormControl('16/05/2022'), 
+        title: new FormControl('Teste'),
         image: new FormControl(''),
         paid: new FormControl(''),
       });
-      component.msgDelete = 'Tem certeza que deseja deletar esse pagamento?';
-      component.data.action = ActionEnum.DELETE;
-      spyOn(component, 'loadDataPayment').and.callThrough();
-      component.ngOnInit();
-      expect(component.data.action).toBe(ActionEnum.DELETE);
-      expect(component.loadDataPayment).toHaveBeenCalled();
-      expect(component.msgDelete).toBe('Tem certeza que deseja deletar esse pagamento?');
+      componentFormPayment.msgDelete = 'Tem certeza que deseja deletar esse pagamento?';
+      componentFormPayment.data.action = ActionEnum.DELETE;
+      spyOn(componentFormPayment, 'loadDataPayment').and.callThrough();
+      componentFormPayment.ngOnInit();
+      expect(componentFormPayment.data.action).toBe(ActionEnum.DELETE);
+      expect(componentFormPayment.loadDataPayment).toHaveBeenCalled();
+      expect(componentFormPayment.msgDelete).toBe('Tem certeza que deseja deletar esse pagamento?');
     });
     it('with action is default (invalid)', () => {
-      component.data.action = undefined;
-      component.ngOnInit();
-      expect(component.data.action).toBeUndefined();
+      componentFormPayment.data.action = undefined;
+      componentFormPayment.ngOnInit();
+      expect(componentFormPayment.data.action).toBeUndefined();
     });
   });
 
   
   describe('should call savePayment method', () => {
     it('with action is INSERT', () => {
-      component.paymentForm = new FormGroup({
+      componentFormPayment.paymentForm = new FormGroup({
         name: new FormControl('Nome Teste'),
         user: new FormControl('teste'),
         value: new FormControl('100'), 
@@ -112,19 +112,19 @@ describe('FormPaymentComponent', () => {
         image: new FormControl(''),
         paid: new FormControl(false),
       });
-      spyOn(component, 'insertPayment').and.callThrough();
-      component.data.payment = new PaymentModel();
-      spyOn(component, 'setPaymentValue').and.callThrough();
-      spyOn(component, 'closedDialog').and.callThrough();
-      component.data.action = ActionEnum.INSERT;
-      component.savePayment();
-      expect(component.data.action).toBe(ActionEnum.INSERT);
-      expect(component.insertPayment).toHaveBeenCalled();
-      expect(component.setPaymentValue).toHaveBeenCalled();
-      expect(component.closedDialog).toHaveBeenCalled();
+      spyOn(componentFormPayment, 'insertPayment').and.callThrough();
+      componentFormPayment.data.payment = new PaymentModel();
+      spyOn(componentFormPayment, 'setPaymentValue').and.callThrough();
+      spyOn(componentFormPayment, 'closedDialog').and.callThrough();
+      componentFormPayment.data.action = ActionEnum.INSERT;
+      componentFormPayment.savePayment();
+      expect(componentFormPayment.data.action).toBe(ActionEnum.INSERT);
+      expect(componentFormPayment.insertPayment).toHaveBeenCalled();
+      expect(componentFormPayment.setPaymentValue).toHaveBeenCalled();
+      expect(componentFormPayment.closedDialog).toHaveBeenCalled();
     });
     it('with action is UPDATE', () => {
-      component.paymentForm = new FormGroup({
+      componentFormPayment.paymentForm = new FormGroup({
         name: new FormControl('Nome Teste'),
         user: new FormControl('teste'),
         value: new FormControl('100'), 
@@ -133,29 +133,29 @@ describe('FormPaymentComponent', () => {
         image: new FormControl(''),
         paid: new FormControl(false),
       });
-      spyOn(component, 'updatePayment').and.callThrough();
-      component.data.payment = new PaymentModel();
-      spyOn(component, 'setPaymentValue').and.callThrough();
-      spyOn(component, 'closedDialog').and.callThrough();
-      component.data.action = ActionEnum.UPDATE;
-      component.savePayment();
-      expect(component.data.action).toBe(ActionEnum.UPDATE);
-      expect(component.updatePayment).toHaveBeenCalled();
-      expect(component.setPaymentValue).toHaveBeenCalled();
-      expect(component.closedDialog).toHaveBeenCalled();
+      spyOn(componentFormPayment, 'updatePayment').and.callThrough();
+      componentFormPayment.data.payment = new PaymentModel();
+      spyOn(componentFormPayment, 'setPaymentValue').and.callThrough();
+      spyOn(componentFormPayment, 'closedDialog').and.callThrough();
+      componentFormPayment.data.action = ActionEnum.UPDATE;
+      componentFormPayment.savePayment();
+      expect(componentFormPayment.data.action).toBe(ActionEnum.UPDATE);
+      expect(componentFormPayment.updatePayment).toHaveBeenCalled();
+      expect(componentFormPayment.setPaymentValue).toHaveBeenCalled();
+      expect(componentFormPayment.closedDialog).toHaveBeenCalled();
     });
     it('with action is DELETE', () => {
-      spyOn(component, 'deletePayment').and.callThrough();
-      component.data.payment = new PaymentModel();
-      spyOn(component, 'closedDialog').and.callThrough();
-      component.data.action = ActionEnum.DELETE;
-      component.savePayment();
-      expect(component.data.action).toBe(ActionEnum.DELETE);
-      expect(component.deletePayment).toHaveBeenCalled();
-      expect(component.closedDialog).toHaveBeenCalled();
+      spyOn(componentFormPayment, 'deletePayment').and.callThrough();
+      componentFormPayment.data.payment = new PaymentModel();
+      spyOn(componentFormPayment, 'closedDialog').and.callThrough();
+      componentFormPayment.data.action = ActionEnum.DELETE;
+      componentFormPayment.savePayment();
+      expect(componentFormPayment.data.action).toBe(ActionEnum.DELETE);
+      expect(componentFormPayment.deletePayment).toHaveBeenCalled();
+      expect(componentFormPayment.closedDialog).toHaveBeenCalled();
     });
     it('with action is default (invalid)', () => {
-      component.paymentForm = new FormGroup({
+      componentFormPayment.paymentForm = new FormGroup({
         name: new FormControl('Nome Teste'),
         user: new FormControl('teste'),
         value: new FormControl('100'), 
@@ -164,14 +164,14 @@ describe('FormPaymentComponent', () => {
         image: new FormControl(''),
         paid: new FormControl(false),
       });
-      component.data.action = null;
+      componentFormPayment.data.action = null;
       spyOn(matSnackBarStub, 'open').and.callThrough();
-      component.savePayment();
+      componentFormPayment.savePayment();
       expect(matSnackBarStub.open).toHaveBeenCalled();
     });
     it('with paymentForm is invalid and action is not DELETE', () => {
-      component.data.action = ActionEnum.INSERT;
-      component.paymentForm = new FormGroup({
+      componentFormPayment.data.action = ActionEnum.INSERT;
+      componentFormPayment.paymentForm = new FormGroup({
         name: new FormControl('Nome Teste Nome Teste Nome Teste Nome Teste Nome Teste Nome Teste Nome Teste'),
         user: new FormControl(undefined),
         value: new FormControl('100'), 
@@ -181,7 +181,7 @@ describe('FormPaymentComponent', () => {
         paid: new FormControl(false),
       });
       spyOn(matSnackBarStub, 'open').and.callThrough();
-      component.savePayment();
+      componentFormPayment.savePayment();
       expect(matSnackBarStub.open).toHaveBeenCalled();
     });
   });
