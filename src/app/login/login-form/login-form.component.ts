@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../../service/auth.service';
@@ -21,7 +22,8 @@ export class LoginFormComponent implements OnInit {
   btnText: string = 'entrar';
 
   constructor(private formBuilder: FormBuilder,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -35,6 +37,7 @@ export class LoginFormComponent implements OnInit {
       this.authService.login(this.form.get('email')?.value, this.form.get('password')?.value)
         .subscribe((result: Account[]) => {
           console.log('result', result)
+          this.router.navigate(['/payment']);
         });
     }
   }
