@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Task } from 'src/app/models/task.model';
 import { PaymentService } from 'src/app/services/paymentService/payment.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'picpay-delete-payments',
@@ -23,6 +25,7 @@ export class DeletePaymentsComponent implements OnInit {
 
   constructor(
     private paymentService: PaymentService,
+    private snackbar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: Task
   ) {}
 
@@ -37,6 +40,11 @@ export class DeletePaymentsComponent implements OnInit {
   }
 
   public deletePayment(id: number): void {
-    this.paymentService.deletePayment(id).subscribe(() => {});
+    this.paymentService.deletePayment(id).subscribe(() => {
+      this.snackbar.open('Registro excluído com sucesso', 'Fechar', {
+        duration: 5000,
+        panelClass: ['custom-snackbar']
+      });
+    });
   }
 }
