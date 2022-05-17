@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Task } from 'src/app/models/task.model';
 import { PaymentService } from 'src/app/services/paymentService/payment.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'picpay-add-insert-payments',
@@ -11,6 +13,7 @@ import { PaymentService } from 'src/app/services/paymentService/payment.service'
 })
 export class AddInsertPaymentsComponent implements OnInit {
   public paymentForm = new FormGroup({});
+  public showUserName = false;
   public paymentToUpdate: Task = {
     id: 0,
     name: '',
@@ -25,17 +28,21 @@ export class AddInsertPaymentsComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private paymentService: PaymentService,
+    private snackbar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: { pageTitle: string, id?: number }
   ) {}
 
   ngOnInit(): void {
+    this.addRemoveValidators();
     this.updatePayment(this.data.id);
-    console.log('oninit', this.paymentToUpdate);
     this.paymentForm = this.formBuilder.group({
       value: ['', Validators.required],
       name: ['', Validators.required],
       date: ['', Validators.required],
       title: ['', Validators.required],
+      username: ['', Validators.required],
+      isPayed: [false],
+      image: [''],
     });
   }
 
@@ -47,14 +54,24 @@ export class AddInsertPaymentsComponent implements OnInit {
         value: this.paymentToUpdate.value,
         date: this.paymentToUpdate.date,
         title: this.paymentToUpdate.title,
+        username: this.paymentToUpdate.username,
+        isPayed: this.paymentToUpdate.isPayed,
+        image: this.paymentToUpdate.image,
       });
     });
   }
 
   public updateData(id: number): void {
-    this.paymentService.updatePayment(id, this.paymentForm.value).subscribe((data) => {
-      console.log('Alteração feita', data);
+    this.paymentService.updatePayment(id, this.paymentForm.value).subscribe(() => {
+      this.snackbar.open('Registro alterado com sucesso', 'Fechar', {
+        duration: 5000,
+        panelClass: ['custom-snackbar']
+      });
     });
+  }
+
+  public addRemoveValidators(): void {
+    this.showUserName = this.data.pageTitle === 'Editar Pagamento' ? false : true;
   }
 
 }
