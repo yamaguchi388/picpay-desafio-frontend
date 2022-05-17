@@ -20,13 +20,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "picpay",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "picpay",
       "kebab-case"
     ],
     "eofline": true,
