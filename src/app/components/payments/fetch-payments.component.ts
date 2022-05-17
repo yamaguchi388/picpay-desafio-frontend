@@ -71,8 +71,8 @@ export class FetchPaymentsComponent implements OnInit {
 
   public deletePayment(id: number): void {
     const dialogRef = this.dialog.open(DeletePaymentsComponent, {
-      width: '25vw',
-      height: '45vh',
+      width: '25rem',
+      height: '25rem',
       maxWidth: '100vw',
       maxHeight: '100vh',
       data: {
