@@ -56,8 +56,8 @@ export class FetchPaymentsComponent implements OnInit {
   public addPaymentDialog(action): void {
     this.setDialogTitle(action);
     const dialogRef = this.dialog.open(AddInsertPaymentsComponent, {
-      width: '90vw',
-      height: '70vh',
+      width: '50vw',
+      height: '50vh',
       maxWidth: '100vw',
       maxHeight: '100vh',
       data: {
@@ -71,8 +71,10 @@ export class FetchPaymentsComponent implements OnInit {
 
   public deletePayment(id: number): void {
     const dialogRef = this.dialog.open(DeletePaymentsComponent, {
-      width: '50vw',
-      height: '50vh',
+      width: '25vw',
+      height: '45vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
       data: {
         id,
       },
@@ -87,6 +89,8 @@ export class FetchPaymentsComponent implements OnInit {
     const dialogRef = this.dialog.open(AddInsertPaymentsComponent, {
       width: '50vw',
       height: '50vh',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
       data: {
         pageTitle: this.pageTitle,
         id,
@@ -101,6 +105,24 @@ export class FetchPaymentsComponent implements OnInit {
     action === this.actionTitle
       ? (this.pageTitle = 'Editar Pagamento')
       : (this.pageTitle = 'Adicionar Pagamento');
+  }
+
+  public updatePaymentStatus(id: number): void {
+    let paymentStatusToUpdate: Task = {
+      id: 0,
+      name: '',
+      username: '',
+      title: '',
+      value: 0,
+      date: '',
+      image: '',
+      isPayed: false
+    };
+    this.paymentService.getPaymentById(id).subscribe((data) => {
+      paymentStatusToUpdate = data;
+      paymentStatusToUpdate.isPayed = !paymentStatusToUpdate.isPayed;
+      this.paymentService.updatePayment(id, paymentStatusToUpdate).subscribe();
+    });
   }
 
 }
