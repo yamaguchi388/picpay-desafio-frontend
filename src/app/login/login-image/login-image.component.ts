@@ -1,15 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'login-image',
-  templateUrl: './login-image.component.html',
-  styleUrls: ['./login-image.component.scss']
+  templateUrl: './login-image.component.html'
 })
-export class LoginImageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class LoginImageComponent {
 
 }
