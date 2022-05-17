@@ -5,46 +5,62 @@
   <div class="form-wrapper">
     <form class="payment-form" [formGroup]="paymentForm">
       <mat-form-field>
-        <mat-label>Usuário</mat-label>
-        <input
-          matInput
-          placeholder=""
-          formControlName="name"
-        />
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="" formControlName="name" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Valor</mat-label>
         <input
-        [value]="paymentForm.get('value').value"
+          [value]="paymentForm.get('value').value"
           matInput
+          type="number"
           placeholder=""
           formControlName="value"
         />
       </mat-form-field>
-      <mat-form-field>
-        <mat-label>Data</mat-label>
-        <input [value]="paymentForm.get('date').value | date" matInput placeholder="" formControlName="date"  />
+      <mat-form-field appearance="fill">
+        <mat-label>Data do pagamento</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [value]="paymentForm.get('date').value"
+          matInput
+          placeholder=""
+          formControlName="date"
+        />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Título</mat-label>
-        <input
-          matInput
-          placeholder=""
-          formControlName="title"
-        />
+        <input matInput placeholder="" formControlName="title" />
       </mat-form-field>
       <mat-form-field *ngIf="showUserName">
         <mat-label>Usuário</mat-label>
-        <input
-          matInput
-          placeholder=""
-          formControlName="username"
-        />
+        <input matInput placeholder="" formControlName="username" />
       </mat-form-field>
     </form>
   </div>
   <div class="footer">
     <button mat-flat-button mat-dialog-close>CANCELAR</button>
-    <button class="primary-button" mat-flat-button mat-dialog-close (click)="updateData(paymentToUpdate.id)">SALVAR</button>
+    <button
+      class="primary-button"
+      mat-flat-button
+      mat-dialog-close
+      *ngIf="showUserName"
+      (click)="addPayment()"
+    >
+      SALVAR
+    </button>
+    <button
+      class="primary-button"
+      mat-flat-button
+      mat-dialog-close
+      *ngIf="!showUserName"
+      (click)="updateData(paymentToUpdate.id)"
+    >
+      SALVAR
+    </button>
   </div>
 </div>

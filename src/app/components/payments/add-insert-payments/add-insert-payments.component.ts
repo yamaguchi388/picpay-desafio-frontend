@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AddInsertPaymentsComponent implements OnInit {
   public paymentForm = new FormGroup({});
   public showUserName = false;
+  public message = '';
   public paymentToUpdate: Task = {
     id: 0,
     name: '',
@@ -34,9 +35,13 @@ export class AddInsertPaymentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.addRemoveValidators();
-    this.updatePayment(this.data.id);
+    !this.showUserName ? this.updatePayment(this.data.id) : this.createForm();
+    this.createForm();
+  }
+
+  public createForm(): void {
     this.paymentForm = this.formBuilder.group({
-      value: ['', Validators.required],
+      value: [0.00, Validators.required],
       name: ['', Validators.required],
       date: ['', Validators.required],
       title: ['', Validators.required],
@@ -63,15 +68,26 @@ export class AddInsertPaymentsComponent implements OnInit {
 
   public updateData(id: number): void {
     this.paymentService.updatePayment(id, this.paymentForm.value).subscribe(() => {
-      this.snackbar.open('Registro alterado com sucesso', 'Fechar', {
-        duration: 5000,
-        panelClass: ['custom-snackbar']
-      });
+      this.snackBar();
+    });
+  }
+
+  public addPayment(): void {
+    this.paymentService.insertPayment(this.paymentForm.value).subscribe(() => {
+      this.snackBar();
     });
   }
 
   public addRemoveValidators(): void {
     this.showUserName = this.data.pageTitle === 'Editar Pagamento' ? false : true;
+  }
+
+  public snackBar(): void {
+    this.message = this.data.pageTitle === 'Editar Pagamento' ? 'Registro alterado com sucesso' : 'Registro inserido com sucesso';
+    this.snackbar.open(this.message, 'Fechar', {
+      duration: 5000,
+      panelClass: ['custom-snackbar']
+    });
   }
 
 }
