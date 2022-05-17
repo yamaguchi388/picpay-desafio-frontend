@@ -18,7 +18,7 @@ import { FormPaymentComponent } from '../form-payment/form-payment.component';
 })
 export class MyPaymentsComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['image', 'username', 'title', 'value', 'date', 'isPayed', 'action'];
+  displayedColumns: string[] = ['image', 'name', 'title', 'value', 'date', 'isPayed', 'action'];
 
   filterPaymentsOptions: string[] = ['Nome', 'Usuário', 'Título', 'Data', 'Pago'];
   filterData: string = '';
@@ -29,6 +29,7 @@ export class MyPaymentsComponent implements AfterViewInit, OnInit {
   pageSize: number = 5;
 
   payments: PaymentModel[];
+  allPayments: PaymentModel[];
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -49,7 +50,10 @@ export class MyPaymentsComponent implements AfterViewInit, OnInit {
     this.paymentService
       .searchAllPayments()
       .pipe(
-        map((paymentsResponse: PaymentModel[]) => this.totalRecords = paymentsResponse.length),
+        map((paymentsResponse: PaymentModel[]) => {
+          this.totalRecords = paymentsResponse.length;
+          this.allPayments = paymentsResponse;
+        }),
         concatMap(() => this.paymentService.searchPaymentsPerPage()),
         map((paymentsData) => {
           this.payments = paymentsData;
@@ -87,8 +91,8 @@ export class MyPaymentsComponent implements AfterViewInit, OnInit {
     this.dataSource = new MatTableDataSource<PaymentModel>(data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'username': return this.compare(a.name, b.name, isAsc);
-        case 'title': return this.compare(a.username, b.username, isAsc);
+        case 'name': return this.compare(a.name, b.name, isAsc);
+        case 'title': return this.compare(a.title, b.title, isAsc);
         case 'value': return this.compare(a.value, b.value, isAsc);
         case 'date': return this.compare(a.date, b.date, isAsc);
         case 'isPayed': return this.compare(a.isPayed, b.isPayed, isAsc);
@@ -145,6 +149,7 @@ export class MyPaymentsComponent implements AfterViewInit, OnInit {
 
   filterPaymentsData() {
     if (this.filterData) {
+      this.dataSource = new MatTableDataSource<PaymentModel>(this.allPayments);
       this.dataSource.filter = this.filterData;
     } else {
       this.snackBar.open('Você precisa informar o dado que deseja filtrar!', 'OK');

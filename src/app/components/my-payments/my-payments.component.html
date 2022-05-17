@@ -70,9 +70,9 @@
                 <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
 
-            <ng-container matColumnDef="username">
+            <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef
-                    mat-sort-header="username"> Usuário
+                    mat-sort-header="name"> Usuário
                 </th>
                 <td mat-cell *matCellDef="let element">
                     {{element.name}} <br>
@@ -118,7 +118,7 @@
             </ng-container>
 
             <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header="action">
+                <th mat-header-cell *matHeaderCellDef>
                     Ação </th>
                 <td mat-cell *matCellDef="let element">
                     <button mat-icon-button color="primary"

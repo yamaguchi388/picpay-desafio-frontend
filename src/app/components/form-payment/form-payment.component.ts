@@ -22,6 +22,8 @@ export class FormPaymentComponent implements OnInit {
 
   msgDelete: string = '';
 
+  datemask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
+
   constructor(
     public dialogRef: MatDialogRef<FormPaymentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -52,8 +54,8 @@ export class FormPaymentComponent implements OnInit {
     this.paymentForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(40)]),
       user: new FormControl('', [Validators.required, Validators.maxLength(40)]),
-      value: new FormControl('', Validators.required),
-      date: new FormControl(new Date(), [Validators.required]),
+      value: new FormControl(0, [Validators.required]),
+      date: new FormControl('', [Validators.required]),
       title: new FormControl('', Validators.maxLength(60)),
       image: new FormControl(),
       paid: new FormControl(),
@@ -64,7 +66,7 @@ export class FormPaymentComponent implements OnInit {
     this.paymentForm = new FormGroup({
       name: new FormControl(this.data.payment.name, [Validators.required, Validators.maxLength(40)]),
       user: new FormControl(this.data.payment.username, [Validators.required, Validators.maxLength(40)]),
-      value: new FormControl(this.data.payment.value, Validators.required),
+      value: new FormControl(this.data.payment.value, [Validators.required]),
       date: new FormControl(this.data.payment.date, [Validators.required]),
       title: new FormControl(this.data.payment.title, Validators.maxLength(60)),
       image: new FormControl(this.data.payment.image),

@@ -16,17 +16,22 @@ export class UserService {
   ) { }
 
   login(user: UserModel): Observable<any> {
-    return this.httpClient.post<any>(environment.logged_users, user).pipe(
-      tap((resposta) => {
-        if (!resposta) return;
-        localStorage.setItem(
-          'token',
-          btoa(JSON.stringify('TokenQueSeriaGeradoPelaAPI')),
-        ) //resposta['token'])));
-        localStorage.setItem('user', btoa(JSON.stringify(resposta['email'])))
-        this.router.navigate(['']);
-      }),
-    );
+    return this.httpClient
+      .get<any>(environment.logged_users)
+      .pipe(
+        tap((resposta) => {
+          const foundUser = resposta.find(u => u.email === user.email && u.password === user.password);
+          if (foundUser) {
+            localStorage.setItem(
+              'token',
+              btoa(JSON.stringify('TokenQueSeriaGeradoPelaAPI')),
+            )
+            localStorage.setItem('user', btoa(JSON.stringify(resposta['email'])))
+            this.router.navigate(['']);
+          }
+          return;
+        }),
+      );
   }
 
   logout() {
@@ -39,7 +44,7 @@ export class UserService {
       ? JSON.parse(atob(localStorage.getItem('token')))
       : null;
   }
-  
+
   get logged(): boolean {
     return localStorage.getItem('token') ? true : false;
   }
