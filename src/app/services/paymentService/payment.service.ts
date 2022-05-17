@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Task } from "src/app/models/task.model";
+
+import { Task } from 'src/app/models/task.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class PaymentService {
 
   public deletePayment(id: number): Observable<Task> {
     return this.httpClient.delete<Task>(`${this.url}/${id}`);
+  }
+
+  public insertPayment(task: Task): Observable<Task> {
+    return this.httpClient.post<Task>(`${this.url}`, task);
   }
 
 }
