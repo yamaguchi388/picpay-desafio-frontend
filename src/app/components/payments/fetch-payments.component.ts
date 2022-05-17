@@ -33,7 +33,7 @@ export class FetchPaymentsComponent implements OnInit {
 
   constructor(
     private readonly paymentService: PaymentService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -101,12 +101,6 @@ export class FetchPaymentsComponent implements OnInit {
     action === this.actionTitle
       ? (this.pageTitle = 'Editar Pagamento')
       : (this.pageTitle = 'Adicionar Pagamento');
-  }
-
-  public convertCurrencyType(): void {
-    this.dataSource.data.forEach((task) => {
-      task.value = +task.value.toFixed(2).replace('.', ',');
-    });
   }
 
 }
