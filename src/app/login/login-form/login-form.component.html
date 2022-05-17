@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>
+    <span class="cl-dark-blue ft-weight-800 ft-size-24 ft-montserrat">Pay</span>
+    <span class="cl-blue ft-weight-400 ft-size-24 ft-montserrat">Friends</span>
+  </h2>
+  <h1>
+    <span class="cl-black ft-weight-600 ft-size-30 ft-montserrat">
+      Bem vindo de volta
+    </span>
+  </h1>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off" class="ft-roboto">
+
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email" autocomplete="false">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input matInput formControlName="password" [type]="visibility? 'text' : 'password'" autocomplete="false">
+      <mat-icon class="material-icons-outlined cursor-pointer" matSuffix (click)="visibility = !visibility">
+        {{visibility? 'visibility_off' : 'visibility'}}
+      </mat-icon>
+    </mat-form-field>
+
+    <button [disabled]="!form.valid" class="bg-blue cl-white ft-weight-500 ft-size-14">
+      {{btnText | uppercase}}
+    </button>
+
+  </form>
+
+</div>

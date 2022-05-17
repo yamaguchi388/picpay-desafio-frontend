@@ -1,0 +1,49 @@
+:root {
+    --black: #333333;
+    --blue: #007dfe;
+    --dark-blue: #002d69;
+    --black-border: rgba(0, 0, 0, 0.12);
+    --black-input: rgba(0, 0, 0, 0.87);
+    --black-title: rgba(0, 0, 0, 0.6);
+    --white: #ffffff;
+    --gray: #f2f2f2;
+    --dark-gray: #cecdcd;
+}
+// background-color
+.bg-gray {
+    background-color: var(--gray);
+}
+.bg-dark-gray {
+    background-color: var(--dark-gray);
+}
+.bg-white {
+    background-color: var(--white);
+}
+.bg-blue {
+    background-color: var(--blue);
+}
+// color
+.cl-black {
+    color: var(--black);
+}
+.cl-dark-blue {
+    color: var(--dark-blue);
+}
+.cl-blue {
+    color: var(--blue);
+}
+.cl-gray {
+    color: var(--gray);
+}
+.cl-black-border {
+    color: var(--black-border);
+}
+.cl-black-input {
+    color: var(--black-input);
+}
+.cl-black-title {
+    color: var(--black-title);
+}
+.cl-white {
+    color: var(--white);
+}

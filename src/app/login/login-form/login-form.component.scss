@@ -1,0 +1,52 @@
+div {
+    max-width: 400px;
+    margin: 0 5px;
+    h2 {
+        span {
+            line-height: 29.26px;
+        }
+    }
+
+    .mat-form-field { 
+        margin-top: 1em;
+        width: 100%;
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: 400;
+        letter-spacing: 0.4px;
+    }
+
+    button {
+        width: 100%;
+        height: 36px;
+        border: none;
+        border-radius: 4px;
+        line-height: 16px;
+        letter-spacing: 1.25px;
+    }
+
+    button:disabled {
+        background-color: #cecdcd;
+        border: none;
+        cursor: not-allowed;
+    }
+    
+}
+
+::ng-deep .mat-form-field-outline-start {
+    border-color: #dcdcdc !important;
+}
+::ng-deep  .mat-form-field-outline-gap {
+    border-color:#dcdcdc !important;
+}
+::ng-deep .mat-form-field-outline-end {
+    border-color: #dcdcdc!important;
+}
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-outline-gap {
+    border-top-color: transparent !important;
+}
+
+::ng-deep .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon {
+    color: #616161;
+}
