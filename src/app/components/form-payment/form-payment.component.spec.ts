@@ -145,6 +145,15 @@ describe('FormPaymentComponent', () => {
       expect(componentFormPayment.closedDialog).toHaveBeenCalled();
     });
     it('with action is DELETE', () => {
+      componentFormPayment.paymentForm = new FormGroup({
+        name: new FormControl('Nome Teste'),
+        user: new FormControl('teste'),
+        value: new FormControl('100'), 
+        date: new FormControl('2020-02-09T18:20:32Z'), 
+        title: new FormControl('Teste Titulo'),
+        image: new FormControl(''),
+        paid: new FormControl(false),
+      });
       spyOn(componentFormPayment, 'deletePayment').and.callThrough();
       componentFormPayment.data.payment = new PaymentModel();
       spyOn(componentFormPayment, 'closedDialog').and.callThrough();
@@ -172,7 +181,7 @@ describe('FormPaymentComponent', () => {
     it('with paymentForm is invalid and action is not DELETE', () => {
       componentFormPayment.data.action = ActionEnum.INSERT;
       componentFormPayment.paymentForm = new FormGroup({
-        name: new FormControl('Nome Teste Nome Teste Nome Teste Nome Teste Nome Teste Nome Teste Nome Teste'),
+        name: new FormControl(28),
         user: new FormControl(undefined),
         value: new FormControl('100'), 
         date: new FormControl('2020-02-09T18:20:32Z'), 

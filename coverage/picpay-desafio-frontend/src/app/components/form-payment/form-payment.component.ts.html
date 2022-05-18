@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">97.96% </span>
+                <span class="strong">98% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>48/49</span>
+                <span class='fraction'>49/50</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">97.92% </span>
+                <span class="strong">97.96% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>47/48</span>
+                <span class='fraction'>48/49</span>
             </div>
         
             
@@ -191,7 +191,9 @@
 <a name='L132'></a><a href='#L132'>132</a>
 <a name='L133'></a><a href='#L133'>133</a>
 <a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -215,6 +217,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
@@ -225,36 +229,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -349,6 +353,8 @@ export class FormPaymentComponent implements OnInit {
 &nbsp;
   msgDelete: string = '';
 &nbsp;
+  datemask = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
+&nbsp;
   constructor(
     public dialogRef: MatDialogRef&lt;FormPaymentComponent&gt;,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -379,8 +385,8 @@ export class FormPaymentComponent implements OnInit {
     this.paymentForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(40)]),
       user: new FormControl('', [Validators.required, Validators.maxLength(40)]),
-      value: new FormControl('', Validators.required),
-      date: new FormControl(new Date(), [Validators.required]),
+      value: new FormControl(0, [Validators.required]),
+      date: new FormControl('', [Validators.required]),
       title: new FormControl('', Validators.maxLength(60)),
       image: new FormControl(),
       paid: new FormControl(),
@@ -391,7 +397,7 @@ export class FormPaymentComponent implements OnInit {
     this.paymentForm = new FormGroup({
       name: new FormControl(this.data.payment.name, [Validators.required, Validators.maxLength(40)]),
       user: new FormControl(this.data.payment.username, [Validators.required, Validators.maxLength(40)]),
-      value: new FormControl(this.data.payment.value, Validators.required),
+      value: new FormControl(this.data.payment.value, [Validators.required]),
       date: new FormControl(this.data.payment.date, [Validators.required]),
       title: new FormControl(this.data.payment.title, Validators.maxLength(60)),
       image: new FormControl(this.data.payment.image),
@@ -466,7 +472,7 @@ export class FormPaymentComponent implements OnInit {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon May 16 2022 21:41:46 GMT-0300 (Brasilia Standard Time)
+                at Tue May 17 2022 23:21:11 GMT-0300 (Brasilia Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

@@ -12,7 +12,9 @@ describe('LoginComponent', () => {
   const userServiceStub = {
     login: () => of({}),
   };
-  const matSnackBarStub = {};
+  const matSnackBarStub = {
+    open: () => {},
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

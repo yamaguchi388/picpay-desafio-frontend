@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
+import { ActionEnum } from 'src/app/enums/action.enum';
 import { PaymentModel } from 'src/app/models/payment.model';
 import { PaymentService } from 'src/app/services/payment.service';
 import { MyPaymentsComponent } from './my-payments.component';
@@ -17,8 +17,16 @@ describe('MyPaymentsComponent', () => {
     searchPaymentsPerPage: () => of({}),
     updatePayment: () => of({}),
   };
-  const matDialogStub = {};
-  const matSnackBarStub = {};
+  const matDialogStub = {
+    open: () => {
+      return {
+        afterClosed: () => of({}),
+      }
+    },
+  };
+  const matSnackBarStub = {
+    open: () => { },
+  };
   const paymentsDataStub = [
     {
       "id": 3,
@@ -97,24 +105,6 @@ describe('MyPaymentsComponent', () => {
     expect(paymentServiceStub.searchPaymentsPerPage).toHaveBeenCalled();
   });
 
-  // describe('should call sortData method', () => {
-  //   it('with sort is not active', () => {
-  //     const sort = new MatSort();
-  //     componentMyPayments.payments = paymentsDataStub;
-  //     componentMyPayments.sortData(sort);
-  //   });
-  //   it('with sort direction  is empty', () => {
-  //     const sort = new MatSort();
-  //     componentMyPayments.payments = paymentsDataStub;
-  //     componentMyPayments.sortData(sort);
-  //   });
-  //   it('with sort is not active and sort direction  is empty', () => {
-  //     const sort = new MatSort();
-  //     componentMyPayments.payments = paymentsDataStub;
-  //     componentMyPayments.sortData(sort);
-  //   });
-  // });
-
   describe('should call compare method', () => {
     it('ascending order sorted data', () => {
       const a = 'Andressa';
@@ -146,6 +136,83 @@ describe('MyPaymentsComponent', () => {
       expect(compare).toEqual(1);
     });
   });
+
+
+  it('should call insertPayment method', () => {
+    const action = ActionEnum.INSERT;
+    spyOn(componentMyPayments, 'openDialog').and.callThrough();
+    spyOn(matDialogStub, 'open').and.callThrough();
+
+    componentMyPayments.insertPayment();
+
+    expect(componentMyPayments.openDialog).toHaveBeenCalled();
+    expect(matDialogStub.open).toHaveBeenCalled();
+  });
+
+  it('should call editPayment method', () => {
+    const action = ActionEnum.UPDATE;
+    const payment = paymentsDataStub[0];
+    spyOn(componentMyPayments, 'openDialog').and.callThrough();
+    spyOn(matDialogStub, 'open').and.callThrough();
+
+    componentMyPayments.editPayment(payment);
+
+    expect(componentMyPayments.openDialog).toHaveBeenCalled();
+    expect(matDialogStub.open).toHaveBeenCalled();
+  });
+
+
+  it('should call deletePayment method', () => {
+    const action = ActionEnum.UPDATE;
+    const payment = paymentsDataStub[1];
+    componentMyPayments.dataSource = new MatTableDataSource<PaymentModel>(paymentsDataStub);
+    const index = componentMyPayments.dataSource.data.indexOf(payment, 0);
+    spyOn(componentMyPayments, 'openDialog').and.callThrough();
+    spyOn(matDialogStub, 'open').and.callThrough();
+
+    componentMyPayments.deletePayment(payment);
+
+    expect(componentMyPayments.openDialog).toHaveBeenCalled();
+    expect(matDialogStub.open).toHaveBeenCalled();
+  });
+
+
+  it('should call updatePaidValue method', () => {
+    const action = ActionEnum.UPDATE;
+    const payment = paymentsDataStub[1];
+    componentMyPayments.dataSource = new MatTableDataSource<PaymentModel>(paymentsDataStub);
+    const index = componentMyPayments.dataSource.data.indexOf(payment, 0);
+    spyOn(paymentServiceStub, 'updatePayment').and.callFake(() => of({}));
+    spyOn(componentMyPayments, 'openSnackBar').and.callThrough();
+    spyOn(matSnackBarStub, 'open').and.callThrough();
+
+    componentMyPayments.updatePaidValue(payment);
+
+    expect(paymentServiceStub.updatePayment).toHaveBeenCalled();
+    expect(componentMyPayments.openSnackBar).toHaveBeenCalled();
+    expect(matSnackBarStub.open).toHaveBeenCalled();
+  });
+
+  describe('should call filterPaymentsData method', () => {
+    it('with filterData', () => {
+      componentMyPayments.filterData = 'Andreia';
+
+      componentMyPayments.filterPaymentsData();
+
+      expect(componentMyPayments.dataSource.filter).toEqual(componentMyPayments.filterData);
+    });
+    it('without filterData', () => {
+      componentMyPayments.filterData = undefined;
+      spyOn(matSnackBarStub, 'open').and.callThrough();
+
+      componentMyPayments.filterPaymentsData();
+
+      expect(componentMyPayments.dataSource.filter).toEqual('');
+      expect(matSnackBarStub.open).toHaveBeenCalled();
+    });
+  });
+
+
 
 
 });
