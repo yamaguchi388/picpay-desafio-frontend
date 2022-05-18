@@ -1,3 +1,73 @@
-<p>
-  filters works!
-</p>
+<section class="container">
+  <h1 class="ms-2">
+    <span class="font-bold-700 font-montserrat">
+      Filtros avançados
+    </span>
+  </h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="m-2">
+          <mat-form-field appearance="outline" class="width-form">
+            <mat-label>Valor</mat-label>
+            <input matInput formControlName="value" type="number">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="m-2">
+          <mat-form-field appearance="outline" class="width-form">
+            <mat-label>Pago</mat-label>
+            <mat-select formControlName="payed">
+              <mat-option value="">--</mat-option>
+              <mat-option value="true">Sim</mat-option>
+              <mat-option value="false">Não</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="m-2">
+          <mat-form-field appearance="outline" class="width-form">
+            <mat-label>Data</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date" (focus)="picker.open()">
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="m-2">
+          <mat-form-field appearance="outline" class="width-form">
+            <mat-label>Título</mat-label>
+            <input matInput formControlName="title">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="width-form m-2 mt-3">
+          <button class="width-button me-3 mt-2" type="button" (click)="onClean(true)">
+            Limpar Filtros
+          </button>
+
+          <button class="width-button ms-3 mt-2 bg-light-gray" type="button" (click)="onClean(false)">
+            Cancelar
+          </button>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="width-form m-2 mt-3 float-end">
+          <button class="w-100 mt-2">
+            Filtrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

@@ -5,6 +5,15 @@
         Editar pagamento
       </span>
     </h1>
-    <app-form [payment]="dialog.payment" (action)="close($event)"></app-form>
+    <app-form [payment]="dialog.payment" (close)="close($event)"></app-form>
+  </ng-container>
+
+  <ng-container *ngIf="dialog.delete">
+    <h1 class="ms-2">
+      <span class="cl-black-secundary ft-weight-700 ft-size-18 ft-montserrat">
+        Excluir pagamento
+      </span>
+    </h1>
+    <app-delete [payment]="dialog.payment" (close)="close($event)"></app-delete>
   </ng-container>
 </section>

@@ -15,7 +15,7 @@ export class TableComponent implements OnDestroy {
 
   subscription!: Subscription;
   displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'action'];
-  check!: boolean; 
+  check!: boolean;
   @Input() dataSource!: PaymentObject[];
   @Output() action = new EventEmitter<boolean>();
   @Output() sort = new EventEmitter<Sort>();
@@ -23,7 +23,7 @@ export class TableComponent implements OnDestroy {
   constructor(
     private matDialog: MatDialog,
     private paymentService: PaymentService
-    ) { }
+  ) { }
 
   sortChange(value: Sort): void {
     this.sort.emit(value);
@@ -40,8 +40,9 @@ export class TableComponent implements OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result)
-        this.action.emit(result);
+      if (result)
+        console.log('result:   ', result)
+      this.action.emit(result);
     });
   }
 
@@ -52,10 +53,10 @@ export class TableComponent implements OnDestroy {
       .subscribe((payment: PaymentObject) => {
         this.check = false;
       },
-      error => {
-        console.error('Error: ', error)
-        this.check = false;
-      });
+        error => {
+          console.error('Error: ', error)
+          this.check = false;
+        });
   }
 
   ngOnDestroy(): void {

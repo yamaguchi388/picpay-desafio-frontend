@@ -27,8 +27,9 @@ export class DialogComponent implements OnInit {
       this.dialog = this.data;
   }
 
-  close(value: string): void{
-    this.dialogRef.close(value === 'S');
+  close(value: boolean): void {
+    console.log('value', value)
+    this.dialogRef.close(value);
   }
 
 }

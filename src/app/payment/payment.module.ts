@@ -1,4 +1,3 @@
-import { FiltersComponent } from './filters/filters.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,6 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
 import { PaymentComponent } from './payment.component';
 import { TitleComponent } from './title/title.component';
@@ -18,9 +20,8 @@ import { AddPaymentComponent } from './add-payment/add-payment.component';
 import { TableComponent } from './table/table.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { FormComponent } from './form/form.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatSelectModule } from '@angular/material/select';
+import { FiltersComponent } from './filters/filters.component';
+import { DeleteComponent } from './delete/delete.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -45,7 +46,8 @@ import { MatSelectModule } from '@angular/material/select';
     TableComponent,
     FormComponent,
     DialogComponent,
-    FiltersComponent
+    FiltersComponent,
+    DeleteComponent
   ]
 })
 export class PaymentModule { }

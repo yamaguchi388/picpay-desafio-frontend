@@ -12,6 +12,7 @@
     --black-secundary: #373737;
     --black-secundary-title: #69788C;
     --gray-secundary: #E6ECF0;
+    --gray-secundary-btn: ##F5F5F5;
 }
 // background-color
 .bg-gray {
@@ -28,6 +29,9 @@
 }
 .bg-gray-secundary {
     background-color: var(--gray-secundary);
+}
+.bg-gray-secundary-btn {
+    background-color: var(--gray-secundary-btn) !important;
 }
 // color
 .cl-black {

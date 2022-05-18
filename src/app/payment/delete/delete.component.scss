@@ -1,13 +1,13 @@
 button {
     float: right;
     height: 36px;
-    border: none;
+    border-color: transparent;
     border-radius: 4px;
     line-height: 16px;
     letter-spacing: 1.25px;
     padding: 10px 15px;
-    margin: 0 10px;
-    max-width: 22.5%;
+    margin: 5px 10px;
+    max-width: 45%;
 }
 
 @media (max-width: 530px) {

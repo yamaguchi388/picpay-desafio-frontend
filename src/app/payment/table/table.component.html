@@ -25,9 +25,9 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="ft-lato ft-weight-700 ft-size-14 cl-black-gray">Data
       </th>
       <td mat-cell *matCellDef="let element">
-        <p class="cl-black-gray ft-size-14 ft-lato mt-3 mb-0" matTooltip="{{ element.date | date:'d MMMM y' }}"
-          matTooltipPosition="above">
-          {{element.date | date:'d MMM y' }}
+        <p class="cl-black-gray ft-size-14 ft-lato mt-3 mb-0"
+          matTooltip="{{ element.date | date:'d MMMM y' | titlecase}}" matTooltipPosition="above">
+          {{element.date | date:'d MMM y' | titlecase}}
         </p>
         <p class="cl-black-secundary-title ft-size-12 ft-lato mb-3">
           {{element.date | date:'h:mm a' }}
