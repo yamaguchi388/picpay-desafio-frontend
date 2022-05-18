@@ -4,10 +4,17 @@
 
 .mat-toolbar {
     height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     h1{
         cursor: pointer;
         span {
             line-height: 29.26px;
         }
+    }
+
+    img {
+        width: 45px;
     }
 }
