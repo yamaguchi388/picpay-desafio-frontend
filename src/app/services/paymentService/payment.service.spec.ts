@@ -11,8 +11,6 @@ import { PaymentService } from './payment.service';
 
 fdescribe('PaymentService', () => {
   let paymentService: PaymentService;
-  let httpClientSpy: jasmine.SpyObj<HttpClient>;
-  let httpMock: HttpTestingController;
 
   const paymentsDummy: Task = {
     id: 1,
@@ -46,7 +44,7 @@ fdescribe('PaymentService', () => {
     expect(paymentService).toBeTruthy();
   });
 
-  it('should call searchAllPayments method', () => {
+  it('should call get payments method', () => {
     spyOn(httpClientStub, 'get').and.returnValues(of(paymentsDummy));
 
     const allPayments = paymentService.getPayments();
