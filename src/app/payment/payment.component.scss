@@ -1,0 +1,13 @@
+.toolbar {
+    position: relative;
+}
+
+.mat-toolbar {
+    height: 90px;
+    h1{
+        cursor: pointer;
+        span {
+            line-height: 29.26px;
+        }
+    }
+}

@@ -1,3 +1,4 @@
+import { PaymentModule } from './payment/payment.module';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -20,7 +21,8 @@ import { MatSliderModule } from '@angular/material/slider';
     HttpClientModule,
     BrowserAnimationsModule,
     MatSliderModule,
-    LoginModule
+    LoginModule,
+    PaymentModule
   ],
   providers: [],
   bootstrap: [AppComponent]
