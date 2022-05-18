@@ -1,6 +1,20 @@
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { Container } from "./styles";
 
-export const Section = ({ children, area }): ReactElement => {
-  return <Container area={area}>{children}</Container>;
+type SectionProps = {
+  children: ReactNode;
+  area?: string;
+  width?: number;
+};
+
+export const Section = ({
+  children,
+  area,
+  width = 100,
+}: SectionProps): ReactElement => {
+  return (
+    <Container area={area} $width={width}>
+      {children}
+    </Container>
+  );
 };

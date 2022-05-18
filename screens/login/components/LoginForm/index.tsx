@@ -1,10 +1,14 @@
 import { ReactElement } from "react";
-import { Input, Label } from "../../../../core/components";
-import { Form, H1, InputContainer, Section } from "./styles";
+import { Button, Input, Label, Section } from "../../../../core/components";
+import { Form, H1, InputContainer } from "./styles";
 import Image from "next/image";
 import logo from "../../../../assets/images/logo.svg";
 
-export const LoginForm = ({ area }): ReactElement => {
+type LoginFormProps = {
+  area: string;
+};
+
+export const LoginForm = ({ area }: LoginFormProps): ReactElement => {
   return (
     <Section area={area}>
       <Form onSubmit={(event) => event.preventDefault()}>
@@ -18,6 +22,9 @@ export const LoginForm = ({ area }): ReactElement => {
           <Label htmlFor="password" labelText="Senha" />
           <Input type="password" name="password" id="password" />
         </InputContainer>
+        <Button type="submit" onClick={null}>
+          ENTRAR
+        </Button>
       </Form>
     </Section>
   );

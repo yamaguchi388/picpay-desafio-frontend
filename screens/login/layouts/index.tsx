@@ -5,8 +5,8 @@ import { Content, FeaturedBannerLayout } from "./styles";
 export const LoginLayout = (): ReactElement => (
   <FeaturedBannerLayout>
     <Content>
-      <LoginForm area="login-form" />
       <Banner area="banner" />
+      <LoginForm area="login-form" />
     </Content>
   </FeaturedBannerLayout>
 );

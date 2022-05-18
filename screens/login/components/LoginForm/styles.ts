@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Section as BaseSection } from "../../../../core/components";
+import { BREAKPOINTS } from "../../../../core/constants";
 
 export const Form = styled.form`
   display: flex;
@@ -7,19 +7,21 @@ export const Form = styled.form`
   gap: 1.125rem;
   justify-content: center;
   align-items: flex-start;
-  width: 20.37rem;
+  background-color: transparent;
+  width: 100%;
+
+  @media ${BREAKPOINTS.DESKTOP} {
+    width: 20.37rem;
+  }
 `;
 
 export const H1 = styled.h1`
-  font-weight: bold;
+  font-weight: 600;
 `;
 
 export const InputContainer = styled.div`
   display: inline-flex;
   flex-direction: column;
   gap: 1rem;
-`;
-
-export const Section = styled(BaseSection)`
-  margin: auto;
+  width: inherit;
 `;
