@@ -3,38 +3,64 @@
     <ng-container matColumnDef="user">
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="ft-lato ft-weight-700 ft-size-14 cl-black-gray">
         Usuário</th>
-      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+      <td mat-cell *matCellDef="let element">
+        <p class="cl-black-gray ft-size-14 ft-lato mt-3 mb-0">
+          {{element.name}}
+        </p>
+        <p class="cl-black-secundary-title ft-size-12 ft-lato mb-3">
+          @{{element.username}}
+        </p>
+      </td>
     </ng-container>
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="ft-lato ft-weight-700 ft-size-14 cl-black-gray">
         Título</th>
-      <td mat-cell *matCellDef="let element">{{element.title}}</td>
+      <td mat-cell *matCellDef="let element">
+        <p class="cl-black-gray ft-size-14 ft-lato">
+          {{element.title}}
+        </p>
+      </td>
     </ng-container>
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="ft-lato ft-weight-700 ft-size-14 cl-black-gray">Data
       </th>
-      <td mat-cell *matCellDef="let element">{{element.date | date:'d MMM y' }}</td>
+      <td mat-cell *matCellDef="let element">
+        <p class="cl-black-gray ft-size-14 ft-lato mt-3 mb-0" matTooltip="{{ element.date | date:'d MMMM y' }}"
+          matTooltipPosition="above">
+          {{element.date | date:'d MMM y' }}
+        </p>
+        <p class="cl-black-secundary-title ft-size-12 ft-lato mb-3">
+          {{element.date | date:'h:mm a' }}
+        </p>
+      </td>
     </ng-container>
     <ng-container matColumnDef="value">
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="ft-lato ft-weight-700 ft-size-14 cl-black-gray">Valor
       </th>
-      <td mat-cell *matCellDef="let element">{{element.value | currency}}</td>
+      <td mat-cell *matCellDef="let element">
+        <p class="cl-black-gray ft-size-14 ft-lato">
+          {{element.value | currency}}
+        </p>
+      </td>
     </ng-container>
     <ng-container matColumnDef="isPayed">
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="ft-lato ft-weight-700 ft-size-14 cl-black-gray">Pago
       </th>
-      <td mat-cell *matCellDef="let element">{{element.isPayed}}</td>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox color="primary" [checked]="element.isPayed" [disabled]="check" (click)="updatePayment(element)">
+        </mat-checkbox>
+      </td>
     </ng-container>
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
         <div class="float-end">
           <button mat-icon-button (click)="dialog(true, element)" matTooltip="Editar pagamento"
-            matTooltipPosition="above">
+            matTooltipPosition="above" class="cl-black">
             <mat-icon class="material-icons-outlined">create</mat-icon>
           </button>
           <button mat-icon-button (click)="dialog(false, element)" matTooltip="Excluir pagamento"
-            matTooltipPosition="above">
+            matTooltipPosition="above" class="cl-black">
             <mat-icon class="material-icons-outlined">cancel</mat-icon>
           </button>
         </div>

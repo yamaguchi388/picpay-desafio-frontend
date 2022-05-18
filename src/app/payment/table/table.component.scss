@@ -5,5 +5,16 @@
         width: 100%;
         border-radius: 8px;
         overflow:hidden !important;
+
+        button {
+            border-color: transparent;
+            background-color: transparent;
+        }
+        
     }
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: transparent;
+    background-color: var(--blue);
 }
