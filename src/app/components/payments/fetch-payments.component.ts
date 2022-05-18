@@ -34,7 +34,7 @@ export class FetchPaymentsComponent implements OnInit {
 
   constructor(
     private readonly paymentService: PaymentService,
-    public dialog: MatDialog,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -54,15 +54,15 @@ export class FetchPaymentsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public addPaymentDialog(action): void {
-    this.setDialogTitle(action);
-    const dialogRef = this.dialog.open(AddInsertPaymentsComponent, {
+  public configureDialogAndSnackbar(componentName, id?: number, pageTitle?: string): void {
+    const dialogRef = this.dialog.open(componentName, {
       width: '60vw',
       height: '60vh',
       maxWidth: '100vw',
       maxHeight: '100vh',
       data: {
         pageTitle: this.pageTitle,
+        id,
       },
     });
     dialogRef.afterClosed().subscribe(() => {
@@ -70,36 +70,18 @@ export class FetchPaymentsComponent implements OnInit {
     });
   }
 
-  public deletePayment(id: number): void {
-    const dialogRef = this.dialog.open(DeletePaymentsComponent, {
-      width: '25rem',
-      height: '25rem',
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      data: {
-        id,
-      },
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      this.getPayments();
-    });
+  public addPaymentDialog(action): void {
+    this.setDialogTitle(action);
+    this.configureDialogAndSnackbar(AddInsertPaymentsComponent, null, this.pageTitle);
   }
 
   public editPayment(action: string, id: number): void {
     this.setDialogTitle(action);
-    const dialogRef = this.dialog.open(AddInsertPaymentsComponent, {
-      width: '60vw',
-      height: '60vh',
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      data: {
-        pageTitle: this.pageTitle,
-        id,
-      },
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      this.getPayments();
-    });
+    this.configureDialogAndSnackbar(AddInsertPaymentsComponent, id, this.pageTitle);
+  }
+
+  public deletePayment(id: number): void {
+    this.configureDialogAndSnackbar(DeletePaymentsComponent, id);
   }
 
   public setDialogTitle(action): void {
@@ -117,7 +99,7 @@ export class FetchPaymentsComponent implements OnInit {
       value: 0,
       date: '',
       image: '',
-      isPayed: false
+      isPayed: false,
     };
     this.paymentService.getPaymentById(id).subscribe((data) => {
       paymentStatusToUpdate = data;
