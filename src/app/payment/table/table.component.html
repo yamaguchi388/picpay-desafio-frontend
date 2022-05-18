@@ -81,7 +81,7 @@
       </th>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="['header-row-filter']"></tr>
+    <tr mat-header-row *matHeaderRowDef="['header-row-filter']" class="header-filter"></tr>
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

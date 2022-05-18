@@ -41,8 +41,7 @@ export class TableComponent implements OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result)
-        console.log('result:   ', result)
-      this.action.emit(result);
+        this.action.emit(result);
     });
   }
 

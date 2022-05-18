@@ -37,6 +37,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private matDialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.queryParams = this.generateQueryParams()
     this.getPayments();
   }
 

@@ -16,4 +16,13 @@
     </h1>
     <app-delete [payment]="dialog.payment" (close)="close($event)"></app-delete>
   </ng-container>
+
+  <ng-container *ngIf="dialog.add">
+    <h1 class="ms-2">
+      <span class="cl-black-secundary ft-weight-700 ft-size-18 ft-montserrat">
+        Adicionar pagamento
+      </span>
+    </h1>
+    <app-form [payment]="dialog.payment" (close)="close($event)"></app-form>
+  </ng-container>
 </section>
