@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
+import { AuthService } from './../../core/auth/auth.service';
 
 @Component({
   selector: 'picpay-login',
@@ -10,14 +12,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('userNameInput')
+  public userNameInput: ElementRef<HTMLInputElement>;
   public loginForm = new FormGroup({});
+  public hide = true;
 
   constructor(
     private readonly router: Router,
     private readonly formBuilder: FormBuilder,
-    private readonly httpClient: HttpClient,
-    private snackbar: MatSnackBar,
-
+    private authService: AuthService,
+    private snackbar: MatSnackBar
   ) {}
 
   public ngOnInit(): void {
@@ -27,31 +31,17 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public login(): void {
-    this.httpClient.get<any>('http://localhost:3000/account').subscribe(
-      (response) => {
-        const user = response.find((u: any) => {
-          return (
-            u.email === this.loginForm.value.email &&
-            u.password === this.loginForm.value.password
-          );
-        });
-        if (user) {
-          this.snackbar.open('Login efetuado com sucesso', 'Fechar', {
-            duration: 5000,
-            panelClass: ['custom-snackbar']
-          });
-          this.loginForm.reset();
-          this.router.navigate(['/payments']);
-        } else {
-          this.snackbar.open('Usuário ou Senha inválido', 'Fechar', {
-            duration: 5000,
-            panelClass: ['custom-snackbar']
-          });
-        }
+  public login() {
+    this.authService.authenticate(this.loginForm.value).subscribe(
+      ([user]) => {
+        this.authService.setUser(user);
+        this.router.navigate(['payments']);
       },
-      (_err) => {
-        alert('Erro ao efetuar login!');
+      (err: HttpErrorResponse) => {
+        this.snackbar.open('Email ou Senha incorretos', 'Fechar', {
+          duration: 2000,
+          panelClass: ['custom-snackbar'],
+        });
       }
     );
   }
