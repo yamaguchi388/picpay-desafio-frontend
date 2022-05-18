@@ -12,36 +12,28 @@
           <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
             <input
+              #userNameInput
               matInput
               type="email"
               placeholder="Insira seu melhor email"
               formControlName="email"
-              pattern=".+@gmail.com"
               required
             />
-            <!-- <small
-            *ngIf="loginForm.get('email').errors?.required">Campo obrigatório
-          </small> -->
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>Password</mat-label>
             <input
               matInput
-              type="password"
-              placeholder="Insira sua senha"
+              placeholder="Password"
+              [type]="hide ? 'password' : 'text'"
               formControlName="password"
               required
             />
-            <!-- <small
-            *ngIf="loginForm.get('password').errors?.required">Campo obrigatório
-          </small> -->
+            <mat-icon matSuffix (click)="hide = !hide">{{
+              hide ? "visibility_off" : "visibility"
+            }}</mat-icon>
           </mat-form-field>
-          <button
-            mat-flat-button
-            [disabled]="loginForm.invalid"
-          >
-            ENTRAR
-          </button>
+          <button mat-flat-button [disabled]="loginForm.invalid">ENTRAR</button>
         </form>
       </div>
     </div>
