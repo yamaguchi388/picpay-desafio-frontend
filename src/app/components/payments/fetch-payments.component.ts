@@ -57,8 +57,8 @@ export class FetchPaymentsComponent implements OnInit {
   public addPaymentDialog(action): void {
     this.setDialogTitle(action);
     const dialogRef = this.dialog.open(AddInsertPaymentsComponent, {
-      width: '50vw',
-      height: '50vh',
+      width: '60vw',
+      height: '60vh',
       maxWidth: '100vw',
       maxHeight: '100vh',
       data: {
@@ -88,8 +88,8 @@ export class FetchPaymentsComponent implements OnInit {
   public editPayment(action: string, id: number): void {
     this.setDialogTitle(action);
     const dialogRef = this.dialog.open(AddInsertPaymentsComponent, {
-      width: '50vw',
-      height: '50vh',
+      width: '60vw',
+      height: '60vh',
       maxWidth: '100vw',
       maxHeight: '100vh',
       data: {
