@@ -42,7 +42,7 @@ export class AddInsertPaymentsComponent implements OnInit {
 
   public createForm(): void {
     this.paymentForm = this.formBuilder.group({
-      value: [0.00, Validators.required],
+      value: [Validators.required],
       name: ['', Validators.required],
       date: ['', Validators.required],
       title: ['', Validators.required],
