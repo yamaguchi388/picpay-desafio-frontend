@@ -1,36 +1,31 @@
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Sort } from '@angular/material/sort';
+import { Subscription } from 'rxjs';
 import { PaymentService } from './../../service/payment.service';
 import { DialogComponent } from './../dialog/dialog.component';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-
-interface PaymentObject {
-  id?: number; 
-  name: string; 
-  username: string; 
-  title: string; 
-  value: number; 
-  date: string; 
-  image?: string, 
-  isPayed: boolean
-}
+import { PaymentObject } from './../../models/payment-object';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent {
+export class TableComponent implements OnDestroy {
 
+  subscription!: Subscription;
   displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'action'];
   check!: boolean; 
   @Input() dataSource!: PaymentObject[];
-  @Output() action = new EventEmitter();
-  @Output() sort = new EventEmitter();
+  @Output() action = new EventEmitter<boolean>();
+  @Output() sort = new EventEmitter<Sort>();
 
-  constructor(private matDialog: MatDialog,
-    private paymentService: PaymentService) { }
+  constructor(
+    private matDialog: MatDialog,
+    private paymentService: PaymentService
+    ) { }
 
-  sortChange(value) {
+  sortChange(value: Sort): void {
     this.sort.emit(value);
   }
 
@@ -53,13 +48,19 @@ export class TableComponent {
   updatePayment(payment: PaymentObject): void {
     this.check = true;
     payment.isPayed = !payment.isPayed;
-    this.paymentService.putPayment(payment).subscribe((payment: PaymentObject) => {
-      this.check = false;
-    },
-    error => {
-      console.error('Error: ', error)
-      this.check = false;
-    });
+    this.subscription = this.paymentService.putPayment(payment)
+      .subscribe((payment: PaymentObject) => {
+        this.check = false;
+      },
+      error => {
+        console.error('Error: ', error)
+        this.check = false;
+      });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription)
+      this.subscription.unsubscribe();
   }
 
 }

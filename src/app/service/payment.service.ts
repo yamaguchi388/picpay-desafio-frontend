@@ -25,25 +25,25 @@ export class PaymentService {
 
   constructor(private http: HttpClient) { }
 
-  getPayment(): Observable<HttpResponse<PaymentObject[]>> {
-    return this.http.get<PaymentObject[]>(`${this.api}`, { observe: 'response' })
-    .pipe(
-      tap(console.log)
-    );
+  getPayment(params: HttpParams): Observable<HttpResponse<PaymentObject[]>> {
+    return this.http.get<PaymentObject[]>(`${this.api}`, { params, observe: 'response' })
+      .pipe(
+        tap(console.log)
+      );
   }
 
   putPayment(payment: PaymentObject): Observable<PaymentObject> {
     return this.http.put<PaymentObject>(`${this.api}/${payment.id}`, payment)
-    .pipe(
-      tap(console.log)
-    );
+      .pipe(
+        tap(console.log)
+      );
   }
 
   postPayment(payment: PaymentObject): Observable<PaymentObject> {
     return this.http.post<PaymentObject>(`${this.api}`, payment)
-    .pipe(
-      tap(console.log)
-    );
+      .pipe(
+        tap(console.log)
+      );
   }
 
   deletePayment(id: number): Observable<PaymentObject> {

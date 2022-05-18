@@ -44,7 +44,7 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="isPayed">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header class="ft-lato ft-weight-700 ft-size-14 cl-black-gray">Pago
+      <th mat-header-cell *matHeaderCellDef class="ft-lato ft-weight-700 ft-size-14 cl-black-gray">Pago
       </th>
       <td mat-cell *matCellDef="let element">
         <mat-checkbox color="primary" [checked]="element.isPayed" [disabled]="check" (click)="updatePayment(element)">
@@ -68,13 +68,20 @@
     </ng-container>
 
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">
+      <td class="mat-cell" colspan="6" class="noData">
         <span class="ft-size-16 ft-montserrat">
           Não foi encontrado pagamentos
         </span>
       </td>
     </tr>
 
+    <ng-container matColumnDef="header-row-filter">
+      <th mat-header-cell *matHeaderCellDef class="border-filter" [attr.colspan]="6">
+        <ng-content #filter></ng-content>
+      </th>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['header-row-filter']"></tr>
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

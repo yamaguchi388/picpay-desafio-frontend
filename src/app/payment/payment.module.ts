@@ -1,3 +1,4 @@
+import { FiltersComponent } from './filters/filters.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { FormComponent } from './form/form.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTooltipModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ],
   declarations: [
     PaymentComponent,
@@ -41,7 +44,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     AddPaymentComponent,
     TableComponent,
     FormComponent,
-    DialogComponent
+    DialogComponent,
+    FiltersComponent
   ]
 })
 export class PaymentModule { }

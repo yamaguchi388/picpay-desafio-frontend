@@ -11,5 +11,33 @@
 <main class="m-5">
   <app-title></app-title>
   <app-add-payment></app-add-payment>
-  <app-table [dataSource]="dataSource"></app-table>
+  <app-table [dataSource]="dataSource" (action)="actionPage($event)" (sort)="sortPayment($event)">
+    <div class="mt-4 float-start">
+      <mat-form-field appearance="outline">
+        <mat-label>Pesquisar por usuário</mat-label>
+        <input type="search" matInput (keyup)="searchValue($event.target.value)" [value]="search" autocomplete="off">
+        <mat-icon class="material-icons-outlined cursor-pointer" matSuffix (click)="clickEventHandlerSearch()"
+          matTooltip="Pesquisar" matTooltipPosition="above">search</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="mt-4 float-start btn-container">
+      <button class="btn-filter ft-weight-600 ft-size-12 ft-lato" type="button" (click)="clickEventHandlerFilters()">
+        <mat-icon>tune</mat-icon>
+        <span class="ft-size-18">Filtrar</span>
+      </button>
+    </div>
+    <div class="mt-4 float-end row" filter>
+      <div class="col-sm">
+        <mat-label class="me-3 font-lato font-size-14 color-gray-secondary-text">Exibir</mat-label>
+        <mat-form-field appearance="outline" class="select">
+          <mat-select [(ngModel)]="limitSelected">
+            <mat-option *ngFor="let limit of limitPerPage" [value]="limit" (click)="clickEventHandlerQuery()">
+              {{limit}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+  </app-table>
 </main>

@@ -11,6 +11,7 @@
     --black-gray: #2D3540;
     --black-secundary: #373737;
     --black-secundary-title: #69788C;
+    --gray-secundary: #E6ECF0;
 }
 // background-color
 .bg-gray {
@@ -24,6 +25,9 @@
 }
 .bg-blue {
     background-color: var(--blue);
+}
+.bg-gray-secundary {
+    background-color: var(--gray-secundary);
 }
 // color
 .cl-black {

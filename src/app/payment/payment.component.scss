@@ -18,3 +18,24 @@
         width: 45px;
     }
 }
+
+.cursor-pointer{
+    cursor: pointer;
+}
+.btn-container{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    .btn-filter {
+        margin-left: 0.5rem !important;
+        line-height: 33px !important;
+        background-color: var(--gray-secundary);
+        top: 0.40em;
+        border-radius: 6px;
+        color: var(--black-gray) !important;
+        border-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
