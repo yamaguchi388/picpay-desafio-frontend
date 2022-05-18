@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
 // font-family
 .ft-montserrat {
     font-family: 'Montserrat', sans-serif;
@@ -8,12 +9,16 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
 }
+.ft-lato {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
 // font-weight
 .ft-weight-800 {
     font-weight: 800;
 }
 .ft-weight-700 {
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 .ft-weight-600 {
     font-weight: 600;
@@ -31,11 +36,14 @@
 .ft-size-24 {
     font-size: 24px;
 }
+.ft-size-18 {
+    font-size: 18px !important;
+}
 .ft-size-16 {
     font-size: 16px;
 }
 .ft-size-14 {
-    font-size: 14px;
+    font-size: 14px !important;
 }
 .ft-size-12 {
     font-size: 12px;

@@ -8,6 +8,8 @@
     --white: #ffffff;
     --gray: #f2f2f2;
     --dark-gray: #cecdcd;
+    --black-gray: #2D3540;
+    --black-secundary: #373737;
 }
 // background-color
 .bg-gray {
@@ -46,4 +48,10 @@
 }
 .cl-white {
     color: var(--white);
+}
+.cl-black-gray {
+    color: var(--black-gray) !important;
+}
+.cl-black-secundary {
+    color: var(--black-secundary) !important;
 }

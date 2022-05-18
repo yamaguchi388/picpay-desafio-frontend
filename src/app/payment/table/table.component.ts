@@ -1,34 +1,65 @@
-import { Component, OnInit } from '@angular/core';
+import { PaymentService } from './../../service/payment.service';
+import { DialogComponent } from './../dialog/dialog.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
-export interface PeriodicElement {
-  user: string;
-  title: string;
-  date: string;
-  value: number;
-  isPayed: boolean;
+interface PaymentObject {
+  id?: number; 
+  name: string; 
+  username: string; 
+  title: string; 
+  value: number; 
+  date: string; 
+  image?: string, 
+  isPayed: boolean
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { user: "gabriel", title: 'Professor gen', date: '2020-07-21T05:53:20Z', value: 100, isPayed: true },
-  { user: "gabriel", title: 'Professor m', date: '2020-07-21T05:53:20Z', value: 100, isPayed: true },
-  { user: "gabriel", title: 'Professor um', date: '2020-07-21T05:53:20Z', value: 100, isPayed: true },
-  { user: "gabriel", title: 'Professor lium', date: '2020-07-21T05:53:20Z', value: 100, isPayed: true },
-  { user: "gabriel", title: 'Professor', date: '2020-07-21T05:53:20Z', value: 100, isPayed: true }
-];
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
 
-  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'action'];
+  check!: boolean; 
+  @Input() dataSource!: PaymentObject[];
+  @Output() action = new EventEmitter();
+  @Output() sort = new EventEmitter();
 
-  constructor() { }
+  constructor(private matDialog: MatDialog,
+    private paymentService: PaymentService) { }
 
-  ngOnInit() {
+  sortChange(value) {
+    this.sort.emit(value);
+  }
+
+  dialog(edit: boolean, payment: PaymentObject): void {
+    const dialogRef = this.matDialog.open(DialogComponent, {
+      data: {
+        edit,
+        delete: !edit,
+        payment
+      },
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result)
+        this.action.emit(result);
+    });
+  }
+
+  updatePayment(payment: PaymentObject): void {
+    this.check = true;
+    payment.isPayed = !payment.isPayed;
+    this.paymentService.putPayment(payment).subscribe((payment: PaymentObject) => {
+      this.check = false;
+    },
+    error => {
+      console.error('Error: ', error)
+      this.check = false;
+    });
   }
 
 }

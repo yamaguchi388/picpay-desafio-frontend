@@ -1,0 +1,10 @@
+<section class="container">
+  <ng-container *ngIf="dialog.edit">
+    <h1 class="ms-2">
+      <span class="cl-black-secundary ft-weight-700 ft-size-18 ft-montserrat">
+        Editar pagamento
+      </span>
+    </h1>
+    <app-form [payment]="dialog.payment" (action)="close($event)"></app-form>
+  </ng-container>
+</section>

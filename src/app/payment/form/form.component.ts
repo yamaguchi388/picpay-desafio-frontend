@@ -1,0 +1,88 @@
+import { PaymentService } from './../../service/payment.service';
+import { TitleCasePipe } from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+interface PaymentObject {
+  id?: number; 
+  name: string; 
+  username: string; 
+  title: string; 
+  value: number; 
+  date: string; 
+  image?: string, 
+  isPayed: boolean
+}
+
+@Component({
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss']
+})
+export class FormComponent implements OnInit {
+
+  form!: FormGroup;
+  pipe = new TitleCasePipe();
+  @Input() payment!: PaymentObject;
+  @Output() close = new EventEmitter();
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private paymentService: PaymentService) { }
+
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      userName: [this.payment?.name ?? null, [Validators.required]],
+      value: [this.payment?.value ?? null, [Validators.required]],
+      date: [this.payment?.date ?? null, [Validators.required]],
+      title: [this.payment?.title ?? null]
+    })
+  }
+
+  onSubmit(): void {
+    if(this.form.valid) {
+
+      if(this.payment) {
+        this.update();
+      } else {
+        this.add();
+      }
+    }
+  }
+
+  update(): void{
+    this.paymentService.putPayment(this.create()).subscribe((payment: PaymentObject) => {
+      this.close.emit('T');
+    },
+    error => {
+      console.error('Error: ', error);
+    })
+  }
+
+  add(): void{
+    this.paymentService.postPayment(this.create()).subscribe((payment: PaymentObject) => {
+      this.close.emit('T');
+    },
+    error => {
+      console.error('Error: ', error);
+    })
+  }
+
+  create(): PaymentObject {
+    return {
+      id: this.payment?.id ?? null,
+      name: this.pipe.transform(this.form?.get('userName')?.value),
+      username: this.payment?.username ?? this.form?.get('userName')?.value, 
+      title: this.pipe.transform(this.form?.get('title')?.value),
+      value: this.form?.get('value')?.value,
+      date: new Date(this.form?.get('date')?.value).toISOString(),
+      image: this.payment?.image ?? null, 
+      isPayed: this.payment?.isPayed ?? false
+    }
+  }
+
+  cancel(): void {
+    this.close.emit('F');
+  }
+
+}
