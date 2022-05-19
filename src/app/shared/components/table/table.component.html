@@ -1,0 +1,375 @@
+<div class="po-row po-mt-5 po-ml-3">
+    <p class="po-font-title"> Meus pagamentos </p>
+</div>
+
+<po-button
+    float-right
+    class="po-mr-4"
+    p-type="primary"
+    p-label="ADICIONAR PAGAMENTO"
+    (p-click)="modalIncluirPagamento.open()">
+</po-button>
+
+<div class="po-row po-ml-3 po-mr-4">
+    <po-container
+        fullscreen
+        class="po-mt-4 po-mr-5">
+        <po-input
+            class="po-xl-2 po-lg-3 po-md-8 po-sm-12"
+            p-clean
+            p-icon="po-icon-search"
+            p-placeholder="Pesquisar por usuário"
+            (p-change)="buscarPorUsuario($event)">
+        </po-input>
+        <po-button
+            class="po-xl-1 po-lg-2 po-md-8 po-sm-12 po-mt-1"
+            p-icon="po-icon-parameters"
+            p-label="Filtrar"
+            (p-click)="modalPesquisarPagamento.open()">
+        </po-button>
+
+        <po-button
+            class="po-xl-1 po-lg-2 po-md-8 po-sm-12 po-mt-1"
+            p-icon="po-icon-delete"
+            p-type="danger"
+            [p-disabled]="!isFiltrado"
+            p-label="Limpar"
+            (p-click)="carregarPagamentos()">
+        </po-button>
+
+        <div>
+            <mat-paginator
+                #paginator
+                float-right
+                [length]="totalPaginas"
+                [pageSize]="numeroPagina"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                aria-label="Select page"
+                (page)="alterarTabela($event)">
+            </mat-paginator>
+        </div>
+    </po-container>
+    
+</div>
+
+<div class="po-row po-ml-3 po-mb-5 po-mr-3">
+    
+    <po-table
+        fullscreen
+        class="po-mr-3 po-mb-5 po-mr-5"
+        p-container="shadow"
+        [p-columns]="columns"
+        [p-items]="items"
+        [p-sort]="true"
+        [p-loading]="loading">
+
+    <ng-template p-table-column-template [p-property]="'isPayed'" let-value >
+        <div>
+            <po-checkbox
+                name="checkbox"
+                p-disabled="true"
+                [ngModel]="value">
+            </po-checkbox>
+        </div>
+    </ng-template>
+    </po-table>
+    
+</div>
+
+
+<!-- modais -->
+
+<po-modal #modalPesquisarPagamento p-title="Pesquisa avançada">
+    <form [formGroup]="formBuscar">
+        <div class="po-row">
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-input
+                    formControlName="buscarNome"
+                    [(ngModel)]="buscarNome"
+                    p-required
+                    p-placeholder="nome">
+                </po-input>
+            </div>
+
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-number
+                    formControlName="buscarValor"
+                    [(ngModel)]="buscarValor"
+                    p-placeholder="Valor">
+                </po-number> 
+            </div>
+        </div>
+
+        <div class="po-row">
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-input
+                    formControlName="buscarUsuario"
+                    [(ngModel)]="buscarUsuario"
+                    p-placeholder="Usuário">
+                </po-input>
+            </div>
+
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-input
+                    formControlName="buscarTitulo"
+                    [(ngModel)]="buscarTitulo"
+                    p-placeholder="Título">
+                </po-input>
+            </div>
+            
+        </div>
+
+        <div class="po-row">
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-datepicker
+                    formControlName="buscarData"
+                    [(ngModel)]="buscarData"
+                    p-placeholder="Data">
+                </po-datepicker>
+            </div>
+
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12 po-mt-1">
+                <po-checkbox
+                    formControlName="buscarIsPayed"
+                    name="checkbox"
+                    p-label="Pagamento realizado"
+                    ([ngModel])="buscarIsPayed"
+                    (p-change)="buscaIsPayed($event)">
+                </po-checkbox>
+            </div>
+        </div>
+    </form>
+
+    <po-modal-footer [p-disabled-align]="false">
+        <div class="po-mr-1">
+            <po-button
+                float-right
+                class="po-xl-3 po-lg-3 po-md-8 po-sm-12"
+                p-type="primary"
+                p-label="Buscar"
+                (p-click)="buscarPagamento()">
+            </po-button>
+
+            <po-button
+                float-right
+                class="po-xl-3 po-lg-3 po-md-8 po-sm-12"
+                p-type="danger"
+                p-label="Cancelar"
+                (p-click)="fecharModalBusca()">
+            </po-button>
+        </div>
+    </po-modal-footer>
+</po-modal>
+
+<po-modal #modalIncluirPagamento p-title="Adicionar pagamento">
+    <form [formGroup]="form">
+        <div class="po-row">
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-input
+                    formControlName="nome"
+                    [(ngModel)]="nome"
+                    p-required
+                    p-placeholder="nome *">
+                </po-input>
+            </div>
+
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-number
+                    formControlName="valor"
+                    [(ngModel)]="valor"
+                    p-required
+                    p-placeholder="Valor *">
+                </po-number> 
+            </div>
+        </div>
+
+        <div class="po-row">
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-input
+                    formControlName="usuario"
+                    [(ngModel)]="usuario"
+                    p-required
+                    p-placeholder="Usuário *">
+                </po-input>
+            </div>
+
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-input
+                    formControlName="titulo"
+                    [(ngModel)]="titulo"
+                    p-required
+                    p-placeholder="Título *">
+                </po-input>
+            </div>
+            
+        </div>
+
+        <div class="po-row">
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-datepicker
+                    formControlName="data"
+                    [(ngModel)]="data"
+                    p-required
+                    p-placeholder="Data *">
+                </po-datepicker>
+            </div>
+
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12 po-mt-1">
+                <po-checkbox
+                    formControlName="isPayed"
+                    [(ngModel)]="isPayed"
+                    name="checkbox"
+                    p-required
+                    p-label="Pagamento realizado"
+                    [ngModel]="isPayed">
+                </po-checkbox>
+            </div>
+        </div>
+    </form>
+
+    <po-modal-footer [p-disabled-align]="false">
+        <div class="po-mr-1">
+            <po-button
+                float-right
+                class="po-xl-3 po-lg-3 po-md-8 po-sm-12"
+                p-type="primary"
+                p-label="Salvar"
+                (p-click)="salvarPagamento()">
+            </po-button>
+
+            <po-button
+                float-right
+                class="po-xl-3 po-lg-3 po-md-8 po-sm-12"
+                p-type="danger"
+                p-label="Cancelar"
+                (p-click)="fecharModalIncluir()">
+            </po-button>
+            
+        </div>
+
+    </po-modal-footer>
+</po-modal>
+
+<po-modal #modalAlterarPagamento p-title="Alterar pagamento">
+    <form [formGroup]="form">
+        <div class="po-row">
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-input
+                    formControlName="nome"
+                    [(ngModel)]="nome"
+                    p-required
+                    p-placeholder="nome *">
+                </po-input>
+            </div>
+
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-number
+                    formControlName="valor"
+                    [(ngModel)]="valor"
+                    p-required
+                    p-placeholder="Valor *">
+                </po-number> 
+            </div>
+        </div>
+
+        <div class="po-row">
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-input
+                    formControlName="usuario"
+                    [(ngModel)]="usuario"
+                    p-required
+                    p-placeholder="Usuário *">
+                </po-input>
+            </div>
+
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-input
+                    formControlName="titulo"
+                    [(ngModel)]="titulo"
+                    p-required
+                    p-placeholder="Título *">
+                </po-input>
+            </div>
+            
+        </div>
+
+        <div class="po-row">
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12">
+                <po-datepicker
+                    formControlName="data"
+                    [(ngModel)]="data"
+                    p-required
+                    p-placeholder="Data *">
+                </po-datepicker>
+            </div>
+
+            <div class="po-xl-6 po-lg-6 po-md-12 po-sm-12 po-mt-1">
+                <po-checkbox
+                    formControlName="isPayed"
+                    [(ngModel)]="isPayed"
+                    name="checkbox"
+                    p-label="Pagamento realizado"
+                    p-required
+                    [ngModel]="isPayed">
+                </po-checkbox>
+            </div>
+        </div>
+    </form>
+
+    <po-modal-footer [p-disabled-align]="false">
+        <div class="po-mr-1">
+            <po-button
+                float-right
+                class="po-xl-3 po-lg-3 po-md-8 po-sm-12"
+                p-type="primary"
+                p-label="Salvar"
+                (p-click)="alterarPagamento()">
+            </po-button>
+
+            <po-button
+                float-right
+                class="po-xl-3 po-lg-3 po-md-8 po-sm-12"
+                p-type="danger"
+                p-label="Cancelar"
+                (p-click)="fecharModalAlterar()">
+            </po-button>
+            
+        </div>
+
+    </po-modal-footer>
+</po-modal>
+
+<po-modal #modalExcluirPagamento p-title="Excluir pagamento">
+    <div class="po-row po-mb-2">
+        <p class="po-font-subtitle"> Deseja excluir este pagamento? </p>
+    </div>
+    
+    <div>
+        <p class="po-font-text-large">Usuário: {{ nome }}</p>
+        <p class="po-font-text-large">Data: {{ data | date: 'dd/MM/yyyy' }} </p>
+        <p class="po-font-text-large">Valor: {{ valor }}</p>
+    </div>
+
+    <po-modal-footer [p-disabled-align]="false">
+        <div class="po-mr-1">
+            <po-button
+                float-right
+                class="po-xl-3 po-lg-3 po-md-8 po-sm-12"
+                p-type="primary"
+                p-label="Salvar"
+                (p-click)="excluirPagamento()">
+            </po-button>
+
+            <po-button
+                float-right
+                class="po-xl-3 po-lg-3 po-md-8 po-sm-12"
+                p-type="danger"
+                p-label="Cancelar"
+                (p-click)="fecharModalExcluir()">
+            </po-button>
+            
+        </div>
+
+    </po-modal-footer>
+</po-modal>
+

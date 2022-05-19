@@ -1,0 +1,39 @@
+.login {
+    height:100%;
+}
+
+.logo {
+    background-color: #F2F2F2;
+}
+
+.img-login {
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+.input-login {
+    margin-top: 50%;
+    margin-left: 20%;
+}
+
+.input-login * {
+    margin-bottom: 15px;
+}
+
+.input-login p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 37px;
+}
+
+@media(max-width: 1024px){
+    .img-login {
+        display: none;
+    }
+
+    .logo {
+        width: 100% !important;
+    }
+}

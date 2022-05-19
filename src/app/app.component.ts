@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { PoButtonGroupItem } from '@po-ui/ng-components';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  title: string;
-
-  ngOnInit() {
-   this.title = 'Desafio Picpay Front-end';
-  }
-}
+export class AppComponent{}

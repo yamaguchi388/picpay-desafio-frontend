@@ -1,0 +1,20 @@
+<div class="po-row login">
+
+    <div class="po-xl-4 po-lg-4 po-md-4 po-sm-4 logo">
+        
+        <div class="po-xl-7 po-lg-7 po-md-7 po-sm-7 input-login">
+        <form [formGroup]="form">
+            <img src="../assets/images/logo.svg" />
+            <p class="po-font-title">Bem vindo de volta</p>
+            <po-email #inputEmail formControlName="login" name="email" [p-required]="true" [(ngModel)]="email" p-label="Email"> </po-email>
+            <po-password formControlName="password" name="senha" [p-required]="true" [(ngModel)]="senha" p-label="Senha"> </po-password>
+            <po-button p-type="primary" p-label="Entrar" (p-click)="onSubmit()"> </po-button>
+        </form>    
+        </div>
+
+    </div>
+    
+    <div class="po-xl-6 po-lg-6 po-md-6 po-sm-6 img-login">
+        <img src="../assets/images/login.svg" />
+    </div>
+</div>
