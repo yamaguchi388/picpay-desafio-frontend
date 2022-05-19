@@ -116,11 +116,14 @@ export class PaymentComponent implements OnInit, OnDestroy {
       autoFocus: false
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log('result', result)
-      }
-    });
+    dialogRef.afterClosed()
+      .subscribe((result: FilterObject) => {
+        if (result) {
+          this.filters = result;
+          this.currentPage = 1;
+          this.actionPage(true);
+        }
+      });
   }
 
   clickEventHandlerQuery(): void {
@@ -137,7 +140,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/profile', { state: this.profile });
   }
 
-  pageChange(page: number): void{
+  pageChange(page: number): void {
     this.actionPage(true);
   }
 
