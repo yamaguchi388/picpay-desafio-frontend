@@ -1,3 +1,4 @@
+import { ProfileNavigationObject } from './../models/profile-object';
 import { Router } from '@angular/router';
 import { FiltersComponent } from './filters/filters.component';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -20,7 +21,7 @@ interface FilterObject {
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit, OnDestroy {
-  profile!: any;
+  profile!: ProfileNavigationObject;
   subscription!: Subscription;
   dataSource!: PaymentObject[];
   currentPage!: number;
@@ -31,7 +32,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
   filters!: FilterObject;
   limitPerPage = [5, 10, 15, 20, 25, 50, 100];
   limitSelected: number = 5;
-  pagination!: any;
   totalSizePagination!: number;
 
   constructor(private paymentService: PaymentService,
@@ -40,7 +40,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.profile = history.state;
-    console.log('this.profile', this.profile)
     if (!this.profile[0])
       this.router.navigate(['/login']);
     this.queryParams = this.generateQueryParams()

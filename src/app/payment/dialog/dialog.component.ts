@@ -1,12 +1,6 @@
+import { DialogObject } from './../../models/dialog-object';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-interface DialogObject {
-  add: boolean;
-  edit: boolean;
-  delete: boolean;
-  payment?: any;
-}
 
 @Component({
   selector: 'app-dialog',
@@ -23,6 +17,7 @@ export class DialogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('this.data', this.data)
     if (this.data)
       this.dialog = this.data;
   }

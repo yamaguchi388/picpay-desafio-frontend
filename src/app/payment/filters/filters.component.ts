@@ -28,6 +28,7 @@ export class FiltersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('this.data', this.data)
     if (this.data)
       this.filter = this.data.filters;
     this.form = this.formBuilder.group({
