@@ -19,7 +19,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   profile!: ProfileNavigationObject;
   subscription!: Subscription;
   dataSource!: PaymentObject[];
-  currentPage!: number;
+  currentPage: number = 1;
   sort!: Sort;
   queryParams!: HttpParams;
   limit: number = 5;
@@ -29,7 +29,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
   limitSelected: number = 5;
   totalSizePagination!: number;
   pageSizeOptions = [1, 2, 3, 4, 5];
-  page = 1;
 
   constructor(private paymentService: PaymentService,
     private matDialog: MatDialog,
@@ -136,8 +135,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   pageChange(page: number): void{
-    console.log('event', page)
-
+    this.actionPage(true);
   }
 
 }

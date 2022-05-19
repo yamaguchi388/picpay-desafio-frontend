@@ -44,7 +44,7 @@
       </div>
       <div class="col-sm">
         <div class="pagination">
-          <ngb-pagination [collectionSize]="totalSizePagination" [pageSize]="limit" [(page)]="page" [maxSize]="5"
+          <ngb-pagination [collectionSize]="totalSizePagination" [pageSize]="limit" [(page)]="currentPage" [maxSize]="5"
             [rotate]="true" [ellipses]="false" (pageChange)="pageChange($event)">
             <ng-template ngbPaginationPrevious>
               <mat-icon>navigate_before</mat-icon>
