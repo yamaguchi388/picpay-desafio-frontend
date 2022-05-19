@@ -22,12 +22,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
   currentPage!: number;
   sort!: Sort;
   queryParams!: HttpParams;
-  limit!: number;
+  limit: number = 5;
   search: string = null;
   filters!: FilterObject;
   limitPerPage = [5, 10, 15, 20, 25, 50, 100];
   limitSelected: number = 5;
   totalSizePagination!: number;
+  pageSizeOptions = [1, 2, 3, 4, 5]
 
   constructor(private paymentService: PaymentService,
     private matDialog: MatDialog,
@@ -35,8 +36,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.profile = history.state;
-    if (!this.profile[0])
-      this.router.navigate(['/login']);
+    // if (!this.profile[0])
+    //   this.router.navigate(['/login']);
     this.queryParams = this.generateQueryParams()
     this.getPayments();
   }
@@ -50,7 +51,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.subscription = this.paymentService.getPayment(this.queryParams)
       .subscribe((response: HttpResponse<PaymentObject[]>) => {
         this.dataSource = response.body;
-        this.totalSizePagination = response.body ? response.body.length : 0;
+        this.totalSizePagination = Number(response.headers.get('X-Total-Count'));
       });
   }
 

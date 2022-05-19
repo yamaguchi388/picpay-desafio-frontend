@@ -3,12 +3,12 @@
   <div class="row">
     <mat-form-field appearance="outline" class="col-12 col-sm-6">
       <mat-label>Usuário<span>*</span></mat-label>
-      <input matInput formControlName="userName">
+      <input matInput formControlName="userName" maxlength="50">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-12 col-sm-6">
       <mat-label>Valor<span>*</span></mat-label>
-      <input matInput formControlName="value" type="number">
+      <input matInput formControlName="value" appDigitDecimaNumber maxlength="20">
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-12 col-sm-6">
@@ -19,7 +19,7 @@
 
     <mat-form-field appearance="outline" class="col-12 col-sm-6">
       <mat-label>Título</mat-label>
-      <input matInput formControlName="title">
+      <input matInput formControlName="title" maxlength="50">
     </mat-form-field>
   </div>
 

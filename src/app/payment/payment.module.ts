@@ -15,6 +15,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 
+import { DigitDecimaNumberDirective } from './../core/directive/digit-decima-number.directive';
 import { PaymentComponent } from './payment.component';
 import { TitleComponent } from './title/title.component';
 import { AddPaymentComponent } from './add-payment/add-payment.component';
@@ -51,7 +52,8 @@ import { MatMenuModule } from '@angular/material/menu';
     FormComponent,
     DialogComponent,
     FiltersComponent,
-    DeleteComponent
+    DeleteComponent,
+    DigitDecimaNumberDirective
   ]
 })
 export class PaymentModule { }
