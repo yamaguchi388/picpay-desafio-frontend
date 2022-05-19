@@ -28,7 +28,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
   limitPerPage = [5, 10, 15, 20, 25, 50, 100];
   limitSelected: number = 5;
   totalSizePagination!: number;
-  pageSizeOptions = [1, 2, 3, 4, 5];
 
   constructor(private paymentService: PaymentService,
     private matDialog: MatDialog,
