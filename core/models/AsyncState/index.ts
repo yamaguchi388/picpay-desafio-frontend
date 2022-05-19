@@ -1,9 +1,9 @@
 import { ResponseError } from "../ResponseError";
 
 export type AsyncState<R = unknown, E = ResponseError> = {
-  data: R;
+  data: R | null;
   loading: boolean;
-  error: E;
+  error: E | any;
 };
 
 export type AsyncFn<R, T = unknown> = (...args: T[]) => Promise<R>;

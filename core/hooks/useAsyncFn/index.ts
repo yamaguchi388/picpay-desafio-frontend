@@ -1,26 +1,21 @@
 import { SetStateAction, useCallback, useEffect, useState } from "react";
 
-export const useAsync = (
+export const useAsyncFn = (
   asyncFunction: (...args: unknown[]) => Promise<any>,
+  initFn,
+  successFn,
+  errorFn,
   immediate = true
 ) => {
-  const [status, setStatus] = useState("idle");
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-
   const execute = useCallback(() => {
-    setStatus("pending");
-    setData(null);
-    setError(null);
+    initFn({ data: null, loading: false, error: null });
     return asyncFunction()
-      .then((response: SetStateAction<null>) => {
-        setData(response);
-        setStatus("success");
-      })
-      .catch((error: SetStateAction<null>) => {
-        setError(error);
-        setStatus("error");
-      });
+      .then((response: SetStateAction<null>) =>
+        successFn({ data: response, error: null, loading: false })
+      )
+      .catch((error: SetStateAction<null>) =>
+        errorFn({ data: null, loading: false, error })
+      );
   }, [asyncFunction]);
 
   useEffect(() => {
@@ -28,5 +23,4 @@ export const useAsync = (
       execute();
     }
   }, [execute, immediate]);
-  return { execute, status, data, error };
 };
