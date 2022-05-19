@@ -1,22 +1,17 @@
-import { of } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {
+  HttpClientTestingModule
+} from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { RouterTestingModule } from '@angular/router/testing';
-import {
-  MatDialogModule,
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialog,
+  MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA
 } from '@angular/material/dialog';
-
-import { DeletePaymentsComponent } from './delete-payments.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 import { Task } from 'src/app/models/task.model';
 import { PaymentService } from 'src/app/services/paymentService/payment.service';
+import { DeletePaymentsComponent } from './delete-payments.component';
+
 
 describe('DeletePaymentsComponent', () => {
   let component: DeletePaymentsComponent;
@@ -64,6 +59,12 @@ describe('DeletePaymentsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should delete payment', () => {
+    spyOn(component, 'deletePayment').and.callThrough();
+    component.deletePayment(1);
+    expect(component.deletePayment).toHaveBeenCalled();
   });
 
 });
