@@ -43,7 +43,17 @@
         </mat-form-field>
       </div>
       <div class="col-sm">
-        
+        <div class="pagination">
+          <ngb-pagination [collectionSize]="totalSizePagination" [pageSize]="limit" [(page)]="page" [maxSize]="5"
+            [rotate]="true" [ellipses]="false" (pageChange)="pageChange($event)">
+            <ng-template ngbPaginationPrevious>
+              <mat-icon>navigate_before</mat-icon>
+            </ng-template>
+            <ng-template ngbPaginationNext>
+              <mat-icon>navigate_next</mat-icon>
+            </ng-template>
+          </ngb-pagination>
+        </div>
       </div>
     </div>
 

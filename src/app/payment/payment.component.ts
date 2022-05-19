@@ -28,7 +28,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
   limitPerPage = [5, 10, 15, 20, 25, 50, 100];
   limitSelected: number = 5;
   totalSizePagination!: number;
-  pageSizeOptions = [1, 2, 3, 4, 5]
+  pageSizeOptions = [1, 2, 3, 4, 5];
+  page = 1;
 
   constructor(private paymentService: PaymentService,
     private matDialog: MatDialog,
@@ -132,6 +133,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   editProfile(): void {
     this.router.navigateByUrl('/profile', { state: this.profile });
+  }
+
+  pageChange(page: number): void{
+    console.log('event', page)
+
   }
 
 }

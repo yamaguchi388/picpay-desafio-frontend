@@ -25,6 +25,7 @@ import { FormComponent } from './form/form.component';
 import { FiltersComponent } from './filters/filters.component';
 import { DeleteComponent } from './delete/delete.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [
     CommonModule,
@@ -42,7 +43,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatCheckboxModule,
     MatSelectModule,
     MatMenuModule,
-    PaymentRoutes
+    PaymentRoutes,
+    NgbPaginationModule
   ],
   declarations: [
     PaymentComponent,
