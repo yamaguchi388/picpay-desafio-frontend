@@ -32,14 +32,18 @@
     </div>
     <div class="mt-4 float-end row" filter>
       <div class="col-sm">
-        <mat-label class="me-3 font-lato font-size-14 color-gray-secondary-text">Exibir</mat-label>
-        <mat-form-field appearance="outline" class="select">
+        <mat-label class="me-3 cl-black-secundary-title ft-weight-500 ft-size-12 ft-lato">Exibir</mat-label>
+        <mat-form-field appearance="outline" class="limit-selected cl-black-gray ft-weight-400 ft-size-14 ft-lato">
           <mat-select [(ngModel)]="limitSelected">
             <mat-option *ngFor="let limit of limitPerPage" [value]="limit" (click)="clickEventHandlerQuery()">
               {{limit}}
             </mat-option>
           </mat-select>
+          <mat-icon matSuffix>expand_more</mat-icon>
         </mat-form-field>
+      </div>
+      <div class="col-sm">
+        
       </div>
     </div>
 

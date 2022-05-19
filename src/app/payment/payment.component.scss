@@ -40,3 +40,24 @@
         justify-content: center;
     }
 }
+
+.limit-selected {
+    width: 90px;
+
+    ::ng-deep .mat-select-arrow { 
+        opacity: 0;  
+    }
+    
+    ::ng-deep .mat-form-field-flex > .mat-form-field-infix { 
+        padding: 0.15em 0px 0.55em !important;
+    }
+    
+    ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+        transform: translateY(-1.1em) scale(.75);
+        width: 133.33333%;  
+    }
+
+    ::ng-deep .mat-form-field-label {
+        margin-top: 0px !important
+    }
+}
