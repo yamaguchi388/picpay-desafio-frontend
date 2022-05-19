@@ -14,14 +14,3 @@ export const Form = styled.form`
     width: 20.37rem;
   }
 `;
-
-export const H1 = styled.h1`
-  font-weight: 600;
-`;
-
-export const InputContainer = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: inherit;
-`;

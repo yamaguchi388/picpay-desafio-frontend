@@ -1,19 +1,13 @@
 import { ReactElement } from "react";
 import { Container } from "./styles";
-
-type LabelProps = {
-  htmlFor: string;
-  className?: string;
-  labelText: string;
-  isRequired?: boolean;
-};
+import { IlabelProps } from "./types";
 
 export const Label = ({
   htmlFor,
   className,
   labelText,
   isRequired,
-}: LabelProps): ReactElement => {
+}: IlabelProps): ReactElement => {
   return (
     <Container htmlFor={htmlFor} className={className}>
       {labelText}
