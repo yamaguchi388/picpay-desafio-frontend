@@ -1,21 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { PaymentComponent } from './payment/payment.component';
-import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
     path: 'payment',
-    component: PaymentComponent
+    loadChildren: () => import('./payment/payment.module').then((m) => m.PaymentModule),
   },
   {
     path: 'login',
-    component: LoginComponent
+    loadChildren: () => import('./login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule),
   },
   {
     path: '',

@@ -1,3 +1,4 @@
+import { ProfileRoutes } from './profile.routing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
+    ProfileRoutes
   ],
   declarations: [ProfileComponent]
 })

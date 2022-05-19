@@ -1,3 +1,4 @@
+import { PaymentRoutes } from './payment.routing';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,7 +40,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatTooltipModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatMenuModule
+    MatMenuModule,
+    PaymentRoutes
   ],
   declarations: [
     PaymentComponent,

@@ -1,3 +1,4 @@
+import { LoginRoutes } from './login.routing';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
+    LoginRoutes
   ],
   declarations: [LoginComponent, LoginFormComponent, LoginImageComponent]
 })

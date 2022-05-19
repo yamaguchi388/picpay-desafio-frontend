@@ -1,8 +1,3 @@
-import { ProfileModule } from './profile/profile.module';
-import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
@@ -10,12 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
 
 import { AppRoutingModule } from './app-routing.module';
-import { LoginModule } from './login/login.module';
-import { PaymentModule } from './payment/payment.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 registerLocaleData(localePt, 'pt');
 
@@ -29,10 +21,7 @@ registerLocaleData(localePt, 'pt');
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSliderModule,
-    LoginModule,
-    PaymentModule,
-    ProfileModule
+    MatSliderModule
   ],
   providers: [
     {
