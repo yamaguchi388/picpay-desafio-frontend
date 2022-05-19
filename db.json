@@ -28,7 +28,7 @@
       "value": 464.54,
       "date": "2020-02-09T18:20:32Z",
       "image": "https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1",
-      "isPayed": false
+      "isPayed": true
     },
     {
       "id": 4,
@@ -1699,16 +1699,6 @@
       "date": "2021-05-05T10:22:13Z",
       "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
       "isPayed": true
-    },
-    {
-      "name": "Andreia",
-      "username": "deia",
-      "value": "100",
-      "date": "2022-05-06T03:00:00.000Z",
-      "title": "teste",
-      "image": null,
-      "isPayed": false,
-      "id": 171
     }
   ],
   "account": [

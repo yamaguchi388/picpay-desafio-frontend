@@ -5,12 +5,12 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule, MAT_INPUT_VALUE_ACCESSOR } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
@@ -24,12 +24,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CockpitComponent } from './components/cockpit/cockpit.component';
+import { FormPaymentComponent } from './components/form-payment/form-payment.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { MyPaymentsComponent } from './components/my-payments/my-payments.component';
 import { SharedModule } from './shared/shared.module';
-import { FormPaymentComponent } from './components/form-payment/form-payment.component';
-import { FormatCoinPipe } from './shared/pipes/format-coin.pipe';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomeComponent, CockpitComponent, MyPaymentsComponent, FormPaymentComponent],

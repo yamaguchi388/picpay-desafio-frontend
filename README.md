@@ -24,7 +24,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 - Node: 12.20.2
 - Angular: 12.1.4
 
-A utilização do Angular e Node nas versões acima **é obrigatória**.
+A utilização do Angular e Node nas versões acima **é obrigatória** exceto nas vagas direcionadas à React.
 
 ## Como Rodar?
 
