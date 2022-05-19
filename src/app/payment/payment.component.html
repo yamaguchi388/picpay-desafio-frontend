@@ -1,10 +1,14 @@
 <nav class="toolbar">
   <mat-toolbar color="accent">
-    <h1>
+    <h1 (click)="logout()">
       <span class="cl-gray ft-weight-800 ft-size-24 ft-montserrat">Pay</span>
       <span class="cl-gray ft-weight-400 ft-size-24 ft-montserrat">Friends</span>
     </h1>
-    <img src="./assets/images/ellipse.svg">
+    <img src="./assets/images/ellipse.svg" [matMenuTriggerFor]="menu" matTooltip="Perfil">
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="editProfile()">Editar Perfil</button>
+      <button mat-menu-item (click)="logout()">Sair</button>
+    </mat-menu>
   </mat-toolbar>
 </nav>
 

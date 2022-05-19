@@ -33,11 +33,10 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if(this.form.valid) {
+    if (this.form.valid) {
       this.authService.login(this.form.get('email')?.value, this.form.get('password')?.value)
         .subscribe((result: Account[]) => {
-          console.log('result', result)
-          this.router.navigate(['/payment']);
+          this.router.navigateByUrl('/payment', { state: result });
         });
     }
   }

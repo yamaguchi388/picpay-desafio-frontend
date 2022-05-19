@@ -22,6 +22,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { FormComponent } from './form/form.component';
 import { FiltersComponent } from './filters/filters.component';
 import { DeleteComponent } from './delete/delete.component';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   imports: [
     CommonModule,
@@ -37,7 +38,8 @@ import { DeleteComponent } from './delete/delete.component';
     MatNativeDateModule,
     MatTooltipModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule
   ],
   declarations: [
     PaymentComponent,

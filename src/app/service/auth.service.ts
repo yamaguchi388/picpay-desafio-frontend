@@ -6,7 +6,7 @@ import { environment } from './../../environments/environment';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-interface Account {
+export interface Account {
   id?: number,
   name?: string,
   email?: string,
@@ -43,6 +43,17 @@ export class AuthService {
         map((users: Account[]) => {
           if (users.length > 0) {
             return users;
+          }
+        })
+      );
+  }
+
+  update(user: Account): Observable<Account> {
+    return this.http.put<Account>(`${this.api}/${user.id}`, user)
+      .pipe(
+        map((user: Account) => {
+          if (user) {
+            return user;
           }
         })
       );

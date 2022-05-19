@@ -1,0 +1,58 @@
+<main class="container">
+  <button class="go-back" matTooltip="Voltar" (click)="goBack()">
+    <mat-icon class="material-icons-outlined">chevron_left</mat-icon>
+  </button>
+  <div class="row">
+    <section class="col-12 col-sm-5 col-md-4">
+      <img src="./assets/images/ellipse.svg">
+      <h1>
+        <span>
+          {{profile.name | titlecase}}
+        </span>
+      </h1>
+      <h2>
+        <span>
+          {{profile.email | lowercase}}
+        </span>
+      </h2>
+    </section>
+    <section class="col-12 col-sm-7 col-md-8 bg-white">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off" class="ft-roboto container row">
+
+        <mat-form-field appearance="outline" class="col-12 col-sm-6">
+          <mat-label>E-mail</mat-label>
+          <input matInput formControlName="email" autocomplete="false">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-12 col-sm-6">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="name" autocomplete="false">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-12 col-sm-6">
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="password" [type]="visibility? 'text' : 'password'" autocomplete="false">
+          <mat-icon class="material-icons-outlined cursor-pointer" matSuffix (click)="visibility = !visibility">
+            {{visibility? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-12 col-sm-6">
+          <mat-label>Confirme Senha</mat-label>
+          <input matInput formControlName="passwordConfirm" [type]="visibility? 'text' : 'password'"
+            autocomplete="false">
+          <mat-icon class="material-icons-outlined cursor-pointer" matSuffix (click)="visibility = !visibility">
+            {{visibility? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+        </mat-form-field>
+
+        <div class="col-12">
+          <button [disabled]="!form.valid" class="bg-blue cl-white ft-weight-500 ft-size-14">
+            {{'Salvar' | uppercase}}
+          </button>
+        </div>
+
+      </form>
+    </section>
+  </div>
+</main>

@@ -1,0 +1,48 @@
+main {
+    max-width: 100%;
+    .go-back {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-color: transparent;
+        color: var(--white);
+        background-color: var(--dark-blue);
+    }
+    .go-back:hover {
+        background-color: var(--blue);
+    }
+    section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    
+        img {
+            width: 10rem;
+            margin-bottom: 10px;
+        }
+    
+        button {
+            height: 36px;
+            border: none;
+            border-radius: 4px;
+            line-height: 16px;
+            letter-spacing: 1.25px;
+            min-width: 100px;
+            float: right;
+        }
+    
+        button:disabled {
+            background-color: #cecdcd;
+            border: none;
+            cursor: not-allowed;
+        }
+    }
+}

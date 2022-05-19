@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { FiltersComponent } from './filters/filters.component';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpParams, HttpResponse } from '@angular/common/http';
@@ -19,7 +20,7 @@ interface FilterObject {
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit, OnDestroy {
-
+  profile!: any;
   subscription!: Subscription;
   dataSource!: PaymentObject[];
   currentPage!: number;
@@ -34,9 +35,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
   totalSizePagination!: number;
 
   constructor(private paymentService: PaymentService,
-    private matDialog: MatDialog) { }
+    private matDialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.profile = history.state;
     this.queryParams = this.generateQueryParams()
     this.getPayments();
   }
@@ -123,6 +126,14 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.limit = this.limitSelected;
     this.currentPage = 1;
     this.actionPage(true);
+  }
+
+  logout(): void {
+    this.router.navigate(['/login']);
+  }
+
+  editProfile(): void {
+    this.router.navigateByUrl('/profile', { state: this.profile });
   }
 
 }
