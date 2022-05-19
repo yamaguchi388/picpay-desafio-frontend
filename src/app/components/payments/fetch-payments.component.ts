@@ -49,9 +49,8 @@ export class FetchPaymentsComponent implements OnInit {
     });
   }
 
-  public applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  public applyFilter(valueToFilter: string): void {
+    this.dataSource.filter = valueToFilter.trim().toLowerCase();
   }
 
   public configureDialogAndSnackbar(componentName, id?: number, pageTitle?: string): void {
