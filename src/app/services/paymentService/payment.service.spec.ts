@@ -56,4 +56,65 @@ fdescribe('PaymentService', () => {
     });
   });
 
+  it('should call insertPayment method', () => {
+    const response = {
+      id: 171
+    };
+    spyOn(httpClientStub, 'post').and.returnValues(of(response));
+
+    const request = {
+      id: 171,
+      name: 'Fernando',
+      username: 'tchfer',
+      value: 100.0,
+      date: '2022-05-18',
+      title: 'Dev',
+      image: null,
+      isPayed: false
+    };
+
+    paymentService.insertPayment(request);
+
+    expect(httpClientStub.post).toHaveBeenCalled();
+  });
+
+  it('should call updatePayment method', () => {
+    const response = {
+      id: 171
+    };
+    spyOn(httpClientStub, 'put').and.returnValues(of(response));
+
+    const request: Task = {
+      id: 171,
+      name: 'Fernando',
+      username: 'tchfer',
+      value: 100.0,
+      date: '2022-05-18',
+      title: 'Dev',
+      image: null,
+      isPayed: false
+    };
+
+    const updatePayment = paymentService.updatePayment(171, request);
+
+    expect(httpClientStub.put).toHaveBeenCalled();
+  });
+
+  it('should call deletePayment method', () => {
+    const response = {
+      id: 171
+    };
+    spyOn(httpClientStub, 'delete').and.returnValues(of(response));
+
+    const deletePayment = paymentService.deletePayment(171);
+
+    expect(httpClientStub.delete).toHaveBeenCalled();
+  });
+
+  it('should call getPaymentById method', () => {
+    spyOn(httpClientStub, 'get').and.returnValues(of(paymentsDummy));
+    paymentService.getPaymentById(171);
+    expect(httpClientStub.get).toHaveBeenCalled();
+  });
+
 });
