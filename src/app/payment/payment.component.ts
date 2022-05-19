@@ -91,6 +91,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
     if (this.sort?.direction) {
       params = params.append('_sort', this.sort?.active);
       params = params.append('_order', this.sort?.direction);
+    } else {
+      params = params.append('_sort', 'id');
+      params = params.append('_order', 'desc');
     }
     return params;
   }

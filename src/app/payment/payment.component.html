@@ -14,7 +14,7 @@
 
 <main class="m-5">
   <app-title></app-title>
-  <app-add-payment></app-add-payment>
+  <app-add-payment (action)="actionPage($event)"></app-add-payment>
   <app-table [dataSource]="dataSource" (action)="actionPage($event)" (sort)="sortPayment($event)">
     <div class="mt-4 float-start">
       <mat-form-field appearance="outline">
