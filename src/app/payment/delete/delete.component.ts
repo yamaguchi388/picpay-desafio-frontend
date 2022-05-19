@@ -17,7 +17,6 @@ export class DeleteComponent {
   delete(): void {
     this.paymentService.deletePayment(this.payment?.id)
       .subscribe((payment: PaymentObject) => {
-        console.log('payment', payment)
         this.close.emit(true);
       },
         error => {
