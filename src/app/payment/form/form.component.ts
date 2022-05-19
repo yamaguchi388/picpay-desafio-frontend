@@ -1,18 +1,8 @@
-import { PaymentService } from './../../service/payment.service';
 import { TitleCasePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-interface PaymentObject {
-  id?: number;
-  name: string;
-  username: string;
-  title: string;
-  value: number;
-  date: string;
-  image?: string,
-  isPayed: boolean
-}
+import { PaymentObject } from './../../models/payment-object';
+import { PaymentService } from './../../service/payment.service';
 
 @Component({
   selector: 'app-form',

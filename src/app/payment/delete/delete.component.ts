@@ -1,16 +1,6 @@
+import { PaymentObject } from './../../models/payment-object';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { PaymentService } from './../../service/payment.service';
-
-interface PaymentObject {
-  id?: number;
-  name: string;
-  username: string;
-  title: string;
-  value: number;
-  date: string;
-  image?: string,
-  isPayed: boolean
-}
 
 @Component({
   selector: 'app-delete',

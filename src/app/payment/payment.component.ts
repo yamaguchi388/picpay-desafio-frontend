@@ -1,20 +1,15 @@
-import { ProfileNavigationObject } from './../models/profile-object';
 import { Router } from '@angular/router';
-import { FiltersComponent } from './filters/filters.component';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpParams, HttpResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs';
-import { PaymentService } from './../service/payment.service';
-import { PaymentObject } from './../models/payment-object';
 import { Sort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { FiltersComponent } from './filters/filters.component';
+import { PaymentService } from './../service/payment.service';
+import { ProfileNavigationObject } from './../models/profile-object';
+import { FilterObject } from './../models/filter-object';
+import { PaymentObject } from './../models/payment-object';
 
-interface FilterObject {
-  value?: number;
-  date?: string;
-  title?: string;
-  payed?: boolean;
-}
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',

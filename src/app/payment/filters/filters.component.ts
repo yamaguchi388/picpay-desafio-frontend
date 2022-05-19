@@ -2,13 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-interface FilterObject {
-  value?: number;
-  date?: string;
-  title?: string;
-  payed?: boolean;
-}
+import { FilterObject } from './../../models/filter-object';
 
 @Component({
   selector: 'app-filters',

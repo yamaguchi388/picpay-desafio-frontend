@@ -2,14 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../../service/auth.service';
-
-interface Account {
-  id?: number,
-  name?: string,
-  email?: string,
-  password?: string
-}
-
+import { AccountObject } from './../../models/account-object';
 @Component({
   selector: 'login-form',
   templateUrl: './login-form.component.html',
@@ -35,7 +28,7 @@ export class LoginFormComponent implements OnInit {
   onSubmit(): void {
     if (this.form.valid) {
       this.authService.login(this.form.get('email')?.value, this.form.get('password')?.value)
-        .subscribe((result: Account[]) => {
+        .subscribe((result: AccountObject[]) => {
           this.router.navigateByUrl('/payment', { state: result });
         });
     }
