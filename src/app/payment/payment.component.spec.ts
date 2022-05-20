@@ -11,21 +11,23 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PaymentService } from './../service/payment.service';
 import { PaymentComponent } from './payment.component';
 
-describe('PaymentComponent', () => {
+fdescribe('PaymentComponent', () => {
   let component: PaymentComponent;
   let fixture: ComponentFixture<PaymentComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule,
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
         MatDialogModule,
         RouterTestingModule,
-        MatMenuModule],
+        MatMenuModule
+      ],
       providers: [PaymentService],
       declarations: [PaymentComponent]
     })
       .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PaymentComponent);
@@ -52,6 +54,15 @@ describe('PaymentComponent', () => {
   it('should have as limitSelected 5', () => {
     inject([PaymentComponent], (app: PaymentComponent) => {
       expect(app.limitSelected).toEqual(5);
+    });
+  });
+
+  it('should have changed limit', () => {
+    inject([PaymentComponent], (app: PaymentComponent) => {
+      app.limit = 10;
+      fixture.detectChanges();
+      const elementLimit: DebugElement = fixture.debugElement.query(By.css('#limit'))
+      expect((elementLimit.nativeElement as HTMLSpanElement).textContent).toEqual('10');
     });
   });
 });
