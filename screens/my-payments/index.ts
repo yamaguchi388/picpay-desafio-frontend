@@ -1,1 +1,1 @@
-export { MyPaymentsContainer as default } from "./containers";
+export { default } from "./containers";

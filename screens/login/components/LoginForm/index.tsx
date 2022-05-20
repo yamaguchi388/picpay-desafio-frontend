@@ -53,7 +53,6 @@ export const LoginForm = ({ area }: LoginFormProps): ReactElement => {
         {state.authState.error && (
           <FormHelperText error>Email ou senha inválido </FormHelperText>
         )}
-        {console.log("STATE", state)}
       </Form>
     </Section>
   );

@@ -8,11 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "api": "json-server --watch db.json --port 3004",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "type-check": "tsc --project tsconfig.json --pretty --noEmit"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "^5.8.0",
     "@mui/material": "^5.8.0",
     "@mui/styled-engine-sc": "^5.8.0",
