@@ -1,5 +1,3 @@
-import { PaymentService } from './../service/payment.service';
-import { PaymentRoutes } from './payment.routing';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +14,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 
+import { PaymentService } from './../service/payment.service';
+import { PaymentRoutes } from './payment.routing';
 import { DigitDecimaNumberDirective } from './../core/directive/digit-decima-number.directive';
 import { PaymentComponent } from './payment.component';
 import { TitleComponent } from './title/title.component';
@@ -27,6 +27,7 @@ import { FiltersComponent } from './filters/filters.component';
 import { DeleteComponent } from './delete/delete.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { PaymentGuard } from './../core/guards/payment.guard';
 @NgModule({
   imports: [
     CommonModule,
@@ -58,6 +59,6 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
     DeleteComponent,
     DigitDecimaNumberDirective
   ],
-  providers: [PaymentService]
+  providers: [PaymentService, PaymentGuard]
 })
 export class PaymentModule { }

@@ -1,6 +1,8 @@
+import { ProfileGuard } from './core/guards/profile.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
+import { PaymentGuard } from './core/guards/payment.guard';
 
 const routes: Routes = [
   {
