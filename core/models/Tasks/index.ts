@@ -12,3 +12,8 @@ export interface TasksData {
 }
 
 export type TasksState = AsyncState<TasksData[]>;
+
+export type TasksParams = {
+  _page: number;
+  limit: number;
+};

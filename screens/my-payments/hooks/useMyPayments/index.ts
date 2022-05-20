@@ -9,6 +9,5 @@ export const useMyPayments = () => {
   useEffect(() => {
     fetchTasks();
   }, []);
-  console.log(tasks);
   return { state: { tasks }, handlers: { fetchTasks } };
 };

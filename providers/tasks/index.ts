@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TasksState } from "../../core/models";
+import { TasksParams, TasksState } from "../../core/models";
 import * as api from "../../core/api/tasks";
 import constate from "constate";
 export const useTasks = () => {
@@ -9,19 +9,27 @@ export const useTasks = () => {
     error: null,
   });
 
-  const fetchTasks = () => {
+  const [pagination, setPagination] = useState<TasksParams>({
+    _page: 1,
+    limit: 10,
+  });
+
+  const fetchTasks = (params = pagination) => {
     setTasks({ ...tasks, loading: true });
     api
-      .fetchTasks()
+      .fetchTasks(params)
       .then((response) =>
         setTasks({ loading: false, data: response, error: null })
       )
       .catch((error) => setTasks({ data: null, loading: false, error }));
   };
 
+  const handleNextPage = () =>
+    fetchTasks({ ...pagination, _page: pagination._page + 1 });
+
   return {
     state: { tasks },
-    effects: { fetchTasks },
+    effects: { fetchTasks, handleNextPage },
   };
 };
 
