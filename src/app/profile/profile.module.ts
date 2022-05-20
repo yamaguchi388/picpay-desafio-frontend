@@ -1,3 +1,4 @@
+import { ProfileResolver } from './../core/guards/profile.resolver';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,6 +23,6 @@ import { ProfileGuard } from './../core/guards/profile.guard';
     ProfileRoutes
   ],
   declarations: [ProfileComponent],
-  providers: [ProfileGuard, ProfileCanDeactivateGuard]
+  providers: [ProfileGuard, ProfileCanDeactivateGuard, ProfileResolver]
 })
 export class ProfileModule { }

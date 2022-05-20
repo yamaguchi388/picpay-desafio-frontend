@@ -1,5 +1,6 @@
+import { Subscription } from 'rxjs';
 import { IFormDeactivate } from './../core/guards/iform-candeactivate';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountObject } from './../models/account-object';
@@ -14,13 +15,15 @@ export class ProfileComponent implements OnInit, IFormDeactivate {
   form!: FormGroup;
   visibility!: boolean;
   profile!: AccountObject;
-  constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService) { }
- 
+  subscription!: Subscription;
+  constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService, private route: ActivatedRoute) { }
+
   ngOnInit(): void {
-    this.profile = history.state[0];
-    if (!this.profile) {
-      this.router.navigate(['/login']);
-    }
+    this.subscription = this.route.data.subscribe(
+      (info: { profile: AccountObject }) => {
+        this.profile = info.profile;
+      }
+    );
     this.form = this.formBuilder.group({
       email: [this.profile?.email ?? '', [Validators.required, Validators.email, Validators.minLength(1)]],
       password: [this.profile?.password ?? '', [Validators.required, Validators.minLength(1)]],
