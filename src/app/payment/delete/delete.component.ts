@@ -21,6 +21,7 @@ export class DeleteComponent {
       },
         error => {
           console.error('Error: ', error);
+          throw new Error('Error not implemented.');
         });
   }
 

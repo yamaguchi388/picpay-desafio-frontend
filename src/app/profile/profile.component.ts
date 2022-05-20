@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService, Account } from './../service/auth.service';
+import { AccountObject } from './../models/account-object';
+import { AuthService } from './../service/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,12 +12,12 @@ import { AuthService, Account } from './../service/auth.service';
 export class ProfileComponent implements OnInit {
   form!: FormGroup;
   visibility!: boolean;
-  profile!: Account;
+  profile!: AccountObject;
   constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.profile = history.state[0];
-    if (!this.profile){
+    if (!this.profile) {
       this.router.navigate(['/login']);
     }
     this.form = this.formBuilder.group({
@@ -29,17 +30,18 @@ export class ProfileComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.valid) {
-      const user: Account = {
+      const user: AccountObject = {
         ...this.form.value,
         id: this.profile.id
       };
 
       this.authService.update(user)
-        .subscribe((account: Account) => {
+        .subscribe((account: AccountObject) => {
           this.router.navigateByUrl('/payment', { state: [account] });
         },
           error => {
-            console.error('Error', error)
+            console.error('Error', error);
+            throw new Error('Error not implemented.');
           });
     }
   }

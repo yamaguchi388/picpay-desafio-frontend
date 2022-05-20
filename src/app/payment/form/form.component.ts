@@ -46,6 +46,7 @@ export class FormComponent implements OnInit {
       },
         error => {
           console.error('Error: ', error);
+          throw new Error('Error not implemented.');
         });
   }
 
@@ -55,6 +56,7 @@ export class FormComponent implements OnInit {
     },
       error => {
         console.error('Error: ', error);
+        throw new Error('Error not implemented.');
       });
   }
 

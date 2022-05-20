@@ -4,9 +4,11 @@ import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import localePt from '@angular/common/locales/pt';
 
+import { AuthService } from './service/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard } from './core/guards/auth.guard';
 
 registerLocaleData(localePt, 'pt');
 
@@ -22,6 +24,8 @@ registerLocaleData(localePt, 'pt');
     BrowserAnimationsModule
   ],
   providers: [
+    AuthService,
+    AuthGuard,
     {
       provide: LOCALE_ID,
       useValue: 'pt'

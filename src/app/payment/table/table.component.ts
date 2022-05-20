@@ -54,13 +54,14 @@ export class TableComponent implements OnDestroy {
         this.check = false;
       },
         error => {
-          console.error('Error: ', error);
           this.check = false;
+          console.error('Error: ', error);
+          throw new Error('Error not implemented.');
         });
   }
 
   ngOnDestroy(): void {
-    if (this.subscription){
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
