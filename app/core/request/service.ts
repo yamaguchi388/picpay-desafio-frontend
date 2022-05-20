@@ -1,6 +1,6 @@
 import { create } from "./index";
 
-const baseURL = "http://localhost:3004";
+const baseURL = process.env.API_URL;
 
 const { instance: request, interceptors } = create({ baseURL });
 

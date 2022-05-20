@@ -10,13 +10,13 @@ import {
 } from "./styles";
 
 import { Edit, Close } from "@mui/icons-material";
-import { currency } from "../../utils";
-import { TasksData } from "../../models";
+import { currency, formatDateBR } from "../../utils";
+import { ITasksData } from "../../models";
 
 const columns: string[] = ["Usuário", "Título", "Data", "Valor", "Pago", ""];
 
 type TableProps = {
-  rows: TasksData[];
+  rows: ITasksData[];
 };
 
 export const Table = ({ rows }: TableProps) => {
@@ -24,8 +24,8 @@ export const Table = ({ rows }: TableProps) => {
     <TableContainer aria-label="tabela de tarefas">
       <TableHead>
         <TableRow>
-          {columns.map((column) => (
-            <Th key={column}>{column}</Th>
+          {columns.map((column, index) => (
+            <Th key={index}>{column}</Th>
           ))}
         </TableRow>
       </TableHead>
@@ -34,7 +34,7 @@ export const Table = ({ rows }: TableProps) => {
           <TableRow key={row.id}>
             <Td>{row.username}</Td>
             <Td>{row.title}</Td>
-            <Td>{row.date}</Td>
+            <Td>{formatDateBR(row.date)}</Td>
             <Td>{currency(row.value)}</Td>
             <Td>
               <Checkbox checked={row.isPayed} readOnly />

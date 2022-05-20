@@ -1,6 +1,6 @@
 import { AsyncState } from "../AsyncState";
 
-export interface TasksData {
+export interface ITasksData {
   id: number;
   name: string;
   username: string;
@@ -11,7 +11,7 @@ export interface TasksData {
   isPayed: boolean;
 }
 
-export type TasksState = AsyncState<TasksData[]>;
+export type TasksState = AsyncState<ITasksData[]>;
 
 export type TasksParams = {
   _page: number;

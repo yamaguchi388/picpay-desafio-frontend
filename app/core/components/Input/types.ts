@@ -8,4 +8,5 @@ export type InputProps<T> = TextFieldProps & {
     RegisterOptions<FieldValues, string>,
     "valueAsNumber" | "valueAsDate" | "setValueAs" | "disabled"
   >;
+  withMask?: (args: any) => any;
 };

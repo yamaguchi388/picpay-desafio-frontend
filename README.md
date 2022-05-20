@@ -29,8 +29,8 @@ A utilização do Angular e Node nas versões acima **é obrigatória** exceto n
 ## Como Rodar?
 
 - Instale as dependências usando o comando `npm install`
-- Na raiz do repositório, rode este comando `ng serve` para iniciar o servidor de desenvolvimento.
-- A Aplicação estará disponível na porta `http://localhost:4200/`
+- Na raiz do repositório, rode este comando `npm start` para iniciar o servidor de desenvolvimento.
+- A Aplicação estará disponível na porta `http://localhost:3000/`
 
 <br/>
 
@@ -58,6 +58,8 @@ Para o seu desafio ser mais interativo, estamos utilizando um mock de API, chama
 `npm install -g json-server`
 
 **2 -** e para rodar (deixar aberto em uma outra aba do terminal, para que ele fique escutando suas ações de CRUD!), digite o seguinte comando na RAÍZ do projeto: `npm run api`
+
+- A API estará disponível na porta `http://localhost:3004/`
 
 Link para mais detalhes: https://github.com/typicode/json-server
 

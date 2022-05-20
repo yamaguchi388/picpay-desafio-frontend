@@ -18,7 +18,7 @@ export const LoginForm = ({ area }: LoginFormProps): ReactElement => {
 
   return (
     <Section area={area} hasBackground>
-      <Form onSubmit={handleSubmit(handlers.postAuthenticate)} noValidate>
+      <Form onSubmit={handleSubmit(handlers.fetchAuthenticate)} noValidate>
         <Image src={logo} loading="lazy" alt="logo do picfriends" />
         <Typography variant="h5" component="h1">
           Bem vindo de volta
@@ -51,7 +51,7 @@ export const LoginForm = ({ area }: LoginFormProps): ReactElement => {
         />
         <Button type="submit">ENTRAR</Button>
         {state.authState.error && (
-          <FormHelperText error>Email ou senha inválido </FormHelperText>
+          <FormHelperText error>Email ou senha inválido</FormHelperText>
         )}
       </Form>
     </Section>

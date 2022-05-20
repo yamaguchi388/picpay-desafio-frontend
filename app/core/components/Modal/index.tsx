@@ -20,15 +20,15 @@ const style = {
 
 export const Modal = ({ open, handleClose, children }) => {
   return (
-    <div>
-      <MaterialModal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>{children}</Box>
-      </MaterialModal>
-    </div>
+    <MaterialModal
+      keepMounted
+      disablePortal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>{children}</Box>
+    </MaterialModal>
   );
 };

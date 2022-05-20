@@ -17,7 +17,7 @@ export const MyPaymentsLayout = (): ReactElement => {
       <Table rows={state.tasks?.data || []} />
       <FormModal
         isOpen={state.isOpenModal}
-        handleClose={handlers.handleCloseModal}
+        onClose={handlers.handleCloseModal}
       />
     </BaseLayout>
   );

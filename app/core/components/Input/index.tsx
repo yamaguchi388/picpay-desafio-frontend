@@ -32,7 +32,12 @@ export const Input = <T,>(props: InputProps<T>) => {
             type={type}
             id={props.id}
             value={field.value || ""}
-            onChange={field.onChange}
+            onChange={(change) => {
+              props.withMask
+                ? field.onChange(props.withMask(change.target.value))
+                : field.onChange(change);
+            }}
+            onInput={props.onInput}
             endAdornment={
               isPasswordType && (
                 <InputAdornment position="end">

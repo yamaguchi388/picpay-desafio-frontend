@@ -1,6 +1,6 @@
 import { AsyncState } from "../AsyncState";
 
-export interface AccountUserData {
+export interface IAccountUserData {
   email: string;
   id?: number;
   name: string;
@@ -8,4 +8,4 @@ export interface AccountUserData {
   token: string;
 }
 
-export type AccountUserState = AsyncState<AccountUserData[]>;
+export type AccountUserState = AsyncState<IAccountUserData[]>;

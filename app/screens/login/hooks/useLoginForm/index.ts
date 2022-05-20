@@ -4,7 +4,8 @@ import {
 } from "../../../../providers/authentication";
 
 export const useLoginForm = () => {
-  const { postAuthenticate } = useAuthenticationEffects();
+  const { fetchAuthenticate } = useAuthenticationEffects();
   const { authState } = useAuthenticationState();
-  return { state: { authState }, handlers: { postAuthenticate } };
+
+  return { state: { authState }, handlers: { fetchAuthenticate } };
 };
