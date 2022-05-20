@@ -46,6 +46,15 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  changeForm(): boolean {
+    let formValue: AccountObject = { ...this.form.value, id: this.profile.id };
+    if (JSON.stringify(formValue) !== JSON.stringify(this.profile)) {
+      confirm('Deseja sair dessa página?');
+      //TODO: Implementar um dialog para informar se deseja sair da página ou não.
+    }
+    return true;
+  }
+
   goBack(): void {
     this.router.navigateByUrl('/payment', { state: [this.profile] });
   }

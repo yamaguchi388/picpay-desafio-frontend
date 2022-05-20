@@ -1,4 +1,3 @@
-import { ProfileGuard } from './../core/guards/profile.guard';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile.component';
 import { ProfileRoutes } from './profile.routing';
+import { ProfileDeactivateGuard } from './../core/guards/profile-deactivate.guard';
+import { ProfileGuard } from './../core/guards/profile.guard';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { ProfileRoutes } from './profile.routing';
     ProfileRoutes
   ],
   declarations: [ProfileComponent],
-  providers: [ProfileGuard]
+  providers: [ProfileGuard, ProfileDeactivateGuard]
 })
 export class ProfileModule { }

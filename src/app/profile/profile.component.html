@@ -21,17 +21,18 @@
 
         <mat-form-field appearance="outline" class="col-12 col-sm-6">
           <mat-label>E-mail</mat-label>
-          <input matInput formControlName="email" autocomplete="false">
+          <input matInput formControlName="email" autocomplete="false" (ngOnChange)="changeForm()">
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-12 col-sm-6">
           <mat-label>Nome</mat-label>
-          <input matInput formControlName="name" autocomplete="false">
+          <input matInput formControlName="name" autocomplete="false" (ngOnChange)="changeForm()">
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-12 col-sm-6">
           <mat-label>Senha</mat-label>
-          <input matInput formControlName="password" [type]="visibility? 'text' : 'password'" autocomplete="false">
+          <input matInput formControlName="password" [type]="visibility? 'text' : 'password'" autocomplete="false"
+            (ngOnChange)="changeForm()">
           <mat-icon class="material-icons-outlined cursor-pointer" matSuffix (click)="visibility = !visibility">
             {{visibility? 'visibility_off' : 'visibility'}}
           </mat-icon>
@@ -40,7 +41,7 @@
         <mat-form-field appearance="outline" class="col-12 col-sm-6">
           <mat-label>Confirme Senha</mat-label>
           <input matInput formControlName="passwordConfirm" [type]="visibility? 'text' : 'password'"
-            autocomplete="false">
+            autocomplete="false" (ngOnChange)="changeForm()">
           <mat-icon class="material-icons-outlined cursor-pointer" matSuffix (click)="visibility = !visibility">
             {{visibility? 'visibility_off' : 'visibility'}}
           </mat-icon>
