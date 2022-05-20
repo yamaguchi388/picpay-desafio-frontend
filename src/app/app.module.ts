@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './core/guards/auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 registerLocaleData(localePt, 'pt');
 
@@ -23,7 +24,8 @@ registerLocaleData(localePt, 'pt');
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [
     AuthService,

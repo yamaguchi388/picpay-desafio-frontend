@@ -1,3 +1,4 @@
+import { SnackBarService } from './../service/snack-bar.service';
 import { Subscription } from 'rxjs';
 import { IFormDeactivate } from './../core/guards/iform-candeactivate';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +17,7 @@ export class ProfileComponent implements OnInit, IFormDeactivate {
   visibility!: boolean;
   profile!: AccountObject;
   subscription!: Subscription;
-  constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService, private route: ActivatedRoute, private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     this.subscription = this.route.data.subscribe(
@@ -42,11 +43,20 @@ export class ProfileComponent implements OnInit, IFormDeactivate {
       this.authService.update(user)
         .subscribe((account: AccountObject) => {
           this.router.navigateByUrl('/payment', { state: [account] });
+          this.snackBarService.success('Salvo');
         },
-          error => {
-            console.error('Error', error);
-            throw new Error('Error not implemented.');
+          (error: Error) => {
+            this.errorGeneric(error);
           });
+    }
+  }
+
+  errorGeneric(error: Error): void {
+    console.error('Error: ', error);
+    if (error.message === '404') {
+      this.snackBarService.error('Dados inválidos! Por favor digite novamente.');
+    } else {
+      this.snackBarService.error();
     }
   }
 

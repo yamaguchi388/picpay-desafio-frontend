@@ -124,5 +124,23 @@ html, body {
   padding: 0;
   height: 100%;
 }
+
+//SnackBar
+.snackbar{
+    color: var(--black) !important;
+    text-align: center !important;
+}
+
+.snackbarSuccess {
+    background-color: var(--success) !important;
+}
+
+.snackbarWarning {
+    background-color: var(--warning) !important;
+}
+
+.snackbarError {
+    background-color: var(--error) !important;
+}
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

@@ -1705,28 +1705,18 @@
       "name": "Fatima",
       "username": "Fatima",
       "title": "Culinaria",
-      "value": 300,
+      "value": 300.1,
       "date": "2022-05-31T03:00:00.000Z",
       "image": null,
       "isPayed": false
     },
     {
       "id": 174,
-      "name": "Ben",
-      "username": "Ben",
-      "title": "Aprendiz",
-      "value": 89.22,
-      "date": "2022-05-31T03:00:00.000Z",
-      "image": null,
-      "isPayed": false
-    },
-    {
-      "id": 175,
-      "name": "Brenda",
-      "username": "Brenda",
-      "title": "Design",
-      "value": 23.66,
-      "date": "2022-05-17T03:00:00.000Z",
+      "name": "Pedro",
+      "username": "Pedro",
+      "title": "Novo",
+      "value": 22.44,
+      "date": "2022-05-25T03:00:00.000Z",
       "image": null,
       "isPayed": false
     }
@@ -1735,7 +1725,7 @@
     {
       "email": "usuario@gmail.com",
       "password": "usuario",
-      "name": "usuario",
+      "name": "usuarios",
       "passwordConfirm": "usuario",
       "id": 0
     }

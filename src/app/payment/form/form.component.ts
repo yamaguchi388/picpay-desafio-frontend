@@ -1,3 +1,4 @@
+import { SnackBarService } from './../../service/snack-bar.service';
 import { TitleCasePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -18,7 +19,8 @@ export class FormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private paymentService: PaymentService) { }
+    private paymentService: PaymentService,
+    private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -43,21 +45,30 @@ export class FormComponent implements OnInit {
     this.paymentService.putPayment(this.create())
       .subscribe((payment: PaymentObject) => {
         this.close.emit(true);
+        this.snackBarService.success('Atualizado');
       },
-        error => {
-          console.error('Error: ', error);
-          throw new Error('Error not implemented.');
-        });
+      (error: Error) => {
+        this.errorGeneric(error);
+      });
   }
 
   add(): void {
     this.paymentService.postPayment(this.create()).subscribe((payment: PaymentObject) => {
       this.close.emit(true);
+      this.snackBarService.success('Adicionado');
     },
-      error => {
-        console.error('Error: ', error);
-        throw new Error('Error not implemented.');
-      });
+    (error: Error) => {
+      this.errorGeneric(error);
+    });
+  }
+
+  errorGeneric(error: Error): void {
+    console.error('Error: ', error);
+    if (error.message === '404') {
+      this.snackBarService.error('Dados inválidos! Por favor digite novamente.');
+    } else {
+      this.snackBarService.error();
+    }
   }
 
   create(): PaymentObject {

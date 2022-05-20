@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FilterObject } from './../../models/filter-object';
+import { SnackBarService } from './../../service/snack-bar.service';
 
 @Component({
   selector: 'app-filters',
@@ -18,11 +19,12 @@ export class FiltersComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: { filters: FilterObject },
     private dialogRef: MatDialogRef<FiltersComponent>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBarService: SnackBarService
   ) { }
 
   ngOnInit(): void {
-    if (this.data){
+    if (this.data) {
       this.filter = this.data.filters;
     }
     this.form = this.formBuilder.group({
@@ -44,12 +46,14 @@ export class FiltersComponent implements OnInit {
 
   onSubmit(): void {
     this.dialogRef.close(this.newObjectFilter());
+    this.snackBarService.warning('Aplicado Filtro.');
   }
 
   onClean(clean: boolean): void {
     this.form.reset();
     if (clean) {
       this.dialogRef.close(this.newObjectFilter());
+      this.snackBarService.warning('Limpado Filtro.');
     } else {
       this.dialogRef.close(null);
     }

@@ -1,3 +1,4 @@
+import { SnackBarService } from './../../service/snack-bar.service';
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
@@ -22,7 +23,8 @@ export class TableComponent implements OnDestroy {
 
   constructor(
     private matDialog: MatDialog,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private snackBarService: SnackBarService
   ) { }
 
   sortChange(value: Sort): void {
@@ -52,12 +54,21 @@ export class TableComponent implements OnDestroy {
     this.subscription = this.paymentService.putPayment(payment)
       .subscribe(() => {
         this.check = false;
+        this.snackBarService.success('Atualizado');
       },
-        error => {
-          this.check = false;
-          console.error('Error: ', error);
-          throw new Error('Error not implemented.');
-        });
+      (error: Error) => {
+        this.check = false;
+        this.errorGeneric(error);
+      });
+  }
+
+  errorGeneric(error: Error): void {
+    console.error('Error: ', error);
+    if (error.message === '404') {
+      this.snackBarService.error('Dados inválidos! Por favor digite novamente.');
+    } else {
+      this.snackBarService.error();
+    }
   }
 
   ngOnDestroy(): void {

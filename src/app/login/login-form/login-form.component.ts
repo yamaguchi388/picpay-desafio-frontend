@@ -1,3 +1,4 @@
+import { SnackBarService } from './../../service/snack-bar.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -14,7 +15,7 @@ export class LoginFormComponent implements OnInit {
   visibility!: boolean;
   btnText = 'entrar';
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private snackBarService: SnackBarService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -28,7 +29,15 @@ export class LoginFormComponent implements OnInit {
       this.authService.login(this.form.get('email')?.value, this.form.get('password')?.value)
         .subscribe((result: AccountObject[]) => {
           this.router.navigateByUrl('/payment', { state: result });
-        });
+        },
+        (error: Error) => {
+          if (error.message === '404') {
+            this.snackBarService.error('Dados inválidos! Por favor digite novamente.');
+          } else {
+            this.snackBarService.error();
+          }
+        }
+      );
     }
   }
 

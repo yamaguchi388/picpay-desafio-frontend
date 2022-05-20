@@ -5,13 +5,13 @@
     <p>Valor: {{payment?.value | currency}}</p>
   </div>
 
-  <div class="row mt-4">
-    <button type="button" (click)="cancel()" class="col-12 col-sm-6 cl-black ft-weight-500 ft-size-14 ft-roboto">
+  <div class="row justify-content-md-center mt-4">
+    <button type="button" (click)="cancel()" class="col-12 col-sm-4 cl-black ft-weight-500 ft-size-14 ft-roboto">
       {{'Cancelar' | uppercase}}
     </button>
 
     <button type="button" (click)="delete()"
-      class="col-12 col-sm-6 bg-blue cl-white ft-weight-500 ft-size-14 ft-roboto">
+      class="col-12 col-sm-4 bg-blue cl-white ft-weight-500 ft-size-14 ft-roboto">
       {{'Salvar' | uppercase}}
     </button>
   </div>
