@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { ProfileDeactivateGuard } from './profile-deactivate.guard';
+import { ProfileCanDeactivateGuard } from './profile-candeactivate.guard';
 
 describe('Service: ProfileDeactivateGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ProfileDeactivateGuard]
+      providers: [ProfileCanDeactivateGuard]
     });
   });
 
-  it('should ...', inject([ProfileDeactivateGuard], (guard: ProfileDeactivateGuard) => {
+  it('should ...', inject([ProfileCanDeactivateGuard], (guard: ProfileCanDeactivateGuard) => {
     expect(guard).toBeTruthy();
   }));
 });

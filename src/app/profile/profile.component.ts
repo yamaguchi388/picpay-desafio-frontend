@@ -1,3 +1,4 @@
+import { IFormDeactivate } from './../core/guards/iform-candeactivate';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,12 +10,12 @@ import { AuthService } from './../service/auth.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, IFormDeactivate {
   form!: FormGroup;
   visibility!: boolean;
   profile!: AccountObject;
   constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService) { }
-
+ 
   ngOnInit(): void {
     this.profile = history.state[0];
     if (!this.profile) {
@@ -53,6 +54,10 @@ export class ProfileComponent implements OnInit {
       //TODO: Implementar um dialog para informar se deseja sair da página ou não.
     }
     return true;
+  }
+
+  canDisable() {
+    return this.changeForm();
   }
 
   goBack(): void {

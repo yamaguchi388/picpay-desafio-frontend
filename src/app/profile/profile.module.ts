@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile.component';
 import { ProfileRoutes } from './profile.routing';
-import { ProfileDeactivateGuard } from './../core/guards/profile-deactivate.guard';
+import { ProfileCanDeactivateGuard } from '../core/guards/profile-candeactivate.guard';
 import { ProfileGuard } from './../core/guards/profile.guard';
 
 @NgModule({
@@ -22,6 +22,6 @@ import { ProfileGuard } from './../core/guards/profile.guard';
     ProfileRoutes
   ],
   declarations: [ProfileComponent],
-  providers: [ProfileGuard, ProfileDeactivateGuard]
+  providers: [ProfileGuard, ProfileCanDeactivateGuard]
 })
 export class ProfileModule { }
