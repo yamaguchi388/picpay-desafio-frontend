@@ -1,1 +1,1 @@
-export { default } from "../../../screens/my-payments";
+export { default } from "../../../app/screens/my-payments";
