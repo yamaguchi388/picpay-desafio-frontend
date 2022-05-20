@@ -1,8 +1,7 @@
-import { ProfileGuard } from './core/guards/profile.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
-import { PaymentGuard } from './core/guards/payment.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -25,6 +24,12 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'login'
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    // canActivate: [AuthGuard],
+    // canLoad: [AuthGuard]
   }
 ];
 
