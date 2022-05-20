@@ -51,10 +51,11 @@ export class TableComponent implements OnDestroy {
   updatePayment(payment: PaymentObject): void {
     this.check = true;
     payment.isPayed = !payment.isPayed;
+    console.log('payment.isPayed', payment.isPayed)
     this.subscription = this.paymentService.putPayment(payment)
       .subscribe(() => {
         this.check = false;
-        this.snackBarService.success('Atualizado');
+        this.snackBarService.success(payment.isPayed?'Pago':'Não Pago');
       },
       (error: Error) => {
         this.check = false;
