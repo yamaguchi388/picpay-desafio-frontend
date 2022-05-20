@@ -11,8 +11,7 @@ export class ProfileDeactivateGuard implements CanDeactivate<ProfileComponent>{
   canDeactivate(component: ProfileComponent, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     console.log('Profile Deactivate Guard:');
 
-    component
-    return component.changeForm();
+    return component.changeForm() ? component.changeForm() : true;
   }
 
 }
