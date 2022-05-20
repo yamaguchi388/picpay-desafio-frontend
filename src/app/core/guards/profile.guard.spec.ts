@@ -10,7 +10,7 @@ describe('Service: ProfileGuard', () => {
     });
   });
 
-  it('should ...', inject([ProfileGuard], (profileGuard: ProfileGuard) => {
+  xit('should ...', inject([ProfileGuard], (profileGuard: ProfileGuard) => {
     expect(profileGuard).toBeTruthy();
   }));
 });
