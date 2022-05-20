@@ -11,17 +11,8 @@ describe('Service: Payment', () => {
   let service: PaymentService;
   let http: HttpClient;
   let params: HttpParams;
-  let api = `${environment.api}/tasks`;
-  let payment: PaymentObject = {
-    "date": "2022-05-17T03:00:00.000Z",
-    "id": 175,
-    "image": null,
-    "isPayed": false,
-    "name": "Brenda",
-    "username": "Brenda",
-    "value": 23.66,
-    "title": "Design"
-  };
+  let api: string
+  let payment: PaymentObject;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -30,10 +21,25 @@ describe('Service: Payment', () => {
     });
     service = TestBed.inject(PaymentService);
     http = TestBed.inject(HttpClient);
+    api = `${environment.api}/tasks`;
+    payment = {
+      "date": "2022-05-17T03:00:00.000Z",
+      "id": 175,
+      "image": null,
+      "isPayed": false,
+      "name": "Brenda",
+      "username": "Brenda",
+      "value": 23.66,
+      "title": "Design"
+    };
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should have as currentPage 1', () => {
+    expect(service.api).toEqual(api);
   });
 
   it('should call GET on the correct API endpoint', () => {
@@ -63,7 +69,5 @@ describe('Service: Payment', () => {
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledWith(`${api}/${payment.id}`);
   });
-
-
 
 });
