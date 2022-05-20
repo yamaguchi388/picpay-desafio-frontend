@@ -16,9 +16,7 @@ interface PaymentObject {
   isPayed: boolean;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PaymentService {
 
   api = `${environment.api}/tasks`;

@@ -33,7 +33,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.profile = history.state;
-    if (!this.profile[0]){
+    if (this.profile && !this.profile[0]){
       this.router.navigate(['/login']);
     }
     this.queryParams = this.generateQueryParams();

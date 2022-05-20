@@ -1,3 +1,4 @@
+import { PaymentService } from './../service/payment.service';
 import { PaymentRoutes } from './payment.routing';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -56,6 +57,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
     FiltersComponent,
     DeleteComponent,
     DigitDecimaNumberDirective
-  ]
+  ],
+  providers: [PaymentService]
 })
 export class PaymentModule { }
