@@ -3,3 +3,4 @@ export { Label } from "./Label";
 export { Section } from "./Section";
 export { Button } from "./Button";
 export { Table } from "./Table";
+export { Modal } from "./Modal";

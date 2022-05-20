@@ -1,4 +1,5 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+import { BREAKPOINTS } from "../../constants";
 
 const show = keyframes`
 from{
@@ -9,9 +10,38 @@ to {
 }
 `;
 
-export const Container = styled.button`
+export const Container = styled.button<{
+  width?: number;
+  mt?: number;
+  mb?: number;
+  ml?: number;
+  mr?: number;
+  color?: "primary" | "secondary";
+}>`
   width: 100%;
+
   padding: 1rem;
+  ${({ mt }) =>
+    mt &&
+    css`
+      margin-top: ${mt}rem;
+    `}
+
+  ${({ mb }) =>
+    mb &&
+    css`
+      margin-bottom: ${mb}rem;
+    `}
+    ${({ ml }) =>
+    ml &&
+    css`
+      margin-left: ${ml}rem;
+    `}
+    ${({ mr }) =>
+    mr &&
+    css`
+      margin-right: ${mr}rem;
+    `}
   background-color: var(--theme-primary);
   border-radius: 3px;
   color: #fff;
@@ -33,4 +63,16 @@ export const Container = styled.button`
   &:active {
     outline: none;
   }
+  @media ${BREAKPOINTS.DESKTOP} {
+    width: ${({ width }) => `${width}rem`};
+  }
+  ${({ color }) =>
+    color === "secondary" &&
+    css`
+      background-color: var(--bg-grey);
+      color: #000;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    `}
 `;

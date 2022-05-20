@@ -6,7 +6,7 @@ import { AuthenticationProvider } from "../app/providers/authentication";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthenticationProvider>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </AuthenticationProvider>
   );
 }
