@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 export interface Account {
-  id?: number,
-  name?: string,
-  email?: string,
-  password?: string
+  id?: number;
+  name?: string;
+  email?: string;
+  password?: string;
 }
 
 @Injectable({
@@ -18,7 +18,7 @@ export interface Account {
 })
 export class AuthService {
 
-  api = `${environment.api}/account`
+  api = `${environment.api}/account`;
 
   constructor(
     private http: HttpClient,
@@ -37,7 +37,7 @@ export class AuthService {
     if (password) {
       params = params.append('password', password);
     }
-    params = params.append('_limit', 1)
+    params = params.append('_limit', 1);
     return this.http.get<Account[]>(`${this.api}`, { params })
       .pipe(
         map((users: Account[]) => {
@@ -51,9 +51,9 @@ export class AuthService {
   update(user: Account): Observable<Account> {
     return this.http.put<Account>(`${this.api}/${user.id}`, user)
       .pipe(
-        map((user: Account) => {
-          if (user) {
-            return user;
+        map((account: Account) => {
+          if (account) {
+            return account;
           }
         })
       );

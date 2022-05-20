@@ -12,8 +12,8 @@ interface PaymentObject {
   title: string;
   value: number;
   date: string;
-  image?: string,
-  isPayed: boolean
+  image?: string;
+  isPayed: boolean;
 }
 
 @Injectable({
@@ -21,7 +21,7 @@ interface PaymentObject {
 })
 export class PaymentService {
 
-  api = `${environment.api}/tasks`
+  api = `${environment.api}/tasks`;
 
   constructor(private http: HttpClient) { }
 

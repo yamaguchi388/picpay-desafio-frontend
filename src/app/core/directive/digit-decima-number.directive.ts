@@ -25,11 +25,11 @@ export class DigitDecimaNumberDirective {
     if (this.specialKeys.indexOf(event.key) !== -1) {
       return;
     }
-    let current: string = this.el.nativeElement.value;
+    const current: string = this.el.nativeElement.value;
     const position = this.el.nativeElement.selectionStart;
     const next: string = [
       current.slice(0, position),
-      event.key == 'Decimal' ? '.' : event.key,
+      event.key === 'Decimal' ? '.' : event.key,
       current.slice(position),
     ].join('');
     if (next && next === ',') {

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../../service/auth.service';
 import { AccountObject } from './../../models/account-object';
 @Component({
-  selector: 'login-form',
+  selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
@@ -12,17 +12,15 @@ export class LoginFormComponent implements OnInit {
 
   form!: FormGroup;
   visibility!: boolean;
-  btnText: string = 'entrar';
+  btnText = 'entrar';
 
-  constructor(private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email, Validators.minLength(1)]],
       password: ['', [Validators.required, Validators.minLength(1)]]
-    })
+    });
   }
 
   onSubmit(): void {

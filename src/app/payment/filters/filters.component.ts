@@ -22,24 +22,24 @@ export class FiltersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.data)
+    if (this.data){
       this.filter = this.data.filters;
+    }
     this.form = this.formBuilder.group({
-      value: [this.filter?.value ? this.filter?.value.toString().replace(".", ",") : ''],
+      value: [this.filter?.value ? this.filter?.value.toString().replace('.', ',') : ''],
       title: [this.filter?.title ?? ''],
       payed: [this.filter?.payed ?? ''],
       date: [this.filter?.date ? new Date(this.datePipe.transform(this.filter?.date, 'yyyy-MM-dd') + 'T00:00:00.000') : '']
-    })
-
+    });
   }
 
   newObjectFilter(): FilterObject {
     return {
-      value: this.form.get('value')?.value ? this.form.get('value')?.value.replace(",", ".") : null,
+      value: this.form.get('value')?.value ? this.form.get('value')?.value.replace(',', '.') : null,
       title: this.form.get('title')?.value ?? null,
       payed: this.form.get('payed')?.value ?? null,
       date: this.form.get('date')?.value ? this.datePipe.transform(this.form.get('date')?.value, 'yyyy-MM-dd') : null
-    }
+    };
   }
 
   onSubmit(): void {

@@ -8,7 +8,7 @@ import { DialogComponent } from './../dialog/dialog.component';
   styleUrls: ['./add-payment.component.scss']
 })
 export class AddPaymentComponent {
-  title: string = 'Adicionar pagamento';
+  title = 'Adicionar pagamento';
   @Output() action = new EventEmitter<boolean>();
 
   constructor(private matDialog: MatDialog) { }
@@ -24,8 +24,9 @@ export class AddPaymentComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result)
+      if (result) {
         this.action.emit(result);
+      }
     });
   }
 

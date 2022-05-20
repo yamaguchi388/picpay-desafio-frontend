@@ -17,8 +17,9 @@ export class DialogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.data)
+    if (this.data) {
       this.dialog = this.data;
+    }
   }
 
   close(value: boolean): void {

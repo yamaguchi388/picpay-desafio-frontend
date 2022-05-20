@@ -21,7 +21,7 @@ export class DeleteComponent {
       },
         error => {
           console.error('Error: ', error);
-        })
+        });
   }
 
   cancel(): void {

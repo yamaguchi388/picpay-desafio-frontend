@@ -23,10 +23,10 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       userName: [this.payment?.name ?? null, [Validators.required]],
-      value: [this.payment?.value.toString().replace(".", ",") ?? null, [Validators.required]],
+      value: [this.payment?.value.toString().replace('.', ',') ?? null, [Validators.required]],
       date: [this.payment?.date ?? null, [Validators.required]],
       title: [this.payment?.title ?? null]
-    })
+    });
   }
 
   onSubmit(): void {
@@ -46,7 +46,7 @@ export class FormComponent implements OnInit {
       },
         error => {
           console.error('Error: ', error);
-        })
+        });
   }
 
   add(): void {
@@ -55,7 +55,7 @@ export class FormComponent implements OnInit {
     },
       error => {
         console.error('Error: ', error);
-      })
+      });
   }
 
   create(): PaymentObject {
@@ -64,11 +64,11 @@ export class FormComponent implements OnInit {
       name: this.pipe.transform(this.form?.get('userName')?.value),
       username: this.payment?.username ?? this.form?.get('userName')?.value,
       title: this.pipe.transform(this.form?.get('title')?.value),
-      value: Number(this.form?.get('value')?.value.replace(",", ".")),
+      value: Number(this.form?.get('value')?.value.replace(',', '.')),
       date: new Date(this.form?.get('date')?.value).toISOString(),
       image: this.payment?.image ?? null,
       isPayed: this.payment?.isPayed ?? false
-    }
+    };
   }
 
   cancel(): void {

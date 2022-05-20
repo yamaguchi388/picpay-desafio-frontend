@@ -40,8 +40,9 @@ export class TableComponent implements OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result)
+      if (result) {
         this.action.emit(result);
+      }
     });
   }
 
@@ -49,18 +50,19 @@ export class TableComponent implements OnDestroy {
     this.check = true;
     payment.isPayed = !payment.isPayed;
     this.subscription = this.paymentService.putPayment(payment)
-      .subscribe((payment: PaymentObject) => {
+      .subscribe(() => {
         this.check = false;
       },
         error => {
-          console.error('Error: ', error)
+          console.error('Error: ', error);
           this.check = false;
         });
   }
 
   ngOnDestroy(): void {
-    if (this.subscription)
+    if (this.subscription){
       this.subscription.unsubscribe();
+    }
   }
 
 }

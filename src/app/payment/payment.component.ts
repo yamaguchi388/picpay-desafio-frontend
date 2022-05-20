@@ -19,31 +19,31 @@ export class PaymentComponent implements OnInit, OnDestroy {
   profile!: ProfileNavigationObject;
   subscription!: Subscription;
   dataSource!: PaymentObject[];
-  currentPage: number = 1;
+  currentPage = 1;
   sort!: Sort;
   queryParams!: HttpParams;
-  limit: number = 5;
+  limit = 5;
   search: string = null;
   filters!: FilterObject;
   limitPerPage = [5, 10, 15, 20, 25, 50, 100];
-  limitSelected: number = 5;
+  limitSelected = 5;
   totalSizePagination!: number;
 
-  constructor(private paymentService: PaymentService,
-    private matDialog: MatDialog,
-    private router: Router) { }
+  constructor(private paymentService: PaymentService, private matDialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.profile = history.state;
-    if (!this.profile[0])
+    if (!this.profile[0]){
       this.router.navigate(['/login']);
-    this.queryParams = this.generateQueryParams()
+    }
+    this.queryParams = this.generateQueryParams();
     this.getPayments();
   }
 
   ngOnDestroy(): void {
-    if (this.subscription)
+    if (this.subscription){
       this.subscription.unsubscribe();
+    }
   }
 
   getPayments() {
@@ -56,7 +56,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   actionPage(action: boolean): void {
     if (action) {
-      this.queryParams = this.generateQueryParams()
+      this.queryParams = this.generateQueryParams();
       this.getPayments();
     }
   }
@@ -99,8 +99,9 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   searchValue(value) {
     this.search = value;
-    if (!this.search)
+    if (!this.search){
       this.actionPage(true);
+    }
   }
 
   clickEventHandlerSearch() {
