@@ -22,11 +22,14 @@
         <mat-form-field appearance="outline" class="col-12 col-sm-6">
           <mat-label>E-mail</mat-label>
           <input matInput formControlName="email" autocomplete="false" (ngOnChange)="changeForm()">
+          <mat-error *ngIf="form.get('email')?.errors?.required">E-mail é obrigatório</mat-error>
+          <mat-error *ngIf="form.get('email')?.errors?.email">Insira um e-mail válido </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-12 col-sm-6">
           <mat-label>Nome</mat-label>
           <input matInput formControlName="name" autocomplete="false" (ngOnChange)="changeForm()">
+          <mat-error *ngIf="form.get('name')?.errors?.required">Nome é obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-12 col-sm-6">
@@ -36,6 +39,7 @@
           <mat-icon class="material-icons-outlined cursor-pointer" matSuffix (click)="visibility = !visibility">
             {{visibility? 'visibility_off' : 'visibility'}}
           </mat-icon>
+          <mat-error *ngIf="form.get('passwords')?.errors?.required">Senha é obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-12 col-sm-6">
@@ -45,6 +49,7 @@
           <mat-icon class="material-icons-outlined cursor-pointer" matSuffix (click)="visibility = !visibility">
             {{visibility? 'visibility_off' : 'visibility'}}
           </mat-icon>
+          <mat-error *ngIf="form.get('passwordConfirm')?.errors?.required">Confirmar Senha é obrigatório</mat-error>
         </mat-form-field>
 
         <div class="col-12">
@@ -52,7 +57,6 @@
             {{'Salvar' | uppercase}}
           </button>
         </div>
-
       </form>
     </section>
   </div>

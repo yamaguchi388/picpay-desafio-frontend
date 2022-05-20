@@ -4,17 +4,20 @@
     <mat-form-field appearance="outline" class="col-12 col-sm-6">
       <mat-label>Usuário<span>*</span></mat-label>
       <input matInput formControlName="userName" maxlength="50">
+      <mat-error *ngIf="form.get('userName')?.errors?.required">Usuário é obrigatório</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-12 col-sm-6">
       <mat-label>Valor<span>*</span></mat-label>
       <input matInput formControlName="value" appDigitDecimaNumber maxlength="20">
+      <mat-error *ngIf="form.get('value')?.errors?.required">Valor é obrigatório</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-12 col-sm-6">
       <mat-label>Data<span>*</span></mat-label>
       <input matInput [matDatepicker]="picker" formControlName="date" (focus)="picker.open()">
       <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('date')?.errors?.required">Data é obrigatório</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-12 col-sm-6">

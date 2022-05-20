@@ -14,6 +14,8 @@
     <mat-form-field appearance="outline">
       <mat-label>E-mail</mat-label>
       <input matInput formControlName="email" autocomplete="false">
+      <mat-error *ngIf="form.get('email')?.errors?.required">E-mail é obrigatório</mat-error>
+      <mat-error *ngIf="form.get('email')?.errors?.email">E-mail não válido</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -22,6 +24,7 @@
       <mat-icon class="material-icons-outlined cursor-pointer" matSuffix (click)="visibility = !visibility">
         {{visibility? 'visibility_off' : 'visibility'}}
       </mat-icon>
+      <mat-error *ngIf="form.get('password')?.errors?.required">Senha é obrigatório</mat-error>
     </mat-form-field>
 
     <button [disabled]="!form.valid" class="bg-blue cl-white ft-weight-500 ft-size-14">
