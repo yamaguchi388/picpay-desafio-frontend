@@ -84,9 +84,9 @@ export class FetchPaymentsComponent implements OnInit {
   }
 
   public setDialogTitle(action): void {
-    action === this.actionTitle
-      ? (this.pageTitle = 'Editar Pagamento')
-      : (this.pageTitle = 'Adicionar Pagamento');
+    this.pageTitle = action === this.actionTitle
+      ? 'Editar Pagamento'
+      : 'Adicionar Pagamento';
   }
 
   public updatePaymentStatus(id: number): void {
