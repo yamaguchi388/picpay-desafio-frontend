@@ -11,7 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PaymentService } from './../service/payment.service';
 import { PaymentComponent } from './payment.component';
 
-fdescribe('PaymentComponent', () => {
+describe('PaymentComponent', () => {
   let component: PaymentComponent;
   let fixture: ComponentFixture<PaymentComponent>;
 
