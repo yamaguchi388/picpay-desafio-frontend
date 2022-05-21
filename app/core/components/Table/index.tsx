@@ -9,7 +9,7 @@ import {
   Button,
 } from "./styles";
 
-import { Edit, Close } from "@mui/icons-material";
+import { Edit, HighlightOff } from "@mui/icons-material";
 import { currency, formatDateBR } from "../../utils";
 import { ITasksData } from "../../models";
 
@@ -22,6 +22,7 @@ type TableProps = {
 export const Table = ({ rows }: TableProps) => {
   return (
     <TableContainer aria-label="tabela de tarefas">
+      {console.log(rows)}
       <TableHead>
         <TableRow>
           {columns.map((column, index) => (
@@ -44,7 +45,7 @@ export const Table = ({ rows }: TableProps) => {
                 <Edit />
               </Button>
               <Button onClick={() => null}>
-                <Close />
+                <HighlightOff />
               </Button>
             </Td>
           </TableRow>

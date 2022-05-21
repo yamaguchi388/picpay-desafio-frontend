@@ -9,4 +9,5 @@ export type InputProps<T> = TextFieldProps & {
     "valueAsNumber" | "valueAsDate" | "setValueAs" | "disabled"
   >;
   withMask?: (args: any) => any;
+  width?: number;
 };
