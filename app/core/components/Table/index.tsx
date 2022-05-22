@@ -15,14 +15,15 @@ import { ITasksData } from "../../models";
 
 const columns: string[] = ["Usuário", "Título", "Data", "Valor", "Pago", ""];
 
-type TableProps = {
+interface ITableProps {
   rows: ITasksData[];
-};
+  onEdit: (id: number) => void;
+  onDelete: (id: number) => void;
+}
 
-export const Table = ({ rows }: TableProps) => {
+export const Table = ({ rows, onEdit, onDelete }: ITableProps) => {
   return (
     <TableContainer aria-label="tabela de tarefas">
-      {console.log(rows)}
       <TableHead>
         <TableRow>
           {columns.map((column, index) => (
@@ -41,10 +42,10 @@ export const Table = ({ rows }: TableProps) => {
               <Checkbox checked={row.isPayed} readOnly />
             </Td>
             <Td isAlignRight>
-              <Button onClick={() => null}>
+              <Button onClick={() => onEdit(row.id)} type="button">
                 <Edit />
               </Button>
-              <Button onClick={() => null}>
+              <Button onClick={() => onDelete(row.id)} type="button">
                 <HighlightOff />
               </Button>
             </Td>

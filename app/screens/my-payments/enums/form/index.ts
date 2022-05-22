@@ -4,4 +4,5 @@ export enum AddPaymentFormEnum {
   Title = "title",
   Value = "value",
   Date = "date",
+  IsPayed = "isPayed",
 }

@@ -3,6 +3,7 @@ import {
   createContext,
   ReactNode,
   useCallback,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -21,6 +22,13 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
     ]);
   };
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      toasts.forEach((toast) => removeToast(toast.id as string));
+    }, 6000);
+
+    return () => clearTimeout(timeout);
+  }, [toasts]);
   const addtoast = useCallback((params: IToast) => {
     const id = uuid();
 

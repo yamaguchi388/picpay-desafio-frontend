@@ -1,11 +1,22 @@
 import { useState } from "react";
-import { ITasksData, TasksParams, TasksState } from "../../core/models";
+import {
+  ITasksData,
+  TasksParams,
+  TasksState,
+  TaskState,
+} from "../../core/models";
 import * as api from "../../core/api/tasks";
 import constate from "constate";
 import { useToast } from "../../core/hooks";
 
 export const useTasks = () => {
   const [tasks, setTasks] = useState<TasksState>({
+    data: null,
+    loading: false,
+    error: null,
+  });
+
+  const [task, setTask] = useState<TaskState>({
     data: null,
     loading: false,
     error: null,
@@ -28,24 +39,57 @@ export const useTasks = () => {
       .catch((error) => setTasks({ data: null, loading: false, error }));
   };
 
-  const postTask = async (data: ITasksData) => {
+  const fetchTaskById = (id: number) => {
+    setTask({ ...task, loading: true });
+    api
+      .fetchTaskById(id)
+      .then((response) => {
+        setTask({ ...tasks, data: response, loading: false });
+      })
+      .catch((error) => {
+        setTask({ ...task, error, loading: false });
+        toast.error({
+          message: "Ocorreu um erro ao buscar pagamento. Tente novamente",
+        });
+      });
+  };
+
+  const createTask = async (data: ITasksData) => {
     setTasks({ ...tasks, loading: true });
 
     api
-      .postTask(data)
-      .then((response) => {
-        setTasks({ loading: false, data: response, error: null });
+      .createTask(data)
+      .then(() => {
         toast.success({ message: "Pagamento adicionado com sucesso" });
         fetchTasks({ ...pagination });
       })
       .catch((error) => {
-        setTasks({ data: null, loading: false, error });
-        toast.success({
+        setTasks({ ...tasks, loading: false, error });
+        toast.error({
           message:
             "Ocorreu um erro inesperado ao salvar pagamento. Tente novamente",
         });
       });
   };
+
+  const deleteTask = async (id: number) => {
+    setTasks({ ...tasks, loading: true });
+    api
+      .deleteTask(id)
+      .then(() => {
+        toast.success({ message: "Pagamento deletado com sucesso." });
+        fetchTasks({ ...pagination });
+      })
+      .catch((error) => {
+        setTasks({ ...tasks, loading: false, error });
+        toast.error({
+          message:
+            "Ocorreu um erro inesperado ao excluir pagamento. Tente novamente",
+        });
+      });
+  };
+
+  const updateTask = (id: number) => {};
 
   const handleNextPage = () =>
     fetchTasks({ ...pagination, _page: pagination._page + 1 });
@@ -54,8 +98,16 @@ export const useTasks = () => {
     fetchTasks({ ...pagination, _page: pagination._page - 1 });
 
   return {
-    state: { tasks },
-    effects: { fetchTasks, postTask, handleNextPage, handlePreviousPage },
+    state: { tasks, task },
+    effects: {
+      createTask,
+      fetchTasks,
+      fetchTaskById,
+      deleteTask,
+      updateTask,
+      handleNextPage,
+      handlePreviousPage,
+    },
   };
 };
 

@@ -19,3 +19,6 @@ export const formatDateBR = (rawDate: string, showTime?: boolean) => {
   }
   return dayjs(rawDate).format("DD/MM/YYYY");
 };
+
+export const formatDate = (rawDate: string) =>
+  dayjs(rawDate).format("YYYY-MM-DD");

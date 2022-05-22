@@ -1,22 +1,19 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement } from "react";
 import { Container } from "./styles";
-
-type SectionProps = {
-  children: ReactNode;
-  area?: string;
-  width?: number;
-  hasBackground?: boolean;
-};
+import { ISectionProps } from "./types";
 
 export const Section = ({
   children,
   area,
   width = 100,
   hasBackground = false,
-}: SectionProps): ReactElement => {
-  return (
-    <Container area={area} $width={width} hasBackground={hasBackground}>
-      {children}
-    </Container>
-  );
-};
+}: ISectionProps): ReactElement => (
+  <Container
+    role="alert"
+    area={area}
+    $width={width}
+    hasBackground={hasBackground}
+  >
+    {children}
+  </Container>
+);

@@ -1,8 +1,8 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import { ReactElement } from "react";
 import MaterialModal from "@mui/material/Modal";
+import { IModalProps } from "./types";
 
 const style = {
   position: "absolute" as "absolute",
@@ -18,15 +18,18 @@ const style = {
   p: "2.5rem",
 };
 
-export const Modal = ({ open, handleClose, children }) => {
+export const Modal = ({
+  open,
+  onClose,
+  children,
+}: IModalProps): ReactElement => {
   return (
     <MaterialModal
       keepMounted
-      disablePortal
       open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
+      onClose={onClose}
+      aria-labelledby="modal-title"
+      aria-describedby="modal-description"
     >
       <Box sx={style}>{children}</Box>
     </MaterialModal>

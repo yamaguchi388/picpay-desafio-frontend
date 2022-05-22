@@ -1,11 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FormControlLabel } from "@material-ui/core";
 import { Typography, Checkbox } from "@mui/material";
-import { ReactElement } from "react";
-import { useForm } from "react-hook-form";
+import { ReactElement, useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { Button, Input, Modal } from "../../../../core/components";
 import { ITasksData } from "../../../../core/models";
-import { masks } from "../../../../core/utils";
-import { useTasksEffects } from "../../../../providers/tasks";
+import {
+  currency,
+  formatDate,
+  masks,
+  replaceCurrency,
+} from "../../../../core/utils";
+import { useTasksEffects, useTasksState } from "../../../../providers/tasks";
 import { AddPaymentFormEnum } from "../../enums";
 import {
   ButtonsContainer,
@@ -15,19 +21,41 @@ import {
 } from "./styles";
 
 interface IFormModalProps {
-  isOpen: boolean;
+  modalState: { id: number | null; isOpen: boolean };
   onClose: () => void;
 }
 
 export const FormModal = ({
-  isOpen,
+  modalState,
   onClose,
 }: IFormModalProps): ReactElement => {
-  const { control, handleSubmit, reset, formState } = useForm<ITasksData>({
-    mode: "onSubmit",
-  });
+  const { control, handleSubmit, reset, formState, setValue } =
+    useForm<ITasksData>({
+      mode: "onSubmit",
+    });
+  const { createTask, fetchTaskById } = useTasksEffects();
+  const { task } = useTasksState();
 
-  const { postTask } = useTasksEffects();
+  useEffect(() => {
+    modalState.id ? fetchTaskById(modalState.id) : reset();
+  }, [modalState]);
+
+  useEffect(() => {
+    if (!!task.data) {
+      //@ts-ignore
+      setValue(AddPaymentFormEnum.Name, task.data.name);
+      //@ts-ignore
+      setValue(AddPaymentFormEnum.Username, task.data.username);
+      //@ts-ignore
+      setValue(AddPaymentFormEnum.Date, formatDate(task.data.date));
+      //@ts-ignore
+      setValue(AddPaymentFormEnum.Value, currency(task.data.value as number));
+      //@ts-ignore
+      setValue(AddPaymentFormEnum.Title, task.data.title);
+      //@ts-ignore
+      setValue(AddPaymentFormEnum.IsPayed, task.data.isPayed);
+    }
+  }, [task]);
 
   const handleClose = () => {
     onClose();
@@ -35,17 +63,23 @@ export const FormModal = ({
   };
 
   const onSubmit = (data: ITasksData) => {
-    console.log({ data });
-    postTask({ ...data, image: "" });
+    createTask({
+      ...data,
+      date: new Date(data.date).toISOString(),
+      image: "",
+      value: +replaceCurrency(data.value as string),
+    });
     handleClose();
   };
 
+  console.log(task);
+
   return (
-    <Modal open={isOpen} handleClose={handleClose}>
-      <Typography component="h2" variant="h4" mb="2.5rem">
-        Adicionar pagamento
-      </Typography>
+    <Modal open={modalState.isOpen} onClose={handleClose}>
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <Typography component="h2" variant="h4" mb={2}>
+          Adicionar pagamento
+        </Typography>
         <InputsContainer>
           <Input
             name={AddPaymentFormEnum.Name}
@@ -108,7 +142,7 @@ export const FormModal = ({
         <InputsContainer>
           <InputContent>
             <Input
-              name="title"
+              name={AddPaymentFormEnum.Title}
               control={control}
               placeholder="Titúlo"
               label="Título"
@@ -119,19 +153,35 @@ export const FormModal = ({
             <FormControlLabel
               label="Este pagamento já foi efetuado"
               control={
-                <Checkbox
-                  inputProps={{
-                    "aria-label":
-                      "checkbox para marcar se pagamento já foi efetuado",
-                  }}
-                  defaultChecked
+                <Controller
+                  control={control}
+                  name={AddPaymentFormEnum.IsPayed}
+                  render={(props) => (
+                    <Checkbox
+                      checked={props.field.value}
+                      onChange={(event) =>
+                        props.field.onChange(event.target.checked)
+                      }
+                      {...props}
+                      inputProps={{
+                        "aria-label":
+                          "checkbox para marcar se pagamento já foi efetuado",
+                      }}
+                      defaultChecked
+                    />
+                  )}
                 />
               }
             />
           </InputContent>
         </InputsContainer>
         <ButtonsContainer>
-          <Button width={10} onClick={handleClose} color="secondary">
+          <Button
+            width={10}
+            onClick={handleClose}
+            type="reset"
+            color="secondary"
+          >
             CANCELAR
           </Button>
           <Button width={10} type="submit">

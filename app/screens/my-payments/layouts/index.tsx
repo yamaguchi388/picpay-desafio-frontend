@@ -14,9 +14,13 @@ export const MyPaymentsLayout = (): ReactElement => {
           ADICIONAR PAGAMENTO
         </Button>
       </ButtonContainer>
-      <Table rows={state.tasks?.data || []} />
+      <Table
+        rows={state.tasks?.data || []}
+        onDelete={handlers.handleDeleteTask}
+        onEdit={handlers.handleEditTask}
+      />
       <FormModal
-        isOpen={state.isOpenModal}
+        modalState={state.modalState}
         onClose={handlers.handleCloseModal}
       />
     </BaseLayout>

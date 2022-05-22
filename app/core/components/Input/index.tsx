@@ -42,7 +42,10 @@ export const Input = <T,>(props: InputProps<T>) => {
               isPasswordType && (
                 <InputAdornment position="end">
                   <IconButton
-                    aria-label="toggle password visibility"
+                    data-testid="toggle-password-visibility"
+                    aria-label={
+                      showPassword ? "Esconder senha" : "visualizar senha"
+                    }
                     onClick={() => setShowPassword(!showPassword)}
                     edge="end"
                   >
@@ -56,7 +59,9 @@ export const Input = <T,>(props: InputProps<T>) => {
         )}
       />
       {!!props.helperText && (
-        <FormHelperText error>{props.helperText}</FormHelperText>
+        <FormHelperText role="alert" error>
+          {props.helperText}
+        </FormHelperText>
       )}
     </FormControl>
   );

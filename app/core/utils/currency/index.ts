@@ -31,3 +31,14 @@ export const currency = (value: number, options = {}): string => {
     suffix
   );
 };
+
+export const replaceCurrency = (money: string): string => {
+  if (!money) return "";
+  const moneyLength = money.replace(/,/g, ".").substr(2).length;
+  const moneyReplaced =
+    moneyLength > 7
+      ? money.replace(/,/g, ".").substring(2).replace(".", "")
+      : money.replace(/,/g, ".").substring(2);
+
+  return moneyReplaced;
+};

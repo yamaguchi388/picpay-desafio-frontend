@@ -27,6 +27,10 @@ export const LoginForm = ({ area }: LoginFormProps): ReactElement => {
           control={control}
           rules={{
             required: { value: true, message: "O email deve ser informado" },
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: "Informe um email válido",
+            },
           }}
           type={LoginFormEnum.Email}
           variant="outlined"
@@ -41,7 +45,7 @@ export const LoginForm = ({ area }: LoginFormProps): ReactElement => {
           rules={{
             required: { value: true, message: "A senha deve ser informada" },
           }}
-          type={LoginFormEnum.Password}
+          type="password"
           variant="outlined"
           label="Senha"
           name={LoginFormEnum.Password}
@@ -51,7 +55,9 @@ export const LoginForm = ({ area }: LoginFormProps): ReactElement => {
         />
         <Button type="submit">ENTRAR</Button>
         {state.authState.error && (
-          <FormHelperText error>Email ou senha inválido</FormHelperText>
+          <FormHelperText role="alert" error>
+            Email ou senha inválido
+          </FormHelperText>
         )}
       </Form>
     </Section>

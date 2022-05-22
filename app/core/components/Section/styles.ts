@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import { BREAKPOINTS } from "../../constants";
-import { SectionProps } from "./types";
+import { ISectionPropsStyle } from "./types";
 
-export const Container = styled.section<SectionProps>`
+export const Container = styled.section<ISectionPropsStyle>`
   grid-area: ${({ area }) => area};
   width: ${({ $width }) => `${$width}%`};
   height: inherit;
