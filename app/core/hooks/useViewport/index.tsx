@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BREAKPOINTS } from "../../constants";
-import { getViewport, ViewportPayload } from "../../utils";
+import { getViewport } from "../../utils";
+import { ViewportPayload } from "../../utils/getViewport/types";
 
 export const useViewport = (): ViewportPayload => {
   const [viewport, setViewport] = useState<ViewportPayload>({
