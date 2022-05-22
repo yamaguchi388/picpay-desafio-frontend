@@ -18,6 +18,7 @@ export const MyPaymentsLayout = (): ReactElement => {
         rows={state.tasks?.data || []}
         onDelete={handlers.handleDeleteTask}
         onEdit={handlers.handleEditTask}
+        page={state.pagination._page}
       />
       <FormModal
         modalState={state.modalState}

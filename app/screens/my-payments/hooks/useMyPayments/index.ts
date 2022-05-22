@@ -1,6 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { useTasksEffects, useTasksState } from "../../../../providers/tasks";
+import {
+  useTasksEffects,
+  useTasksPagination,
+  useTasksState,
+} from "../../../../providers/tasks";
 
 export const useMyPayments = () => {
   const [modalState, setModalState] = useState<{
@@ -13,6 +17,7 @@ export const useMyPayments = () => {
 
   const { fetchTasks, deleteTask, updateTask } = useTasksEffects();
   const { task, tasks } = useTasksState();
+  const pagination = useTasksPagination();
 
   useEffect(() => {
     fetchTasks();
@@ -29,7 +34,7 @@ export const useMyPayments = () => {
   };
 
   return {
-    state: { tasks, task, modalState },
+    state: { tasks, task, modalState, pagination },
     handlers: {
       handleCloseModal,
       handleOpenModal,

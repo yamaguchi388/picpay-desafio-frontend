@@ -26,3 +26,8 @@ export const deleteTask = async (id: number): Promise<void> => {
   const { data } = await request.delete(`${URI}/${id}`);
   return data;
 };
+
+export const searchTask = async (params: any): Promise<ITasksData[]> => {
+  const { data } = await request.get(URI, { params });
+  return data;
+};

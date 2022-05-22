@@ -10,4 +10,5 @@ export type InputProps<T> = TextFieldProps & {
   >;
   withMask?: (args: any) => any;
   width?: number;
+  inputSearch?: string;
 };

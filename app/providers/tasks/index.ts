@@ -89,6 +89,16 @@ export const useTasks = () => {
       });
   };
 
+  const searchTask = async (params: any) => {
+    setTasks({ ...tasks, loading: true });
+    api
+      .searchTask(params)
+      .then((response) =>
+        setTasks({ ...tasks, data: response, loading: false })
+      )
+      .catch((error) => setTasks({ ...tasks, error, data: [] }));
+  };
+
   const updateTask = (id: number) => {};
 
   const handleNextPage = () =>
@@ -99,11 +109,13 @@ export const useTasks = () => {
 
   return {
     state: { tasks, task },
+    pagination,
     effects: {
       createTask,
       fetchTasks,
       fetchTaskById,
       deleteTask,
+      searchTask,
       updateTask,
       handleNextPage,
       handlePreviousPage,
@@ -111,10 +123,12 @@ export const useTasks = () => {
   };
 };
 
-const [TasksProvider, useTasksState, useTasksEffects] = constate(
-  useTasks,
-  (value) => value.state,
-  (value) => value.effects
-);
+const [TasksProvider, useTasksState, useTasksPagination, useTasksEffects] =
+  constate(
+    useTasks,
+    (value) => value.state,
+    (value) => value.pagination,
+    (value) => value.effects
+  );
 
-export { TasksProvider, useTasksState, useTasksEffects };
+export { TasksProvider, useTasksState, useTasksPagination, useTasksEffects };

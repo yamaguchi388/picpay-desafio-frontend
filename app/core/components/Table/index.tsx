@@ -17,6 +17,7 @@ import { ITasksData } from "../../models";
 import { Pagination } from "./Pagination";
 import { InputSearch } from "./InputSearch";
 import { useForm } from "react-hook-form";
+import { useTasksEffects } from "../../../providers/tasks";
 
 const columns: string[] = ["Usuário", "Título", "Data", "Valor", "Pago", ""];
 
@@ -24,17 +25,25 @@ interface ITableProps {
   rows: ITasksData[];
   onEdit: (id: number) => void;
   onDelete: (id: number) => void;
+  page: number;
 }
 
 export const Table = ({ rows, onEdit, onDelete }: ITableProps) => {
-  const { control } = useForm();
+  const { control, watch } = useForm();
+
+  const inputSearch = watch("table-search");
+
   return (
     <TableContainer aria-label="tabela de tarefas">
       <TableHead>
         <TableRow>
           <Td colSpan={6}>
             <ActionsContainer>
-              <InputSearch control={control} name="table-search" width={10} />
+              <InputSearch
+                control={control}
+                inputSearch={inputSearch}
+                name="table-search"
+              />
               <Pagination />
             </ActionsContainer>
           </Td>
