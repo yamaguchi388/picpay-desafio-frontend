@@ -1,14 +1,6 @@
-import axios, {
-  AxiosRequestConfig,
-  AxiosInstance,
-  AxiosInterceptorManager,
-} from "axios";
+import axios, { AxiosRequestConfig, AxiosInstance } from "axios";
 import { authInterceptor } from "./interceptors";
-
-type RequestObject = {
-  instance: AxiosInstance;
-  interceptors: Record<string, number> | null;
-};
+import { RequestObject } from "./types";
 
 export const create = (
   customConfig: AxiosRequestConfig,

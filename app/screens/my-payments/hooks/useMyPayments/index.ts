@@ -1,5 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import {
+  DeleteModalState,
+  ITasksData,
+  ModalState,
+} from "../../../../core/models";
 import {
   useTasksEffects,
   useTasksPagination,
@@ -7,15 +12,18 @@ import {
 } from "../../../../providers/tasks";
 
 export const useMyPayments = () => {
-  const [modalState, setModalState] = useState<{
-    id: number | null;
-    isOpen: boolean;
-  }>({
+  const [modalState, setModalState] = useState<ModalState>({
     id: null,
     isOpen: false,
   });
 
-  const { fetchTasks, deleteTask, updateTask } = useTasksEffects();
+  const [deleteModalState, setDeleteModalState] = useState<DeleteModalState>({
+    isOpen: false,
+    payment: {} as ITasksData,
+  });
+
+  const { fetchTasks, deleteTask, updateTask, handleChangeNextPage } =
+    useTasksEffects();
   const { task, tasks } = useTasksState();
   const pagination = useTasksPagination();
 
@@ -23,23 +31,55 @@ export const useMyPayments = () => {
     fetchTasks();
   }, []);
 
+  const memoizedTasks = useMemo(() => tasks, [tasks]);
+
   const handleOpenModal = () => setModalState({ ...modalState, isOpen: true });
   const handleCloseModal = () =>
     setModalState({ ...modalState, id: null, isOpen: false });
 
-  const handleDeleteTask = (id: number) => deleteTask(id);
-  const handleEditTask = (id: number) => {
-    setModalState({ id, isOpen: true });
-    updateTask(id);
+  const handleDeleteTask = (id: number) => {
+    setDeleteModalState({
+      ...deleteModalState,
+      payment: {} as ITasksData,
+      isOpen: false,
+    });
+    deleteTask(id);
   };
 
+  const handleEditTask = (id: number) => setModalState({ id, isOpen: true });
+
+  const handleNextPage = () => handleChangeNextPage();
+
+  const handleDeleteModal = (payment: ITasksData) =>
+    setDeleteModalState({ isOpen: true, payment });
+
+  const handleCloseDeleteModal = () =>
+    setDeleteModalState({
+      ...deleteModalState,
+      payment: {} as ITasksData,
+      isOpen: false,
+    });
+
+  const handleUpdateTask = (payload: ITasksData) => updateTask(payload);
+
   return {
-    state: { tasks, task, modalState, pagination },
+    state: {
+      memoizedTasks,
+      tasks,
+      task,
+      modalState,
+      pagination,
+      deleteModalState,
+    },
     handlers: {
       handleCloseModal,
       handleOpenModal,
       handleDeleteTask,
       handleEditTask,
+      handleNextPage,
+      handleDeleteModal,
+      handleCloseDeleteModal,
+      handleUpdateTask,
     },
   };
 };

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { BREAKPOINTS } from "../../../../core/constants";
 
 export const Form = styled.form`
   display: flex;
@@ -9,8 +8,9 @@ export const Form = styled.form`
   align-items: flex-start;
   background-color: transparent;
   width: 100%;
+`;
 
-  @media ${BREAKPOINTS.DESKTOP} {
-    width: 20.37rem;
-  }
+export const ButtonContainer = styled.div`
+  display: flex;
+  width: inherit;
 `;

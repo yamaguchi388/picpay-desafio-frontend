@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Controller, Path } from "react-hook-form";
 import {
   InputAdornment,
@@ -8,24 +7,13 @@ import {
 } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { InputProps } from "../../Input/types";
-import { useTasksEffects } from "../../../../providers/tasks";
-import { useDebounceFn } from "../../../hooks";
-import { ChangeEvent } from "react";
+import { useInputSearch } from "./useInputSearch";
 
 export const InputSearch = <T,>(props: InputProps<T>) => {
-  const { searchTask, fetchTasks } = useTasksEffects();
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    value ? searchTask({ username_like: value }) : fetchTasks();
-  };
-
-  const handleChangeDebounce = useDebounceFn(handleChange, 500, [
-    props.inputSearch,
-  ]);
+  const { handlers } = useInputSearch(props.inputSearch as string);
 
   return (
-    <FormControl fullWidth variant="outlined" sx={{ width: "25ch" }}>
+    <FormControl fullWidth variant="outlined" sx={{ width: "30ch" }}>
       <Controller
         control={props.control}
         name={props.name as Path<T>}
@@ -39,7 +27,7 @@ export const InputSearch = <T,>(props: InputProps<T>) => {
             value={field.value || ""}
             onChange={(event) => {
               field.onChange(event.target.value);
-              handleChangeDebounce(event);
+              handlers.handleChangeDebounce(event);
             }}
             onInput={props.onInput}
             endAdornment={

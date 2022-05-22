@@ -1,8 +1,4 @@
-export type ViewportPayload = {
-  isDesktop: boolean;
-  isMobile: boolean;
-  key: "desktop" | "mobile";
-};
+import { ViewportPayload } from "./types";
 
 export const getViewport = (mediaQuery: MediaQueryList): ViewportPayload => {
   const { matches } = mediaQuery;

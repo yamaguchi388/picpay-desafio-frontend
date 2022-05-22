@@ -1,35 +1,20 @@
 import { Snackbar, Alert } from "@mui/material";
-import { memo, ReactElement, SyntheticEvent, useEffect, useState } from "react";
+import { memo, ReactElement } from "react";
 import { IToast } from "../../models";
-
-interface IToastProps {
-  toasts: IToast[];
-}
+import { IToastProps } from "./types";
+import { useToast } from "./useToast";
 
 export const Toast = ({ type, message }: IToast) => {
-  const [open, setOpen] = useState(false);
+  const { state, handlers } = useToast(message as string);
 
-  useEffect(() => {
-    if (!!message) {
-      setOpen(true);
-    }
-  }, [message]);
-
-  const handleClose = (_?: SyntheticEvent | Event, reason?: string) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
   return (
     <Snackbar
-      open={open}
+      open={state.open}
       autoHideDuration={5000}
-      onClose={handleClose}
+      onClose={handlers.handleClose}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
     >
-      <Alert onClose={handleClose} severity={type} variant="filled">
+      <Alert onClose={handlers.handleClose} severity={type} variant="filled">
         {message}
       </Alert>
     </Snackbar>

@@ -1,46 +1,34 @@
 import Image from "next/image";
-import { ReactElement, useState, MouseEvent } from "react";
-import router from "next/router";
+import { ReactElement } from "react";
 import { Container, ToggleButton, Button } from "./styles";
 import logo from "../../assets/images/logo-transparent.svg";
 
 import { Avatar, Popover, Typography } from "@mui/material";
+import { useProtectedHeader } from "./useProtectedHeader";
 
 export const ProtectedHeader = (): ReactElement => {
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-  const open = Boolean(anchorEl);
+  const { state, handlers } = useProtectedHeader();
 
-  const handleClose = () => setAnchorEl(null);
-
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) =>
-    setAnchorEl(event.currentTarget);
-
-  const handleLogout = () => {
-    localStorage.clear();
-    router.push("/");
-  };
-
-  const id = open ? "profile" : undefined;
   return (
     <Container>
       <Image loading="lazy" src={logo} alt="logomarca da empresa picfriends" />
-      <ToggleButton onClick={handleClick} aria-describedby={id}>
+      <ToggleButton onClick={handlers.handleClick} aria-describedby={state.id}>
         <Avatar
           src="../../assets/images/avatar.png"
           alt="Avatar de usuário logado"
         />
       </ToggleButton>
       <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
+        id={state.id}
+        open={state.open}
+        anchorEl={state.anchorEl}
+        onClose={handlers.handleClose}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "right",
         }}
       >
-        <Button onClick={handleLogout}>
+        <Button onClick={handlers.handleLogout}>
           <Typography sx={{ p: 2 }}>Logout</Typography>
         </Button>
       </Popover>

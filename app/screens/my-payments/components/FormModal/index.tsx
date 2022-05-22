@@ -1,29 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FormControlLabel } from "@material-ui/core";
 import { Typography, Checkbox } from "@mui/material";
-import { ReactElement, useEffect } from "react";
+import { ReactElement } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Button, Input, Modal } from "../../../../core/components";
 import { ITasksData } from "../../../../core/models";
-import {
-  currency,
-  formatDate,
-  masks,
-  replaceCurrency,
-} from "../../../../core/utils";
-import { useTasksEffects, useTasksState } from "../../../../providers/tasks";
+import { masks } from "../../../../core/utils";
 import { AddPaymentFormEnum } from "../../enums";
+import { useFormModal } from "../../hooks/useFormModal";
 import {
   ButtonsContainer,
   Form,
   InputContent,
   InputsContainer,
 } from "./styles";
-
-interface IFormModalProps {
-  modalState: { id: number | null; isOpen: boolean };
-  onClose: () => void;
-}
+import { IFormModalProps } from "./types";
 
 export const FormModal = ({
   modalState,
@@ -33,63 +24,25 @@ export const FormModal = ({
     useForm<ITasksData>({
       mode: "onSubmit",
     });
-  const { createTask, fetchTaskById } = useTasksEffects();
-  const { task } = useTasksState();
 
-  useEffect(() => {
-    modalState.id ? fetchTaskById(modalState.id) : reset();
-  }, [modalState]);
-
-  useEffect(() => {
-    if (!!task.data) {
-      //@ts-ignore
-      setValue(AddPaymentFormEnum.Name, task.data.name);
-      //@ts-ignore
-      setValue(AddPaymentFormEnum.Username, task.data.username);
-      //@ts-ignore
-      setValue(AddPaymentFormEnum.Date, formatDate(task.data.date));
-      //@ts-ignore
-      setValue(AddPaymentFormEnum.Value, currency(task.data.value as number));
-      //@ts-ignore
-      setValue(AddPaymentFormEnum.Title, task.data.title);
-      //@ts-ignore
-      setValue(AddPaymentFormEnum.IsPayed, task.data.isPayed);
-    }
-  }, [task]);
-
-  const handleClose = () => {
-    onClose();
-    reset();
-  };
-
-  const onSubmit = (data: ITasksData) => {
-    createTask({
-      ...data,
-      date: new Date(data.date).toISOString(),
-      image: "",
-      value: +replaceCurrency(data.value as string),
-    });
-    handleClose();
-  };
-
-  console.log(task);
+  const { rules, handlers } = useFormModal({
+    modalState,
+    reset,
+    setValue,
+    onClose,
+  });
 
   return (
-    <Modal open={modalState.isOpen} onClose={handleClose}>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+    <Modal open={modalState.isOpen} onClose={handlers.handleClose}>
+      <Form onSubmit={handleSubmit(handlers.onSubmit)}>
         <Typography component="h2" variant="h4" mb={2}>
-          Adicionar pagamento
+          {modalState.id ? "Editar pagamento" : "Adicionar pagamento"}
         </Typography>
         <InputsContainer>
           <Input
             name={AddPaymentFormEnum.Name}
             control={control}
-            rules={{
-              required: {
-                value: true,
-                message: "O nome deve ser informado",
-              },
-            }}
+            rules={rules.rulesName}
             label="Nome*"
             error={!!formState.errors![AddPaymentFormEnum.Name]}
             helperText={formState.errors[AddPaymentFormEnum.Name]?.message}
@@ -98,12 +51,7 @@ export const FormModal = ({
           <Input
             name={AddPaymentFormEnum.Username}
             control={control}
-            rules={{
-              required: {
-                value: true,
-                message: "O usuário deve ser informado",
-              },
-            }}
+            rules={rules.rulesUsername}
             label="Usuário*"
             error={!!formState.errors![AddPaymentFormEnum.Username]}
             helperText={formState.errors[AddPaymentFormEnum.Username]?.message}
@@ -114,9 +62,7 @@ export const FormModal = ({
           <Input
             name={AddPaymentFormEnum.Date}
             control={control}
-            rules={{
-              required: { value: true, message: "A data deve ser informada" },
-            }}
+            rules={rules.rulesDate}
             label="Data*"
             type="date"
             error={!!formState.errors![AddPaymentFormEnum.Date]}
@@ -126,12 +72,7 @@ export const FormModal = ({
           <Input
             name={AddPaymentFormEnum.Value}
             control={control}
-            rules={{
-              required: {
-                value: true,
-                message: "O valor deve ser informado",
-              },
-            }}
+            rules={rules.rulesValue}
             label="Valor*"
             withMask={masks.currency}
             error={!!formState.errors![AddPaymentFormEnum.Value]}
@@ -178,7 +119,7 @@ export const FormModal = ({
         <ButtonsContainer>
           <Button
             width={10}
-            onClick={handleClose}
+            onClick={handlers.handleClose}
             type="reset"
             color="secondary"
           >

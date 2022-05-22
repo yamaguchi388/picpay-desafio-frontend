@@ -1,10 +1,4 @@
-type CurrencyOptions = {
-  prefix: string;
-  suffix: string;
-  length: number;
-  separator: string;
-  delimiter: string;
-};
+import { CurrencyOptions } from "./types";
 
 export const currency = (value: number, options = {}): string => {
   if (typeof options !== "object") {

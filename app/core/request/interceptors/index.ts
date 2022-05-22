@@ -1,10 +1,7 @@
 import { AxiosRequestConfig } from "axios";
+import { IAuthInterceptorCache } from "./types";
 
 const AUTH_HEADER = "Authorization";
-
-interface IAuthInterceptorCache {
-  token: string;
-}
 
 const cache: Partial<IAuthInterceptorCache> = {};
 

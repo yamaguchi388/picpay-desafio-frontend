@@ -7,28 +7,21 @@ import {
   Td,
   Th,
   Button,
-  ActionsContainer,
   UsernameContent,
 } from "./styles";
 
 import { Edit, HighlightOff } from "@mui/icons-material";
 import { currency, formatDateBR } from "../../utils";
-import { ITasksData } from "../../models";
 import { Pagination } from "./Pagination";
 import { InputSearch } from "./InputSearch";
 import { useForm } from "react-hook-form";
-import { useTasksEffects } from "../../../providers/tasks";
+import { ITableProps } from "./types";
 
 const columns: string[] = ["Usuário", "Título", "Data", "Valor", "Pago", ""];
 
-interface ITableProps {
-  rows: ITasksData[];
-  onEdit: (id: number) => void;
-  onDelete: (id: number) => void;
-  page: number;
-}
+export const Table = (props: ITableProps) => {
+  const { rows, onEdit, onNextPage, onDeleteModal, loading } = props;
 
-export const Table = ({ rows, onEdit, onDelete }: ITableProps) => {
   const { control, watch } = useForm();
 
   const inputSearch = watch("table-search");
@@ -38,14 +31,11 @@ export const Table = ({ rows, onEdit, onDelete }: ITableProps) => {
       <TableHead>
         <TableRow>
           <Td colSpan={6}>
-            <ActionsContainer>
-              <InputSearch
-                control={control}
-                inputSearch={inputSearch}
-                name="table-search"
-              />
-              <Pagination />
-            </ActionsContainer>
+            <InputSearch
+              control={control}
+              inputSearch={inputSearch}
+              name="table-search"
+            />
           </Td>
         </TableRow>
         <TableRow>
@@ -65,7 +55,7 @@ export const Table = ({ rows, onEdit, onDelete }: ITableProps) => {
             </Td>
             <Td>{row.title}</Td>
             <Td>{formatDateBR(row.date)}</Td>
-            <Td>{currency(row.value as number)}</Td>
+            <Td>{currency((row.value as number) || 0)}</Td>
             <Td>
               <Checkbox checked={row.isPayed} readOnly />
             </Td>
@@ -73,13 +63,18 @@ export const Table = ({ rows, onEdit, onDelete }: ITableProps) => {
               <Button onClick={() => onEdit(row.id)} type="button">
                 <Edit />
               </Button>
-              <Button onClick={() => onDelete(row.id)} type="button">
+              <Button onClick={() => onDeleteModal(row)} type="button">
                 <HighlightOff />
               </Button>
             </Td>
           </TableRow>
         ))}
       </TableBody>
+      <TableRow>
+        <Td colSpan={6}>
+          <Pagination onNextPage={onNextPage} loading={loading} />
+        </Td>
+      </TableRow>
     </TableContainer>
   );
 };

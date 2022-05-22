@@ -22,20 +22,34 @@ export const useTasks = () => {
     error: null,
   });
 
-  const toast = useToast();
-
-  const pagination: TasksParams = {
+  const [pagination, setPagination] = useState<TasksParams>({
     _page: 1,
     limit: 10,
-  };
+  });
+
+  const toast = useToast();
 
   const fetchTasks = (params = pagination) => {
     setTasks({ ...tasks, loading: true });
     api
       .fetchTasks(params)
-      .then((response) =>
-        setTasks({ loading: false, data: response, error: null })
-      )
+      .then((response) => {
+        console.log(pagination);
+
+        if (pagination._page > 1) {
+          setTasks((currentTasks) => ({
+            ...currentTasks,
+            loading: false,
+            data: [...(currentTasks.data || []), ...response],
+          }));
+          return;
+        }
+        setTasks({
+          ...tasks,
+          loading: false,
+          data: response,
+        });
+      })
       .catch((error) => setTasks({ data: null, loading: false, error }));
   };
 
@@ -78,6 +92,7 @@ export const useTasks = () => {
       .deleteTask(id)
       .then(() => {
         toast.success({ message: "Pagamento deletado com sucesso." });
+        setPagination({ ...pagination, _page: 1 });
         fetchTasks({ ...pagination });
       })
       .catch((error) => {
@@ -99,13 +114,31 @@ export const useTasks = () => {
       .catch((error) => setTasks({ ...tasks, error, data: [] }));
   };
 
-  const updateTask = (id: number) => {};
+  const updateTask = (payload: ITasksData) => {
+    setTasks({ ...tasks, loading: true });
+    api
+      .updateTask(payload)
+      .then(() => {
+        toast.success({ message: "Pagamento atualizado com sucesso" });
+        setTasks({ ...tasks, loading: false });
+        fetchTasks({ ...pagination, _page: 1 });
+      })
+      .catch((error) => {
+        toast.error({
+          message:
+            "Ocorreu um erro inesperado ao salvar pagamento. Tente novamente",
+        });
+        setTasks({ ...tasks, error, loading: false });
+      });
+  };
 
-  const handleNextPage = () =>
-    fetchTasks({ ...pagination, _page: pagination._page + 1 });
-
-  const handlePreviousPage = () =>
-    fetchTasks({ ...pagination, _page: pagination._page - 1 });
+  const handleChangeNextPage = () => {
+    setPagination((currentPagination) => ({
+      ...currentPagination,
+      _page: currentPagination._page + 1,
+    }));
+    fetchTasks({ ...pagination });
+  };
 
   return {
     state: { tasks, task },
@@ -117,8 +150,7 @@ export const useTasks = () => {
       deleteTask,
       searchTask,
       updateTask,
-      handleNextPage,
-      handlePreviousPage,
+      handleChangeNextPage,
     },
   };
 };

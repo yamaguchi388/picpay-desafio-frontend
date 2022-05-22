@@ -1,14 +1,20 @@
-import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
-import { Container, PageNumber } from "./styles";
+/* eslint-disable react/display-name */
+import { Container, ViewMoreButton } from "./styles";
+import { CircularProgress } from "@mui/material";
+import { IPaginationProps } from "./types";
+import { ReactElement } from "react";
 
-export const Pagination = () => {
-  return (
-    <Container>
-      <ArrowBackIos />
-      <PageNumber type="button">1</PageNumber>
-      <PageNumber type="button">1</PageNumber>
-      <PageNumber type="button">1</PageNumber>
-      <ArrowForwardIos />
-    </Container>
-  );
-};
+export const Pagination = ({
+  onNextPage,
+  loading,
+}: IPaginationProps): ReactElement => (
+  <Container>
+    {loading ? (
+      <CircularProgress />
+    ) : (
+      <ViewMoreButton onClick={onNextPage} type="button">
+        Ver mais
+      </ViewMoreButton>
+    )}
+  </Container>
+);

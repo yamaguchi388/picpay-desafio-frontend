@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from "styled-components";
 import { BREAKPOINTS } from "../../constants";
+import { IButtonProps } from "./types";
 
 const show = keyframes`
 from{
@@ -10,14 +11,7 @@ to {
 }
 `;
 
-export const Container = styled.button<{
-  width?: number;
-  mt?: number;
-  mb?: number;
-  ml?: number;
-  mr?: number;
-  color?: "primary" | "secondary";
-}>`
+export const Container = styled.button<IButtonProps>`
   width: 100%;
 
   padding: 1rem;
@@ -64,7 +58,7 @@ export const Container = styled.button<{
     outline: none;
   }
   @media ${BREAKPOINTS.DESKTOP} {
-    width: ${({ width }) => `${width}rem`};
+    width: ${({ width }) => width && `${width}rem`};
   }
   ${({ color }) =>
     color === "secondary" &&

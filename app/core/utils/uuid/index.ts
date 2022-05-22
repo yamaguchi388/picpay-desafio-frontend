@@ -1,4 +1,4 @@
-export const uuid = () => {
+export const uuid = (): string => {
   var dt = new Date().getTime();
   var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
     /[xy]/g,

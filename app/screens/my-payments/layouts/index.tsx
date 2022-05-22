@@ -3,7 +3,7 @@ import { Button, Table } from "../../../core/components";
 import { BaseLayout } from "../../../base-layout";
 import { useMyPayments } from "../hooks";
 import { ButtonContainer } from "./styles";
-import { FormModal } from "../components";
+import { DeleteModal, FormModal } from "../components";
 
 export const MyPaymentsLayout = (): ReactElement => {
   const { handlers, state } = useMyPayments();
@@ -15,14 +15,22 @@ export const MyPaymentsLayout = (): ReactElement => {
         </Button>
       </ButtonContainer>
       <Table
-        rows={state.tasks?.data || []}
-        onDelete={handlers.handleDeleteTask}
+        rows={state.memoizedTasks?.data || []}
         onEdit={handlers.handleEditTask}
         page={state.pagination._page}
+        onNextPage={handlers.handleNextPage}
+        loading={state.tasks.loading}
+        onDeleteModal={handlers.handleDeleteModal}
       />
       <FormModal
         modalState={state.modalState}
         onClose={handlers.handleCloseModal}
+      />
+      <DeleteModal
+        isOpen={state.deleteModalState.isOpen}
+        onClose={handlers.handleCloseDeleteModal}
+        onSubmit={handlers.handleDeleteTask}
+        payment={state.deleteModalState.payment}
       />
     </BaseLayout>
   );

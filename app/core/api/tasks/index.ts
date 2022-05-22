@@ -22,6 +22,11 @@ export const createTask = async (payload: ITasksData): Promise<ITasksData> => {
   return data;
 };
 
+export const updateTask = async (payload: ITasksData): Promise<ITasksData> => {
+  const { data } = await request.put(`${URI}/${payload.id}`, payload);
+  return data;
+};
+
 export const deleteTask = async (id: number): Promise<void> => {
   const { data } = await request.delete(`${URI}/${id}`);
   return data;
