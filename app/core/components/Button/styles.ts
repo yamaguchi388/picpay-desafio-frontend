@@ -75,4 +75,5 @@ export const Container = styled.button<{
         background-color: rgba(0, 0, 0, 0.2);
       }
     `}
+  text-align:center;
 `;

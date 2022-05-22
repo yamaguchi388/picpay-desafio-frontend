@@ -17,6 +17,11 @@ a {
   box-sizing: border-box;
 }
 
+button {
+  all: unset;
+  cursor: pointer;
+}
+
 ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
 ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
 ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {

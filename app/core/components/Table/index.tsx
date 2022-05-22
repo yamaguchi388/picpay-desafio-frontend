@@ -7,11 +7,16 @@ import {
   Td,
   Th,
   Button,
+  ActionsContainer,
+  UsernameContent,
 } from "./styles";
 
 import { Edit, HighlightOff } from "@mui/icons-material";
 import { currency, formatDateBR } from "../../utils";
 import { ITasksData } from "../../models";
+import { Pagination } from "./Pagination";
+import { InputSearch } from "./InputSearch";
+import { useForm } from "react-hook-form";
 
 const columns: string[] = ["Usuário", "Título", "Data", "Valor", "Pago", ""];
 
@@ -22,9 +27,18 @@ interface ITableProps {
 }
 
 export const Table = ({ rows, onEdit, onDelete }: ITableProps) => {
+  const { control } = useForm();
   return (
     <TableContainer aria-label="tabela de tarefas">
       <TableHead>
+        <TableRow>
+          <Td colSpan={6}>
+            <ActionsContainer>
+              <InputSearch control={control} name="table-search" width={10} />
+              <Pagination />
+            </ActionsContainer>
+          </Td>
+        </TableRow>
         <TableRow>
           {columns.map((column, index) => (
             <Th key={index}>{column}</Th>
@@ -34,10 +48,15 @@ export const Table = ({ rows, onEdit, onDelete }: ITableProps) => {
       <TableBody>
         {rows.map((row) => (
           <TableRow key={row.id}>
-            <Td>{row.username}</Td>
+            <Td>
+              <UsernameContent>
+                <span>{row.name}</span>
+                <span>{row.username}</span>
+              </UsernameContent>
+            </Td>
             <Td>{row.title}</Td>
             <Td>{formatDateBR(row.date)}</Td>
-            <Td>{currency(row.value)}</Td>
+            <Td>{currency(row.value as number)}</Td>
             <Td>
               <Checkbox checked={row.isPayed} readOnly />
             </Td>

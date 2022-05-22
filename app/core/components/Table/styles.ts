@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const ActionsContainer = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 export const TableContainer = styled.table`
   text-align: left;
   border-collapse: collapse;
@@ -39,4 +46,13 @@ export const Button = styled.button`
   all: unset;
   padding: 1rem;
   cursor: pointer;
+`;
+
+export const UsernameContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  & > span:last-child {
+    color: #69788c;
+  }
 `;
