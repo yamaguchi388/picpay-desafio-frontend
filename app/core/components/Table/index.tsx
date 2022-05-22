@@ -54,7 +54,7 @@ export const Table = (props: ITableProps) => {
               </UsernameContent>
             </Td>
             <Td>{row.title}</Td>
-            <Td>{formatDateBR(row.date)}</Td>
+            <Td>{formatDateBR(row.date, true)}</Td>
             <Td>{currency((row.value as number) || 0)}</Td>
             <Td>
               <Checkbox checked={row.isPayed} readOnly />

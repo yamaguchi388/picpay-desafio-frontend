@@ -15,7 +15,7 @@ export const formatDateBR = (rawDate: string, showTime?: boolean) => {
   }
 
   if (showTime) {
-    return dayjs(rawDate).format("DD/MM/YYYY HH[h]mm");
+    return dayjs(rawDate).format("DD/MM/YYYY - HH[h]mm");
   }
   return dayjs(rawDate).format("DD/MM/YYYY");
 };
