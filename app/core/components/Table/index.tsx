@@ -60,7 +60,7 @@ export const Table = (props: ITableProps) => {
               <Checkbox checked={row.isPayed} readOnly />
             </Td>
             <Td isAlignRight>
-              <Button onClick={() => onEdit(row.id)} type="button">
+              <Button onClick={() => onEdit(row.id as number)} type="button">
                 <Edit />
               </Button>
               <Button onClick={() => onDeleteModal(row)} type="button">
