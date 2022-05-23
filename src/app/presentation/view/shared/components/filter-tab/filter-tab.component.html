@@ -1,0 +1,11 @@
+<div class="filter-tab" [formGroup]="filterTabForm">
+    <div class="wrapper">
+        <app-filter-input class="filter-tab__input"></app-filter-input>
+        <app-filter-button class="filter-tab__button" (click)="openCustomFilters()"></app-filter-button>
+    </div>
+    <app-paginator
+        [totalCount]="totalCount"
+        [pageSizeOptions]="[10, 50, 100]" 
+        aria-label="Select page">
+    </app-paginator>
+</div>

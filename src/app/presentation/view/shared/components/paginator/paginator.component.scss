@@ -1,0 +1,56 @@
+@import "../../../../../../variables.scss";
+
+.paginator {
+    display: flex;
+    flex-direction: row;
+    line-height: 14px;
+    color: $dark-grey;
+
+    &__select {
+        border: 1px solid $grey;
+        border-radius: 6px;
+        margin-right: 35px;
+
+        &-label {
+            padding: 0 10px;
+            align-self: center;
+        }
+    }
+
+    &__icon {
+        cursor: pointer;
+
+        &--disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    }
+
+    &__link {
+        cursor: pointer;
+        padding: 4px 6px;
+    }
+
+    &__link-active {
+        color: $white;
+        background-color: $blue;
+        border-radius: 6px;
+    }
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+        margin-right: 10px;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+}

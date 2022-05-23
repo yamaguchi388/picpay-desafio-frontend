@@ -1,0 +1,26 @@
+<div class="container">
+
+  <div class="row">
+    <app-header>{{ "TXT_PAGAMENTOS" | translate }}</app-header>
+
+    <div class="add--button">
+      <button mat-raised-button color="primary" (click)="openPaymentDialog()">{{ "TXT_ADICIONAR_PAGAMENTO_BTN" | translate }}</button>
+    </div>
+  </div>
+
+  <app-filter-tab 
+    (filterChanged)="filterChanged($event)" 
+    (customFilterChanged)="applyCustomFilter($event)"
+    [totalCount]="payments.length"
+  ></app-filter-tab>
+
+  <app-payments-table 
+    [payments]="payments"
+    [pageSize]="paginatorOptions.pageSize"
+    [pageNumber]="paginatorOptions.pageNumber"
+    (paymentStatusChanged)="updatePayment($event)"
+    (editPayment)="openPaymentDialog($event)"
+    (deletePayment)="deletePayment($event)"
+  ></app-payments-table>
+</div>
+

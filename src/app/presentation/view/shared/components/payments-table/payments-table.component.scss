@@ -1,0 +1,43 @@
+@import '../../../../../../variables.scss';
+
+:host ::ng-deep .ngx-datatable.table {
+    width: 100%;
+    background-color: $white;
+    text-align: left;
+    border-collapse: collapse;
+    border-radius: 0 0 8px 8px;
+
+    .datatable-header {
+        border-bottom: 2px solid #CFDCE5;
+        padding: 17px 12px;
+        font-weight: 500;
+    }
+
+    .datatable-body {
+
+        .datatable-row-wrapper {
+            padding: 17px 12px;
+
+            .mat-icon {
+                cursor: pointer;
+            }
+
+            .mat-icon:first-of-type {
+                margin-right: 10px;
+            }
+
+            .datatable-body-cell:last-of-type {
+                text-align: right;
+                padding-right: 60px;
+            }
+        }
+
+        .datatable-row-wrapper:nth-child(even) {
+            background-color: #F5F8FA;
+        }
+    }
+
+    .empty-row {
+        padding: 17px 12px;
+    }
+}

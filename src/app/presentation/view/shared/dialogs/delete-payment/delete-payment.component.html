@@ -1,0 +1,11 @@
+<h3 mat-dialog-tile>{{'TXT_EXCLUIR_PAGAMENTO' | translate}}</h3>
+<div mat-dialog-content class="payment-info">
+    <p>{{'TXT_USUARIO' | translate}}: {{payment?.name}}</p>
+    <p>{{'TXT_DATA' | translate}}: {{payment?.date | date: 'dd/mm/yyyy hh:mm a'}}</p>
+    <p>{{'TXT_VALOR' | translate}}: {{payment?.value | currency: 'BRL': 'symbol': '1.2-2'}}</p>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button class="dialog-actions__button" (click)="close()">{{'TXT_CANCELAR' | translate}}</button>
+    <button mat-raised-button class="dialog-actions__button" (click)="delete()" type="submit" color="primary">{{'TXT_EXCLUIR' | translate}}</button>
+</div>
+

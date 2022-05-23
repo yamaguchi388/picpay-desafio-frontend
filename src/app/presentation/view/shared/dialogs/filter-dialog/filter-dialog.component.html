@@ -1,0 +1,19 @@
+<div *ngFor="let filter of filters" class="filter-form">
+
+  <mat-form-field class="filter-form__input" appearance="outline">
+    <mat-label>{{'TXT_FIELD' | translate}}</mat-label>
+    <input matInput placeholder="Campo" value="{{filter.column}}" (change)="setField(filter.id, $any($event.target).value)">
+  </mat-form-field>
+
+  <mat-form-field class="filter-form__input" appearance="outline">
+    <mat-label>{{'TXT_VALOR' | translate}}</mat-label>
+    <input matInput placeholder="Valor" value="{{filter.value}}" (change)="setValue(filter.id, $any($event.target).value)">
+  </mat-form-field>
+
+  <mat-icon (click)="remove(filter.id)">delete</mat-icon>
+</div>
+
+<div class="filter-form-buttons">
+  <button mat-raised-button (click)="addInput()">{{'TXT_ADICIONAR_FILTRO' | translate}}</button>
+  <button mat-raised-button color="primary" (click)="confirm()">{{'TXT_FILTRAR' | translate}}</button>
+</div>

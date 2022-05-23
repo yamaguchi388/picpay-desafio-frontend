@@ -1,0 +1,17 @@
+<div class="nav-bar">
+    <div class="nav-bar__logo">
+        <app-logo variant="light"></app-logo>
+    </div>
+    <div class="nav-bar__avatar" >
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <app-avatar></app-avatar>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logoutUser()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+    </div>
+    
+</div>

@@ -1,0 +1,11 @@
+<div class="filter" [formGroup]="filterForm">
+    <div class="filter-group">
+        <mat-icon class="filter-group__icon">search</mat-icon>
+        <input
+            #filterInput
+            type="text"
+            formControlName="queryString"
+            placeholder="{{'TXT_PESQUISAR_USUARIO' | translate}}"
+        />
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<ngx-datatable
+    class="table"
+    [rows]="payments"
+    columnMode="force"
+    [headerHeight]="50"
+    [rowHeight]="'auto'"
+    (sort)="onSort($event)"
+    [limit]="pageSize"
+    [offset]="pageNumber - 1"
+    [messages]="{emptyMessage: 'Sem pagamentos...'}"
+>
+    <ngx-datatable-column prop="name" name="{{ 'TXT_USUARIO' | translate }}">
+        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+            <app-user-info [payment]="row"></app-user-info>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column prop="title" name="{{ 'TXT_TITULO' | translate }}">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column prop="date" name="{{ 'TXT_DATA' | translate }}">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <app-date-info [date]="value"></app-date-info>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column prop="value" name="{{ 'TXT_VALOR' | translate }}">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value | currency:'BRL'}}
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column prop="isPayed" name="{{ 'TXT_PAGO' | translate }}">
+        <ng-template let-value="value" let-row="row"  ngx-datatable-cell-template>
+            <mat-checkbox [checked]="value"  color="primary" (change)="toggleStatus($event, row.id)"></mat-checkbox>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column prop="" name="">
+        <ng-template let-row="row" class="action-cell" ngx-datatable-cell-template>
+            <mat-icon (click)="editPayment.emit(row)">edit</mat-icon>
+            <mat-icon (click)="deletePayment.emit(row)">highlight_off</mat-icon>
+        </ng-template>
+    </ngx-datatable-column>
+</ngx-datatable>

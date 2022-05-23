@@ -1,0 +1,33 @@
+<div class="paginator" [formGroup]="paginatorForm">
+    <label for="pageOptions" class="paginator__select-label">{{'TXT_EXIBIR' | translate}}</label>
+    <select 
+        #pageOptions 
+        class="paginator__select" 
+        formControlName="pageSize" 
+        (change)="changePageSize(pageOptions.value)">
+    >
+        <option 
+            *ngFor="let option of pageSizeOptions; index as i;" 
+            [value]="option"
+            [selected]="option === currentPageSizeOption"
+        >{{ option }}
+        </option>
+    </select>
+
+    <mat-icon 
+        [class]="'paginator__icon' + [pageNumber === 1 ? '--disabled' : '']"
+        (click)="previousPage()"
+    >navigate_before</mat-icon>
+    <ul>
+        <li
+            *ngFor="let link of pageLinks; let i = index"
+            [class]="'paginator__link ' + [link == pageNumber ? 'paginator__link-active' : '']"
+            (click)="setPage(link)"
+        >{{link}}</li>
+    </ul>
+    <mat-icon
+        [class]="'paginator__icon' + [pageNumber === (totalCount / currentPageSizeOption) ? '--disabled' : '']"
+        class="paginator__icon"
+        (click)="nextPage()"
+    >navigate_next</mat-icon>
+</div>

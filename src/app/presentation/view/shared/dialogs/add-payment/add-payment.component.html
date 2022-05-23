@@ -1,0 +1,34 @@
+<h3 mat-dialog-tile *ngIf="!!payment">{{'TXT_EDITAR_PAGAMENTO' | translate}}</h3>
+<h3 mat-dialog-tile *ngIf="!payment">{{'TXT_ADICIONAR_PAGAMENTO' | translate}}</h3>
+<div mat-dialog-content>
+    <form class="payment-form" [formGroup]="paymentForm">
+        <mat-form-field class="payment-form__input" appearance="outline">
+            <mat-label>{{'TXT_USUARIO' | translate}}</mat-label>
+            <input matInput formControlName="name" placeholder="{{'TXT_USUARIO' | translate}}">
+        </mat-form-field>
+        <mat-form-field class="payment-form__input" appearance="outline">
+            <mat-label>{{'TXT_VALOR' | translate}}</mat-label>
+            <input currencyMask matInput formControlName="value" placeholder="{{'TXT_VALOR' | translate}}" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+        </mat-form-field>
+        <mat-form-field class="payment-form__input" appearance="outline">
+            <mat-label>{{'TXT_DATA' | translate}}</mat-label>
+            <input matInput [ngxMatDatetimePicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker >
+                <ng-template>
+                <span>OK</span>
+                </ng-template>
+            </ngx-mat-datetime-picker>
+
+        </mat-form-field>
+        <mat-form-field class="payment-form__input" appearance="outline">
+            <mat-label>{{'TXT_TITULO' | translate}}</mat-label>
+            <input matInput formControlName="title" placeholder="{{'TXT_TITULO' | translate}}">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button class="dialog-actions__button" (click)="close()">{{'TXT_CANCELAR' | translate}}</button>
+    <button mat-raised-button class="dialog-actions__button" type="submit" color="primary" (click)="save()">{{'TXT_SALVAR' | translate}}</button>
+</div>
+

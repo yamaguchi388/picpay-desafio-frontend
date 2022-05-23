@@ -1,0 +1,17 @@
+.filter-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+
+  .mat-icon {
+    cursor: pointer;
+  }
+
+  &-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

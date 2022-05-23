@@ -1,0 +1,29 @@
+<div class="container">
+
+    <div class="login">
+
+        <form class="login__form" [formGroup]="loginForm">
+            <app-logo class="logo"></app-logo>
+
+            <app-header variant="2">{{ 'TXT_BEM_VINDO' | translate }}</app-header>
+
+            <mat-form-field appearance="outline">
+                <mat-label>{{ "TXT_EMAIL" | translate}}</mat-label>
+                <input matInput type="email" formControlName="email" name="email">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>{{ "TXT_SENHA" | translate}}</mat-label>
+                <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" name="password">
+                <mat-icon matSuffix (click)="togglePasswordVisibility()">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" (click)="login()">{{ "TXT_ENTRAR" | translate }}</button>
+        </form>
+
+    </div>
+
+    <div class="slide">
+        <img class="slide__img" src="assets/img/man-doing-online-payment.svg" alt="Homem fazendo pagamento online">
+    </div>
+</div>

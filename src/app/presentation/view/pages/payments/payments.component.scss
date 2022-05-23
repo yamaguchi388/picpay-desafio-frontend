@@ -1,0 +1,15 @@
+.container {
+  margin: 48px;
+  margin-top: 65px;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+  
+    .add--button {
+      align-self: center;
+      margin-left: auto;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@import "../../../../../variables.scss";
+
+.container {
+    height: 100vh;
+    display: flex;
+}
+
+.login {
+    height: 100vh;
+    padding: 20px;
+    width: 540px;
+
+    &__form {
+        width: 326px;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .logo {
+            margin-bottom: 18px;
+        }
+    }
+
+    @media screen and (max-width: $medium) {
+        width: 100%;
+    }
+
+    @media screen and (max-width: $small) {
+        width: 100%;
+        padding: 10px;
+
+        &__form {
+            width: 100%;
+        }
+    }
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+
+    &__img {
+    position: relative;
+    max-width: 737px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+
+    @media screen and (max-width: $medium) {
+        display: none;
+    }
+
+    @media screen and (max-width: $small) {
+        display: none;
+    }
+}
