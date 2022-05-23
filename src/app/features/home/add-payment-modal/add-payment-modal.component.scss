@@ -1,0 +1,36 @@
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.payment-form-row {
+  display: flex;
+  width: 100%;
+  margin-bottom: 3.8rem;
+}
+
+.payment-form-col-left {
+  width: calc(50% - 2rem);
+  margin-right: 2rem;
+}
+
+.payment-form-col-right {
+  width: calc(50% - 2rem);
+  margin-left: 2rem;
+}
+
+.payment-form-input {
+  width: 100%;
+  margin-bottom: 3.4rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  .form-actions-btn {
+    width: 150px;
+    margin-left: 3rem;
+  }
+}

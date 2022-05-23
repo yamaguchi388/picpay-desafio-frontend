@@ -1,0 +1,26 @@
+<app-modal [handleClose]="closeModal" title="Excluir pagamento" [small]="true">
+  <div class="content-body">
+    <p>Usuário: {{ payment?.name }}</p>
+    <p>Data: {{ payment?.date | date:'dd/MM/yyyy' }}</p>
+    <p>Valor: {{ payment?.value | currency:'BRL' }}</p>
+  </div>
+  <div class="content-actions">
+    <app-button
+        buttonId="button-cancel-confirm-modal"
+        class="form-actions-btn"
+        type="button"
+        variant="secondary"
+        [handleClick]="closeModal"
+      >
+        Cancelar
+      </app-button>
+      <app-button
+        buttonId="button-confirm-modal"
+        class="form-actions-btn"
+        type="button"
+        [handleClick]="onConfirm"
+      >
+        Salvar
+      </app-button>
+  </div>
+</app-modal>

@@ -1,0 +1,19 @@
+.content-body {
+  margin-top: 4.8rem;
+
+  p {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+.content-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4.8rem;
+
+  .form-actions-btn {
+    width: calc(50% - 15px);
+  }
+}

@@ -1,0 +1,37 @@
+
+.payments-table {
+  width: 100%;
+  color: #2D3540;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  border-spacing: 0;
+
+  th {
+    padding: 1.6rem 1.2rem;
+    font-weight: 600;
+    text-align: left;
+    border-bottom: 1px solid #CFDCE5;
+  }
+
+  .table-col-flex {
+    display: flex;
+    align-items: center;
+  }
+
+  tr:nth-child(even) {
+    background-color: #F5F8FA;
+    border: 0;
+  }
+}
+
+.btn-oder-by {
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+
+  &:hover { background-color: #F5F5F5; }
+  &:active { background-color: #D5D5D5; }
+}

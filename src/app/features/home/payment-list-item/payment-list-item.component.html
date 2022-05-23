@@ -1,0 +1,48 @@
+<td headers="user-payment">
+  <p class="col-info main-info">{{ payment?.name }}</p>
+  <p class="col-info secondary-info">@{{ payment?.username }}</p>
+</td>
+<td headers="title-payment">
+  {{ payment?.title }}
+</td>
+<td headers="date-payment">
+  <p class="col-info main-info">{{ payment?.date | date:'dd MMM YYYY' }}</p>
+  <p class="col-info secondary-info">{{ payment?.date | date:'shortTime' }}</p>
+</td>
+<td headers="title-payment">{{ payment?.value | currency:'BRL' }}</td>
+<td headers="paidout-payment">
+  <input
+    [attr.id]="generateId('checkbox-check-paidout', payment?.id)"
+    type="checkbox"
+    arial-label="Confirmar pagamento"
+    [checked]="payment?.isPayed"
+    (change)="handleUpdatePaidOut(payment)">
+</td>
+<td>
+  <app-button
+    [buttonId]="generateId('button-edit-payment', payment?.id)"
+    ariaLabel="Editar pagamento"
+    [small]="true"
+    variant="transparent"
+    [handleClick]="showPaymentModal"
+  >
+    <img
+      [attr.id]="generateId('edit-icon', payment?.id)"
+      src="../../../../assets/icons/pencil.svg"
+      alt="Ícone de edição do botão de editar um pagamento"
+    />
+  </app-button>
+  <app-button
+    [buttonId]="generateId('button-delete-payment', payment?.id)"
+    ariaLabel="Deletar pagamento"
+    [small]="true"
+    variant="transparent"
+    [handleClick]="showConfirmDeleteModal"
+  >
+    <img
+      [attr.id]="generateId('delete-icon', payment?.id)"
+      src="../../../../assets/icons/close.svg"
+      alt="Ícone de exclusão do botão de excluir um pagamento"
+    />
+  </app-button>
+</td>

@@ -1,0 +1,57 @@
+<table class="payments-table">
+  <thead>
+    <tr>
+      <th id="user-payment">
+        <div class="table-col-flex">
+          <span>Usuário</span>
+          <button class="btn-oder-by" (click)="handleOrderByCol('name')">
+            <img id="user-order-icon" src="../../../../assets/icons/increment.svg" alt="Ícone de ordenação para a coluna de usuários" />
+          </button>
+        </div>
+      </th>
+      <th id="title-payment">
+        <div class="table-col-flex">
+          <span>Título</span>
+          <button class="btn-oder-by" (click)="handleOrderByCol('title')">
+            <img id="title-order-icon" src="../../../../assets/icons/increment.svg" alt="Ícone de ordenação para a coluna de títulos" />
+          </button>
+        </div>
+      </th>
+      <th id="date-payment">
+        <div class="table-col-flex">
+          <span>Data</span>
+          <button class="btn-oder-by" (click)="handleOrderByCol('date')">
+            <img id="date-order-icon" src="../../../../assets/icons/increment.svg" alt="Ícone de ordenação para a coluna de Datas" />
+          </button>
+        </div>
+      </th>
+      <th id="value-payment">
+        <div class="table-col-flex">
+          <span>Valor</span>
+          <button class="btn-oder-by" (click)="handleOrderByCol('value')">
+            <img id="value-order-icon" src="../../../../assets/icons/increment.svg" alt="Ícone de ordenação para a coluna de valores" />
+          </button>
+        </div>
+      </th>
+      <th id="paidout-payment">
+        <div class="table-col-flex">
+          <span>Pago</span>
+          <button class="btn-oder-by" (click)="handleOrderByCol('isPayed')">
+            <img id="paidout-order-icon" src="../../../../assets/icons/increment.svg" alt="Ícone de ordenação para a coluna de pagos" />
+          </button>
+        </div>
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr app-payment-list-item
+      *ngFor="let payment of payments"
+      [payment]="payment"
+      [onShowConfirmDeletePaymentModal]="onShowConfirmDeletePaymentModal"
+      [onShowPaymentModal]="onShowPaymentModal"
+      [handleUpdatePaidOut]="handleUpdatePaidOut"
+    >
+    </tr>
+  </tbody>
+</table>

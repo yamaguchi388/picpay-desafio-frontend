@@ -1,0 +1,91 @@
+<div class="main-container">
+  <app-toolbar></app-toolbar>
+
+  <div class="home-container">
+    <h1 class="title">Meus pagamentos</h1>
+
+    <div class="payments-container">
+      <div class="payments-header">
+        <app-button
+          button-id="button-add-payments"
+          [handleClick]="onShowPaymentModal"
+          class="header-action-btn"
+          type="button"
+        >
+          Adicionar pagamento
+        </app-button>
+      </div>
+
+      <div class="payments-content">
+        <div class="payments-content-header">
+          <app-search-input
+            [handleSearch]="handleSearch"
+            [searchCallbackLoading]="searchCallbackLoading"
+            placeholder="Pesquisar por usuário"
+          ></app-search-input>
+          <div class="pagination-area">
+            <div class="select-group">
+              <label>Exibir</label>
+              <select (change)="onChangeLimitSelect($event.target.value)">
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+              </select>
+            </div>
+            <app-table-pagination
+              [numberOfPages]="numberOfPages"
+              [currentPage]="paymentsListCurrentPage"
+              [changePagination]="changePaymentsListPage"
+            ></app-table-pagination>
+          </div>
+        </div>
+        <div class="payments-content-body" *ngIf="(payments$ | async) as payments; else loading">
+          <app-payment-list
+            [payments]="payments"
+            [onShowConfirmDeletePaymentModal]="onShowConfirmDeletePaymentModal"
+            [onShowPaymentModal]="onShowPaymentModal"
+            [handleOrderByCol]="handleOrderByCol"
+            [handleUpdatePaidOut]="handleUpdatePaidOut"
+            *ngIf="payments?.length > 0; else emptyTable"
+          ></app-payment-list>
+
+          <ng-template #emptyTable>
+            <div class="payments-content-empty">
+              <h1>Não existem pagamentos para serem visualizados</h1>
+            </div>
+          </ng-template>
+        </div>
+
+        <ng-template #loading>
+          <div class="payments-content-loading">
+            <app-spin-loader size="large"></app-spin-loader>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-add-payment-modal
+  [closeModal]="handleClosePaymentModal"
+  [savePayments]="handleSavePayment"
+  [paymentToEdit]="selectedPayment"
+  *ngIf="showAddPaymentModal"
+>
+</app-add-payment-modal>
+
+<app-confirm-delete-payment
+  [closeModal]="handleCloseConfirmDeletePaymentModal"
+  [onConfirmDeletPayment]="handleDeletePayment"
+  [payment]="selectedPayment"
+  *ngIf="showConfirmDeletePaymentModal"
+>
+</app-confirm-delete-payment>
+
+<app-message-alert
+  (hideMessage)="handleHideMessage()"
+  [type]="messageAlert?.type"
+  [showMessage]="messageAlert?.isVisible"
+>
+  {{ messageAlert?.message }}
+</app-message-alert>

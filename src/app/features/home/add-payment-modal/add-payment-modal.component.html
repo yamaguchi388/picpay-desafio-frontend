@@ -1,0 +1,78 @@
+<app-modal [handleClose]="closeModal" title="Adicionar pagamento">
+  <form class="payment-form" [formGroup]="paymentForm" (ngSubmit)="onSubmitLoginForm()">
+    <div class="payment-form-row">
+      <div class="payment-form-col-left">
+        <app-form-input
+          class="payment-form-input"
+          formControlName="name"
+          inputId="payment-name"
+          label="Nome*"
+          [showError]="verifyHasError(paymentForm.get('name'))"
+          [errorMessage]="getErrorMessage('Nome', paymentForm.get('name'))"
+        ></app-form-input>
+      </div>
+      <div class="payment-form-col-right">
+        <app-form-input
+          class="payment-form-input"
+          formControlName="username"
+          inputId="payment-user"
+          label="Usuário*"
+          [showError]="verifyHasError(paymentForm.get('username'))"
+          [errorMessage]="getErrorMessage('Usuário', paymentForm.get('username'))"
+        ></app-form-input>
+      </div>
+    </div>
+    <div class="payment-form-row">
+      <div class="payment-form-col-left">
+        <app-form-input
+          class="payment-form-input"
+          formControlName="value"
+          inputId="payment-value"
+          label="Valor*"
+          type="number"
+          [showError]="verifyHasError(paymentForm.get('value'))"
+          [errorMessage]="getErrorMessage('Valor', paymentForm.get('value'))"
+        ></app-form-input>
+      </div>
+      <div class="payment-form-col-right">
+        <app-form-input
+          class="payment-form-input"
+          formControlName="date"
+          inputId="payment-date"
+          label="Data*"
+          type="date"
+          [labelSmall]="true"
+          [showError]="verifyHasError(paymentForm.get('date'))"
+          [errorMessage]="getErrorMessage('Data', paymentForm.get('date'))"
+        ></app-form-input>
+      </div>
+    </div>
+    <div class="payment-form-row">
+      <app-form-input
+        class="payment-form-input"
+        formControlName="title"
+        inputId="payment-title"
+        label="Título"
+      ></app-form-input>
+    </div>
+
+    <div class="form-actions">
+      <app-button
+        buttonId="button-cancel-form-modal"
+        class="form-actions-btn"
+        type="button"
+        variant="secondary"
+        [handleClick]="closeModal"
+      >
+        Cancelar
+      </app-button>
+      <app-button
+        buttonId="button-submit-form-modal"
+        class="form-actions-btn"
+        [disabled]="!paymentForm.valid"
+      >
+        Salvar
+      </app-button>
+    </div>
+  </form>
+</app-modal>
