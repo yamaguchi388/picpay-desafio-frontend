@@ -8,7 +8,7 @@ import { DeleteModal, FormModal } from "../components";
 export const MyPaymentsLayout = (): ReactElement => {
   const { handlers, state } = useMyPayments();
   return (
-    <BaseLayout>
+    <BaseLayout title="Meus pagamentos">
       <ButtonContainer>
         <Button onClick={handlers.handleOpenModal} width={13} mb={2}>
           ADICIONAR PAGAMENTO
