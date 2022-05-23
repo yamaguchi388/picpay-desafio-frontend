@@ -34,8 +34,6 @@ export const useTasks = () => {
     api
       .fetchTasks(params)
       .then((response) => {
-        console.log(pagination);
-
         if (pagination._page > 1) {
           setTasks((currentTasks) => ({
             ...currentTasks,

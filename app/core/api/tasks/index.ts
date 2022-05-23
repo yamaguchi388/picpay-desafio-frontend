@@ -12,7 +12,6 @@ export const fetchTasks = async (
 
 export const fetchTaskById = async (id: number): Promise<ITasksData> => {
   const { data } = await request.get(`${URI}/${id}`);
-  console.log("BY ID TASK", data);
 
   return data;
 };
