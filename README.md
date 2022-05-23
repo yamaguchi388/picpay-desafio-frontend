@@ -20,17 +20,28 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 
 ## Setup do projeto
 
-- Angular CLI: 12.1.4
-- Node: 12.20.2
-- Angular: 12.1.4
+- create-next-app: 12.1.6
+- Node: 16.15.0
+- React: 18.1.0,
+- Next JS: 12.1.6,
+- Jest: 28.1.0
+- @testing-library/jest-dom: ^5.16.4,
+- @testing-library/react: ^13.2.0,
+- @testing-library/user-event: ^14.2.0,
 
 A utilização do Angular e Node nas versões acima **é obrigatória** exceto nas vagas direcionadas à React.
 
 ## Como Rodar?
 
-- Instale as dependências usando o comando `npm install`
-- Na raiz do repositório, rode este comando `npm start` para iniciar o servidor de desenvolvimento.
+- Instale as dependências usando o comando `npm install/ yarn install`
+- Na raiz do repositório, rode este comando `npm run dev/yarn dev` para iniciar o servidor de desenvolvimento.
 - A Aplicação estará disponível na porta `http://localhost:3000/`
+
+<br/>
+
+## Como Rodar os testes?
+
+- Na raiz do repositório, rode este comando `npm test/yarn test` para iniciar o test runner com coverage.
 
 <br/>
 
@@ -57,7 +68,7 @@ Para o seu desafio ser mais interativo, estamos utilizando um mock de API, chama
 **1 -** Como instalar? <br/>
 `npm install -g json-server`
 
-**2 -** e para rodar (deixar aberto em uma outra aba do terminal, para que ele fique escutando suas ações de CRUD!), digite o seguinte comando na RAÍZ do projeto: `npm run api`
+**2 -** e para rodar (deixar aberto em uma outra aba do terminal, para que ele fique escutando suas ações de CRUD!), digite o seguinte comando na RAÍZ do projeto: `npm run api/yarn run api`
 
 - A API estará disponível na porta `http://localhost:3004/`
 
