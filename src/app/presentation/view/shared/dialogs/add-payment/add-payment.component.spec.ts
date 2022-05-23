@@ -11,7 +11,7 @@ describe('AddPaymentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SharedModule, TranslateModule.forRoot()],
+      imports: [TranslateModule.forRoot(), SharedModule],
       providers: [{ provide: MatDialogRef, useValue: {} }],
     }).compileComponents();
   });
@@ -27,19 +27,19 @@ describe('AddPaymentComponent', () => {
   });
 
   it('form invalid when empty', () => {
-    expect(component.paymentForm.get(['user', 'title'])?.valid).toBeTruthy();
+    expect(component.paymentForm.controls['title'].valid).toBeTruthy();
     expect(component.paymentForm.valid).toBeFalsy();
   });
 
   it('title field validity', () => {
-    const title = component.paymentForm.get(['user', 'title']);
-    expect(title?.valid).toBeTruthy();
+    const title = component.paymentForm.controls['title'];
+    expect(title.valid).toBeTruthy();
 
-    title?.setValue('');
-    expect(title?.valid).toBeTruthy();
+    title.setValue('');
+    expect(title.valid).toBeTruthy();
 
-    title?.setValue('Title');
-    expect(title?.valid).toBeTruthy();
+    title.setValue('Title');
+    expect(title.valid).toBeTruthy();
   });
 
   it('value field validity', () => {
@@ -53,15 +53,15 @@ describe('AddPaymentComponent', () => {
     expect(value.valid).toBeTruthy();
   });
 
-  it('user field validity', () => {
-    const user = component.paymentForm.get(['user', 'name']);
-    expect(user?.valid).toBeFalsy();
+  it('name field validity', () => {
+    const name = component.paymentForm.controls['name'];
+    expect(name.valid).toBeFalsy();
 
-    user?.setValue('');
-    expect(user?.valid).toBeFalsy();
+    name.setValue('');
+    expect(name.valid).toBeFalsy();
 
-    user?.setValue('Nomezinho');
-    expect(user?.valid).toBeTruthy();
+    name.setValue('Nomezinho');
+    expect(name.valid).toBeTruthy();
   });
 
   it('date field validity', () => {

@@ -25,18 +25,21 @@ describe('UserInfoComponent', () => {
   });
 
   it('should display user name and nick', () => {
-    const user = {
+    const payment = {
       id: '10',
       name: 'John Doe',
-      nick: 'jdoe',
+      username: 'jdoe',
       email: 'email@email.com',
       title: 'titulozinho',
+      value: 123.45,
+      date: new Date(),
+      isPayed: true,
     };
-    component.user = user;
+    component.payment = payment;
     fixture.detectChanges();
     const userName = fixture.nativeElement.querySelector('.username')!;
     const userNick = fixture.nativeElement.querySelector('.nickname')!;
-    expect(userName.textContent).toContain(user.name);
-    expect(userNick.textContent).toContain(user.nick);
+    expect(userName.textContent).toContain(payment.name);
+    expect(userNick.textContent).toContain(payment.username);
   });
 });
