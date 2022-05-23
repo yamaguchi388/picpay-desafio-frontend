@@ -1,0 +1,24 @@
+<div class="main-container">
+  <app-toolbar></app-toolbar>
+
+  <div class="profile-container">
+    <h1 class="title">Meu perfil</h1>
+
+    <div class="profile-body">
+      <div class="image-col">
+        <app-user-photo [name]="user?.name" size="large"></app-user-photo>
+      </div>
+      <div class="content-col">
+        <div class="info">
+          <p class="info-title">Nome:</p>
+          <p class="info-content">{{ user?.name }}</p>
+        </div>
+
+        <div class="info">
+          <p class="info-title">Email:</p>
+          <p class="info-content">{{ user?.email }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
