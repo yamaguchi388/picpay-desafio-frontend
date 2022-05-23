@@ -17,7 +17,6 @@ export const MyPaymentsLayout = (): ReactElement => {
       <Table
         rows={state.memoizedTasks?.data || []}
         onEdit={handlers.handleEditTask}
-        page={state.pagination._page}
         onNextPage={handlers.handleNextPage}
         loading={state.tasks.loading}
         onDeleteModal={handlers.handleDeleteModal}

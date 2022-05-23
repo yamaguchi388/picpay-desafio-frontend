@@ -5,6 +5,5 @@ export interface ITableProps {
   onEdit: (id: number) => void;
   onNextPage: () => void;
   onDeleteModal: (payment: ITasksData) => void;
-  page: number;
   loading: boolean;
 }
