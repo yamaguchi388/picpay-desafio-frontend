@@ -38,10 +38,10 @@ describe("<Input />", () => {
   it("should correctly render with change", async () => {
     const input = screen.getByRole("textbox");
 
-    await userEvent.type(input, "test-unit");
+    await userEvent.type(input, "unit-test");
 
     expect(input).toBeInTheDocument();
-    expect(input).toHaveValue("test-unit");
+    expect(input).toHaveValue("unit-test");
   });
 
   it("should correctly render with type password", async () => {
@@ -49,10 +49,10 @@ describe("<Input />", () => {
 
     const input = getByRole("textbox");
 
-    await userEvent.type(input, "test-unit-password");
+    await userEvent.type(input, "unit-test-password");
 
     expect(input).toBeInTheDocument();
-    expect(input).toHaveValue("test-unit-password");
+    expect(input).toHaveValue("unit-test-password");
   });
 
   it("should correctly render with toggle type", async () => {
@@ -62,11 +62,11 @@ describe("<Input />", () => {
 
     const input = getByRole("textbox");
 
-    await userEvent.type(input, "test-unit-password");
+    await userEvent.type(input, "unit-test-password");
     await userEvent.click(input);
 
     expect(input).toBeInTheDocument();
-    expect(input).toHaveValue("test-unit-password");
+    expect(input).toHaveValue("unit-test-password");
     expect(togglePassword).toBeCalled();
   });
 

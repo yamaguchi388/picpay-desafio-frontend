@@ -2,12 +2,12 @@ import { decrypt, encrypt } from ".";
 
 describe("Crypto", () => {
   it("should correctly encrypt data", () => {
-    const encryptData = encrypt("test-unit");
-    expect(encryptData).toBe("dGVzdC11bml0");
+    const encryptData = encrypt("unit-test");
+    expect(encryptData).toBe("dW5pdC10ZXN0");
   });
 
   it("should correctly decrypt data", () => {
-    const decryptData = decrypt("dGVzdC11bml0");
-    expect(decryptData).toBe("test-unit");
+    const decryptData = decrypt("dW5pdC10ZXN0");
+    expect(decryptData).toBe("unit-test");
   });
 });
