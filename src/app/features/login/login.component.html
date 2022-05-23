@@ -1,0 +1,39 @@
+<div class="login-container">
+  <div class="login-content-left">
+    <img id="login-logo-img" class="login-logo-img" src="../../../assets/img/payfriends.svg" alt="Logo da Payfriends" />
+
+    <h1 class="login-title">Bem vindo de volta</h1>
+
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
+      <app-form-input
+        class="login-form-input"
+        formControlName="email"
+        inputId="login-email"
+        label="Email"
+        [showError]="verifyHasError(loginForm.get('email'))"
+        [errorMessage]="getErrorMessage('Email', loginForm.get('email'))"
+      ></app-form-input>
+
+      <app-form-input
+        class="login-form-input"
+        formControlName="password"
+        inputId="login-password"
+        label="Senha"
+        [showError]="verifyHasError(loginForm.get('password'))"
+        type="password"
+        [errorMessage]="getErrorMessage('Senha', loginForm.get('password'))"
+      ></app-form-input>
+
+      <app-button id="login-submit-btn" [disabled]="!loginForm.valid">Entrar</app-button>
+    </form>
+
+    <div class="login-error-container" *ngIf="hasLoginError">
+      Email ou senha incorretos.
+    </div>
+
+  </div>
+
+  <div class="login-content-right">
+    <img id="login-welcome-img" class="login-welcome-img" src="../../../assets/img/welcome.svg" alt="Homem em pé acessando um app de finanças em seu celular. Ele está usando uma blusa azul, calça azul e um tênis branco. O ambiente possui vegetação, um poste e um banco para sentar." />
+  </div>
+</div>
