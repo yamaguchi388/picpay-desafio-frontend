@@ -22,6 +22,7 @@ import { of } from 'rxjs';
 import { PaymentService } from 'src/app/services/paymentService/payment.service';
 import { AddInsertPaymentsComponent } from './add-insert-payments/add-insert-payments.component';
 import { DeletePaymentsComponent } from './delete-payments/delete-payments.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('FetchPaymentsComponent', () => {
   let component: FetchPaymentsComponent;
@@ -92,7 +93,8 @@ describe('FetchPaymentsComponent', () => {
         { provide: PaymentService, useValue: paymentServiceStub },
         { provide: MatDialog, useValue: matDialogStub },
         { provide: MatSnackBar, useValue: matSnackBarStub }
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     fixture = TestBed.createComponent(FetchPaymentsComponent);
     component = fixture.componentInstance;

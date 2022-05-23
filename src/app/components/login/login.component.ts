@@ -36,6 +36,10 @@ export class LoginComponent implements OnInit {
       ([user]) => {
         this.authService.setUser(user);
         this.router.navigate(['payments']);
+        this.snackbar.open('Login efetuado com sucesso!', 'Fechar', {
+          duration: 2000,
+          panelClass: ['custom-snackbar'],
+        });
       },
       (err: HttpErrorResponse) => {
         this.snackbar.open('Email ou Senha incorretos', 'Fechar', {

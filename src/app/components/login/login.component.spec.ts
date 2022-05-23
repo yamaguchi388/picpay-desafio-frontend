@@ -20,20 +20,9 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 import { LoginComponent } from './login.component';
 
 
-const authServiceStub = {
-  authenticate(email: string, password: string) {
-    const userResponse = {
-      email: 'teste',
-      password: 'teste',
-    };
-    return userResponse;
-  }
-};
-
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  // let authService: AuthService;
   let authService: jasmine.SpyObj<AuthService>;
   let snackbarSpy: jasmine.Spy;
   let routerSpy = {navigate: jasmine.createSpy('navigate')};
@@ -45,6 +34,15 @@ describe('LoginComponent', () => {
     name: 'usuario',
     email: 'usuario@gmail.com',
     password: 'usuario',
+  };
+  const authServiceStub = {
+    authenticate(email: string, password: string) {
+      const userResponse = {
+        email: 'teste',
+        password: 'teste',
+      };
+      return userResponse;
+    }
   };
 
   beforeEach(() => {
@@ -77,9 +75,7 @@ describe('LoginComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     fixture = TestBed.createComponent(LoginComponent);
-    // authService = TestBed.inject(AuthService);
     snackbarSpy = spyOn(TestBed.inject(MatSnackBar), 'open');
-    // authService = jasmine.createSpyObj(['setUser', 'login']);
     component = fixture.componentInstance;
 
     fixture.detectChanges();
@@ -90,12 +86,8 @@ describe('LoginComponent', () => {
   });
 
   it('should login', () => {
-    // const mockLoginForm = { email: 'usuario@gmail.com', password: 'usuario' };
     component.login();
     authService = jasmine.createSpyObj(['setUser', 'authenticate']);
-    // authService.authenticate.and.returnValue(of([mockUser]));
-
-    // component.loginForm.setValue(mockLoginForm);
     component.loginForm.controls.email.setValue('usuario@gmail.com');
     component.loginForm.controls.password.setValue('usuario');
     expect(authService.setUser).toHaveBeenCalledWith(mockUser);
