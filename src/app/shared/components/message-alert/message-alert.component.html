@@ -1,0 +1,8 @@
+<div
+  class="message-alert"
+  [class.success]="type === 'success'"
+  [class.error]="type === 'error'"
+  *ngIf="showMessage"
+>
+  <ng-content></ng-content>
+</div>

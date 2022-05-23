@@ -1,0 +1,26 @@
+.user-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #9FDAAF;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &.img-small {
+    width: 45px;
+    height: 45px;
+    font-size: 2rem;
+  }
+
+  &.img-large {
+    width: 160px;
+    height: 160px;
+    font-size: 8rem;
+  }
+
+  &:hover {
+    background-color: #85B692;
+  }
+}

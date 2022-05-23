@@ -1,0 +1,16 @@
+<button
+  [id]="buttonId"
+  class="custom-button"
+  [ngClass]="{
+    'btn-primary': variant === 'primary',
+    'btn-secondary': variant === 'secondary',
+    'btn-transparent': variant === 'transparent'
+  }"
+  [class.small]="small"
+  [attr.aria-label]="ariaLabel"
+  [type]="type"
+  (click)="handleClick ? handleClick() : ''"
+  [disabled]="disabled"
+>
+  <ng-content></ng-content>
+</button>

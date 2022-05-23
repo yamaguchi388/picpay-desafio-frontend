@@ -1,0 +1,19 @@
+<div class="group">
+  <div class="search-input">
+    <input
+      id="search-input"
+      type="text"
+      [(ngModel)]="value"
+      (ngModelChange)="onChange()"
+      [placeholder]="placeholder"
+      [disabled]="searchCallbackLoading"
+    />
+    <img
+      id="search-icon"
+      src="../../../../assets/icons/search.svg"
+      alt="Ícone de pesquisa do input de pesquisa"
+    />
+  </div>
+
+  <app-spin-loader *ngIf="searchCallbackLoading"></app-spin-loader>
+</div>

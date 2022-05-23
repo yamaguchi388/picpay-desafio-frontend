@@ -1,0 +1,40 @@
+<div class="toolbar">
+  <img
+    id="toolbar-logo-img"
+    class="logo-img"
+    src="../../../../assets/img/payfriends-white.svg"
+    alt="Logo da Payfriends"
+    tabindex="0"
+    (keyup.enter)="goToHome()"
+    (click)="goToHome()"
+  />
+  <div class="user-area">
+    <app-user-photo
+      tabindex="0"
+      aria-label="Foto do usuário logado"
+      [name]="user?.name"
+      (keyup.enter)="onShowUserOptions()"
+      (click)="onShowUserOptions()"
+    ></app-user-photo>
+    <div
+      id="user-options-dropdown"
+      class="dropdown-menu"
+      *ngIf="showUserOptions"
+    >
+      <app-button
+        buttonId="menu-profile-btn"
+        variant="transparent"
+        [handleClick]="goToProfilePage"
+      >
+        Ver perfil
+      </app-button>
+      <app-button
+        buttonId="menu-logout-btn"
+        variant="transparent"
+        [handleClick]="logout"
+      >
+        Logout
+      </app-button>
+    </div>
+  </div>
+</div>

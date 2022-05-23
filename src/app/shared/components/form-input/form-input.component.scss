@@ -1,0 +1,44 @@
+.input-group {
+  position: relative;
+  width: 100%;
+
+  & > input {
+    background: none;
+    height: 56px;
+    width: 100%;
+    padding: 2rem 1.6rem 1rem;
+    border: 1px solid #0000001F;
+    border-radius: 4px;
+    color: #000000DE;
+    font-size: 1.6rem;
+
+    &.has-error {
+      border-color: #C73D1E;
+    }
+
+    &.has-error ~ label {
+      color: #C73D1E;
+    }
+
+    &:focus ~ label,
+    &.has-value ~ label {
+      top: 4px;
+      font-size: 1.2rem;
+    }
+  }
+
+  & > label {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    font-size: 1.6rem;
+    margin-left: 1.6rem;
+    transition: 300ms ease all;
+    pointer-events: none;
+
+    &.small {
+      top: 4px;
+      font-size: 1.2rem;
+    }
+  }
+}

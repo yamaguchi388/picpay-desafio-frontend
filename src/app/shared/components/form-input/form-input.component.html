@@ -1,0 +1,14 @@
+<div class="input-group" (blur)="onBlur()">
+  <input
+    [attr.id]="inputId"
+    [class.has-value]="value?.length > 0"
+    [class.has-error]="showError"
+    [attr.aria-invalid]="showError"
+    [type]="type"
+    [(ngModel)]="value"
+    [disabled]="!!disabled"
+    (blur)="onBlur()"
+  />
+  <label [class.small]="labelSmall" [attr.for]="inputId">{{ label }}</label>
+  <app-form-field-error-msg [showError]="showError" [message]="errorMessage"></app-form-field-error-msg>
+</div>

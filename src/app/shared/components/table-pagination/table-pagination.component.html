@@ -1,0 +1,36 @@
+<div class="table-pagination">
+  <app-button
+    buttonId="button-arrow-left-change-page"
+    ariaLabel="Decrementar a página da tabela de pagamentos"
+    [small]="true"
+    variant="transparent"
+    [handleClick]="changePaginationLeft"
+    [disabled]="currentPage === 1"
+  >
+    <img id="search-icon" src="../../../../assets/icons/arrow-left.svg" alt="Ícone de seta para esquerda da paginação" />
+  </app-button>
+
+  <app-button
+    [buttonId]="generateButtonId(page)"
+    ariaLabel="Mudar a página da tabela de pagamentos"
+    [small]="true"
+    [variant]="(page+1) === currentPage ? 'primary' : 'transparent'"
+    (click)="changePagination(page + 1)"
+    *ngFor="let page of pages"
+  >
+    <span class="text-btn-page">
+      {{ page + 1 }}
+    </span>
+  </app-button>
+
+  <app-button
+    buttonId="button-arrow-right-change-page"
+    ariaLabel="Incrementar a página da tabela de pagamentos"
+    [small]="true"
+    variant="transparent"
+    [handleClick]="changePaginationRight"
+    [disabled]="currentPage === numberOfPages"
+  >
+    <img id="search-icon" src="../../../../assets/icons/arrow-right.svg" alt="Ícone de seta para a direita da paginação" />
+  </app-button>
+</div>

@@ -1,0 +1,9 @@
+<div
+  [ngClass]="{
+    'img-small': size === 'small',
+    'img-large': size === 'large'
+  }"
+  class="user-photo"
+>
+  {{ name?.charAt(0).toLocaleUpperCase() }}
+</div>
