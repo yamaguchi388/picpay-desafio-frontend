@@ -1,0 +1,39 @@
+<div class="payment" [class]="index % 2 === 1 ? 'even' : ''" (mouseenter)="showActions = true" (mouseleave)="showActions = false">
+    <div class="payment__body">
+        <div class="payment__user">
+            <p class="payment__user__name"> {{ task.name }} </p>
+            <p class="payment__user__username"> @{{ task.username }} </p>
+        </div>
+
+        <div class="payment__title">
+            <p> {{ task.title }} </p>
+        </div>
+
+        <div class="payment__date">
+            <p class="payment__date__date"> {{ task.date.toString() | dateForm }} </p>
+            <p class="payment__date__hour"> {{ task.date.toString() | dateForm: 'hour' }} </p>
+        </div>
+
+        <div class="payment__value">
+            <p> {{ task.value | currencyBrl }} </p>
+        </div>
+
+        <div class="payment__ispayed">
+            <input type="checkbox" [checked]="task.isPayed" readonly>
+            <span class="checkmark"></span>
+        </div>
+
+        <div class="payment__actions" *ngIf="showActions">
+            <div class="edit">
+                <button (click)="edit.emit()"> 
+                    <img src="assets/imgs/icons/edit.svg">     
+                </button>
+            </div>
+            <div class="delete">
+                <button (click)="delete.emit()"> 
+                    <img src="assets/imgs/icons/delete.svg">     
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
