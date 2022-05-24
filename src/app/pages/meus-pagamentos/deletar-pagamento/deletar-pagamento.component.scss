@@ -1,0 +1,47 @@
+@import '../../../../assets/styles/index';
+
+.background {
+    @include flex($justify: center, $align: center);
+    position: absolute;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    top: 0;
+    width: 100%;
+
+    .modal {
+        background-color: $white-background;
+        height: auto;
+        padding: 2rem;
+        width: 25%;
+
+        &__header {
+            margin-bottom: 3rem;
+
+            h3 {
+                font-size: 1.95rem;
+                font-weight: bold;
+            }
+        }
+
+        &__body {
+            p {
+                font-size: 1rem;
+                font-family: 'Roboto', sans-serif;
+
+                &+p {
+                    margin-top: 1rem;
+                }
+            }
+        }
+
+        &__footer {
+            @include flex($justify: space-between, $align: center);
+            margin-top: 3rem;
+            width: 100%;
+
+            button {
+                width: 47.5%;
+            }
+        }
+    }
+}

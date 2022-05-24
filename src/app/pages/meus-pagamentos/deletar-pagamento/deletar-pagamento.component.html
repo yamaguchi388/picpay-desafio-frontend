@@ -1,0 +1,25 @@
+<div class="background">
+    <div class="modal">
+        <div class="modal__header">
+            <h3 class="title"> Excluir pagamento </h3>
+        </div>
+
+        <div class="modal__body">
+            <p> Usuário: @{{ task.username }} </p>
+            <p> Data: {{ task.date }} </p>
+            <p> Valor: {{ task.value | currencyBrl }} </p>
+        </div>
+
+        <div class="modal__footer">
+            <button (click)="closeModal.emit()"
+                class="secondary-button">
+                Cancelar
+            </button>
+
+            <button class="primary-button"
+                (click)="deleteTask(task.id)"> 
+                Salvar
+            </button>
+        </div>
+    </div>
+</div>
