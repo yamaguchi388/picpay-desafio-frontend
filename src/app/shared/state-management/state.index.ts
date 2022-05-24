@@ -4,6 +4,7 @@ import { AppError } from "../models/app-error.interface";
 import { Pagination } from "../models/pagination.interface";
 import { Task } from "../models/task.interface";
 import { TasksIndex } from "../models/tasks-index.interface";
+import { accountReducer } from "./reducers/account.reducer";
 import { errorReducer } from "./reducers/error.reducer";
 import { paginationReducer } from "./reducers/pagination.reducer";
 import { taskReducer } from "./reducers/task.reducer";
@@ -14,6 +15,7 @@ interface AppState {
     task: Task;
     error: AppError;
     pagination: Pagination;
+    account: Account;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -21,4 +23,5 @@ export const reducers: ActionReducerMap<AppState> = {
     task: taskReducer,
     error: errorReducer,
     pagination: paginationReducer,
+    account: accountReducer
 }
