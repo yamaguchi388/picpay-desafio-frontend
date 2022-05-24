@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { TASK_EMPTY } from 'src/app/shared/constants/task-empty.constant';
 import { Pagination } from 'src/app/shared/models/pagination.interface';
 import { Task } from 'src/app/shared/models/task.interface';
 import { TasksIndex } from 'src/app/shared/models/tasks-index.interface';
-import { GoToPage, NextPage, PreviousPage } from 'src/app/shared/state-management/actions/pagination.actions';
+import { Start, Stop } from 'src/app/shared/state-management/actions/loading.actions';
+import { GoToPage, NextPage, PreviousPage, SetTotal } from 'src/app/shared/state-management/actions/pagination.actions';
 import { AddTask } from 'src/app/shared/state-management/actions/task.actions';
 import { LoadTasks } from 'src/app/shared/state-management/actions/tasks.actions';
 
@@ -19,6 +21,7 @@ export class MeusPagamentosComponent implements OnInit {
     page: 1,
     total: 0
   };
+  empty: Task = TASK_EMPTY;
   tasks: Task[] = [];
   columns = [
     {
@@ -54,7 +57,8 @@ export class MeusPagamentosComponent implements OnInit {
   constructor(
     private tasksStore: Store<{ tasks: TasksIndex }>,
     private taskStore: Store<{ task: Task }>,
-    private paginationStore: Store<{ pagination: Pagination }>
+    private paginationStore: Store<{ pagination: Pagination }>,
+    private loadingStore: Store<{ loading: boolean }>
   ) { }
 
   ngOnInit(): void {
@@ -63,8 +67,16 @@ export class MeusPagamentosComponent implements OnInit {
 
   getTasks(): void {
     this.tasksStore.pipe(select('tasks')).subscribe(
-      ({ tasks }: TasksIndex) => {
+      ({ tasks, total }: TasksIndex) => {
+        const pagination: Pagination = {
+          limit: this.pagination.limit,
+          page: this.pagination.page,
+          total
+        }
+        this.pagination = pagination;
         this.tasks = tasks;
+
+        this.loadingStore.dispatch(Stop());
       }
     );
   }
@@ -90,6 +102,7 @@ export class MeusPagamentosComponent implements OnInit {
   }
 
   loadTasks(): void {
+    this.loadingStore.dispatch(Start());
     this.paginationStore.pipe(select('pagination')).subscribe(
       ({page, limit}: Pagination) => {
         this.pagination.page = page;
@@ -97,6 +110,22 @@ export class MeusPagamentosComponent implements OnInit {
         this.tasksStore.dispatch(LoadTasks({ page, limit }));
       }
     );
+  }
+
+  loadTasksWithUser(username: string): void {
+    this.loadingStore.dispatch(Start());
+    if(username === '') {
+      this.loadTasks();
+    }
+    else {
+      this.paginationStore.pipe(select('pagination')).subscribe(
+        ({page, limit}: Pagination) => {
+          this.pagination.page = page;
+          this.pagination.limit = limit;
+          this.tasksStore.dispatch(LoadTasks({ page, limit, username }));
+        }
+      );
+    }
   }
 
   orderBy(by: string): void {

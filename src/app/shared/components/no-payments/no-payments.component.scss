@@ -1,0 +1,8 @@
+@import '../../../../assets/styles/index';
+
+.container {
+    @include flex($direction: column, $justify: center, $align: center);
+    background: $white-background;
+    height: 510px;
+    width: 100%;
+}

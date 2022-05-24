@@ -11,6 +11,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PagamentosFormComponent } from '../pagamentos-form/pagamentos-form.component';
 import { DeletarPagamentoComponent } from '../deletar-pagamento/deletar-pagamento.component';
+import { NoPaymentsModule } from 'src/app/shared/components/no-payments/no-payments.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DeletarPagamentoComponent } from '../deletar-pagamento/deletar-pagament
   ],
   imports: [
     CurrencyMaskModule,
+    NoPaymentsModule,
     CommonModule,
     HeaderModule,
     PaymentModule,

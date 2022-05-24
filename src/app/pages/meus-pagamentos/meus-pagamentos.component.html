@@ -9,6 +9,17 @@
 
     <div class="my-payments">
         <div class="my-payments__header">
+            <div class="header__filter">
+                <input type="text"
+                    placeholder="pesquisar por usuário"
+                    (keyup.enter)="loadTasksWithUser($event.target.value)"> 
+
+                <button> 
+                    <img src="assets/imgs/icons/filter.svg" alt="">
+                    filtrar 
+                </button>
+            </div>
+
             <div class="header__pagination">
                 <label for="limits">Exibir</label>
                 <select name="limits" (change)="changeLimit($event.target.value)">
@@ -34,7 +45,7 @@
             </button>
         </div>
     
-        <div>
+        <div *ngIf="tasks[0] !== empty">
             <app-payment *ngFor="let task of tasks; let i = index" 
                 [task]="task"
                 [index]="i"
@@ -42,6 +53,10 @@
                 (edit)="editModal(task)">
             </app-payment>
         </div>
+    
+        <app-no-payments *ngIf="tasks.length === 1 && tasks[0] === empty"
+            (goBackClick)="loadTasks()">
+        </app-no-payments>
     </div>
 </div>
 

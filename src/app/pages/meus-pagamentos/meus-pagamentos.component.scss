@@ -17,6 +17,27 @@
             @include flex($justify: space-between, $align: center);
             padding: 1rem;
     
+            .header__filter {
+                @include flex($justify: center, $align: center);
+    
+                button {
+                    @include flex($justify: center, $align: center);
+                    padding: .45rem .5rem .45rem .5rem;
+                    background: #E6ECF0;
+                    border: none;
+                    border-radius: 6px;
+    
+                    img {
+                        margin-right: .25rem;
+                    }
+                }
+    
+                input {
+                    margin-right: 1rem;
+                    height: auto;
+                }
+            }
+    
             .header__pagination {
                 @include flex($justify: space-between, $align: center);
     
