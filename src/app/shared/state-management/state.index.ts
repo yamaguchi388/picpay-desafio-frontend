@@ -7,6 +7,7 @@ import { TasksIndex } from "../models/tasks-index.interface";
 import { accountReducer } from "./reducers/account.reducer";
 import { errorReducer } from "./reducers/error.reducer";
 import { loadingReducer } from "./reducers/loading.reducer";
+import { loginReducer } from "./reducers/login.reducer";
 import { paginationReducer } from "./reducers/pagination.reducer";
 import { taskReducer } from "./reducers/task.reducer";
 import { tasksReducer } from "./reducers/tasks.reducer";
@@ -18,6 +19,7 @@ interface AppState {
     pagination: Pagination;
     account: Account;
     loading: boolean;
+    login: boolean;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -26,5 +28,6 @@ export const reducers: ActionReducerMap<AppState> = {
     error: errorReducer,
     pagination: paginationReducer,
     account: accountReducer,
-    loading: loadingReducer
+    loading: loadingReducer,
+    login: loginReducer
 }
