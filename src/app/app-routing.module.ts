@@ -7,6 +7,10 @@ const routes: Routes = [
         path: 'meus-pagamentos', 
         loadChildren: () => import('./pages/meus-pagamentos/module/meus-pagamentos.module').then(m => m.MeusPagamentosModule),
         resolve: [ MeusPagamentosResolver ]
+    },
+    { 
+        path: 'login', 
+        loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) 
     }
 ];
 

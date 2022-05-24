@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="login">
+
+        <img src="assets/imgs/logo_blue.svg">
+
+        <h2 class="title">Bem vindo de volta</h2>
+
+        <form [formGroup]="loginForm">
+            <div class="alert" *ngIf="unauthorized">Email ou senha incorretos</div>
+
+            <input placeholder="Email" 
+                formControlName="email"
+                type="email">
+
+            <input placeholder="Senha" 
+                formControlName="password"
+                type="password">
+        </form>
+
+        <button [disabled]="!loginForm.valid" 
+            class="primary-button"
+            (click)="login()"> 
+            Entrar 
+        </button>
+    </div>
+
+    <div class="login-figure">
+        <img src="assets/imgs/login.svg">
+    </div>
+</div>
