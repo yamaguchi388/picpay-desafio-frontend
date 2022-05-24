@@ -1,0 +1,135 @@
+<div class="background">
+    <div class="modal">
+        <div class="modal__header">
+            <h3 class="title"> {{ edit ? 'Alterar pagamento' : 'Adicionar pagamento' }} </h3>
+        </div>
+
+        <div class="modal__body">
+            <form [formGroup]="paymentForm">
+                <div class="form-group">
+                    <div class="form-field">
+                        <label for="username"> Usuário* </label>
+                        <input placeholder="nome de usuário" 
+                            formControlName="username"
+                            id="username"
+                            type="text"
+                        >
+
+                        <div *ngIf="username.invalid && (username.dirty || username.touched)"
+                            class="alert">
+                            <div *ngIf="username.errors?.['required']">
+                                preencha o nome de usuário
+                            </div>
+                            <div *ngIf="username.errors?.['maxlength']">
+                                nome de usuário pode ter no máximo 20 caracteres 
+                            </div>
+                            <div *ngIf="username.errors?.['minlength']">
+                                nome de usuário tem de ter no minimo 4 caracteres 
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-field">
+                        <label for="name"> Nome* </label>
+                        <input placeholder="nome"
+                            formControlName="name"
+                            id="name"
+                            type="text"
+                        >
+
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                            class="alert">
+                            <div *ngIf="name.errors?.['required']">
+                                preencha o nome
+                            </div>
+                            <div *ngIf="name.errors?.['maxlength']">
+                                nome pode ter no máximo 50 caracteres 
+                            </div>
+                            <div *ngIf="name.errors?.['minlength']">
+                                nome tem de ter no minimo 4 caracteres 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-field">
+                        <label for="value"> Valor* </label>
+                        <input currencyMask
+                            placeholder="valor do pagamento" 
+                            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                            formControlName="value"
+                            id="value"
+                            type="tel"
+                        >
+
+                        <div *ngIf="value.invalid && (value.dirty || value.touched)"
+                            class="alert">
+                            <div *ngIf="value.errors?.['required']">
+                                preencha o valor
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="date"> Data* </label>
+                        <input placeholder="Data*" 
+                            formControlName="date" 
+                            id="date"
+                            type="date"
+                        >
+
+                        <div *ngIf="date.invalid && (date.dirty || date.touched)"
+                            class="alert">
+                            <p *ngIf="date.errors?.['required']">
+                                preencha a data
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-field">
+                        <label for="title"> Título </label>
+                        <input placeholder="titulo do pagamento" 
+                            formControlName="title" 
+                            id="title"
+                            type="text"
+                        >
+
+                        <div *ngIf="title.invalid && (title.dirty || title.touched)"
+                            class="alert">
+                            <div *ngIf="title.errors?.['maxlength']">
+                                o título pode ter no máximo 50 caracteres 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-field form-field__checkbox">
+                        <label for="isPayed"> Pago </label>
+                        <input placeholder="Pago" 
+                            formControlName="isPayed"
+                            id="isPayed"
+                            type="checkbox"
+                        >
+                    </div>
+                </div>
+
+                
+            </form>
+        </div>
+
+        <div class="modal__footer">
+            <button (click)="closeModal.emit()"
+                class="secondary-button">
+                Cancelar
+            </button>
+
+            <button class="primary-button"
+                [disabled]="!paymentForm.valid"
+                (click)="submit()"> 
+                {{ edit ? 'Salvar' : 'Adicionar' }} 
+            </button>
+        </div>
+    </div>
+</div>

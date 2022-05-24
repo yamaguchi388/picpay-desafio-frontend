@@ -14,9 +14,6 @@ interface AppState {
     task: Task;
     error: AppError;
     pagination: Pagination;
-    login: boolean;
-    account: Account;
-    loading: boolean;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
