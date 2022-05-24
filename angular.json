@@ -30,7 +30,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/styles/index.scss"
             ],
             "scripts": [],
             "vendorChunk": true,
