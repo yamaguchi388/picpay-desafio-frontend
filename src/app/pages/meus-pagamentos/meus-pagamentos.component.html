@@ -1,16 +1,24 @@
 <app-header></app-header>
 
-<app-payment *ngFor="let task of tasks; let i = index" 
-    [task]="task"
-    [index]="i">
-</app-payment>
-
 <div class="container">
     <h2 class="title"> Meus pagamentos </h2>
+
+    <div class="add-payment">
+        <button class="primary-button" (click)="addModal()"> Adicionar pagamento </button>
+    </div>
 
     <div class="my-payments">
         <div class="my-payments__header">
             <div class="header__pagination">
+                <label for="limits">Exibir</label>
+                <select name="limits" (change)="changeLimit($event.target.value)">
+                    <option *ngFor="let limit of [].constructor(20); let i = index" 
+                        [selected]="i + 1 === pagination.limit"
+                        [value]="i + 1"> 
+                        {{ i + 1 }} 
+                    </option>
+                </select>
+
                 <app-pagination (nextPage)="nextPage()" 
                     (previousPage)="previousPage()"
                     (goToPage)="goToPage($event)"
@@ -18,12 +26,30 @@
                 </app-pagination>
             </div>
         </div>
+
+        <div class="my-payments__columns">
+            <button *ngFor="let column of columns"
+                (click)="orderBy(column.name)"> 
+                {{ column.title }} 
+            </button>
+        </div>
     
         <div>
             <app-payment *ngFor="let task of tasks; let i = index" 
                 [task]="task"
-                [index]="i">
+                [index]="i"
+                (delete)="deleteModal(task)"
+                (edit)="editModal(task)">
             </app-payment>
         </div>
     </div>
 </div>
+
+<app-deletar-pagamento *ngIf="showDeleteModal"
+    (closeModal)="closeModals()">
+</app-deletar-pagamento>
+
+<app-pagamentos-form *ngIf="showEditModal"
+    (closeModal)="closeModals()"
+    [edit]="edit">
+</app-pagamentos-form>

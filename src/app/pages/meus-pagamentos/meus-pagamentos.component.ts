@@ -4,6 +4,7 @@ import { Pagination } from 'src/app/shared/models/pagination.interface';
 import { Task } from 'src/app/shared/models/task.interface';
 import { TasksIndex } from 'src/app/shared/models/tasks-index.interface';
 import { GoToPage, NextPage, PreviousPage } from 'src/app/shared/state-management/actions/pagination.actions';
+import { AddTask } from 'src/app/shared/state-management/actions/task.actions';
 import { LoadTasks } from 'src/app/shared/state-management/actions/tasks.actions';
 
 @Component({
@@ -19,9 +20,40 @@ export class MeusPagamentosComponent implements OnInit {
     total: 0
   };
   tasks: Task[] = [];
+  columns = [
+    {
+      name: 'username',
+      direction: 1,
+      title: 'Usuário'
+    },
+    {
+      name: 'title',
+      direction: 1,
+      title: 'Título'
+    },
+    {
+      name: 'date',
+      direction: 1,
+      title: 'Data'
+    },
+    {
+      name: 'value',
+      direction: 1,
+      title: 'Valor'
+    },
+    {
+      name: 'isPayed',
+      direction: 1,
+      title: 'Pago'
+    }
+  ];
+  showDeleteModal: boolean = false;
+  showEditModal: boolean = false;
+  edit: boolean = false;
 
   constructor(
     private tasksStore: Store<{ tasks: TasksIndex }>,
+    private taskStore: Store<{ task: Task }>,
     private paginationStore: Store<{ pagination: Pagination }>
   ) { }
 
@@ -65,5 +97,46 @@ export class MeusPagamentosComponent implements OnInit {
         this.tasksStore.dispatch(LoadTasks({ page, limit }));
       }
     );
+  }
+
+  orderBy(by: string): void {
+    let order: number = this.columns.filter(x => x.name === by)[0].direction;
+
+    let sorted: Task[] = [...this.tasks];
+    sorted.sort((a, b) => {
+      return a[by] > b[by] ? 1 * order : -1 * order;
+    });
+    this.tasks = sorted;
+
+    this.columns.map(x => {
+      x.name === by ? x.direction *= -1 : x.direction = 1;
+    });
+  }
+
+  deleteModal(task: Task): void {
+    this.storeTask(task);
+    this.showDeleteModal = true;
+  }
+
+  editModal(task: Task): void {
+    this.storeTask(task);
+    this.edit = true;
+    this.showEditModal = true;
+  }
+
+  addModal(): void {
+    this.edit = false;
+    this.showEditModal = true;
+  }
+
+  closeModals(): void {
+    this.showEditModal = false;
+    this.showDeleteModal = false;
+
+    this.loadTasks();
+  }
+
+  storeTask(task: Task): void {
+    this.taskStore.dispatch(AddTask({ task }))
   }
 }

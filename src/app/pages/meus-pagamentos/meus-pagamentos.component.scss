@@ -1,0 +1,59 @@
+@import '../../../assets/styles/index';
+
+.container {
+    margin-top: 4rem;
+    padding: {
+        left: 3rem;
+        right: 3rem;
+        bottom: 3rem;
+    };
+
+    .my-payments {
+        background: $white-background;
+        border-radius: 8px;
+        margin-top: 1.5rem;
+    
+        &__header {
+            @include flex($justify: space-between, $align: center);
+            padding: 1rem;
+    
+            .header__pagination {
+                @include flex($justify: space-between, $align: center);
+    
+                label {
+                    font-size: .75rem;
+                    color: #69788C;
+                    margin-right: .5rem;
+                }
+    
+                select {
+                    height: auto;
+                    padding: .5rem 2rem .5rem .5rem;
+                }
+            }
+        }
+    
+        &__columns {
+            width: 100%;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 20% 20% 15% 10% 5% 30%;
+            width: 100%;
+            border-bottom: 2px solid #CFDCE5;
+    
+            & button {
+                @include flex($justify: flex-start, $align: center);
+                font-size: .90rem;
+                font-weight: 600;
+                background: none;
+                border: none;
+                padding: 0;
+            }
+        }
+    }
+
+    .add-payment {
+        @include flex($justify: flex-end, $align: center);
+        width: 100%;
+    }
+}
