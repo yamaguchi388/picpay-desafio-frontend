@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import 'assets/styles/index';
 
 * {
@@ -6,7 +7,64 @@
 
 html,
 body {
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif !important;
   margin: 0;
   padding: 0;
+}
+
+.basic-button {
+  border: none;
+  padding: .5rem 2rem .5rem 2rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.primary-button {
+  @extend .basic-button;
+  background: $blue-background-button;
+  color: $white-font;
+
+  &:disabled {
+    background:  #{$blue-background-button}46;
+  }
+}
+
+.secondary-button {
+  @extend .basic-button;
+  background: $grey-background-button;
+  color: $black-font;
+
+  &:disabled {
+    background:  #{$grey-background-button}46;
+  }
+}
+
+.alert {
+  color: $error-color;
+  font-weight: 600;
+}
+
+input, select {
+  border: 1px solid $grey-input-border;
+  background: transparent;
+  border-radius: 3.5px;
+  padding: .5rem;
+  height: 54px;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+
+  &.ng-dirty.ng-invalid {
+    border-left: 5px solid $error-color;
+  }
+
+  &.ng-valid.ng-dirty {
+    border-left: 5px solid $valid-color;
+  }
+}
+  
+.title {
+  font-family: 'Montserrat', sans-serif;
+  color: $dark-grey-font;
+  font-weight: 600;
+  font-size: 2rem;
 }
