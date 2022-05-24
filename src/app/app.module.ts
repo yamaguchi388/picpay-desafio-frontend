@@ -5,12 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './shared/state-management/state.index';
 import { AppRoutingModule } from './app-routing.module';
+import { LoadingModule } from './shared/components/loading/loading.module';
 
 @NgModule({
   declarations: [	
     AppComponent,
    ],
   imports: [
+    LoadingModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserModule,
