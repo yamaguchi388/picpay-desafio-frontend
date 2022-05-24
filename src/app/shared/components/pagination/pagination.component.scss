@@ -1,0 +1,22 @@
+@import '../../../../assets/styles/index';
+
+div {
+    @include flex($align: center);
+}
+
+button {
+    @include flex($align: center);
+    background: none;
+    border: none;
+
+    &+button {
+        margin-left: .15rem;
+    }
+}
+
+.current {
+    background: $blue-background-button;
+    border-radius: 6px;
+    color: $white-font;
+    padding: .3rem .55rem .3rem .55rem;
+}

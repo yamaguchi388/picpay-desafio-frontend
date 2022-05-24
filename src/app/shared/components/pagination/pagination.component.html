@@ -1,0 +1,15 @@
+<div *ngIf="pages.length > 1">
+    <button (click)="previousPages()"> 
+        <img src="assets/imgs/icons/left_arrow.svg">
+    </button>
+
+    <button *ngFor="let page of pages" 
+        (click)="goTo(page)"
+        [class]="page === currentPage ? 'current' : ''"> 
+        {{ page }} 
+    </button>
+
+    <button (click)="nextPages()">
+        <img src="assets/imgs/icons/right_arrow.svg">
+    </button>
+</div>
