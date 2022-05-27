@@ -1369,6 +1369,13 @@
   dependencies:
     enhanced-resolve "5.8.2"
 
+"@ngxs/logger-plugin@^3.7.3":
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/@ngxs/logger-plugin/-/logger-plugin-3.7.3.tgz#aa76f6243a351a83056d234028b5aec84bd559ae"
+  integrity sha512-jLNwq5hJw7W0nS7J215L1k+94jOaiI2kH41sOaN64ycuUx15FiMNJgOIj2ZqSTIaxNlacPWzcG3tZGr/FZ5Lzg==
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngxs/store@^3.7.3":
   version "3.7.3"
   resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-3.7.3.tgz#74e2878d527fc12dace343ce43fd79fa1a2645af"
