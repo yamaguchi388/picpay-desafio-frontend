@@ -1378,12 +1378,34 @@
     merge-source-map "^1.1.0"
     schema-utils "^2.7.0"
 
+"@larscom/ngx-translate-module-loader@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@larscom/ngx-translate-module-loader/-/ngx-translate-module-loader-3.0.6.tgz#870c8794ae0cae94d8c5a2fa5121f03834e1ae2c"
+  integrity sha512-YYmptdHrqSUqDaHht6K2oOD/VfKDYT/wpLr+n5jiWs/dYyfOG7DUdilSGUxAEkdOffU51y/JIjwx777KYtogEQ==
+  dependencies:
+    deepmerge ">=3.0.0"
+    tslib "^2.0.0"
+
 "@ngtools/webpack@12.1.4":
   version "12.1.4"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-12.1.4.tgz#9f7ac5e26b366831b50558bf71dd6e1689743def"
   integrity sha512-hXc8dTnRfDB7o1Pd7a07aw0rjGmVLXU28+cTHQJliosgD3obcjfZ4QPA0k97vlQMtqVJawuShRfyiUKrpsJf8Q==
   dependencies:
     enhanced-resolve "5.8.2"
+
+"@ngx-translate/core@^14.0.0":
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-14.0.0.tgz#af421d0e1a28376843f0fed375cd2fae7630a5ff"
+  integrity sha512-UevdwNCXMRCdJv//0kC8h2eSfmi02r29xeE8E9gJ1Al4D4jEJ7eiLPdjslTMc21oJNGguqqWeEVjf64SFtvw2w==
+  dependencies:
+    tslib "^2.3.0"
+
+"@ngx-translate/http-loader@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-7.0.0.tgz#905f38d8d13342621516635bf480ff9a4f73e9fc"
+  integrity sha512-j+NpXXlcGVdyUNyY/qsJrqqeAdJdizCd+GKh3usXExSqy1aE9866jlAIL+xrfDU4w+LiMoma5pgE4emvFebZmA==
+  dependencies:
+    tslib "^2.3.0"
 
 "@ngxs/logger-plugin@^3.7.3":
   version "3.7.3"
@@ -3266,6 +3288,11 @@ deep-is@^0.1.3:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.4.tgz#a6f2dce612fadd2ef1f519b73551f17e85199831"
   integrity sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==
+
+deepmerge@>=3.0.0:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
+  integrity sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==
 
 default-gateway@^4.2.0:
   version "4.2.0"

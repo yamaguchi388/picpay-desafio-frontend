@@ -1,14 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  title: string;
+export class AppComponent {
+  defaultLang: string = 'pt-br';
 
-  ngOnInit() {
-   this.title = 'Desafio Picpay Front-end';
+  // eslint-disable-next-line no-unused-vars
+  constructor(private translate: TranslateService) {
+    this.initNgxTranslateConfiguration();
+  }
+
+  initNgxTranslateConfiguration() {
+    this.translate.setDefaultLang(this.defaultLang);
+    this.translate.use(this.defaultLang);
   }
 }

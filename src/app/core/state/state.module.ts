@@ -6,7 +6,8 @@ import { environment } from '../../../environments/environment.prod';
 @NgModule({
   imports: [
     NgxsLoggerPluginModule.forRoot(),
-    NgxsModule.forRoot([], { developmentMode: !environment.production })
-  ]
+    NgxsModule.forRoot([], { developmentMode: !!environment.production })
+  ],
+  exports: [NgxsLoggerPluginModule, NgxsModule]
 })
 export class StateModule {}
