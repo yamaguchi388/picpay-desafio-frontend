@@ -1,0 +1,5 @@
+@use '/src/assets/scss/colors' as colors;
+
+mat-toolbar {
+    background-color: colors.$primary;
+}
