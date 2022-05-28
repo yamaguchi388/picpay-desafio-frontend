@@ -24,7 +24,7 @@
       {{ 'PAYMENTS.PAYMENT_TABLE.DATE' | translate }}
     </th>
     <td mat-cell *matCellDef="let element">
-      {{ element.date | date: 'mediumDate' }}
+      {{ element.date | date: 'd MMM y, h:mm:ss' }}
     </td>
   </ng-container>
 

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,6 +23,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDialogModule
   ],
   declarations: [PaymentEditDialogComponent],
-  exports: [PaymentEditDialogComponent]
+  exports: [PaymentEditDialogComponent],
+  providers: [DatePipe]
 })
 export class PaymentEditDialogModule {}
