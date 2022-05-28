@@ -1,5 +1,9 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { GetPayments } from '../actions/payment-state.actions';
+import {
+  GetPayments,
+  SetPaymentToEditOrRemove,
+  UpdatePayment
+} from '../actions/payment-state.actions';
 import { Injectable } from '@angular/core';
 import { PaymentService } from '../services/payment.service';
 import { PaymentStateModel } from '../models/payment-state.model';
@@ -8,7 +12,8 @@ import { tap } from 'rxjs/operators';
 @State<PaymentStateModel>({
   name: 'payments',
   defaults: {
-    payments: []
+    payments: [],
+    selectedPayment: null
   }
 })
 @Injectable()
@@ -18,6 +23,11 @@ export class PaymentState {
   @Selector()
   static payments(state: PaymentStateModel) {
     return state.payments;
+  }
+
+  @Selector()
+  static selectedPayment(state: PaymentStateModel) {
+    return state.selectedPayment;
   }
 
   @Action(GetPayments)
@@ -34,5 +44,23 @@ export class PaymentState {
         });
       })
     );
+  }
+
+  @Action(UpdatePayment)
+  updatePayment(ctx: StateContext<PaymentStateModel>, action: UpdatePayment) {
+    return this.paymentService.updatePayment(action.paymentUpdate);
+  }
+
+  @Action(SetPaymentToEditOrRemove)
+  setPaymentToEditOrRemove(
+    { getState, patchState }: StateContext<PaymentStateModel>,
+    action: SetPaymentToEditOrRemove
+  ) {
+    const state = getState();
+
+    patchState({
+      ...state,
+      selectedPayment: action.payment
+    });
   }
 }

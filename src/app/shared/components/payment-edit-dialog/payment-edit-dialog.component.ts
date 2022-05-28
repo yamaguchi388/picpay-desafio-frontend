@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-payment-edit-dialog',
   templateUrl: './payment-edit-dialog.component.html',
-  styleUrls: ['./payment-edit-dialog.component.scss']
+  styleUrls: ['./payment-edit-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PaymentEditDialogComponent implements OnInit {
+export class PaymentEditDialogComponent {
+  updatePaymentForm = this.formBuilder.group({
+    username: ['', Validators.required],
+    valor: ['', Validators.required],
+    date: ['', Validators.required],
+    title: ['', Validators.required]
+  });
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  constructor(private formBuilder: FormBuilder) {}
 }
