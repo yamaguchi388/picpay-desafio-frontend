@@ -1,0 +1,28 @@
+<div class="login-form">
+  <form fxLayout="column" [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Input</mat-label>
+      <input type="email" matInput formControlName="email" />
+      <mat-error *ngIf="form.controls['email'].hasError('required')"
+        >Required</mat-error
+      >
+      <mat-error *ngIf="form.controls['email'].hasError('email')"
+        >Please enter a valid email</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Input</mat-label>
+      <input type="password" matInput formControlName="password" />
+    </mat-form-field>
+    <button
+      *ngIf="!loading"
+      [disabled]="form.invalid"
+      (click)="submit()"
+      mat-raised-button
+      color="primary"
+    >
+      Primary
+    </button>
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  </form>
+</div>

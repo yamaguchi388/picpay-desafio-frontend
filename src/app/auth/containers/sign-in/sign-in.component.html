@@ -1,0 +1,14 @@
+<section class="sign-in-page">
+  <section class="login-form-wrapper">
+    <app-login-form
+      [loading]="loading$ | async"
+      (submitFormValue)="doLogin($event)"
+    ></app-login-form>
+  </section>
+  <section class="login-page-doodle">
+    <img
+      src="/assets/images/login-page/man-doing-payment.svg"
+      alt="Man doing payment"
+    />
+  </section>
+</section>

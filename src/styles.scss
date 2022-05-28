@@ -1,10 +1,15 @@
+@import './app/scss/index.scss';
+
 * {
   box-sizing: border-box;
 }
 
 html,
 body {
-  font-family: sans-serif;
-  margin: 0;
+  height: 100%;
   padding: 0;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }

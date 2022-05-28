@@ -1,0 +1,24 @@
+.sign-in-page {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  .login-form-wrapper {
+    flex: 37;
+    height: 100%;
+    background-color: var(--light-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-page-doodle {
+    flex: 63;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    img {
+      max-width: 90%;
+    }
+  }
+}
