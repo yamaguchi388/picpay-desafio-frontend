@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -24,7 +25,8 @@ export class PaymentService {
     return this.http.get<Payments>(url);
   }
 
-  updatePayment(paymentUpdate: PaymentUpdate) {
-    return this.http.patch(this.tasksUrl, paymentUpdate);
+  updatePayment(paymentUpdate: PaymentUpdate, id: number) {
+    const url: string = `${this.tasksUrl}/${id}`
+    return this.http.patch(url, paymentUpdate);
   }
 }

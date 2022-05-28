@@ -48,7 +48,7 @@ export class PaymentState {
 
   @Action(UpdatePayment)
   updatePayment(ctx: StateContext<PaymentStateModel>, action: UpdatePayment) {
-    return this.paymentService.updatePayment(action.paymentUpdate);
+    return this.paymentService.updatePayment(action.paymentUpdate, action.id);
   }
 
   @Action(SetPaymentToEditOrRemove)

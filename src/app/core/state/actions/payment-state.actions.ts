@@ -9,7 +9,7 @@ export class GetPayments {
 
 export class UpdatePayment {
   static readonly type = '[payment] updatePayment';
-  constructor(public paymentUpdate: PaymentUpdate) {}
+  constructor(public paymentUpdate: PaymentUpdate, public id: number) {}
 }
 
 export class SetPaymentToEditOrRemove {

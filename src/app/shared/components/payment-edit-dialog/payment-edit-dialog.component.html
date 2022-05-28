@@ -7,7 +7,7 @@
       <mat-grid-tile>
         <mat-form-field appearance="outline">
           <mat-label>{{ 'PAYMENTS.ADD_PAYMENT_DIALOG.USER' | translate }}</mat-label>
-          <input matInput placeholder="Placeholder" formControlName="username"/>
+          <input matInput placeholder="Placeholder" formControlName="name"/>
         </mat-form-field>
       </mat-grid-tile>
 
@@ -44,6 +44,7 @@
     color="primary"
     [mat-dialog-close]="true"
     cdkFocusInitial
+    (click)="setPaymentToUpdate()"
   >
     {{ 'PAYMENTS.ADD_PAYMENT_DIALOG.SAVE' | translate }}
   </button>
