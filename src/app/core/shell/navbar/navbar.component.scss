@@ -2,4 +2,10 @@
 
 mat-toolbar {
     background-color: colors.$primary;
+    height:90px;
+    padding: 1.2rem r0;
+}
+
+div[fxLayout="row"] {
+    width: 100%;
 }

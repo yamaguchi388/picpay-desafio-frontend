@@ -195,12 +195,12 @@
   dependencies:
     tslib "^2.2.0"
 
-"@angular/cdk@12.2.13":
-  version "12.2.13"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-12.2.13.tgz#1fdbe814adfd6b4ff906c6d9c4c6df07b83f09d8"
-  integrity sha512-zSKRhECyFqhingIeyRInIyTvYErt4gWo+x5DQr0b7YLUbU8DZSwWnG4w76Ke2s4U8T7ry1jpJBHoX/e8YBpGMg==
+"@angular/cdk@^13.3.8":
+  version "13.3.8"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-13.3.8.tgz#adbe24ae8869b2a5f2b8f10cc3fa87d87b8d6b97"
+  integrity sha512-ciLYoVxsqnA9hGJTUW74A56NjArYhFdqFYmVDimWWNYAgY7jY1gCfKq9UtixUErDi29FGSCWRbLuZ6w4q0NYnA==
   dependencies:
-    tslib "^2.2.0"
+    tslib "^2.3.0"
   optionalDependencies:
     parse5 "^5.0.0"
 
@@ -269,6 +269,13 @@
   integrity sha512-okXnhAPxfblAWSe5M/IqrSATi+ul83a9o9PWOTFR/XCVcbx+neE2IwIr1dIDKBKj91b1CFalLS+uOSkN05PNkA==
   dependencies:
     tslib "^2.2.0"
+
+"@angular/flex-layout@^13.0.0-beta.38":
+  version "13.0.0-beta.38"
+  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-13.0.0-beta.38.tgz#b0993a255ba51d2cfd16537ba8a8d88c3adf6587"
+  integrity sha512-kcWb7CcoHbvw7fjo/knizWVmSSmvaTnr8v1ML6zOdxu1PK9UPPOcOS8RTm6fy61zoC2LABivP1/6Z2jF5XfpdQ==
+  dependencies:
+    tslib "^2.3.0"
 
 "@angular/forms@~12.1.4":
   version "12.1.5"
@@ -1407,10 +1414,17 @@
   dependencies:
     tslib "^2.3.0"
 
-"@ngxs/logger-plugin@^3.7.3":
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/@ngxs/logger-plugin/-/logger-plugin-3.7.3.tgz#aa76f6243a351a83056d234028b5aec84bd559ae"
-  integrity sha512-jLNwq5hJw7W0nS7J215L1k+94jOaiI2kH41sOaN64ycuUx15FiMNJgOIj2ZqSTIaxNlacPWzcG3tZGr/FZ5Lzg==
+"@ngxs-labs/dispatch-decorator@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@ngxs-labs/dispatch-decorator/-/dispatch-decorator-4.0.2.tgz#cccdf6fc3758ce44506ff5c07f8452f3f65a84b4"
+  integrity sha512-XXdWMDsPVGt7BCIVGgvmRNXLCVcE2wAbmC32soiLfBWFzJBxVcvZ3faY7Jan7BRKLnfyCanIu6N8JZoJ2ZVEyA==
+  dependencies:
+    tslib "^2.3.0"
+
+"@ngxs/logger-plugin@^3.7.3-dev.master-b00eeb3":
+  version "3.7.3-dev.master-b00eeb3"
+  resolved "https://registry.yarnpkg.com/@ngxs/logger-plugin/-/logger-plugin-3.7.3-dev.master-b00eeb3.tgz#cc4829f6f2655d3c1e3a2ecc5d2acfee5af914da"
+  integrity sha512-0yTUfRO/FsZxYNSc38vg7W8CX/jidC9oDdt+1k47KNa8AFRqFCp9oqPyu7xkjf9qXBy92ur5UlYE/ybk6IOkeg==
   dependencies:
     tslib "^1.9.0"
 

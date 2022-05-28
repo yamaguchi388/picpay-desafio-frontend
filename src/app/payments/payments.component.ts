@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+import { GetPayments } from '../core/state/actions/payment-state.actions';
 
 @Component({
   selector: 'app-payments',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payments.component.scss']
 })
 export class PaymentsComponent implements OnInit {
-
-  constructor() { }
-
   ngOnInit(): void {
+    this.getPayments();
   }
 
+  @Dispatch()
+  getPayments() {
+    return new GetPayments({ _page: 1, _limit: 10 });
+  }
 }

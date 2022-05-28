@@ -1,3 +1,10 @@
 {
-    "MY_PAYMENTS": "Meus pagamentos"
+    "MY_PAYMENTS": "Meus pagamentos",
+    "PAYMENT_TABLE": {
+        "USER": "Usuário",
+        "TITLE": "Título",
+        "DATE": "Data",
+        "VALUE": "Valor",
+        "PAID_OUT": "PAGO"
+    }
 }

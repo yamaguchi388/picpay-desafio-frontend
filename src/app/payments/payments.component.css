@@ -1,1 +1,9 @@
-/*# sourceMappingURL=payments.component.css.map */
+.payments {
+  margin: 2rem;
+}
+.payments__title {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 2em;
+  margin-bottom: 2rem;
+}/*# sourceMappingURL=payments.component.css.map */
