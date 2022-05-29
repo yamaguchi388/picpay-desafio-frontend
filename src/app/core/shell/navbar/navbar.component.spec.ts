@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AuthComponent } from '../../auth/auth.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { NavbarComponent } from './navbar.component';
-import { ROUTES } from '../../../shared/consts/routes';
+import { ROUTES } from 'src/app/shared/consts/routes';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
 

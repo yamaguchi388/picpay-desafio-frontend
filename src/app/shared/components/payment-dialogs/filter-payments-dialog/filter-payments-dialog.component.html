@@ -14,7 +14,12 @@
       <mat-label>{{
         'PAYMENTS.FILTER_PAYMENT_DIALOG.DATE' | translate
       }}</mat-label>
-      <input matInput placeholder="Placeholder" formControlName="date" />
+      <input matInput [matDatepicker]="picker" formControlName="date"/>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
