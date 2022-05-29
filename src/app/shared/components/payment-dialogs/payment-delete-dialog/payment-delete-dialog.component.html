@@ -1,3 +1,34 @@
-<p>
-  payment-delete-dialog works!
-</p>
+<h2 mat-dialog-title>
+  {{ 'PAYMENTS.DELETE_PAYMENT_DIALOG.DELETE_PAYMENT' | translate }}
+</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-list>
+    <mat-list-item>
+      {{ 'PAYMENTS.DELETE_PAYMENT_DIALOG.USER' | translate }}:
+      {{ selectedPaymentSnapshot.name }}
+    </mat-list-item>
+    <mat-list-item>
+      {{ 'PAYMENTS.DELETE_PAYMENT_DIALOG.DATE' | translate }}:
+      {{ selectedPaymentSnapshot.date }}
+    </mat-list-item>
+    <mat-list-item>
+      {{ 'PAYMENTS.DELETE_PAYMENT_DIALOG.VALUE' | translate }}:
+      {{ selectedPaymentSnapshot.value }}
+    </mat-list-item>
+  </mat-list>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-raised-button mat-dialog-close>
+    {{ 'PAYMENTS.DELETE_PAYMENT_DIALOG.CANCEL' | translate }}
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    (click)="deletePayment()"
+  >
+    {{ 'PAYMENTS.DELETE_PAYMENT_DIALOG.SAVE' | translate }}
+  </button>
+</mat-dialog-actions>

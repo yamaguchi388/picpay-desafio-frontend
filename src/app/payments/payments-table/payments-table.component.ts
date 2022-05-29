@@ -4,7 +4,9 @@ import { Observable, of } from 'rxjs';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 import { Payment } from '../../shared/types/payments/payment.type';
+import { PaymentDeleteDialogComponent } from '../../shared/components/payment-dialogs/payment-delete-dialog/payment-delete-dialog.component';
 import { PaymentEditDialogComponent } from 'src/app/shared/components/payment-dialogs/payment-edit-dialog/payment-edit-dialog.component';
 import { PaymentState } from '../../core/state/states/payment.state';
 import { Payments } from '../../shared/types/payments/payments.type';
@@ -36,7 +38,10 @@ export class PaymentsTableComponent {
     'actions'
   ];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private notificationService: NotificationService
+  ) {}
 
   setDataSourceAttributes() {
     //this.dataSource.sort = this.sort;
@@ -55,6 +60,26 @@ export class PaymentsTableComponent {
       )
       .subscribe({
         next: () => {
+          this.notificationService.success('Pagamento atualizado');
+          this.updatePaymentsList.emit();
+        }
+      });
+  }
+
+  deletePayment(payment: Payment) {
+    of(this.setPaymentToEditOrRemove(payment))
+      .pipe(
+        switchMap(() => {
+          const dialogRef = this.dialog.open(PaymentDeleteDialogComponent, {
+            width: '405',
+            height: '325x'
+          });
+          return dialogRef.afterClosed();
+        })
+      )
+      .subscribe({
+        next: () => {
+          this.notificationService.success('Pagamento Excluido');
           this.updatePaymentsList.emit();
         }
       });

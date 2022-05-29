@@ -12,6 +12,11 @@ export class UpdatePayment {
   constructor(public paymentUpdate: PaymentUpdate, public id: number) {}
 }
 
+export class DeletePayment {
+  static readonly type = '[payment] deletePayment';
+  constructor(public id: number) {}
+}
+
 export class SetPaymentToEditOrRemove {
   static readonly type = '[payment] setPaymentToEditOrRemove';
   constructor(public payment: Payment) {}

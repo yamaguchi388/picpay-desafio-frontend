@@ -26,7 +26,12 @@ export class PaymentService {
   }
 
   updatePayment(paymentUpdate: PaymentUpdate, id: number) {
-    const url: string = `${this.tasksUrl}/${id}`
+    const url: string = `${this.tasksUrl}/${id}`;
     return this.http.patch(url, paymentUpdate);
+  }
+
+  deletePayment(id: number) {
+    const url: string = `${this.tasksUrl}/${id}`;
+    return this.http.delete(url);
   }
 }

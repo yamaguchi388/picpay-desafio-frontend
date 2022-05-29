@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
-import { PaymentEditDialogModule } from '../shared/components/payment-dialogs/payment-edit-dialog.module';
+import { PaymentEditDialogModule } from '../shared/components/payment-dialogs/payment-dialogs.module';
 import { PaymentsComponent } from './payments.component';
 import { PaymentsRoutingModule } from './payments-routing.module';
 import { PaymentsTableComponent } from './payments-table/payments-table.component';
