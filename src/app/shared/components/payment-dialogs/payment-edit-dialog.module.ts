@@ -6,7 +6,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { NgModule } from '@angular/core';
-import { PaymentEditDialogComponent } from './payment-edit-dialog.component';
+import { PaymentEditDialogComponent } from './payment-edit-dialog/payment-edit-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 

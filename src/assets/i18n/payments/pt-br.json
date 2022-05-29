@@ -15,5 +15,13 @@
         "TITLE": "Título",
         "DATE": "Data",
         "VALUE": "Valor"
+    },
+    "DELETE_PAYMENT_DIALOG": {
+        "DELETE_PAYMENT": "Excluir pagamento",
+        "CANCEL": "Cancelar",
+        "SAVE": "Salvar",
+        "USER": "Usuário",
+        "DATE": "Data",
+        "VALUE": "Valor"
     }
 }

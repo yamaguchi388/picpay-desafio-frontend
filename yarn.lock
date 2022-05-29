@@ -188,6 +188,11 @@
     "@angular-eslint/bundled-angular-compiler" "12.7.0"
     "@typescript-eslint/experimental-utils" "4.28.2"
 
+"@angular/animation@^4.0.0-beta.8":
+  version "4.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/@angular/animation/-/animation-4.0.0-beta.8.tgz#9f61b4ee84ff4e8f48abb0eb49fff02bdedccc2e"
+  integrity sha512-FYElJm/GTQenyF+cryibW4GEmVqiH4zDRvUo3dirfiz0D7fGM52QWLGlO/FkERnVncxGlcI9uyZZePEgOmMCnA==
+
 "@angular/animations@~12.1.4":
   version "12.1.5"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-12.1.5.tgz#97a765f3cef919e54bffe08dfc20000eb9b84cd3"
@@ -6005,6 +6010,13 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+ngx-toastr@^14.3.0:
+  version "14.3.0"
+  resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-14.3.0.tgz#3c366fc5ef8aa1ca8f97ae46c468cfcdf44e620d"
+  integrity sha512-d8j/sOr60w5U7rGlcKQ0Ff4u+m2NzhqU5ZdJXn7QW3aR3Zf/rY7/Fd14BmUindTOWVr2NeTYcQXCjLpir0ldpA==
+  dependencies:
+    tslib "^2.3.0"
 
 nice-try@^1.0.4:
   version "1.0.5"

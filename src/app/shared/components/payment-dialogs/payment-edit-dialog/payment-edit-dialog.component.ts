@@ -3,10 +3,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { Payment } from '../../types/payments/payment.type';
+import { Payment } from '../../../types/payments/payment.type';
 import { PaymentState } from 'src/app/core/state/states/payment.state';
 import { PaymentStateModel } from 'src/app/core/state/models/payment-state.model';
-import { PaymentUpdate } from '../../types/payments/payment-update.type';
+import { PaymentUpdate } from '../../../types/payments/payment-update.type';
 import { Store } from '@ngxs/store';
 import { UpdatePayment } from 'src/app/core/state/actions/payment-state.actions';
 

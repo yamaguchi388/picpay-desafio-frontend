@@ -6,6 +6,7 @@ import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { I18nModule } from './core/i18n/i18n/i18n.module';
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +16,9 @@ import { NgModule } from '@angular/core';
     CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    I18nModule
+    I18nModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })
