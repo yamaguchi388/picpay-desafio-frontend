@@ -3,9 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Authenticate } from './../state/actions/auth-state.actions';
 import { Authentication } from 'src/app/shared/types/authentication.type';
 import { Component } from '@angular/core';
-import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { NotificationService } from 'src/app/shared/services/notification.service';
-import { of } from 'rxjs';
+import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { switchMap } from 'rxjs/operators';
+import { ROUTES } from '../../shared/consts/routes';
 
 @Component({
   selector: 'app-auth',
@@ -20,22 +22,21 @@ export class AuthComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private store: Store,
+    private router: Router
   ) {}
 
-  handleAuthenticate() {
-    this.authenticate().subscribe({
-      error: () => this.notificationService.error('Usuario ou senha inválidos')
-    });
-  }
-
-  @Dispatch()
   authenticate() {
-    return of(new Authenticate(this.authentication));
+    this.store
+      .dispatch(new Authenticate(this.authentication))
+      .pipe(switchMap(() => this.router.navigateByUrl(ROUTES.PAYMENTS)))
+      .subscribe({
+        error: (err) => this.notificationService.error(err)
+      });
   }
 
-  get authentication() {
-    const authentication: Authentication = this.authForm.value;
-    return authentication;
+  get authentication(): Authentication {
+    return this.authForm.value as Authentication;
   }
 }

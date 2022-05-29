@@ -1,4 +1,5 @@
 export const ROUTES = {
   SHELL: 'shell',
-  PAYMENTS: 'payments'
+  PAYMENTS: 'payments',
+  AUTH: 'auth'
 };

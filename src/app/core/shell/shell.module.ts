@@ -4,6 +4,7 @@ import { LogoModule } from '../../shared/components/logo/logo.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgModule } from '@angular/core';
+import { ProfilePictureModule } from './../../shared/components/profile-picture/profile-picture.module';
 import { ShellComponent } from './shell.component';
 import { ShellRoutingModule } from './shell-routing.module';
 
@@ -14,7 +15,8 @@ import { ShellRoutingModule } from './shell-routing.module';
     ShellRoutingModule,
     MatToolbarModule,
     LogoModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ProfilePictureModule
   ]
 })
 export class ShellModule {}
