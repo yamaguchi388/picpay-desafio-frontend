@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { CreatePayment, DeletePayment } from '../actions/payment-state.actions';
 import {
   GetPayments,
+  ResetPaymentToEditOrRemove,
   SetPaymentToEditOrRemove,
   UpdatePayment
 } from '../actions/payment-state.actions';
-import { DeletePayment } from '../actions/payment-state.actions';
 import { Injectable } from '@angular/core';
 import { PaymentService } from '../services/payment.service';
 import { PaymentStateModel } from '../models/payment-state.model';
@@ -66,6 +67,11 @@ export class PaymentState {
     return this.paymentService.updatePayment(action.paymentUpdate, action.id);
   }
 
+  @Action(CreatePayment)
+  createPayment(ctx: StateContext<PaymentStateModel>, action: CreatePayment) {
+    return this.paymentService.createPayment(action.paymenCreate);
+  }
+
   @Action(DeletePayment)
   deletePayment(ctx: StateContext<PaymentStateModel>, action: DeletePayment) {
     return this.paymentService.deletePayment(action.id);
@@ -81,6 +87,18 @@ export class PaymentState {
     patchState({
       ...state,
       selectedPayment: action.payment
+    });
+  }
+
+  @Action(ResetPaymentToEditOrRemove)
+  resetPaymentToEditOrRemove(
+    { getState, patchState }: StateContext<PaymentStateModel>,
+    action: ResetPaymentToEditOrRemove
+  ) {
+    const state = getState();
+    patchState({
+      ...state,
+      selectedPayment: null
     });
   }
 }

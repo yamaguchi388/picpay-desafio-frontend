@@ -8,6 +8,7 @@ import { PaymentUpdate } from 'src/app/shared/types/payments/payment-update.type
 import { Payments } from 'src/app/shared/types/payments/payments.type';
 import { environment } from 'src/environments/environment';
 import { objectToQueryString } from 'src/app/shared/utils/object-to-query-string.util';
+import { PaymentCreate } from 'src/app/shared/types/payments/payment-create.type';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,11 @@ export class PaymentService {
   updatePayment(paymentUpdate: PaymentUpdate, id: number) {
     const url: string = `${this.tasksUrl}/${id}`;
     return this.http.patch(url, paymentUpdate);
+  }
+
+  createPayment(paymentCreate: PaymentCreate) {
+    const url: string = `${this.tasksUrl}`;
+    return this.http.post(url, paymentCreate);
   }
 
   deletePayment(id: number) {

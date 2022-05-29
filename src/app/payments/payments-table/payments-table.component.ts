@@ -59,9 +59,11 @@ export class PaymentsTableComponent {
         })
       )
       .subscribe({
-        next: () => {
-          this.notificationService.success('Pagamento atualizado');
-          this.updatePaymentsList.emit();
+        next: (dialogResult) => {
+          if (dialogResult?.success) {
+            this.notificationService.success('Pagamento atualizado');
+            this.updatePaymentsList.emit();
+          }
         }
       });
   }
@@ -78,9 +80,11 @@ export class PaymentsTableComponent {
         })
       )
       .subscribe({
-        next: () => {
-          this.notificationService.success('Pagamento Excluido');
-          this.updatePaymentsList.emit();
+        next: (dialogResult) => {
+          if (dialogResult?.success) {
+            this.notificationService.success('Pagamento Excluido');
+            this.updatePaymentsList.emit();
+          }
         }
       });
   }

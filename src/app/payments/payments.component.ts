@@ -1,13 +1,19 @@
 /* eslint-disable no-unused-vars */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import {
+  GetPayments,
+  ResetPaymentToEditOrRemove
+} from '../core/state/actions/payment-state.actions';
+import { Observable, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { GetPayments } from '../core/state/actions/payment-state.actions';
-import { Observable, Subscriber, Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { NotificationService } from '../shared/services/notification.service';
+import { PageEvent } from '@angular/material/paginator';
+import { PaymentEditDialogComponent } from '../shared/components/payment-dialogs/payment-edit-dialog/payment-edit-dialog.component';
 import { PaymentState } from '../core/state/states/payment.state';
 import { Select } from '@ngxs/store';
-import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-payments',
@@ -17,12 +23,18 @@ import { PageEvent } from '@angular/material/paginator';
 export class PaymentsComponent implements OnInit, OnDestroy {
   @Select(PaymentState.paymentQuantity) paymentQuantity$: Observable<number>;
   searchFormSubscription: Subscription;
+  pageIndex: number = 0;
+  pageSize: number = 5;
 
   searchForm: FormGroup = this.formBuilder.group({
     name: ['', Validators.required]
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.getPayments();
@@ -41,14 +53,43 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   }
 
   changePage(pageEvent: PageEvent) {
-    this.getPayments('', pageEvent.pageIndex + 1, pageEvent.pageSize);
+    this.pageIndex = pageEvent.pageIndex + 1;
+    this.pageSize = pageEvent.pageSize;
+    this.getPayments();
+  }
+
+  addPayment() {
+    this.resetPaymentToEditOrRemove();
+    const dialogRef = this.dialog.open(PaymentEditDialogComponent, {
+      width: '772px',
+      height: '395px'
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (dialogResult) => {
+        if (dialogResult?.success) {
+          this.notificationService.success('Pagamento adicionado');
+          this.getPayments();
+        }
+      },
+      error: (err) => this.notificationService.error(err)
+    });
+
+    dialogRef.afterClosed();
   }
 
   @Dispatch()
-  getPayments(name: string = '', _page: number = 0, _limit: number = 5) {
+  getPayments(name: string = '') {
+    const _page: number = this.pageIndex;
+    const _limit: number = this.pageSize;
     if (name) {
       return new GetPayments({ _page, _limit }, { name });
     }
     return new GetPayments({ _page, _limit });
+  }
+
+  @Dispatch()
+  resetPaymentToEditOrRemove() {
+    return new ResetPaymentToEditOrRemove();
   }
 }

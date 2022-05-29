@@ -1,7 +1,7 @@
 <section class="payments">
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <h1 class="payments__title">{{ 'PAYMENTS.MY_PAYMENTS' | translate }}</h1>
-    <button mat-flat-button color="primary">{{ 'PAYMENTS.ADD_PAYMENT' | translate }}</button>
+    <button mat-flat-button color="primary" (click)="addPayment()">{{ 'PAYMENTS.ADD_PAYMENT' | translate }}</button>
   </div>
 
   <mat-card>

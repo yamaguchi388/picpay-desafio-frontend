@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { I18nModule } from './core/i18n/i18n/i18n.module';
+import { MatNativeDateModule } from '@angular/material/core';
 import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -18,7 +19,8 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     I18nModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatNativeDateModule
   ],
   bootstrap: [AppComponent]
 })

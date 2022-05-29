@@ -6,5 +6,5 @@ export type Payment = {
   value: number;
   date: string;
   image: string;
-  isPayed: string;
+  isPayed: boolean;
 };

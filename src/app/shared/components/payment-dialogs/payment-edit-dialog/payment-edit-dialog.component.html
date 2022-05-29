@@ -1,34 +1,53 @@
-<h2 mat-dialog-title>
-  {{ 'PAYMENTS.ADD_PAYMENT_DIALOG.ADD_PAYMENT' | translate }}
+<h2 mat-dialog-title *ngIf="selectedPaymentSnapshot; else notSelectedPayment">
+  {{ 'PAYMENTS.ADD_PAYMENT_DIALOG.UPDATE_PAYMENT' | translate }}
 </h2>
+<ng-template #notSelectedPayment>
+  <h2 mat-dialog-title>
+    {{ 'PAYMENTS.ADD_PAYMENT_DIALOG.ADD_PAYMENT' | translate }}
+  </h2>
+</ng-template>
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="updatePaymentForm" class="payment-form">
     <mat-grid-list cols="2" rowHeight="100px">
       <mat-grid-tile>
         <mat-form-field appearance="outline">
-          <mat-label>{{ 'PAYMENTS.ADD_PAYMENT_DIALOG.USER' | translate }}</mat-label>
-          <input matInput placeholder="Placeholder" formControlName="name"/>
+          <mat-label>{{
+            'PAYMENTS.ADD_PAYMENT_DIALOG.USER' | translate
+          }}</mat-label>
+          <input matInput placeholder="Placeholder" formControlName="name" />
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile>
         <mat-form-field appearance="outline">
-          <mat-label>{{ 'PAYMENTS.ADD_PAYMENT_DIALOG.VALUE' | translate }}</mat-label>
-          <input matInput placeholder="Placeholder" formControlName="value"/>
+          <mat-label>{{
+            'PAYMENTS.ADD_PAYMENT_DIALOG.VALUE' | translate
+          }}</mat-label>
+          <input matInput placeholder="Placeholder" formControlName="value" />
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile>
         <mat-form-field appearance="outline">
-          <mat-label>{{ 'PAYMENTS.ADD_PAYMENT_DIALOG.DATE' | translate }}</mat-label>
-          <input matInput placeholder="Placeholder" formControlName="date"/>
+          <mat-label>{{
+            'PAYMENTS.ADD_PAYMENT_DIALOG.DATE' | translate
+          }}</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date"/>
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile>
         <mat-form-field appearance="outline">
-          <mat-label>{{ 'PAYMENTS.ADD_PAYMENT_DIALOG.TITLE' | translate }}</mat-label>
-          <input matInput placeholder="Placeholder" formControlName="title"/>
+          <mat-label>{{
+            'PAYMENTS.ADD_PAYMENT_DIALOG.TITLE' | translate
+          }}</mat-label>
+          <input matInput placeholder="Placeholder" formControlName="title" />
         </mat-form-field>
       </mat-grid-tile>
     </mat-grid-list>
@@ -42,9 +61,10 @@
   <button
     mat-raised-button
     color="primary"
-    [mat-dialog-close]="true"
+    [mat-dialog-close]="{success: true}"
     cdkFocusInitial
-    (click)="setPaymentToUpdate()"
+    (click)="handleForm()"
+    [disabled]="updatePaymentForm.invalid"
   >
     {{ 'PAYMENTS.ADD_PAYMENT_DIALOG.SAVE' | translate }}
   </button>

@@ -1,5 +1,6 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -23,7 +24,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatButtonModule,
     MatGridListModule,
     MatDialogModule,
-    MatListModule
+    MatListModule,
+    MatDatepickerModule
   ],
   declarations: [PaymentEditDialogComponent, PaymentDeleteDialogComponent],
   exports: [PaymentEditDialogComponent, PaymentDeleteDialogComponent],
