@@ -5,11 +5,11 @@ import {
   SetPaymentToEditOrRemove,
   UpdatePayment
 } from '../actions/payment-state.actions';
+import { DeletePayment } from '../actions/payment-state.actions';
 import { Injectable } from '@angular/core';
 import { PaymentService } from '../services/payment.service';
 import { PaymentStateModel } from '../models/payment-state.model';
 import { tap } from 'rxjs/operators';
-import { DeletePayment } from '../actions/payment-state.actions';
 
 @State<PaymentStateModel>({
   name: 'payments',

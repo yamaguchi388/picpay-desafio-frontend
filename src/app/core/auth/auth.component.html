@@ -1,1 +1,25 @@
-<p>auth works!</p>
+<mat-grid-list cols="3" rowHeight="100vh">
+  <mat-grid-tile class="form-column">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutJustify="center">
+      <app-logo [logoVariation]="'ColoredLogo'"></app-logo>
+      <h2 class="title">{{ 'AUTH.WELCOME_BACK' | translate }}</h2>
+      <form [formGroup]="authForm">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'AUTH.EMAIL' | translate }}</mat-label>
+          <input matInput formControlName="email"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'AUTH.PASSWORD' | translate }}</mat-label>
+          <input matInput type="password" formControlName="password"/>
+          <mat-icon matSuffix>eye</mat-icon>
+        </mat-form-field>
+        <button mat-flat-button color="primary" (click)="authenticate()" [disabled]="authForm.invalid">
+          {{ 'AUTH.ENTER' | translate }}
+        </button>
+      </form>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile class="logo-tile" colspan="2">
+    <app-auth-bg class="logo-tile__image"></app-auth-bg>
+  </mat-grid-tile>
+</mat-grid-list>

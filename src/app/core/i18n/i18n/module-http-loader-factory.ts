@@ -8,7 +8,10 @@ export function moduleHttpLoaderFactory(http: HttpClient) {
   const baseTranslateUrl = './assets/i18n';
 
   const options: IModuleTranslationOptions = {
-    modules: [{ baseTranslateUrl, moduleName: 'payments' }]
+    modules: [
+      { baseTranslateUrl, moduleName: 'payments' },
+      { baseTranslateUrl, moduleName: 'auth' }
+    ]
   };
 
   return new ModuleTranslateLoader(http, options);
