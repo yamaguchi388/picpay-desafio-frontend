@@ -14,11 +14,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('./core/auth/auth.module').then((m) => m.AuthModule)
       },
+
       {
         path: '',
         loadChildren: () =>
-          import('./core/shell/shell.module').then((m) => m.ShellModule)
-        // canActivate: [AuthGuard]
+          import('./core/shell/shell.module').then((m) => m.ShellModule),
+        canActivate: [AuthGuard]
       }
     ]
   }

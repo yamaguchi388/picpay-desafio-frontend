@@ -1,10 +1,14 @@
 import { PaginationFilters } from 'src/app/shared/types/pagination-filters.type';
 import { Payment } from 'src/app/shared/types/payments/payment.type';
+import { PaymentSearch } from 'src/app/shared/types/payments/payment-search.type';
 import { PaymentUpdate } from 'src/app/shared/types/payments/payment-update.type';
 /* eslint-disable no-unused-vars */
 export class GetPayments {
   static readonly type = '[payment] getAllPayments';
-  constructor(public paginationFilters?: PaginationFilters) {}
+  constructor(
+    public paginationFilters?: PaginationFilters,
+    public paymentSearch?: PaymentSearch
+  ) {}
 }
 
 export class UpdatePayment {

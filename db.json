@@ -1,36 +1,6 @@
 {
   "tasks": [
     {
-      "id": 11,
-      "name": "Lonnard MacCaghan",
-      "username": "lmaccaghana",
-      "title": "Account Representative II",
-      "value": 427.95,
-      "date": "2020-09-12T13:20:55Z",
-      "image": "https://robohash.org/omniseasapiente.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
-      "id": 12,
-      "name": "Rossy Laviss",
-      "username": "rlavissb",
-      "title": "Automation Specialist II",
-      "value": 458.73,
-      "date": "2021-01-28T12:01:18Z",
-      "image": "https://robohash.org/doloremconsecteturdelectus.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
-      "id": 13,
-      "name": "Deck Balaisot",
-      "username": "dbalaisotc",
-      "title": "Desktop Support Technician",
-      "value": 25.91,
-      "date": "2021-05-25T14:51:59Z",
-      "image": "https://robohash.org/cupiditatehicquaerat.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
       "id": 15,
       "name": "Moreen Spaule",
       "username": "mspaulee",

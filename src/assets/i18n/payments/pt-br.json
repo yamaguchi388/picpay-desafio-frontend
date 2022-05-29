@@ -1,5 +1,7 @@
 {
     "MY_PAYMENTS": "Meus pagamentos",
+    "ADD_PAYMENT":"Adicionar pagamento",
+    "SEARCH_BY_USER": "Buscar por usuário",
     "PAYMENT_TABLE": {
         "USER": "Usuário",
         "TITLE": "Título",

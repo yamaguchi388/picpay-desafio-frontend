@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PaginationFilters } from 'src/app/shared/types/pagination-filters.type';
+import { PaymentSearch } from 'src/app/shared/types/payments/payment-search.type';
 import { PaymentUpdate } from 'src/app/shared/types/payments/payment-update.type';
 import { Payments } from 'src/app/shared/types/payments/payments.type';
 import { environment } from 'src/environments/environment';
@@ -17,12 +18,16 @@ export class PaymentService {
   constructor(private http: HttpClient) {}
 
   getPayments(
-    paginationFilters: PaginationFilters = null
-  ): Observable<Payments> {
-    const queryString =
-      objectToQueryString<PaginationFilters>(paginationFilters);
+    paginationFilters: PaginationFilters = null,
+    paymentSearch?: PaymentSearch
+  ): Observable<HttpResponse<Payments>> {
+    const parameters = {
+      ...paginationFilters,
+      ...(!!paymentSearch && paymentSearch)
+    };
+    const queryString = objectToQueryString(parameters);
     const url: string = this.tasksUrl + queryString;
-    return this.http.get<Payments>(url);
+    return this.http.get<Payments>(url, { observe: 'response' });
   }
 
   updatePayment(paymentUpdate: PaymentUpdate, id: number) {

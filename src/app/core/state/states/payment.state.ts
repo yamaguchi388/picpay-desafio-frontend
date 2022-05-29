@@ -15,7 +15,8 @@ import { tap } from 'rxjs/operators';
   name: 'payments',
   defaults: {
     payments: [],
-    selectedPayment: null
+    selectedPayment: null,
+    paymentsQuantity: 0
   }
 })
 @Injectable()
@@ -25,6 +26,11 @@ export class PaymentState {
   @Selector()
   static payments(state: PaymentStateModel) {
     return state.payments;
+  }
+
+  @Selector()
+  static paymentQuantity(state: PaymentStateModel) {
+    return state.paymentsQuantity;
   }
 
   @Selector()
@@ -38,14 +44,21 @@ export class PaymentState {
     action: GetPayments
   ) {
     const state = getState();
-    return this.paymentService.getPayments(action?.paginationFilters).pipe(
-      tap((payments) => {
-        patchState({
-          ...state,
-          payments
-        });
-      })
-    );
+    return this.paymentService
+      .getPayments(action?.paginationFilters, action.paymentSearch)
+      .pipe(
+        tap((response) => {
+          const payments = response.body;
+          const paymentsQuantity: number = Number(
+            response.headers.get('X-Total-Count')
+          );
+          patchState({
+            ...state,
+            payments,
+            paymentsQuantity
+          });
+        })
+      );
   }
 
   @Action(UpdatePayment)
