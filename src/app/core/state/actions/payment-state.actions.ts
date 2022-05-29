@@ -2,14 +2,13 @@ import { PaginationFilters } from 'src/app/shared/types/pagination-filters.type'
 import { Payment } from 'src/app/shared/types/payments/payment.type';
 import { PaymentCreate } from 'src/app/shared/types/payments/payment-create.type';
 import { PaymentFilter } from 'src/app/shared/types/payments/payment-filter.type';
-import { PaymentSearch } from 'src/app/shared/types/payments/payment-search.type';
 import { PaymentUpdate } from 'src/app/shared/types/payments/payment-update.type';
 /* eslint-disable no-unused-vars */
 export class GetPayments {
   static readonly type = '[payment] getAllPayments';
   constructor(
     public paginationFilters?: PaginationFilters,
-    public paymentSearch?: PaymentSearch
+    public paymentFilter?: PaymentFilter
   ) {}
 }
 
@@ -35,9 +34,4 @@ export class SetPaymentToEditOrRemove {
 
 export class ResetPaymentToEditOrRemove {
   static readonly type = '[payment] resetPaymentToEditOrRemove';
-}
-
-export class FilterPayments {
-  static readonly type = '[payment] filterPayment';
-  constructor(public paymentFilter: PaymentFilter) {}
 }

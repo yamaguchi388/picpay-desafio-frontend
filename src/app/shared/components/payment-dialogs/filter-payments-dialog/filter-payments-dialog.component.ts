@@ -15,8 +15,4 @@ export class FilterPaymentsDialogComponent {
   });
 
   constructor(private formBuilder: FormBuilder) {}
-
-  filterPayments() {
-    console.log
-  }
 }

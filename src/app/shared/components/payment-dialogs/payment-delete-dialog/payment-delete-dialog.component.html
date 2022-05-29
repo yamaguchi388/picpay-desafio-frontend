@@ -5,15 +5,15 @@
   <mat-list>
     <mat-list-item>
       {{ 'PAYMENTS.DELETE_PAYMENT_DIALOG.USER' | translate }}:
-      {{ selectedPaymentSnapshot.name }}
+      {{ selectedPaymentSnapshot?.name }}
     </mat-list-item>
     <mat-list-item>
       {{ 'PAYMENTS.DELETE_PAYMENT_DIALOG.DATE' | translate }}:
-      {{ selectedPaymentSnapshot.date }}
+      {{ selectedPaymentSnapshot?.date }}
     </mat-list-item>
     <mat-list-item>
       {{ 'PAYMENTS.DELETE_PAYMENT_DIALOG.VALUE' | translate }}:
-      {{ selectedPaymentSnapshot.value }}
+      {{ selectedPaymentSnapshot?.value }}
     </mat-list-item>
   </mat-list>
 </mat-dialog-content>

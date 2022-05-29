@@ -1,19 +1,18 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+/* eslint-disable no-undef */
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NgxsModule } from '@ngxs/store';
 import { PaymentDeleteDialogComponent } from './payment-delete-dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('PaymentDeleteDialogComponent', () => {
   let component: PaymentDeleteDialogComponent;
   let fixture: ComponentFixture<PaymentDeleteDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaymentDeleteDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [PaymentDeleteDialogComponent],
+      imports: [NgxsModule.forRoot(), TranslateModule.forRoot()]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

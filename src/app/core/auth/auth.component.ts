@@ -4,10 +4,10 @@ import { Authenticate } from './../state/actions/auth-state.actions';
 import { Authentication } from 'src/app/shared/types/authentication.type';
 import { Component } from '@angular/core';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { ROUTES } from '../../shared/consts/routes';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { switchMap } from 'rxjs/operators';
-import { ROUTES } from '../../shared/consts/routes';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-auth',
@@ -28,12 +28,23 @@ export class AuthComponent {
   ) {}
 
   authenticate() {
-    this.store
-      .dispatch(new Authenticate(this.authentication))
-      .pipe(switchMap(() => this.router.navigateByUrl(ROUTES.PAYMENTS)))
+    this.dispatchAuth()
+      .pipe(map(() => this.navigateToPaymentsRoutes()))
       .subscribe({
-        error: (err) => this.notificationService.error(err)
+        error: (err) => this.showErrorMessage(err)
       });
+  }
+
+  showErrorMessage(err: string) {
+    this.notificationService.error(err);
+  }
+
+  dispatchAuth() {
+    return this.store.dispatch(new Authenticate(this.authentication));
+  }
+
+  navigateToPaymentsRoutes() {
+    return this.router.navigateByUrl(ROUTES.PAYMENTS);
   }
 
   get authentication(): Authentication {

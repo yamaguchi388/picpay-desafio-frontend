@@ -1,3 +1,4 @@
+import { PaymentFilter } from 'src/app/shared/types/payments/payment-filter.type';
 /* eslint-disable no-unused-vars */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -26,6 +27,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   searchFormSubscription: Subscription;
   pageIndex: number = 1;
   pageSize: number = 5;
+  paymentFilter: PaymentFilter;
 
   searchForm: FormGroup = this.formBuilder.group({
     name: ['', Validators.required]
@@ -53,13 +55,17 @@ export class PaymentsComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (name) => {
           this.pageIndex = 1;
-          this.getPayments(name);
+          this.paymentFilter.name = name;
         }
       });
   }
 
   openFilterPaymentsDialog() {
-    this.dialog.open(FilterPaymentsDialogComponent);
+    const dialogRef = this.dialog.open(FilterPaymentsDialogComponent);
+    dialogRef.afterClosed().subscribe((result: PaymentFilter) => {
+      this.paymentFilter = { ...result };
+      this.getPayments();
+    });
   }
 
   changePage(pageEvent: PageEvent) {
@@ -93,11 +99,11 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   }
 
   @Dispatch()
-  getPayments(name: string = '') {
+  getPayments() {
     const _page: number = this.pageIndex;
     const _limit: number = this.pageSize;
-    if (name) {
-      return new GetPayments({ _page, _limit }, { name });
+    if (this.paymentFilter) {
+      return new GetPayments({ _page, _limit }, { ...this.paymentFilter });
     }
     return new GetPayments({ _page, _limit });
   }

@@ -22,11 +22,15 @@ export class AuthGuard implements CanActivate {
     if (this.isAuthenticated) {
       return true;
     }
-    this.router.navigateByUrl(ROUTES.AUTH);
+    this.navigateToAuthUrl();
     return false;
   }
 
   get isAuthenticated(): boolean {
     return this.store.selectSnapshot<AuthStateModel>(AuthState).isAuthenticated;
+  }
+
+  navigateToAuthUrl() {
+    this.router.navigateByUrl(ROUTES.AUTH);
   }
 }

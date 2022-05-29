@@ -17,11 +17,11 @@ export class PaymentDeleteDialogComponent {
 
   @Dispatch()
   deletePayment() {
-    return new DeletePayment(this.selectedPaymentSnapshot.id);
+    return new DeletePayment(this?.selectedPaymentSnapshot?.id);
   }
 
   get selectedPaymentSnapshot(): Payment {
     return this.store.selectSnapshot<PaymentStateModel>(PaymentState)
-      .selectedPayment;
+      ?.selectedPayment;
   }
 }

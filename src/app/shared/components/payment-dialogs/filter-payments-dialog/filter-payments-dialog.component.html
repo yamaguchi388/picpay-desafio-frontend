@@ -2,7 +2,7 @@
   {{ 'PAYMENTS.FILTER_PAYMENT_DIALOG.FILTER' | translate }}
 </h2>
 <mat-dialog-content class="mat-typography">
-  <form fxLayout="column" formGroup="filterForm">
+  <form fxLayout="column" [formGroup]="filterForm">
     <mat-form-field appearance="outline">
       <mat-label>{{
         'PAYMENTS.FILTER_PAYMENT_DIALOG.TITLE' | translate
@@ -31,7 +31,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-flat-button color="primary" type="button" (click)="filterPayments()">
+  <button mat-flat-button color="primary" type="button" [mat-dialog-close]="filterForm.value">
     {{ 'PAYMENTS.FILTER' | translate }}
   </button>
 </mat-dialog-actions>

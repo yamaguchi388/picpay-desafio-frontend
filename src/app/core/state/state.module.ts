@@ -1,4 +1,3 @@
-//import { AuthState } from './states/auth.state';
 import { AuthState } from './states/auth.state';
 import { NgModule } from '@angular/core';
 import { NgxsDispatchPluginModule } from '@ngxs-labs/dispatch-decorator';
