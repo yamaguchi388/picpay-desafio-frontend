@@ -1,5 +1,8 @@
 import { CommonModule, DatePipe } from '@angular/common';
+import { FilterPaymentsDialogComponent } from './filter-payments-dialog/filter-payments-dialog.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,9 +28,15 @@ import { TranslateModule } from '@ngx-translate/core';
     MatGridListModule,
     MatDialogModule,
     MatListModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    FlexLayoutModule,
+    MatCheckboxModule
   ],
-  declarations: [PaymentEditDialogComponent, PaymentDeleteDialogComponent],
+  declarations: [
+    PaymentEditDialogComponent,
+    PaymentDeleteDialogComponent,
+    FilterPaymentsDialogComponent
+  ],
   exports: [PaymentEditDialogComponent, PaymentDeleteDialogComponent],
   providers: [DatePipe]
 })

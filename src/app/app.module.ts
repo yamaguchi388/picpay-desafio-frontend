@@ -8,7 +8,6 @@ import { I18nModule } from './core/i18n/i18n/i18n.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
-
 @NgModule({
   declarations: [AppComponent],
   imports: [

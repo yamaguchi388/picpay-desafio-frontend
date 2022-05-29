@@ -8,6 +8,7 @@ import {
 import { Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
+import { FilterPaymentsDialogComponent } from './../shared/components/payment-dialogs/filter-payments-dialog/filter-payments-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationService } from '../shared/services/notification.service';
 import { PageEvent } from '@angular/material/paginator';
@@ -23,7 +24,7 @@ import { Select } from '@ngxs/store';
 export class PaymentsComponent implements OnInit, OnDestroy {
   @Select(PaymentState.paymentQuantity) paymentQuantity$: Observable<number>;
   searchFormSubscription: Subscription;
-  pageIndex: number = 0;
+  pageIndex: number = 1;
   pageSize: number = 5;
 
   searchForm: FormGroup = this.formBuilder.group({
@@ -49,11 +50,24 @@ export class PaymentsComponent implements OnInit, OnDestroy {
     this.searchFormSubscription = this.searchForm
       .get('name')
       .valueChanges.pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe(this.getPayments);
+      .subscribe({
+        next: (name) => {
+          this.pageIndex = 1;
+          this.getPayments(name);
+        }
+      });
+  }
+
+  openFilterPaymentsDialog() {
+    this.dialog.open(FilterPaymentsDialogComponent);
   }
 
   changePage(pageEvent: PageEvent) {
-    this.pageIndex = pageEvent.pageIndex + 1;
+    if (pageEvent.previousPageIndex === 0) {
+      this.pageIndex = 2;
+    } else {
+      this.pageIndex = pageEvent.pageIndex;
+    }
     this.pageSize = pageEvent.pageSize;
     this.getPayments();
   }

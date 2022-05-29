@@ -32,7 +32,7 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header>
       {{ 'PAYMENTS.PAYMENT_TABLE.VALUE' | translate }}
     </th>
-    <td mat-cell *matCellDef="let element">{{ element.value }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.value | currency : 'BRL' }}</td>
   </ng-container>
 
   <ng-container matColumnDef="isPayed">
@@ -40,7 +40,7 @@
       {{ 'PAYMENTS.PAYMENT_TABLE.PAID_OUT' | translate }}
     </th>
     <td mat-cell *matCellDef="let element">
-      <mat-checkbox [checked]="element.isPayed"></mat-checkbox>
+      <mat-checkbox [checked]="element.isPayed" (change)="confirmPayment(element, $event)"></mat-checkbox>
     </td>
   </ng-container>
 

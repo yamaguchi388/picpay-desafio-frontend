@@ -8,7 +8,7 @@
       "value": 86.23,
       "date": "2020-10-22T04:24:29Z",
       "image": "https://robohash.org/ametperferendisoccaecati.png?size=150x150&set=set1",
-      "isPayed": true
+      "isPayed": false
     },
     {
       "id": 22,
@@ -18,7 +18,7 @@
       "value": 105.78,
       "date": "2020-08-24T22:09:07Z",
       "image": "https://robohash.org/doloremquedoloresprovident.png?size=150x150&set=set1",
-      "isPayed": false
+      "isPayed": true
     },
     {
       "id": 24,
@@ -38,7 +38,7 @@
       "value": 458.97,
       "date": "2021-01-01T04:57:27Z",
       "image": "https://robohash.org/quaeratetdoloremque.png?size=150x150&set=set1",
-      "isPayed": false
+      "isPayed": true
     },
     {
       "id": 26,
@@ -48,7 +48,7 @@
       "value": 116.08,
       "date": "2020-08-24T14:32:09Z",
       "image": "https://robohash.org/blanditiisetvoluptatem.png?size=150x150&set=set1",
-      "isPayed": true
+      "isPayed": false
     },
     {
       "id": 27,

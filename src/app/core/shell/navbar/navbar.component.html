@@ -1,6 +1,12 @@
 <mat-toolbar>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <app-logo [logoVariation]="'WhiteLogo'"></app-logo>
-    <app-profile-picture></app-profile-picture>
+    <app-profile-picture [matMenuTriggerFor]="menu"></app-profile-picture>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>{{'AUTH.LOGOUT' | translate}}</span>
+      </button>
+    </mat-menu>
   </div>
 </mat-toolbar>

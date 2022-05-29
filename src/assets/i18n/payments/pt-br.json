@@ -2,6 +2,7 @@
     "MY_PAYMENTS": "Meus pagamentos",
     "ADD_PAYMENT":"Adicionar pagamento",
     "SEARCH_BY_USER": "Buscar por usuário",
+    "FILTER": "FILTRAR",
     "PAYMENT_TABLE": {
         "USER": "Usuário",
         "TITLE": "Título",
@@ -26,5 +27,13 @@
         "USER": "Usuário",
         "DATE": "Data",
         "VALUE": "Valor"
+    },
+    "FILTER_PAYMENT_DIALOG": {
+        "FILTER": "FILTRAR",
+        "CANCEL": "Cancelar",
+        "TITLE": "Título",
+        "DATE": "Data",
+        "VALUE": "Valor",
+        "PAID_OUT":"Pago"
     }
 }

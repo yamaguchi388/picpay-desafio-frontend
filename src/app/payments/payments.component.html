@@ -1,19 +1,38 @@
 <section class="payments">
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <h1 class="payments__title">{{ 'PAYMENTS.MY_PAYMENTS' | translate }}</h1>
-    <button mat-flat-button color="primary" (click)="addPayment()">{{ 'PAYMENTS.ADD_PAYMENT' | translate }}</button>
+    <button mat-flat-button color="primary" (click)="addPayment()">
+      {{ 'PAYMENTS.ADD_PAYMENT' | translate }}
+    </button>
   </div>
 
   <mat-card>
     <div fxLayout="row" fxLayoutAlign="space-between center">
-      <form [formGroup]="searchForm">
+      <form
+        [formGroup]="searchForm"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+      >
         <mat-form-field appearance="outline">
           <mat-label>{{ 'PAYMENTS.SEARCH_BY_USER' | translate }}</mat-label>
-          <input matInput type="text" formControlName="name">
+          <input matInput type="text" formControlName="name" />
           <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
+        <button
+          mat-raised-button
+          class="payments__filter"
+          (click)="openFilterPaymentsDialog()"
+        >
+          <mat-icon class="mat-18">filter_list</mat-icon>
+          {{ 'PAYMENTS.FILTER' | translate }}
+        </button>
       </form>
-      <app-paginator [length]="paymentQuantity$ | async" (pageChanger)="changePage($event)"></app-paginator>
+      <app-paginator
+        [length]="paymentQuantity$ | async"
+        [pageSize]="pageSize"
+        [pageIndex]="pageIndex"
+        (pageChanger)="changePage($event)"
+      ></app-paginator>
     </div>
     <app-payments-table
       (updatePaymentsList)="getPayments()"

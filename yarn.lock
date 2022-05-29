@@ -6025,6 +6025,13 @@ ngx-toastr@^14.3.0:
   dependencies:
     tslib "^2.3.0"
 
+ngxs-reset-plugin@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ngxs-reset-plugin/-/ngxs-reset-plugin-2.0.0.tgz#106526b76e839bcf8fe5305ee1f1d2af2772b07c"
+  integrity sha512-opl6ffL79juN0CPr8BfeIbeSxznSH9a9vWl9oc1ly98pOo1kS33jjHABNq2ZirExoepLnckU9eTGoocGrbH+8g==
+  dependencies:
+    tslib "^2.3.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
