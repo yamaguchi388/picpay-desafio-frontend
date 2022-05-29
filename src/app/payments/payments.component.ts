@@ -1,4 +1,3 @@
-import { PaymentFilter } from 'src/app/shared/types/payments/payment-filter.type';
 /* eslint-disable no-unused-vars */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -14,8 +13,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { NotificationService } from '../shared/services/notification.service';
 import { PageEvent } from '@angular/material/paginator';
 import { PaymentEditDialogComponent } from '../shared/components/payment-dialogs/payment-edit-dialog/payment-edit-dialog.component';
+import { PaymentFilter } from 'src/app/shared/types/payments/payment-filter.type';
 import { PaymentState } from '../core/state/states/payment.state';
 import { Select } from '@ngxs/store';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-payments',
@@ -28,6 +29,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   pageIndex: number = 1;
   pageSize: number = 5;
   paymentFilter: PaymentFilter;
+  sort: Sort;
 
   searchForm: FormGroup = this.formBuilder.group({
     name: ['', Validators.required]
@@ -69,12 +71,13 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   }
 
   changePage(pageEvent: PageEvent) {
-    if (pageEvent.previousPageIndex === 0) {
-      this.pageIndex = 2;
-    } else {
-      this.pageIndex = pageEvent.pageIndex;
-    }
+    this.pageIndex = pageEvent.pageIndex;
     this.pageSize = pageEvent.pageSize;
+    this.getPayments();
+  }
+
+  sortEvent(event: Sort) {
+    this.sort = event;
     this.getPayments();
   }
 
@@ -102,10 +105,17 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   getPayments() {
     const _page: number = this.pageIndex;
     const _limit: number = this.pageSize;
+    const _sort: string = this.sort?.active || 'name';
+    const _order: string = this.sort?.direction || 'asc';
     if (this.paymentFilter) {
-      return new GetPayments({ _page, _limit }, { ...this.paymentFilter });
+      return new GetPayments(
+        { _page, _limit },
+        { ...this.paymentFilter },
+        _sort,
+        _order
+      );
     }
-    return new GetPayments({ _page, _limit });
+    return new GetPayments({ _page, _limit }, null, _sort, _order);
   }
 
   @Dispatch()

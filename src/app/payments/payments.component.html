@@ -36,6 +36,7 @@
     </div>
     <app-payments-table
       (updatePaymentsList)="getPayments()"
+      (sort)="sortEvent($event)"
     ></app-payments-table>
   </mat-card>
 </section>

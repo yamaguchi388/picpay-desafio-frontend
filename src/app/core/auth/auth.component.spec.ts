@@ -1,9 +1,8 @@
 /* eslint-disable no-undef */
 import {
   ComponentFixture,
-  fakeAsync,
-  flush,
   TestBed,
+  fakeAsync,
   tick,
   waitForAsync
 } from '@angular/core/testing';

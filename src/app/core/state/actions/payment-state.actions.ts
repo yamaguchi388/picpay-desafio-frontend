@@ -8,7 +8,9 @@ export class GetPayments {
   static readonly type = '[payment] getAllPayments';
   constructor(
     public paginationFilters?: PaginationFilters,
-    public paymentFilter?: PaymentFilter
+    public paymentFilter?: PaymentFilter,
+    public _sort?: string,
+    public _order?: string
   ) {}
 }
 

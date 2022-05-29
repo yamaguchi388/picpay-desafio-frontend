@@ -46,7 +46,12 @@ export class PaymentState {
   ) {
     const state = getState();
     return this.paymentService
-      .getPayments(action?.paginationFilters, action.paymentFilter)
+      .getPayments(
+        action?.paginationFilters,
+        action.paymentFilter,
+        action._sort,
+        action._order
+      )
       .pipe(
         tap((response) => {
           const payments = response.body;

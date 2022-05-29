@@ -1,6 +1,7 @@
 <table
   mat-table
   matSort
+  (matSortChange)="sortPayments($event)"
   [dataSource]="payments$ | async"
   class="mat-elevation-z8"
   class="payment-table"

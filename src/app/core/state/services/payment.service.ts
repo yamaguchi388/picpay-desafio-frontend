@@ -20,18 +20,17 @@ export class PaymentService {
 
   getPayments(
     paginationFilters: PaginationFilters = null,
-    paymentFilter?: PaymentFilter
+    paymentFilter?: PaymentFilter,
+    _sort: string = 'name',
+    _order: string = 'asc'
   ): Observable<HttpResponse<Payments>> {
-    const paginationFiltersQueryString = objectToQueryString(
-      paginationFilters
-    ).replace('?', '?_');
+    const paginationFiltersQueryString = objectToQueryString(paginationFilters);
 
     const paymentFiltersQueryString = objectToQueryString(
       paymentFilter
     ).replace('?', '&');
 
-    const url: string =
-      this.tasksUrl + paginationFiltersQueryString + paymentFiltersQueryString;
+    const url: string = `${this.tasksUrl}${paginationFiltersQueryString}${paymentFiltersQueryString}&_sort=${_sort}&_order=${_order}`;
     return this.http.get<Payments>(url, { observe: 'response' });
   }
 

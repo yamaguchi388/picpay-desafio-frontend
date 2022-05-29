@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { MatSort, Sort } from '@angular/material/sort';
 import { Observable, of } from 'rxjs';
 import {
   SetPaymentToEditOrRemove,
@@ -8,7 +9,6 @@ import {
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSort } from '@angular/material/sort';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { Payment } from '../../shared/types/payments/payment.type';
 import { PaymentDeleteDialogComponent } from '../../shared/components/payment-dialogs/payment-delete-dialog/payment-delete-dialog.component';
@@ -27,13 +27,8 @@ import { switchMap } from 'rxjs/operators';
 export class PaymentsTableComponent {
   @Select(PaymentState.payments) payments$: Observable<Payments>;
   @Output() updatePaymentsList = new EventEmitter();
+  @Output() sort = new EventEmitter<Sort>();
 
-  @ViewChild(MatSort) set matSort(ms: MatSort) {
-    this.sort = ms;
-    this.setDataSourceAttributes();
-  }
-
-  sort: MatSort;
   displayedColumns: string[] = [
     'name',
     'title',
@@ -48,8 +43,8 @@ export class PaymentsTableComponent {
     private notificationService: NotificationService
   ) {}
 
-  setDataSourceAttributes() {
-    //this.dataSource.sort = this.sort;
+  sortPayments(event: Sort) {
+    this.sort.emit(event);
   }
 
   editPayment(payment: Payment) {
