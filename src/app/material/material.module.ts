@@ -9,7 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [],
   imports: [
@@ -22,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
     MatProgressBarModule,
     MatPaginatorModule,
     MatTableModule,
+    MatCheckboxModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -32,6 +33,7 @@ import { MatTableModule } from '@angular/material/table';
     MatProgressBarModule,
     MatPaginatorModule,
     MatTableModule,
+    MatCheckboxModule,
   ],
 })
 export class MaterialModule {}

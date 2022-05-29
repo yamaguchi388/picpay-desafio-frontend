@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
 import { SignInService } from 'src/app/shared/services/sign-in.service';
 import * as fromActions from '../actions';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
