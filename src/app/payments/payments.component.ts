@@ -6,7 +6,7 @@ import {
   ResetPaymentToEditOrRemove
 } from '../core/state/actions/payment-state.actions';
 import { Observable, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { FilterPaymentsDialogComponent } from './../shared/components/payment-dialogs/filter-payments-dialog/filter-payments-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -28,7 +28,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   searchFormSubscription: Subscription;
   pageIndex: number = 1;
   pageSize: number = 5;
-  paymentFilter: PaymentFilter;
+  paymentFilter: PaymentFilter = {};
   sort: Sort;
 
   searchForm: FormGroup = this.formBuilder.group({
@@ -58,6 +58,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
         next: (name) => {
           this.pageIndex = 1;
           this.paymentFilter.name = name;
+          this.getPayments();
         }
       });
   }
