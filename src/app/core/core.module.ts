@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
-import { AuthGuard } from './guards/auth/auth.guard';
-import { LoggedGuard } from './guards/logged/logged.guard';
+import { LayoutComponent } from './components/layout/layout.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, RouterModule],
-  exports: [],
-  providers: [AuthGuard, LoggedGuard],
+  declarations: [NavbarComponent, LayoutComponent],
+  imports: [CommonModule, MatToolbarModule, RouterModule],
+  exports: [NavbarComponent],
 })
 export class CoreModule {}
