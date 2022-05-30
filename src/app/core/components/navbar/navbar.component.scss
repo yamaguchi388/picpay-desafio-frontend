@@ -1,0 +1,11 @@
+@import '/src/assets/styles/colors.scss';
+
+.toolbar {
+  color: $white;
+  background-color: $primary-color;
+  font-family: 'Montserrat', sans-serif;
+
+  span {
+    font-weight: 300;
+  }
+}
