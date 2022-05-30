@@ -1,0 +1,34 @@
+<app-header></app-header>
+
+<h1 class="title">Perfil</h1>
+
+<div *ngIf="!passwordChange" class="content">
+  <form novalidate [formGroup]="form">
+    <div class="form-container">
+      <div class="line">
+        <label class="input-label" for="nome">Nome</label>
+        <input type="text" formControlName="nome" />
+      </div>
+
+      <div class="line">
+        <label class="input-label" for="email">Email</label>
+        <input type="text" formControlName="email" />
+      </div>
+
+      <div class="line">
+        <label class="input-label" for="senha">Senha Atual</label>
+        <input type="password" formControlName="password" />
+      </div>
+
+      <div class="line">
+        <label class="input-label" for="password confirmation"
+          >Confirmação de senha</label
+        >
+        <input type="password" formControlName="passwordConfirmation" />
+      </div>
+
+      <button type="submit" (click)="submit()" class="confirm">SALVAR</button>
+      <button (click)="dashboard()">CANCELAR</button>
+    </div>
+  </form>
+</div>

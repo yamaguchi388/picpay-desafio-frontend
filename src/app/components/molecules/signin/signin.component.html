@@ -1,0 +1,52 @@
+<form novalidate [formGroup]="signinForm" class="login-form">
+  <img
+    class="login-logo"
+    src="../../../assets/logo.svg"
+    title="PayFriends"
+    alt="PayFriends application logo"
+  />
+  <h1 class="login-title">Bem vindo de volta</h1>
+
+  <div class="form-group" id="email">
+    <label for="email">Email</label>
+    <input
+      formControlName="email"
+      type="email"
+      (focus)="validate('email')"
+      (keydown)="validate('email')"
+    />
+  </div>
+
+  <div class="form-group" id="password">
+    <label #labelPassword for="password">Password</label>
+    <input
+      formControlName="password"
+      #password
+      type="password"
+      (focus)="validate('password')"
+      (keydown)="validate('password')"
+    />
+    <img
+      class="password-eye"
+      src="{{
+        passwordVisible
+          ? '../../../assets/open-password-eye.svg'
+          : '../../../assets/closed-password-eye.png'
+      }}"
+      alt="show password"
+      (mousedown)="enablePasswordVisibility()"
+      (mouseup)="disablePasswordVisibility()"
+    />
+  </div>
+
+  <button class="login-entrar" (click)="signin()">
+    {{ loading ? "" : "Entrar" }}
+    <span [ngClass]="loading ? 'loader' : ''"></span>
+  </button>
+
+  <div class="signup">
+    <label for="Signup">Não tem uma conta?</label>
+
+    <button (click)="signup()">Cadastre-se</button>
+  </div>
+</form>

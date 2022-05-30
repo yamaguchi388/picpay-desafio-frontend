@@ -1,0 +1,64 @@
+.dashboard-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 43.88x;
+
+  margin-top: 30px;
+  margin-left: 45px;
+}
+
+.dashboard-add-payment {
+  background-color: #007dfe;
+  color: #fff;
+
+  border: none;
+  border-radius: 4px;
+
+  font-family: roboto;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  padding: 10px 20px;
+  float: right;
+
+  margin-right: 55px;
+  margin-top: -15px;
+
+  cursor: pointer;
+}
+
+.dashboard-content {
+  background: #fff;
+
+  min-width: 545px;
+
+  margin: 60px 40px;
+  margin-top: 90px;
+
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(4, 38, 82, 0.06);
+}
+
+.dashboard-content-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding: 20px 30px;
+}
+
+@media (max-width: 957px) {
+  .dashboard-content-header {
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .dashboard-content-header > * {
+    margin-bottom: 20px;
+  }
+}

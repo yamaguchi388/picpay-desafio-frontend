@@ -1,0 +1,20 @@
+<div
+  *ngIf="modalState"
+  #modalRef
+  class="modal"
+  (click)="closeEvent($event.target)"
+>
+  <div class="modal-content">
+    <h2>
+      Excluir Pagamento - <em>{{ payment?.id }}</em>
+    </h2>
+    <p>Usuario: {{ payment?.name }}</p>
+    <p>Data: {{ payment?.date | date: "dd/MM/y" }}</p>
+    <p>Valor: {{ payment?.value }}</p>
+
+    <div class="buttons-container">
+      <button class="close">CANCELAR</button>
+      <button class="confirm" (click)="confirm()">EXCLUIR</button>
+    </div>
+  </div>
+</div>

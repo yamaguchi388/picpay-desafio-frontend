@@ -1,0 +1,16 @@
+input {
+  min-width: 330px;
+  border-radius: 3px;
+  border-color: rgba(0, 0, 0, 0.12);
+  border-width: 1px;
+
+  padding: 10px;
+
+  background: #fff;
+  font-family: "Roboto", sans-serif;
+  text-align: left;
+}
+
+.invalid {
+  border-color: #e74c3c !important;
+}

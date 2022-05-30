@@ -1,0 +1,68 @@
+<div
+  *ngIf="modalState"
+  #modalRef
+  class="modal"
+  (click)="closeEvent($event.target)"
+>
+  <form novalidate [formGroup]="payment" class="modal-content">
+    <h2>Adicionar Pagamento</h2>
+    <div class="row">
+      <input
+        id="username"
+        (focus)="validate('username')"
+        (keydown)="validate('username')"
+        formControlName="username"
+        type="text"
+        placeholder="Usuário*"
+        class="first-input"
+      />
+      <input
+        id="name"
+        (focus)="validate('name')"
+        (keydown)="validate('name')"
+        formControlName="name"
+        type="text"
+        placeholder="Nome*"
+      />
+    </div>
+    <div class="row">
+      <input
+        id="title"
+        (focus)="validate('title')"
+        (keydown)="validate('title')"
+        formControlName="title"
+        type="text"
+        placeholder="Título*"
+      />
+      <app-date-hour
+        [invalid]="dateIsValid"
+        (onChange)="datePickerChanges($event)"
+      ></app-date-hour>
+    </div>
+    <div class="row">
+      <input
+        id="value"
+        (focus)="validate('value')"
+        (keydown)="validate('value')"
+        formControlName="value"
+        type="number"
+        placeholder="Valor*"
+      />
+
+      <div class="is-payed">
+        <label for="isPayed">Pago: </label>
+        <input
+          id="isPayed"
+          (focus)="validate('isPayed')"
+          (keydown)="validate('isPayed')"
+          formControlName="isPayed"
+          type="checkbox"
+        />
+      </div>
+    </div>
+    <div class="buttons-container">
+      <div class="close">CANCELAR</div>
+      <button type="submit" class="confirm" (click)="confirm()">SALVAR</button>
+    </div>
+  </form>
+</div>

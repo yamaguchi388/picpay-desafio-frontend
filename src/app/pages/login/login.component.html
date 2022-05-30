@@ -1,0 +1,12 @@
+<app-signin *ngIf="signinFormActive" (onSignup)="onSignup()"></app-signin>
+<app-signup
+  *ngIf="!signinFormActive"
+  (onSignin)="onSignin($event)"
+></app-signup>
+
+<div class="login-bg">
+  <img
+    src="../../../assets/login-bg-image.svg"
+    alt="man doing online payment"
+  />
+</div>

@@ -1,0 +1,78 @@
+<label
+  [ngClass]="{ isPayed: booleanSearch }"
+  for="search label"
+  class="search-label"
+  >{{ getLabel() }}</label
+>
+
+<app-date
+  class="app-date"
+  *ngIf="dateSearch"
+  [invalid]="invalid"
+  (onChange)="submitDate($event)"
+></app-date>
+
+<div *ngIf="booleanSearch" class="boolean">
+  <input
+    type="checkbox"
+    [(ngModel)]="checkboxModel"
+    class="dashboard-checkbox"
+  />
+
+  <img
+    [ngClass]="{ 'filter-disable': dateSearch }"
+    src="../../../../assets/search-icon.svg"
+    (click)="submit()"
+    alt="search icon button"
+    class="dashboard-search-icon"
+  />
+</div>
+
+<div *ngIf="stringSearch" class="string">
+  <input
+    type="text"
+    [(ngModel)]="searchFilters.searchString"
+    (keyup.enter)="submit()"
+    [placeholder]="placeholder"
+    class="dashboard-search"
+  />
+  <img
+    [ngClass]="{ 'filter-disable': dateSearch }"
+    src="../../../../assets/search-icon.svg"
+    (click)="submit()"
+    alt="search icon button"
+    class="dashboard-search-icon"
+  />
+</div>
+
+<div class="row" [ngClass]="{ 'row-space': dateSearch }">
+  <img
+    (click)="filtersToggle()"
+    src="../../../../assets/filters-icon.svg"
+    alt="filters icon button"
+    class="dashboard-filters-icon"
+  />
+  <button (click)="filtersToggle()" class="dashboard-filter">
+    <label class="dashboard-label-filtrar" for="Filtrar">Filtrar</label>
+  </button>
+</div>
+
+<div
+  [ngClass]="{
+    'filters-container': selectFilterState,
+    'boolean-search': booleanSearch
+  }"
+>
+  <!-- <div class="filters-container"> -->
+  <label
+    (click)="changeSearchField('username')"
+    for="Usuario"
+    style="padding-top: 10px"
+    >Usuário</label
+  >
+  <label (click)="changeSearchField('name')" for="Nome">Nome</label>
+  <label (click)="changeSearchField('title')" for="Título">Título</label>
+  <label (click)="changeSearchField('date')" for="Data">Data</label>
+  <label (click)="changeSearchField('value')" for="Valor">Valor</label>
+  <label (click)="changeSearchField('isPayed')" for="Pago">Pago</label>
+</div>

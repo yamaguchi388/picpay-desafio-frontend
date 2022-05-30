@@ -1,0 +1,78 @@
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  font-family: "Lato", Arial, Helvetica, sans-serif;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 99;
+}
+
+a {
+  cursor: pointer !important;
+}
+
+.modal:target {
+  opacity: 1;
+}
+
+.modal-content {
+  z-index: 99999;
+}
+
+// .fechar {
+//     position: absolute;
+//     width: 30px;
+//     right: -15px;
+//     top: -20px;
+//     text-align: center;
+//     line-height: 30px;
+//     margin-top: 5px;
+//     background: #ff4545;
+//     border-radius: 50%;
+//     font-size: 16px;
+//     color: #8d0000;
+//   }
+
+.modal-content {
+  position: relative;
+  margin: 150px auto;
+  padding: 40px;
+  width: fit-content;
+  background: #fff;
+}
+
+h2 {
+  margin: 0;
+  margin-bottom: 40px;
+
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21.94px;
+}
+
+button {
+  margin-top: 30px;
+  font-family: "roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  padding: 10px 15px;
+
+  width: 150px;
+  border: none;
+  border-radius: 4px;
+}
+
+.confirm {
+  background-color: #007dfe;
+  color: #fff;
+
+  margin-left: 30px;
+}

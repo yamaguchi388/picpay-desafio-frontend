@@ -1,0 +1,120 @@
+.header-container {
+  background-color: #002d69;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px 40px;
+
+  height: 80px;
+  transition: height 0.4s ease;
+}
+
+.header-container-inner {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.row {
+  width: fit-content;
+  cursor: pointer;
+}
+
+.header-menu {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  margin-right: 15px;
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+
+.header-expanded {
+  height: 160px;
+  .logout {
+    display: initial;
+    opacity: 1;
+    width: 30px;
+    height: 30px;
+  }
+  .header-user-avatar {
+    display: initial;
+    opacity: 1;
+    width: 45px;
+    height: 45px;
+  }
+
+  label {
+    right: 0;
+    height: 20px;
+    width: fit-content;
+    font-size: 20px;
+    opacity: 1;
+    font-weight: 500;
+    font-family: "Montserrat";
+    color: #fff;
+    position: absolute;
+  }
+
+  .logout-label {
+    display: initial;
+    margin-top: 80px;
+    margin-right: 110px;
+  }
+
+  .profile-label {
+    display: initial;
+    margin-top: 10px;
+    margin-right: 100px;
+  }
+
+  .header-menu {
+    display: none;
+  }
+}
+
+.logout {
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  right: 0;
+  margin-top: 75px;
+  margin-right: 45px;
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+  color: #fff;
+}
+
+.logout-label {
+  display: none;
+}
+
+.profile-label {
+  display: none;
+}
+
+.header-user-avatar {
+  display: none;
+  cursor: pointer;
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+}
+
+.header-logo {
+  cursor: pointer;
+  width: 137px;
+  height: 29px;
+}
+
+label {
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  opacity: 0;
+}

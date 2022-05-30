@@ -1,0 +1,48 @@
+<app-header></app-header>
+
+<app-delete-dialog
+  *ngIf="deleteModalState"
+  [payment]="selectedPayment"
+  [modalState]="deleteModalState"
+  (onClose)="onDelete($event)"
+></app-delete-dialog>
+<app-edit-dialog
+  *ngIf="editModalState"
+  [payment]="selectedPayment"
+  (onClose)="onEdit($event)"
+  [modalState]="editModalState"
+></app-edit-dialog>
+<app-include-dialog
+  *ngIf="includeModalState"
+  [modalState]="includeModalState"
+  (onClose)="onCloseIncludeDialog($event)"
+></app-include-dialog>
+
+<h1 class="dashboard-title">Meus pagamentos</h1>
+<button class="dashboard-add-payment" (click)="openIncludeDialog()">
+  ADICIONAR PAGAMENTO
+</button>
+
+<div class="dashboard-content">
+  <div class="dashboard-content-header">
+    <app-filters (onSearch)="searchByString($event)"></app-filters>
+
+    <app-paginator
+      [pages]="pages"
+      (onChangePage)="onChangePage($event)"
+      [selectedPage]="filters.page"
+      (onChangePageSize)="onChangePageSize($event)"
+    ></app-paginator>
+  </div>
+  <div class="dashboard-content-table">
+    <app-table
+      [sortField]="filters.sortField"
+      [sortOrder]="filters.sortOrder"
+      (openDeleteModal)="openDeleteModal($event)"
+      (openEditModal)="openEditModal($event)"
+      (onChangeSort)="onSort($event)"
+      [payments]="payments"
+      [loading]="loading"
+    ></app-table>
+  </div>
+</div>

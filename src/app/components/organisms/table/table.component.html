@@ -1,0 +1,124 @@
+<div class="no-results" *ngIf="payments && payments.length <= 0">
+  <span [ngClass]="loading ? 'loader' : ''"></span>
+  <img src=".././../../../assets/no-results.png" alt="not data found" />
+  <h2>Nenhum resultado encontrado.</h2>
+</div>
+
+<div class="table-header" *ngIf="payments && payments.length > 0">
+  <div class="table-column" (click)="changeSortField('username')">
+    <label for="table column" class="table-label">Usuario</label>
+    <span
+      class="arrow"
+      [ngClass]="{
+        'arrow-up': sortField != 'username',
+        'arrow-up-selected': sortField == 'username' && sortOrder == 'asc',
+        'arrow-down-selected': sortField == 'username' && sortOrder == 'desc'
+      }"
+    ></span>
+  </div>
+
+  <div class="table-column" (click)="changeSortField('title')">
+    <label for="table column" class="table-label">Título</label>
+    <span
+      class="arrow"
+      [ngClass]="{
+        'arrow-up': sortField != 'title',
+        'arrow-up-selected': sortField == 'title' && sortOrder == 'asc',
+        'arrow-down-selected': sortField == 'title' && sortOrder == 'desc'
+      }"
+    ></span>
+  </div>
+
+  <div class="table-column" (click)="changeSortField('date')">
+    <label for="table column" class="table-label">Data</label>
+    <span
+      class="arrow"
+      [ngClass]="{
+        'arrow-up': sortField != 'date',
+        'arrow-up-selected': sortField == 'date' && sortOrder == 'asc',
+        'arrow-down-selected': sortField == 'date' && sortOrder == 'desc'
+      }"
+    ></span>
+  </div>
+
+  <div class="table-column" (click)="changeSortField('value')">
+    <label for="table column" class="table-label">Valor</label>
+    <span
+      class="arrow"
+      [ngClass]="{
+        'arrow-up': sortField != 'value',
+        'arrow-up-selected': sortField == 'value' && sortOrder == 'asc',
+        'arrow-down-selected': sortField == 'value' && sortOrder == 'desc'
+      }"
+    ></span>
+  </div>
+
+  <div class="table-column" (click)="changeSortField('isPayed')">
+    <label for="table column" class="table-label">Pago</label>
+    <span
+      class="arrow"
+      [ngClass]="{
+        'arrow-up': sortField != 'isPayed',
+        'arrow-up-selected': sortField == 'isPayed' && sortOrder == 'asc',
+        'arrow-down-selected': sortField == 'isPayed' && sortOrder == 'desc'
+      }"
+    ></span>
+  </div>
+  <div class="table-column"></div>
+</div>
+
+<div class="table-content">
+  <span [ngClass]="loading ? 'loader' : ''"></span>
+  <ng-template *ngFor="let payment of payments; index as i" [ngIf]="!loading">
+    <div class="table-row" [ngClass]="{ 'bg-gray': i % 2 }">
+      <div class="table-row-item">
+        <label for="nome usuario">{{ payment.name }}</label>
+        <label class="table-row-info" for="@ usuario"
+          >@{{ payment.username }}</label
+        >
+      </div>
+      <div class="table-row-item">
+        <label for="título">{{ payment.title }}</label>
+      </div>
+      <div class="table-row-item">
+        <label class="date-info" for="Data">{{
+          payment.date | date: "d MMM y"
+        }}</label>
+        <label class="table-row-info" for="Hora">{{
+          payment.date | date: "h:mm a"
+        }}</label>
+      </div>
+      <div class="table-row-item">
+        <label for="nome usuario">{{ payment.value | currency: "BRL" }}</label>
+      </div>
+      <div class="table-row-item">
+        <ng-template [ngIf]="payment.isPayed">
+          <img src="../../../../assets/paid-out.svg" alt="status pagamento" />
+        </ng-template>
+        <ng-template [ngIf]="!payment.isPayed">
+          <img
+            class="open-payment"
+            src="../../../../assets/open.svg"
+            alt="status pagamento"
+          />
+        </ng-template>
+      </div>
+      <div class="table-row-item edit-row">
+        <img
+          class="edit-payment"
+          src="../../../../assets/edit-icon.svg"
+          alt="editar pagamento"
+          title="editar pagamento"
+          (click)="onEdit(payment)"
+        />
+        <img
+          class="delete-payment"
+          src="../../../../assets/delete-icon.svg"
+          alt="excluir pagamento"
+          title="excluir pagamento"
+          (click)="onDelete(payment)"
+        />
+      </div>
+    </div>
+  </ng-template>
+</div>

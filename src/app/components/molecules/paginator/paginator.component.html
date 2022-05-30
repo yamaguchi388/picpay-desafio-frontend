@@ -1,0 +1,30 @@
+<label class="paginator-label" for="Exibir">Exibir</label>
+
+<select
+  #pageSize
+  (change)="pageSizeChange(pageSize.value)"
+  class="paginator-select"
+>
+  <option value="5">5</option>
+  <option value="10">10</option>
+  <option value="20">20</option>
+</select>
+
+<img
+  src="../../../../assets/previous-page.svg"
+  alt="previous-page"
+  (click)="pageChange(this.selectedPage - 1)"
+/>
+
+<a
+  *ngFor="let pageOption of pageOptions; index as i"
+  (click)="pageChange(pageOption)"
+  [ngClass]="pageOption == selectedPage ? 'selected' : ''"
+  >{{ pageOption }}</a
+>
+
+<img
+  src="../../../../assets/next-page.svg"
+  alt="next-page"
+  (click)="pageChange(this.selectedPage + 1)"
+/>

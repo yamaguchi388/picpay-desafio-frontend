@@ -1,0 +1,11 @@
+<input
+  #dateDirectivePicker="dpDayPicker"
+  [placeholder]="'Selecione a data*'"
+  [dpDayPicker]="$any(config)"
+  [theme]="'dp-material'"
+  [mode]="'daytime'"
+  (click)="openDatePicker()"
+  [(ngModel)]="date"
+  (ngModelChange)="emitChanges($event)"
+  [ngClass]="{ invalid: !invalid }"
+/>

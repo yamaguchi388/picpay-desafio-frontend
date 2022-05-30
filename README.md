@@ -1,7 +1,12 @@
 # **Desafio Frontend PicPay**
 
 Primeiramente, obrigado pelo seu interesse em trabalhar na melhor plataforma de pagamentos do mundo!
+
+`Gratidão pela oportunidade.`
+
 Abaixo você encontrará todos as informações necessárias para iniciar o seu teste.
+
+`De acordo.`
 
 ## Avisos antes de começar
 
@@ -24,7 +29,7 @@ Abaixo você encontrará todos as informações necessárias para iniciar o seu 
 - Node: 12.20.2
 - Angular: 12.1.4
 
-A utilização do Angular e Node nas versões acima **é obrigatória** exceto nas vagas direcionadas à React.
+A utilização do Angular e Node nas versões acima **é obrigatória**.
 
 ## Como Rodar?
 
@@ -52,49 +57,21 @@ A utilização do Angular e Node nas versões acima **é obrigatória** exceto n
 
 ### **API**
 
-Para o seu desafio ser mais interativo, estamos utilizando um mock de API, chamado JSON Server. Portanto, é necessário que você instale-o globalmente em sua máquina para ter os recursos da lib.
+O projeto foi atualizado com a dependencia json-server-auth, trazendo mudanças a API.
 
-**1 -** Como instalar? <br/>
-`npm install -g json-server`
+### **Como Rodar?**
 
-**2 -** e para rodar (deixar aberto em uma outra aba do terminal, para que ele fique escutando suas ações de CRUD!), digite o seguinte comando na RAÍZ do projeto: `npm run api`
+Execute o comando `npm run api`
 
-Link para mais detalhes: https://github.com/typicode/json-server
+### **Login**
 
-**Rotas:** <br />
-`GET: /tasks`<br />
-`POST: /tasks`<br />
-`PUT: /tasks`<br />
-`PATCH: /tasks`<br />
-`DELETE: /tasks`<br />
+É possível logar-se no app com as seguintes credenciais:
 
-`GET: /account` <br />
-`POST: /account` <br />
-`PUT: /account` <br />
-`PATCH: /account` <br />
-`DELETE: /account` <br />
+login: `usuario@gmail.com`
 <br/>
+senha: `usuario`
 
-### **Models**:<br />
-
-Tasks - Esta é sua lista com agenda de pagamentos. Aqui você cadastrar, editar e excluir um pagamento.<br />
-` { "id": 5, "name": "Anthea Pundy", "username": "apundy4", "title": "Software Engineer III", "value": 177.19, "date": "2021-01-01T14:09:51Z", "image": "https://robohash.org/quiaautomnis.png?size=150x150&set=set1", "isPayed": true },`
-
-Account - você usará este usuário para Login da plataforma<br />
-`{ "id": 0, "name": "usuario", "email": "usuario@gmail.com", "password": "usuario" }`
-
-<br/>
-
-### **Parametros da API (Json Server):**
-
-paginate:<br />
-`GET: /tasks?_page=7` <br />
-`GET: /tasks?_page=7&_limit=20`
-
-**Usuário para utilizar no login:**<br />
-` "email": "usuario@gmail.com", "password": "usuario"`
-<br/>
-<br/>
+Notas: Também foi implementado a feature de cadastrar-se.
 
 **Orientações e dicas:**
 

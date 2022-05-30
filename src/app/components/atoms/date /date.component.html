@@ -1,0 +1,19 @@
+<input
+  #dateDirectivePicker="dpDayPicker"
+  [placeholder]="'Selecione a data*'"
+  [dpDayPicker]="$any(config)"
+  [theme]="'dp-material'"
+  [mode]="'day'"
+  (click)="openDatePicker()"
+  [(ngModel)]="date"
+  (ngModelChange)="emitChanges($event)"
+  [ngClass]="{ invalid: !invalid }"
+/>
+
+<img
+  class="clear"
+  src="../../../../assets/delete-icon.svg"
+  alt="Limpar"
+  (click)="clear()"
+  title="limpar"
+/>
