@@ -20,7 +20,7 @@ const routes: Routes = [
       {
         path: 'pay-friends',
         component: LayoutComponent,
-        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
         children: [
           { path: '', pathMatch: 'full', redirectTo: 'tasks' },
           {
@@ -31,6 +31,11 @@ const routes: Routes = [
         ],
       },
     ],
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'pay-friends',
   },
 ];
 
