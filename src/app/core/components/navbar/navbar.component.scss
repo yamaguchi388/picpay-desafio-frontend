@@ -1,11 +1,27 @@
 @import '/src/assets/styles/colors.scss';
 
 .toolbar {
+  display: flex;
   color: $white;
+  justify-content: space-between;
   background-color: $primary-color;
   font-family: 'Montserrat', sans-serif;
 
-  span {
-    font-weight: 300;
+  &__logo {
+    span {
+      font-weight: 300;
+    }
+  }
+
+  &__button {
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0 10px;
+    font-weight: 600;
+    transition: ease-in-out 0.3s;
+
+    &:hover {
+      background-color: $gray-secondary;
+    }
   }
 }
