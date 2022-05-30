@@ -1,0 +1,59 @@
+<section class="login">
+  <main class="login__main">
+    <header class="logo">
+      <strong class="logo--strong">Pay</strong>
+      <span class="logo--normal">Friends</span>
+    </header>
+
+    <h1 class="title">Bem vindo de volta</h1>
+
+    <form [formGroup]="form" class="form">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" formControlName="email" />
+        <mat-error *ngIf="form.get('email').invalid">
+          {{ getEmailErrorMessage() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'text' : 'password'"
+          formControlName="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Esconder senha'"
+          [attr.aria-pressed]="hide"
+          type="button"
+        >
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="form.get('password').invalid">
+          {{ getPasswordErrorMessage() }}
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        type="submit"
+        color="primary"
+        mat-flat-button
+        (click)="login()"
+        [disabled]="form.invalid"
+        class="form__submit-button"
+      >
+        ENTRAR
+      </button>
+    </form>
+  </main>
+  <aside class="login__aside">
+    <img
+      src="/assets/images/man-doing-online-payment.svg"
+      alt="Homem branco de cabelos e bigode pretos, está vestindo uma camisa de mangas curtas azul clara, calça azul escura e tênis branco. Ele está em pé em uma praça com banco de madeira e poste de luz, realizando pagamento online pelo seu celular."
+    />
+  </aside>
+</section>
