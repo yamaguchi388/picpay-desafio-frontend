@@ -4,7 +4,7 @@ import {
   HttpParams,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 import { environment } from 'src/environments/environment';
@@ -22,24 +22,24 @@ export class TaskService {
     private snackbarService: SnackbarService
   ) {}
 
-  getTasks(parameters: TaskParams): Observable<Task[]> {
+  getAll(parameters?: TaskParams): Observable<Task[]> {
     const params = new HttpParams({ fromObject: { ...parameters } });
     return this.httpClient.get<Task[]>(this.apiURL, { params }).pipe(
       catchError((error: HttpErrorResponse) => {
         this.snackbarService.openSnackBar('Erro ao buscar pagamentos', null);
-        throw new Error(error.message);
+        return throwError(error);
       })
     );
   }
 
-  getTotalTasks(parameters: Partial<Task>): Observable<number> {
+  getTotalCount(parameters: Partial<Task>): Observable<number> {
     const params = new HttpParams({ fromObject: { ...parameters } });
     return this.httpClient
       .get<Task[]>(this.apiURL, { params })
       .pipe(map((tasks) => tasks.length));
   }
 
-  createTask(payload: Task): Observable<Task> {
+  create(payload: Task): Observable<Task> {
     return this.httpClient.post<Task>(this.apiURL, payload).pipe(
       tap(() => {
         this.snackbarService.openSnackBar(
@@ -49,12 +49,12 @@ export class TaskService {
       }),
       catchError((error: HttpErrorResponse) => {
         this.snackbarService.openSnackBar('Erro ao adicionar pagamento', null);
-        throw new Error(error.message);
+        return throwError(error);
       })
     );
   }
 
-  updateTask({ id, ...payload }: Partial<Task>): Observable<Task> {
+  update({ id, ...payload }: Partial<Task>): Observable<Task> {
     return this.httpClient.patch<Task>(`${this.apiURL}/${id}`, payload).pipe(
       tap(() => {
         this.snackbarService.openSnackBar(
@@ -64,12 +64,12 @@ export class TaskService {
       }),
       catchError((error: HttpErrorResponse) => {
         this.snackbarService.openSnackBar('Erro ao editar pagamento', null);
-        throw new Error(error.message);
+        return throwError(error);
       })
     );
   }
 
-  deleteTask(id: number): Observable<void> {
+  delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiURL}/${id}`).pipe(
       tap(() => {
         this.snackbarService.openSnackBar(
@@ -79,7 +79,7 @@ export class TaskService {
       }),
       catchError((error: HttpErrorResponse) => {
         this.snackbarService.openSnackBar('Erro ao deletar pagamento', null);
-        throw new Error(error.message);
+        return throwError(error);
       })
     );
   }

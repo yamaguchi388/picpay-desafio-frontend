@@ -38,7 +38,7 @@ describe('TaskService', () => {
   });
 
   it('should return all tasks', () => {
-    service.getTasks({ _limit: 5, _page: 1 }).subscribe((tasks) => {
+    service.getAll({ _limit: 5, _page: 1 }).subscribe((tasks) => {
       expect(tasks).toEqual(tasksMock);
     });
 
@@ -52,7 +52,7 @@ describe('TaskService', () => {
   });
 
   it('should return count of total tasks', () => {
-    service.getTotalTasks({}).subscribe((count) => {
+    service.getTotalCount({}).subscribe((count) => {
       expect(count).toEqual(tasksMock.length);
     });
 
@@ -61,7 +61,7 @@ describe('TaskService', () => {
 
   it('should create and return task', () => {
     const [taskMock] = tasksMock;
-    service.createTask(taskMock).subscribe((task) => {
+    service.create(taskMock).subscribe((task) => {
       expect(task).toEqual(taskMock);
     });
 
@@ -70,7 +70,7 @@ describe('TaskService', () => {
 
   it('should update and return task', () => {
     const [taskMock] = tasksMock;
-    service.updateTask(taskMock).subscribe((task) => {
+    service.update(taskMock).subscribe((task) => {
       expect(task).toEqual(taskMock);
     });
 
@@ -81,7 +81,7 @@ describe('TaskService', () => {
 
   it('should delete task', () => {
     const [taskMock] = tasksMock;
-    service.deleteTask(taskMock.id).subscribe();
+    service.delete(taskMock.id).subscribe();
 
     httpController.expectOne(`${service.apiURL}/${taskMock.id}`);
   });

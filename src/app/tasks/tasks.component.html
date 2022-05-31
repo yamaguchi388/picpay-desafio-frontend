@@ -1,0 +1,17 @@
+<section class="tasks">
+  <h1 class="tasks__title">Meus pagamentos</h1>
+
+  <div class="tasks__row">
+    <button
+      type="button"
+      color="primary"
+      mat-flat-button
+      (click)="openFormDialog()"
+      class="button"
+    >
+      ADICIONAR PAGAMENTO
+    </button>
+  </div>
+
+  <app-tasks-list [taskAdded]="taskAdded"></app-tasks-list>
+</section>

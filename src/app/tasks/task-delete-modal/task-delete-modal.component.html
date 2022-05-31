@@ -1,0 +1,21 @@
+<div class="task-delete">
+  <h1 mat-dialog-title class="task-delete__title">Excluir pagamento</h1>
+
+  <div mat-dialog-content>
+    <p>Usuário: {{ task.name }}</p>
+    <p>Data: {{ task.date | date: 'dd/mm/yyyy' }}</p>
+    <p>Valor: {{ task.value | currency: 'BRL' }}</p>
+  </div>
+
+  <div mat-dialog-actions class="task-delete__actions">
+    <button mat-flat-button mat-dialog-close class="button">CANCELAR</button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="button button--primary"
+      (click)="deleteTask()"
+    >
+      SALVAR
+    </button>
+  </div>
+</div>

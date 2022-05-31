@@ -1,0 +1,60 @@
+@import '/src/assets/styles/colors.scss';
+
+.task-list {
+  font-family: 'Lato', sans-serif;
+
+  &__header {
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+    background-color: $white;
+    justify-content: space-between;
+
+    .field {
+      height: 35px;
+      display: flex;
+      border-radius: 6px;
+      align-items: center;
+      border: 1px solid $light-gray;
+      justify-content: space-between;
+
+      &__input {
+        padding: 9px;
+      }
+
+      &__icon {
+        margin-right: 9px;
+        color: $gray-secondary;
+      }
+    }
+  }
+
+  &__table {
+    width: 100%;
+
+    .column {
+      &--secondary-text {
+        display: block;
+        color: $gray-secondary;
+      }
+
+      &__payed {
+        width: 18px;
+        height: 18px;
+        border-radius: 2px;
+        background-color: $accent-color;
+
+        .icon {
+          font-size: large;
+          font-weight: bolder;
+          color: white;
+        }
+      }
+
+      &__actions {
+        display: flex;
+        justify-content: end;
+      }
+    }
+  }
+}

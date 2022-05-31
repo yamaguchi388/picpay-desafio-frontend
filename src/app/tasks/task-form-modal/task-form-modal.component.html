@@ -1,0 +1,76 @@
+<div class="task-form">
+  <h1 mat-dialog-title class="task-form__title">
+    {{ task ? 'Editar' : 'Adicionar' }} pagamento
+  </h1>
+
+  <div mat-dialog-content *ngIf="form">
+    <form class="task-form__form" [formGroup]="form">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Usuário</mat-label>
+          <input required matInput formControlName="name" />
+          <mat-error *ngIf="form.get('name').invalid">
+            Por favor insira um nome!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Valor</mat-label>
+          <input required matInput type="number" formControlName="value" />
+          <mat-error *ngIf="form.get('value').invalid">
+            Por favor insira um valor!
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Data</mat-label>
+          <input
+            required
+            readonly
+            matInput
+            (focus)="picker.open()"
+            [matDatepicker]="picker"
+            formControlName="date"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+
+          <mat-error *ngIf="form.get('date').invalid">
+            Por favor insira uma data!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Título</mat-label>
+          <input
+            required
+            matInput
+            placeholder="Título"
+            formControlName="title"
+          />
+          <mat-error *ngIf="form.get('title').invalid">
+            Por favor insira um título!
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="task-form__actions">
+    <button mat-flat-button mat-dialog-close class="button">CANCELAR</button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="button button--primary"
+      (click)="submitForm()"
+      [disabled]="form?.invalid"
+    >
+      SALVAR
+    </button>
+  </div>
+</div>

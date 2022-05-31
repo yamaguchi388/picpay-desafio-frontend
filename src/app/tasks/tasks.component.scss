@@ -1,0 +1,23 @@
+@import '/src/assets/styles/colors.scss';
+
+.tasks {
+  &__title {
+    font-size: 36px;
+    font-weight: 600;
+    color: $dark-gray;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  &__row {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+
+    .button {
+      float: right;
+      margin-bottom: 21px;
+      letter-spacing: 1.25px;
+      background-color: $accent-color;
+    }
+  }
+}
