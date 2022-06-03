@@ -1,10 +1,39 @@
-* {
-  box-sizing: border-box;
+@import "~bootstrap/dist/css/bootstrap.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+*{
+    font-family: 'Montserrat', sans-serif;
 }
 
-html,
-body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
+.default-button{
+    background: #007DFE;
+    border-radius: 4px;
+    color: white;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.cancel-button{
+    background: #F5F5F5;
+    border-radius: 4px !important;
+    margin-right: 30px !important;
+    width: 150px;
+}
+
+.modal-title{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #373737;
+}
+
+.body-modal{
+    margin: 50px 0px;
 }

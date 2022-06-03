@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <span class="modal-title">Excluir pagamento</span> 
+    <div class="body-modal d-flex flex-column">
+      <span class="details">Usuário: {{data.result.name}}</span>
+      <span class="details">Data: {{data.result.date | date: 'dd/MM/yyyy'}}</span>
+      <span class="details">Valor: {{data.result.value | currency: 'BRL'}}</span>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button mat-raised-button class="cancel-button" (click)="closeModal()">CANCELAR</button>
+      <button mat-raised-button class="default-button" (click)="deleteTask()">CONFIRMAR</button>
+    </div> 
+  </div>
+</div>

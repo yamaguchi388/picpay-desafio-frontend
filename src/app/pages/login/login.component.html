@@ -1,0 +1,41 @@
+  <div class="row col-12">
+    <div class="login-form col-5">
+      <img src="../../../assets/images/blue-logo.png" class="blue-logo" alt="Logo Picpay">
+      <span class="title">Bem vindo de volta</span>
+
+      <form [formGroup]="loginForm">
+        <div class="content">
+          <div>
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Digite o seu email" formControlName="email" required>
+              <mat-error>Campo Obrigatório</mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div>
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Senha</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" name="Password" placeholder="Digite a sua senha" formControlName="password" required>
+              <mat-icon class="form-field-icon" (mousedown)="hidePassword()" (mouseup)="showPassword()" matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error>Campo Obrigatório</mat-error>
+            </mat-form-field>
+          </div>
+         
+          <mat-error *ngIf="error">
+            Email ou senha inválidos
+          </mat-error>
+         
+          <div>
+            <button [disabled]="loginForm.invalid" class="default-button" mat-raised-button (click)="login()">ENTRAR</button>
+          </div>     
+        </div>
+      </form>
+    </div>
+    <div class="col-7 login-img">
+      <img src="../../../assets/images/online-payment.png" class="background-img" alt="Tela Login">
+    </div>
+</div>  
+
+
+
