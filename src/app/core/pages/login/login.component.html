@@ -1,0 +1,27 @@
+<div class="login_container">
+  <section class="login_form" [formGroup]="formGroup">
+    <img class="logo" src="assets/logo.svg" alt="Payfriends Logo" />
+    <h1>Bem vindo de volta</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input id="email_field" formControlName="email" matInput />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input id="password_field" matInput formControlName="password" [type]="hide ? 'password' : 'text'" />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <button class="main-btn" (click)="login()">ENTRAR</button>
+  </section>
+  <section class="login_image">
+    <img src="assets/image_login.svg" alt="Man with credit card" />
+  </section>
+</div>

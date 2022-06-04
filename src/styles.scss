@@ -1,3 +1,5 @@
+@import "variables";
+
 * {
   box-sizing: border-box;
 }
@@ -10,4 +12,11 @@ body {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Montserrat', sans-serif; }
+
+.main-btn {
+  height: 36px;
+  background-color: $blue;
+  color: white;
+  border-radius: 4px;
+} 

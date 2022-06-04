@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { pipe } from "rxjs";
-import { map } from "rxjs/operators";
 import { AuthService } from "./core/auth/auth.service";
 import { authActions } from "./core/auth/ngrx/auth.actions";
 

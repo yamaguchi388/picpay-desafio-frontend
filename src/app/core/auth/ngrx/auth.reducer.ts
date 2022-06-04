@@ -8,13 +8,13 @@ export interface AuthState {
   isLoading: boolean;
 }
 
-export const initialState: AuthState = {
+export const authInitialState: AuthState = {
   user: null,
   isLoading: false,
 };
 
 export const authReducer = createReducer(
-  initialState,
+    authInitialState,
 
   on(authActions.login, (state) => ({
     ...state,
