@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { LOCALE_ID, NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
 import { StoreModule } from "@ngrx/store";
@@ -10,11 +10,14 @@ import { NZ_I18N } from "ng-zorro-antd/i18n";
 import { pt_BR } from "ng-zorro-antd/i18n";
 import { registerLocaleData } from "@angular/common";
 import pt from "@angular/common/locales/pt";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CoreModule } from "./core/core.module";
 import { AppRoutingModule } from "./app-routing.module";
+import localeBr from "@angular/common/locales/pt";
+
+registerLocaleData(localeBr, "pt");
 
 registerLocaleData(pt);
 @NgModule({
@@ -34,7 +37,10 @@ registerLocaleData(pt);
     CoreModule,
     AppRoutingModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: pt_BR }],
+  providers: [
+    { provide: NZ_I18N, useValue: pt_BR },
+    { provide: LOCALE_ID, useValue: "pt" },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
