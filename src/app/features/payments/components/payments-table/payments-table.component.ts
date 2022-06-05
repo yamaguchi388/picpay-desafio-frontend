@@ -14,6 +14,7 @@ import {
 } from "../../ngrx/payments.selector";
 import { searchablePaymentActions } from "../../payments.config";
 import { PaymentCreateEditComponent } from "../payment-create-edit/payment-create-edit.component";
+import { PaymentDeleteComponent } from "../payment-delete/payment-delete.component";
 
 @Component({
   selector: "app-payments-table",
@@ -74,11 +75,19 @@ export class PaymentsTableComponent implements OnInit, OnDestroy {
     );
   }
 
-  openModal(payment: Payment) {
-    this.dialog.open(PaymentCreateEditComponent, {
-      width: "750px",
+  openModal(payment: Payment, component: any, width: number = 750) {
+    this.dialog.open(component, {
+      width: width + 'px',
       data: payment,
     });
+  }
+
+  save(payment: Payment) {
+    this.openModal(payment, PaymentCreateEditComponent);
+  }
+
+  delete(payment: Payment) {
+    this.openModal(payment, PaymentDeleteComponent, 400);
   }
 
   ngOnDestroy(): void {

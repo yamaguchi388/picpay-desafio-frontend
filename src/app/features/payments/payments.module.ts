@@ -20,6 +20,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { CurrencyMaskModule } from "ng2-currency-mask";
+import { PaymentDeleteComponent } from './components/payment-delete/payment-delete.component';
 
 const routes: Routes = [{ path: "", component: PaymentsListComponent }];
 
@@ -28,6 +29,7 @@ const routes: Routes = [{ path: "", component: PaymentsListComponent }];
     PaymentsTableComponent,
     PaymentsListComponent,
     PaymentCreateEditComponent,
+    PaymentDeleteComponent,
   ],
   imports: [
     CommonModule,

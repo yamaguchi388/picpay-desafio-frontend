@@ -32,4 +32,8 @@ export class PaymentsService {
   update(payment: Payment) {
     return this.http.patch<Payment>(`${BASE_URL}/tasks/${payment.id}`, payment);
   }
+
+  delete(payment: Payment) {
+    return this.http.delete<Payment>(`${BASE_URL}/tasks/${payment.id}`);
+  }
 }

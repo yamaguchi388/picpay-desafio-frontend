@@ -38,5 +38,13 @@ export class PaymentsEffects {
     )
   );
 
+  delete$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(paymentsActions.delete),
+      exhaustMap((payload) => this.service.delete(payload.payment)),
+      map(() => paymentsActions.deleteWithSuccess())
+    )
+  );
+
   constructor(private actions$: Actions, private service: PaymentsService) {}
 }

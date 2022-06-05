@@ -1,0 +1,12 @@
+<div class="payment-container">
+  <h1>Excluir pagamento</h1>
+  <section class="payment-data">
+    <p>Usuário: {{ data.name }}</p>
+    <p>Data: {{ data.date | date: "dd/MM/yyyy" }}</p>
+    <p>Valor: {{ data.value | currency: "BRL" }}</p>
+  </section>
+  <section class="button-area">
+    <button class="sec-btn" (click)="close()">CANCELAR</button>
+    <button class="warn-btn" (click)="delete()">EXCLUIR</button>
+  </section>
+</div>

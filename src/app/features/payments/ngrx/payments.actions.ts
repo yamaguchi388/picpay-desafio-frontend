@@ -20,6 +20,10 @@ const update = createAction("[PAYMENTS] Update", props<{ payment: Payment }>());
 
 const updateWithSuccess = createAction("[PAYMENTS] Update With Success");
 
+const _delete = createAction("[PAYMENTS] Delete", props<{ payment: Payment }>());
+
+const deleteWithSuccess = createAction("[PAYMENTS] Delete With Success");
+
 export const paymentsActions = {
   list,
   listWithSuccess,
@@ -27,4 +31,6 @@ export const paymentsActions = {
   saveWithSuccess,
   update,
   updateWithSuccess,
+  delete: _delete,
+  deleteWithSuccess
 };

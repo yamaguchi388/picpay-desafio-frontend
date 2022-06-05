@@ -36,4 +36,5 @@ export function paymentFormGroup(payment?: Payment) {
 export const searchablePaymentActions: string[] = [
   paymentsActions.saveWithSuccess.type,
   paymentsActions.updateWithSuccess.type,
+  paymentsActions.deleteWithSuccess.type
 ];
