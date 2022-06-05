@@ -8,11 +8,14 @@ import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { ReactiveFormsModule } from "@angular/forms";
+import { ToolbarComponent } from "./components/toolbar/toolbar.component";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { NzAvatarModule } from "ng-zorro-antd/avatar";
 
 const routes: Routes = [{ path: "login", component: LoginComponent }];
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, ToolbarComponent],
   imports: [
     CommonModule,
     AuthModule,
@@ -21,8 +24,10 @@ const routes: Routes = [{ path: "login", component: LoginComponent }];
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    ReactiveFormsModule
+    MatToolbarModule,
+    NzAvatarModule,
+    ReactiveFormsModule,
   ],
-  exports: [LoginComponent],
+  exports: [LoginComponent, ToolbarComponent],
 })
 export class CoreModule {}

@@ -1,0 +1,11 @@
+<mat-toolbar *ngIf="user$ | async">
+  <img src="/assets/logo_2.svg" alt="Logo" />
+  <span [attr.aria-label]="(user$ | async).name">
+    <nz-avatar
+      [ngStyle]="{ 'background-color': 'green' }"
+      [nzText]="(user$ | async).name[0]"
+      nzSize="large"
+      style="vertical-align: middle"
+    ></nz-avatar>
+  </span>
+</mat-toolbar>
