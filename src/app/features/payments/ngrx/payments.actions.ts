@@ -12,7 +12,25 @@ const listWithSuccess = createAction(
   props<{ totalItens: number; payments: Payment[] }>()
 );
 
+const save = createAction("[PAYMENTS] Save", props<{ payment: Payment }>());
+
+const saveWithSuccess = createAction("[PAYMENTS] Save With Success");
+
+const update = createAction(
+  "[PAYMENTS] Update",
+  props<{ pagination: Pagination; query: Record<string, string> }>()
+);
+
+const updateWithSuccess = createAction(
+  "[PAYMENTS] Update With Success",
+  props<{ totalItens: number; payments: Payment[] }>()
+);
+
 export const paymentsActions = {
   list,
   listWithSuccess,
+  save,
+  saveWithSuccess,
+  update,
+  updateWithSuccess,
 };

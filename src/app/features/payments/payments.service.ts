@@ -16,14 +16,20 @@ export class PaymentsService {
   constructor(private http: HttpClient) {}
 
   list(query: Record<any, any>) {
-    const params = new HttpParams().appendAll(
-      Object.assign({}, query as any)
-    );
+    const params = new HttpParams().appendAll(Object.assign({}, query as any));
     return this.http
       .get<Payment[]>(`${BASE_URL}/tasks`, {
         params,
         observe: "response",
       })
       .pipe(map(parseHttpResponse));
+  }
+
+  save(payment: Payment) {
+    return this.http.post<Payment>(`${BASE_URL}/tasks`, payment);
+  }
+
+  update(payment: Payment) {
+    return this.http.post<Payment>(`${BASE_URL}/tasks/${payment.id}`, payment);
   }
 }

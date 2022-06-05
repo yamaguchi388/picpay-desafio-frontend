@@ -1,0 +1,29 @@
+.payment-container {
+    padding: 0.5rem;
+  h1 {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+
+    color: #373737;
+  }
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    .mat-form-field {
+      min-width: 325px;
+    }
+  }
+  .button-area {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    button {
+      min-width: 150px;
+    }
+  }
+}

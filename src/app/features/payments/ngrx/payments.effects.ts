@@ -22,5 +22,13 @@ export class PaymentsEffects {
     )
   );
 
+  save$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(paymentsActions.save),
+      exhaustMap((payload) => this.service.save(payload.payment)),
+      map(() => paymentsActions.saveWithSuccess())
+    )
+  );
+
   constructor(private actions$: Actions, private service: PaymentsService) {}
 }

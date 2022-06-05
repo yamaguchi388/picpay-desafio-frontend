@@ -42,12 +42,23 @@ button {
 
   /* Corrects inability to style clickable `input` types in iOS */
   -webkit-appearance: none;
+  cursor: pointer;
 }
 
 .main-btn {
   height: 36px;
   background-color: $blue;
   color: white;
+  border-radius: 4px;
+  span {
+    margin: 10px 14px
+  }
+}
+
+.sec-btn {
+  height: 36px;
+  background-color: $gray;
+  color: black;
   border-radius: 4px;
   span {
     margin: 10px 14px
