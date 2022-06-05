@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { exhaustMap, map } from "rxjs/operators";
 import { AuthService } from "../auth.service";
@@ -18,6 +19,18 @@ export class AuthEffects {
       map((user) => authActions.loginWithSuccess({ user }))
     )
   );
+  loginWithSucces$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(authActions.loginWithSuccess),
+        exhaustMap(() => this.router.navigateByUrl("/payments"))
+      ),
+    { dispatch: false }
+  );
 
-  constructor(private actions$: Actions, private service: AuthService) {}
+  constructor(
+    private actions$: Actions,
+    private service: AuthService,
+    private router: Router
+  ) {}
 }
