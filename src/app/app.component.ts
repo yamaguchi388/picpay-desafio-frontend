@@ -11,10 +11,9 @@ import { authActions } from "./core/auth/ngrx/auth.actions";
 export class AppComponent implements OnInit {
   title: string;
 
-  constructor(private ser: AuthService, private store: Store) {}
+  constructor() {}
 
   ngOnInit() {
     this.title = "Desafio Picpay Front-end";
-    this.store.dispatch(authActions.login({ email: "usuario@gmail.com", password: "usuario" }))
   }
 }
