@@ -1,0 +1,32 @@
+@import "variables";
+.payments-container {
+  background-color: $gray;
+  padding: 1rem;
+  height: 100%;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    h1 {
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 44px;
+      color: #333333;
+      margin-bottom: 35px;
+    }
+    button {
+      margin-top: -10px;
+      align-self: flex-end;
+    }
+  }
+  .data-table {
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0px 2px 4px rgba(4, 38, 82, 0.06);
+    border-radius: 8px;
+    padding: 5px;
+  }
+}

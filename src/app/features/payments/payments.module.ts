@@ -11,11 +11,12 @@ import { NzPaginationModule } from "ng-zorro-antd/pagination";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { ReactiveFormsModule } from "@angular/forms";
+import { PaymentsListComponent } from "./pages/payments-list/payments-list.component";
 
-const routes: Routes = [{ path: "", component: PaymentsTableComponent }];
+const routes: Routes = [{ path: "", component: PaymentsListComponent }];
 
 @NgModule({
-  declarations: [PaymentsTableComponent],
+  declarations: [PaymentsTableComponent, PaymentsListComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
