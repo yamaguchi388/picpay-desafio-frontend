@@ -1,5 +1,32 @@
 table {
   width: 100%;
+  font-family: "Lato", sans-serif;
+  .cdk-row {
+    background: #ffff;
+    border-color: none;
+    &:nth-child(odd) {
+      background: #f5f8fa;
+    }
+  }
+  .mat-cell {
+    border-bottom: none;
+    height: 65px;
+    div {
+      display: flex;
+      flex-direction: column;
+      span + span {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 20px;
+        color: #69788c;
+      }
+    }
+  }
+  .mat-header-cell {
+    border-bottom-color: #cfdce5;
+  }
 }
 
 .filter-header {
