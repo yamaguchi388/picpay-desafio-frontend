@@ -1,15 +1,19 @@
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormControl } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
 import { Payment } from "@app/models/payment";
-import { Store } from "@ngrx/store";
+import { ActionsSubject, Store } from "@ngrx/store";
 import { NzPaginationComponent } from "ng-zorro-antd/pagination";
 import { merge, Observable, Subscription } from "rxjs";
+import { filter } from "rxjs/operators";
 import { paymentsActions } from "../../ngrx/payments.actions";
 import { PaymentState } from "../../ngrx/payments.reducer";
 import {
   selectAllPayments,
   selectTotalPayments,
 } from "../../ngrx/payments.selector";
+import { searchablePaymentActions } from "../../payments.config";
+import { PaymentCreateEditComponent } from "../payment-create-edit/payment-create-edit.component";
 
 @Component({
   selector: "app-payments-table",
@@ -17,15 +21,26 @@ import {
   styleUrls: ["./payments-table.component.scss"],
 })
 export class PaymentsTableComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ["user", "title", "date", "value", "isPayed"];
+  displayedColumns: string[] = [
+    "user",
+    "title",
+    "date",
+    "value",
+    "isPayed",
+    "actions",
+  ];
   dataSource$: Observable<Payment[]>;
   totalItens$: Observable<number>;
-  subscriptions: Subscription = new Subscription()
+  subscriptions: Subscription = new Subscription();
 
   @ViewChild("paginator", { static: true }) paginator: NzPaginationComponent;
   userControl = new FormControl("");
 
-  constructor(private store: Store<PaymentState>) {
+  constructor(
+    private store: Store<PaymentState>,
+    private dialog: MatDialog,
+    private actionListener$: ActionsSubject
+  ) {
     this.search();
   }
 
@@ -36,10 +51,16 @@ export class PaymentsTableComponent implements OnInit, OnDestroy {
   }
 
   subscribers() {
-    this.subscriptions.add(merge(
-      this.paginator.nzPageIndexChange,
-      this.userControl.valueChanges
-    ).subscribe(() => this.search()));
+    const actionsListener = this.actionListener$.pipe(
+      filter((action) => searchablePaymentActions.includes(action.type))
+    );
+    this.subscriptions.add(
+      merge(
+        this.paginator.nzPageIndexChange,
+        this.userControl.valueChanges,
+        actionsListener
+      ).subscribe(() => this.search())
+    );
   }
 
   search() {
@@ -51,6 +72,13 @@ export class PaymentsTableComponent implements OnInit, OnDestroy {
         },
       })
     );
+  }
+
+  openModal(payment: Payment) {
+    this.dialog.open(PaymentCreateEditComponent, {
+      width: "750px",
+      data: payment,
+    });
   }
 
   ngOnDestroy(): void {

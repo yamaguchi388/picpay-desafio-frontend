@@ -33,11 +33,16 @@ export class PaymentCreateEditComponent implements OnInit {
   }
 
   save() {
-    if (this.formGroup.valid)
-      this.store.dispatch(
-        paymentsActions.save({ payment: this.formGroup.value })
-      );
-    else this.formGroup.markAllAsTouched();
+    if (this.formGroup.valid) {
+      const payment: Payment = this.formGroup.value;
+      payment.id
+        ? this.store.dispatch(
+            paymentsActions.update({ payment: this.formGroup.value })
+          )
+        : this.store.dispatch(
+            paymentsActions.save({ payment: this.formGroup.value })
+          );
+    } else this.formGroup.markAllAsTouched();
   }
 
   close() {

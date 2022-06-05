@@ -30,6 +30,6 @@ export class PaymentsService {
   }
 
   update(payment: Payment) {
-    return this.http.post<Payment>(`${BASE_URL}/tasks/${payment.id}`, payment);
+    return this.http.patch<Payment>(`${BASE_URL}/tasks/${payment.id}`, payment);
   }
 }

@@ -1,5 +1,5 @@
 <div class="payment-container">
-  <h1>Adicionar pagamento</h1>
+  <h1>{{data?.id ? 'Atualizar' : 'Adicionar'}} pagamento</h1>
   <section class="form" [formGroup]="formGroup">
     <mat-form-field appearance="outline">
       <mat-label>Nome</mat-label>
