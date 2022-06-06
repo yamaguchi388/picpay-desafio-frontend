@@ -54,4 +54,11 @@ table {
   }
 }
 
+.empty-cell {
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
 @import "~ng-zorro-antd/pagination/style/index.min.css";
