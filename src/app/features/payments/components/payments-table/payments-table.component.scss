@@ -37,10 +37,20 @@ table {
     border: 1px solid #cfdce5;
     border-radius: 6px;
     padding-right: 30px;
+    margin-right: 1rem;
   }
   span {
     position: absolute;
-    margin-left: -30px;
+    margin-left: calc(-1rem - 30px);
+  }
+}
+
+.more-filters {
+  .mat-form-field + .mat-form-field {
+    margin-left: 1rem;
+  }
+  button {
+    margin-left: 1rem;
   }
 }
 

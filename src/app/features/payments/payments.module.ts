@@ -20,7 +20,10 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { CurrencyMaskModule } from "ng2-currency-mask";
-import { PaymentDeleteComponent } from './components/payment-delete/payment-delete.component';
+import { PaymentDeleteComponent } from "./components/payment-delete/payment-delete.component";
+import { MatSortModule } from "@angular/material/sort";
+import { MatSelectModule } from "@angular/material/select";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 const routes: Routes = [{ path: "", component: PaymentsListComponent }];
 
@@ -44,10 +47,13 @@ const routes: Routes = [{ path: "", component: PaymentsListComponent }];
     MatDialogModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    MatSortModule,
+    MatSelectModule,
+    MatSlideToggleModule,
     MatNativeDateModule,
     ReactiveFormsModule,
     NzPaginationModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
   ],
 })
 export class PaymentsModule {}
