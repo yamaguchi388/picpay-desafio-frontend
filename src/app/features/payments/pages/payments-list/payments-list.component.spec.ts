@@ -34,4 +34,11 @@ describe("PaymentsListComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("should have a button to open modal", () => {
+    const openSpy = jest.spyOn(component, "openModal");
+    let button = fixture.debugElement.nativeElement.querySelector(".main-btn");
+    button.click();
+    expect(openSpy).toHaveBeenCalled();
+  });
 });

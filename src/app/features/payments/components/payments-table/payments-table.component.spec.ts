@@ -58,4 +58,13 @@ describe("PaymentsTableComponent", () => {
     component.search();
     expect(mockStoreDispachSpy).toHaveBeenCalled();
   });
+
+  it("should search when formGroup value change", (done) => {
+    const searchSpy = jest.spyOn(component, "search");
+    component.formGroup.controls["isPayed_like"].setValue("true");
+    setTimeout(() => {
+      expect(searchSpy).toHaveBeenCalled();
+      done();
+    }, 1000);
+  });
 });

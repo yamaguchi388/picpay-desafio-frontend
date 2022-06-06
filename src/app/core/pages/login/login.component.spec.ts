@@ -64,4 +64,11 @@ describe("LoginComponent", () => {
     button.click();
     expect(loginSpy).toHaveBeenCalled();
   });
+
+  it("should formGroup validate", () => {
+    const formSpy = jest.spyOn(component.formGroup, "markAllAsTouched");
+    let button = fixture.debugElement.nativeElement.querySelector(".main-btn");
+    button.click();
+    expect(formSpy).toHaveBeenCalled();
+  });
 });
