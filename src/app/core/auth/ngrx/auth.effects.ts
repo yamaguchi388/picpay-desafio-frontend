@@ -37,6 +37,17 @@ export class AuthEffects {
     )
   );
 
+  logout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authActions.logout),
+      map(() => {
+        this.snack.normal("Saindo...");
+        this.router.navigateByUrl("/login");
+        return authActions.logoutWithSuccess();
+      })
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private service: AuthService,

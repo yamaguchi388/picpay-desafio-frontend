@@ -9,15 +9,21 @@ export class SnackbarService {
 
   success(message: string) {
     this._snackBar.open(message, null, {
-      panelClass: 'snack-success',
-      duration: 5000
-    })
+      panelClass: "snack-success",
+      duration: 5000,
+    });
+  }
+
+  normal(message: string) {
+    this._snackBar.open(message, null, {
+      duration: 5000,
+    });
   }
 
   error(message: string) {
     this._snackBar.open(message, null, {
-      panelClass: 'snack-error',
-      duration: 5000
-    })
+      panelClass: "snack-error",
+      duration: 5000,
+    });
   }
 }

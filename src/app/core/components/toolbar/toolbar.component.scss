@@ -5,38 +5,11 @@
   height: 90px;
   display: flex;
   justify-content: space-between;
-}
 
-[aria-label] {
-  position: relative;
-}
-
-[aria-label]:after {
-  content: attr(aria-label);
-  display: none;
-  position: absolute;
-  top: 12%;
-  left: -90px;
-  z-index: 5000;
-  pointer-events: none;
-  padding: 8px 10px;
-  line-height: 15px;
-  white-space: nowrap;
-  text-decoration: none;
-  text-indent: 0;
-  overflow: visible;
-  font-size: 0.9em;
-  font-weight: normal;
-  color: #fff;
-  text-shadow: 1px 0 1px #888;
-  background-color: green;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  -webkit-box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.3);
-  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-[aria-label]:hover:after,
-[aria-label]:focus:after {
-  display: block;
+  .ant-avatar {
+    margin-right: 1rem;
+  }
+  button {
+    color: #fff;
+  }
 }

@@ -13,8 +13,14 @@ const loginWithSuccess = createAction(
 
 const loginWithError = createAction("[AUTH] Login With Error");
 
+const logout = createAction("[AUTH] Logout");
+
+const logoutWithSuccess = createAction("[AUTH] Logout With Success");
+
 export const authActions = {
   login,
   loginWithSuccess,
   loginWithError,
+  logout,
+  logoutWithSuccess,
 };

@@ -14,9 +14,15 @@ export class ToolbarComponent implements OnInit {
   user$: Observable<User>;
 
   constructor(private store: Store) {
-    // this.store.dispatch(authActions.login({email: 'sandro@gmail.com', password: '123'})) only development purpose
+    /* this.store.dispatch(
+      authActions.login({ email: "sandro@gmail.com", password: "123" })
+    ); //only development purpose */
     this.user$ = this.store.select(selectUser);
   }
 
   ngOnInit(): void {}
+
+  logout() {
+    this.store.dispatch(authActions.logout());
+  }
 }

@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { NzAvatarModule } from "ng-zorro-antd/avatar";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 const routes: Routes = [{ path: "login", component: LoginComponent }];
 
@@ -25,6 +26,7 @@ const routes: Routes = [{ path: "login", component: LoginComponent }];
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
+    MatTooltipModule,
     NzAvatarModule,
     ReactiveFormsModule,
   ],
