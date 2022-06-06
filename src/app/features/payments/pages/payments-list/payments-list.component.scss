@@ -2,12 +2,12 @@
 .payments-container {
   background-color: $gray;
   padding: 2rem 5rem;
-  height: 100%;
 
   .header {
     display: flex;
     justify-content: space-between;
     padding-bottom: 10px;
+    width: 100%;
     h1 {
       font-family: "Montserrat";
       font-style: normal;
@@ -23,10 +23,22 @@
     }
   }
   .data-table {
-    width: 100%;
+    max-width: 100%;
     background: #ffffff;
     box-shadow: 0px 2px 4px rgba(4, 38, 82, 0.06);
     border-radius: 8px;
     padding: 5px;
+  }
+}
+
+@media screen and (max-width: $small) {
+  .payments-container {
+    padding: 0.6rem 0.6rem;
+    .header {
+      flex-direction: column;
+    }
+    .data-table {
+      padding: 5px;
+    }
   }
 }

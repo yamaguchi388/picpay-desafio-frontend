@@ -1,63 +1,103 @@
-table {
+@import "variables";
+
+.table-container {
   width: 100%;
-  font-family: "Lato", sans-serif;
-  .cdk-row {
-    background: #ffff;
-    border-color: none;
-    &:nth-child(odd) {
-      background: #f5f8fa;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .filter-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    input[type="text"] {
+      border: 1px solid #cfdce5;
+      border-radius: 6px;
+      padding-right: 30px;
+      margin-right: 1rem;
+    }
+    span {
+      position: absolute;
+      margin-left: calc(-1rem - 30px);
     }
   }
-  .mat-cell {
-    border-bottom: none;
-    height: 65px;
-    div {
-      display: flex;
-      flex-direction: column;
-      span + span {
-        font-family: "Lato";
-        font-style: normal;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 20px;
-        color: #69788c;
+
+  .more-filters {
+    .mat-form-field + .mat-form-field {
+      margin-left: 1rem;
+    }
+    button {
+      margin-left: 1rem;
+    }
+  }
+
+  table {
+    font-family: "Lato", sans-serif;
+    .cdk-row {
+      background: #ffff;
+      border-color: none;
+      &:nth-child(odd) {
+        background: #f5f8fa;
       }
     }
-  }
-  .mat-header-cell {
-    border-bottom-color: #cfdce5;
-  }
-}
-
-.filter-header {
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem 0;
-  input[type="text"] {
-    border: 1px solid #cfdce5;
-    border-radius: 6px;
-    padding-right: 30px;
-    margin-right: 1rem;
-  }
-  span {
-    position: absolute;
-    margin-left: calc(-1rem - 30px);
-  }
-}
-
-.more-filters {
-  .mat-form-field + .mat-form-field {
-    margin-left: 1rem;
-  }
-  button {
-    margin-left: 1rem;
+    .mat-cell {
+      border-bottom: none;
+      height: 65px;
+      div {
+        display: flex;
+        flex-direction: column;
+        span + span {
+          font-family: "Lato";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 20px;
+          color: #69788c;
+        }
+      }
+    }
+    .mat-header-cell {
+      border-bottom-color: #cfdce5;
+    }
   }
 }
 
 .empty-cell {
   img {
+    max-width: 100%;
     display: block;
     margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: $small) {
+  .payments-container {
+    padding: 0.6rem;
+    .header {
+      flex-direction: column;
+    }
+    .data-table {
+      padding: 5px;
+    }
+  }
+
+  .filter-header {
+    flex-direction: column;
+  }
+
+  .mat-column-isPayed,
+  .mat-column-title {
+    display: none;
+  }
+
+  .more-filters {
+    .mat-form-field + .mat-form-field {
+      margin: 0;
+    }
+    button {
+      margin-left: 1rem;
+    }
   }
 }
 

@@ -1,3 +1,5 @@
+@import "variables";
+
 .payment-container {
   padding: 0.5rem;
   h1 {
@@ -23,6 +25,19 @@
     gap: 30px;
     button {
       min-width: 150px;
+    }
+  }
+}
+
+@media screen and (max-width: $small) {
+  .payment-container {
+    .button-area {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      button {
+        min-width: 150px;
+      }
     }
   }
 }

@@ -1,5 +1,8 @@
+@import "variables";
+
 .payment-container {
-    padding: 0.5rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
   h1 {
     font-family: "Montserrat";
     font-style: normal;
@@ -24,6 +27,26 @@
     gap: 30px;
     button {
       min-width: 150px;
+    }
+  }
+}
+@media screen and (max-width: $small) {
+  .payment-container {
+    section.form {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      .mat-form-field {
+        min-width: 100%;
+      }
+    }
+    .button-area {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      button {
+        min-width: 150px;
+      }
     }
   }
 }

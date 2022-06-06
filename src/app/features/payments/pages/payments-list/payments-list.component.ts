@@ -15,6 +15,7 @@ export class PaymentsListComponent implements OnInit {
   openModal() {
     this.dialog.open(PaymentCreateEditComponent, {
       width: "750px",
+      panelClass: 'payment-create-edit'
     });
   }
 }

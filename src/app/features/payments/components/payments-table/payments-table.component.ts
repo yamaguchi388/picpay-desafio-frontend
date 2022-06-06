@@ -87,6 +87,7 @@ export class PaymentsTableComponent implements OnInit, OnDestroy {
     this.dialog.open(component, {
       width: width + "px",
       data: payment,
+      panelClass: 'payment-create-edit'
     });
   }
 
