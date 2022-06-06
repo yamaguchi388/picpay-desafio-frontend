@@ -1,11 +1,8 @@
 import { APP_BASE_HREF } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { RouterModule } from "@angular/router";
 import { authInitialState } from "@app/core/auth/ngrx/auth.reducer";
 import { PaymentsModule } from "@app/features/payments/payments.module";
-import { EffectsModule } from "@ngrx/effects";
-import { StoreModule } from "@ngrx/store";
+import { commonMock } from "@app/utils/test/mocks";
 import { provideMockStore } from "@ngrx/store/testing";
 
 import { ToolbarComponent } from "./toolbar.component";
@@ -17,10 +14,7 @@ describe("ToolbarComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterModule.forRoot([]),
-        EffectsModule.forRoot([]),
-        StoreModule.forRoot({}),
-        HttpClientModule,
+        ...commonMock,
         PaymentsModule,
       ],
       declarations: [ToolbarComponent],

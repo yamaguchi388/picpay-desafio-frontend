@@ -1,12 +1,9 @@
 import { APP_BASE_HREF } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatTableModule } from "@angular/material/table";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { RouterModule } from "@angular/router";
-import { EffectsModule } from "@ngrx/effects";
-import { Store, StoreModule } from "@ngrx/store";
+import { commonMock } from "@app/utils/test/mocks";
+import { Store } from "@ngrx/store";
 import { provideMockStore } from "@ngrx/store/testing";
 import { NzPaginationModule } from "ng-zorro-antd/pagination";
 import { paymentInitialState } from "../../ngrx/payments.reducer";
@@ -21,12 +18,8 @@ describe("PaymentsTableComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterModule.forRoot([]),
-        EffectsModule.forRoot([]),
+        ...commonMock,
         ReactiveFormsModule,
-        StoreModule.forRoot({}),
-        HttpClientModule,
-        NoopAnimationsModule,
         NzPaginationModule,
         MatTableModule,
         PaymentsModule,

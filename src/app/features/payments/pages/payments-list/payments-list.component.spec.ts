@@ -1,13 +1,9 @@
 import { APP_BASE_HREF } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { RouterModule } from "@angular/router";
-import { EffectsModule } from "@ngrx/effects";
-import { StoreModule } from "@ngrx/store";
+import { commonMock } from "@app/utils/test/mocks";
 import { provideMockStore } from "@ngrx/store/testing";
 import { paymentInitialState } from "../../ngrx/payments.reducer";
 import { PaymentsModule } from "../../payments.module";
-
 import { PaymentsListComponent } from "./payments-list.component";
 
 describe("PaymentsListComponent", () => {
@@ -16,13 +12,7 @@ describe("PaymentsListComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterModule.forRoot([]),
-        EffectsModule.forRoot([]),
-        StoreModule.forRoot({}),
-        HttpClientModule,
-        PaymentsModule,
-      ],
+      imports: [...commonMock, PaymentsModule],
       declarations: [PaymentsListComponent],
       providers: [
         { provide: APP_BASE_HREF, useValue: "/" },

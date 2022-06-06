@@ -1,15 +1,8 @@
 import { APP_BASE_HREF } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import {
-  BrowserAnimationsModule,
-  NoopAnimationsModule,
-} from "@angular/platform-browser/animations";
-import { RouterModule } from "@angular/router";
-import { EffectsModule } from "@ngrx/effects";
-import { StoreModule } from "@ngrx/store";
 import { provideMockStore } from "@ngrx/store/testing";
+import { commonMock } from "@app/utils/test/mocks";
 import { paymentInitialState } from "../../ngrx/payments.reducer";
 import { PaymentsModule } from "../../payments.module";
 
@@ -21,15 +14,7 @@ describe("PaymentCreateEditComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterModule.forRoot([]),
-        EffectsModule.forRoot([]),
-        StoreModule.forRoot({}),
-        HttpClientModule,
-        PaymentsModule,
-        BrowserAnimationsModule,
-        NoopAnimationsModule,
-      ],
+      imports: [...commonMock, PaymentsModule],
       declarations: [PaymentCreateEditComponent],
       providers: [
         { provide: APP_BASE_HREF, useValue: "/" },

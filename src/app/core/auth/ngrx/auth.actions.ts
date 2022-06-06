@@ -11,7 +11,10 @@ const loginWithSuccess = createAction(
   props<{ user: User }>()
 );
 
+const loginWithError = createAction("[AUTH] Login With Error");
+
 export const authActions = {
   login,
   loginWithSuccess,
+  loginWithError,
 };

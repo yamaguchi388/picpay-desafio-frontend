@@ -13,6 +13,7 @@ import pt from "@angular/common/locales/pt";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { CoreModule } from "./core/core.module";
 import { AppRoutingModule } from "./app-routing.module";
 import localeBr from "@angular/common/locales/pt";
@@ -33,6 +34,7 @@ registerLocaleData(pt);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatSnackBarModule,
     HttpClientModule,
     CoreModule,
     AppRoutingModule,

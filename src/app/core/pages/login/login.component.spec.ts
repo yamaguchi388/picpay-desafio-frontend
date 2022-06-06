@@ -5,16 +5,11 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
-import { RouterModule } from "@angular/router";
 import { AuthModule } from "@app/core/auth/auth.module";
-import { EffectsModule } from "@ngrx/effects";
-
 import { LoginComponent } from "./login.component";
 import { provideMockStore } from "@ngrx/store/testing";
 import { authInitialState } from "@app/core/auth/ngrx/auth.reducer";
-import { StoreModule } from "@ngrx/store";
-import { HttpClientModule } from "@angular/common/http";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { commonMock } from "@app/utils/test/mocks";
 
 describe("LoginComponent", () => {
   let component: LoginComponent;
@@ -25,17 +20,12 @@ describe("LoginComponent", () => {
       imports: [
         CommonModule,
         AuthModule,
-        RouterModule.forRoot([]),
-        EffectsModule.forRoot([]),
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
         MatButtonModule,
         ReactiveFormsModule,
-        AuthModule,
-        StoreModule.forRoot({}),
-        HttpClientModule,
-        NoopAnimationsModule,
+        ...commonMock,
       ],
       declarations: [LoginComponent],
       providers: [
@@ -60,8 +50,10 @@ describe("LoginComponent", () => {
   });
 
   it("should have a email and password fields", () => {
-    let email = fixture.debugElement.nativeElement.querySelector("#email_field");
-    let password = fixture.debugElement.nativeElement.querySelector("#password_field");
+    let email =
+      fixture.debugElement.nativeElement.querySelector("#email_field");
+    let password =
+      fixture.debugElement.nativeElement.querySelector("#password_field");
     expect(email).toBeTruthy();
     expect(password).toBeTruthy();
   });
