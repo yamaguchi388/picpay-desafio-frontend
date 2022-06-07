@@ -72,32 +72,24 @@
 }
 
 @media screen and (max-width: $small) {
-  .payments-container {
-    padding: 0.6rem;
-    .header {
+  .table-container {
+    .more-filters {
+      display: flex;
+      flex-direction: column;
+
+      .mat-form-field + .mat-form-field {
+        margin-left: 0rem;
+      }
+    }
+
+    .filter-header {
       flex-direction: column;
     }
-    .data-table {
-      padding: 5px;
-    }
-  }
-
-  .filter-header {
-    flex-direction: column;
   }
 
   .mat-column-isPayed,
   .mat-column-title {
     display: none;
-  }
-
-  .more-filters {
-    .mat-form-field + .mat-form-field {
-      margin: 0;
-    }
-    button {
-      margin-left: 1rem;
-    }
   }
 }
 
