@@ -12,6 +12,7 @@ const routes: Routes = [
         (m) => m.PaymentsModule
       ),
   },
+  { path: "**", redirectTo: "login" },
 ];
 
 @NgModule({
