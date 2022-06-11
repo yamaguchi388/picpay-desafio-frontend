@@ -1,0 +1,39 @@
+<main class="login">
+    <section class="login__section login__section--gray">
+        <article>
+
+            <header>
+              <img src="../../assets/images/Logo.svg" alt="Logo PayFriends">
+              <h2>Bem vindo de volta</h2>
+            </header>
+
+            <form [formGroup]="form">
+
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" #emailInput>
+                <mat-hint *ngIf="showErrors('email')" [class.loginError]="showErrors('email')">Email inválido</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Senha</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" #passwordInput>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-hint *ngIf="showErrors('password')" [class.loginError]="showErrors('password')">Password inválido</mat-hint>
+              </mat-form-field>
+
+              <div class="msg__error loginError" *ngIf="loginError">
+                <span>Usuario ou senha inválido</span>
+              </div>
+                    
+              <button mat-raised-button color="primary" (click)="onSubmit()">Entrar</button>
+                
+            </form>
+        </article>
+    </section>
+    <section class="login__section--img">
+        <img src="../../assets/images/man-doing-online-payment 1.svg" width="579" alt="Login Image">
+    </section>
+</main>

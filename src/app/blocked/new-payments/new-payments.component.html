@@ -1,0 +1,64 @@
+<main>
+    <header>
+        <h1>Adicionar pagamento</h1>
+    </header>
+
+    <section>
+        <form [formGroup]="form">
+            <div class="form__fields">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nome*</mat-label>
+                    <input matInput formControlName="name">
+                    <mat-hint *ngIf="showErrors('name')" [class.loginError]="showErrors('name')">
+                        Nome inválido
+                    </mat-hint>
+                </mat-form-field>
+                
+                <mat-form-field appearance="outline">
+                    <mat-label>Usuário*</mat-label>
+                    <input matInput formControlName="username">
+                    <mat-hint *ngIf="showErrors('username')" [class.loginError]="showErrors('username')">
+                        Usuário inválido
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="form__fields">
+                <mat-form-field appearance="outline">
+                    <mat-label>Valor*</mat-label>
+                    <input type="number" matInput formControlName="value">
+                    <mat-hint *ngIf="showErrors('value')" [class.loginError]="showErrors('value')">
+                        Valor inválido
+                    </mat-hint>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Título</mat-label>
+                    <input matInput formControlName="title">
+                </mat-form-field>
+            </div>
+            <div class="form__fields">
+                <mat-form-field appearance="outline">
+                    <mat-label>Data*</mat-label>
+                    <input type="datetime-local" matInput formControlName="date">
+                    <mat-hint *ngIf="showErrors('date')" [class.loginError]="showErrors('date')">
+                        Data inválida
+                    </mat-hint>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Imagem</mat-label>
+                    <input matInput formControlName="image">
+                </mat-form-field>
+            </div>
+            <div>
+                <input type="checkbox" formControlName="isPayed"> Está Pago?
+            </div>
+        </form>
+    </section>
+
+</main>
+
+<mat-dialog-actions align="end">
+    <button class="btn--gray" mat-raised-button mat-dialog-close>Cancelar</button>
+    <button class="btn--blue" mat-raised-button [disabled]="form.invalid" (click)="onSubmit()">Salvar</button>
+</mat-dialog-actions>

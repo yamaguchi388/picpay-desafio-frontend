@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\blocked",
+    "\\src\\app\\blocked\\delete-payments",
+    "\\src\\app\\blocked\\payments",
+    "\\src\\app\\shared",
+    "\\src\\app\\shared\\components\\unavailable",
+    "\\src\\app\\shared\\components\\unavailable\\unavailable",
+    "\\src\\app\\shared\\guards",
+    "\\src\\app\\shared\\services\\payments"
+  ],
+  "SelectedNode": "\\src\\app\\shared\\guards\\isLogged.guard.ts",
+  "PreviewInSolutionExplorer": false
+}
